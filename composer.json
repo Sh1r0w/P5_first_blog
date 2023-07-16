@@ -1,0 +1,12 @@
+{
+    "name": "ntf_j/p5_first_blog",
+    "autoload": {
+        "psr-4": {
+            "NtfJ\\P5FirstBlog\\": "src/"
+        }
+    },
+    "require": {
+        "twig/twig": "3.6.1",
+        "twbs/bootstrap": "^5.3"
+    }
+}
