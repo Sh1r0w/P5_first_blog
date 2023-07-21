@@ -61,10 +61,10 @@ try {
         );
 
 
-        echo 'table ok';
+        // echo 'table ok';
     } else {
         $database = new PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
-        echo 'Connecté';
+        // echo 'Connecté';
     }
 } catch (Exception $e) {
 
