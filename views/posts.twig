@@ -1,1 +1,29 @@
 <h1>MES POSTS</h1>
+
+<h2>Envoi d'un post sur le blog</h2>
+
+<form action="posts?action=sendPost" method="post">
+
+    <div>
+        <label for="title">Title</label></br>
+        <input type="text" id="title" name="title" />
+    </div>
+
+    <div>
+        <label for="texte">texte</label></br>
+        <textarea id="texte" name="texte"></textarea>
+    </div>
+    <div>
+        <input type="submit"/>
+    </div>
+
+    {% for p in posts %}
+
+    <li>{{ p.title }}</li></br>
+    {{ p.txt }}</br>
+    {{ p.addDate }}
+
+    {% endfor %}
+
+
+</form>
