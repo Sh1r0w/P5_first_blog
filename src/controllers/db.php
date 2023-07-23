@@ -44,6 +44,7 @@ try {
                 id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                 title VARCHAR(30) NOT NULL,
                 txt VARCHAR(30) NOT NULL,
+                addDate DATE NOT NULL,
                 id_user INT NOT NULL,
                 FOREIGN KEY (id_user) REFERENCES ae_user (id) ON DELETE CASCADE ON UPDATE NO ACTION
                 )"
@@ -53,6 +54,7 @@ try {
             "CREATE TABLE IF NOT EXISTS ae_comment (
                     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                     txt VARCHAR(30) NOT NULL,
+                    addDate DATE NOT NULL,
                     id_user INT NOT NULL,
                     id_post INT NOT NULL,
                     FOREIGN KEY (id_user) REFERENCES ae_user (id) ON DELETE CASCADE ON UPDATE NO ACTION,
@@ -61,13 +63,29 @@ try {
         );
 
 
-        // echo 'table ok';
+         echo "<script>alert(\"base de donnée créer\")</script>";
     } else {
-        $database = new PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
-        // echo 'Connecté';
-    }
+        function dbConnect() 
+        {
+                $user = $_ENV['USER'];
+                $pwd = $_ENV['PWD'];
+                $db = $_ENV['DATABASE'];
+                $server = $_ENV['SERVER'];
+            try {
+                $database = new PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
+                return $database;
+                echo 'Base déjà créer';
+            } catch(Exception $e) {
+                die('Erreur : '.$e->getMessage());
+            }
+            
+        }
+                
+            }
 } catch (Exception $e) {
 
 
     die('Erreur : ' . $e->getMessage());
 }
+
+
