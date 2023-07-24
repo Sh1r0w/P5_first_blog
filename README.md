@@ -3,7 +3,7 @@ P5_first_blog
 
 First step
 
-create file .env in file folder 'src' complet the variable
+create file .env in file folder 'src/controllers' complet the variable
 USER="root"
 PWD="" (your password in mysql)
 DATABASE="ae_blog"
