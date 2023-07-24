@@ -36,3 +36,17 @@ function postsList($database)
     return $l;
     
 }
+
+function postsDelete($id, $database)
+
+{
+
+    $success = deletePost($id, $database);
+
+    if($success)
+    {
+        header('location: posts');
+        
+    }
+
+}

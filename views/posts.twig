@@ -19,13 +19,13 @@
 
     {% for p in posts %}
 
-    <li>{{ p.id }} - {{ p.title }}</li></br>
+    <li>{{ p.title }}</li></br>
     {{ p.txt }}</br>
     {{ p.addDate }}
     </form>
-    <form action="posts?action=postsDelete" value="{{ p.id }}" method="post">
+    <form action="posts?action=postsDelete&id={{ p.id }}"  method="post">
         <div>
-            <input type="submit" value="Delete"/>
+            <input  type="submit" value="Delete"/>
         </div>
 
     {% endfor %}

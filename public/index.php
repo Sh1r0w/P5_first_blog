@@ -5,7 +5,7 @@ require_once '../vendor/autoload.php';
 
 // Required files
 require_once '../src/controllers/db.php';
-require_once '../src/controllers/add_posts.php';
+require_once '../src/controllers/posts.php';
 require_once '../src/model/posts.php';
 
 // Twig
@@ -35,16 +35,19 @@ if (is_array($match)) {
 
         } elseif ($_GET['action'] === ($match['target'] . 'Update')) {
             // Soon
-            ($match['target'] . 'Send')($_POST, $database);
+  
             
-        } elseif ($_GET['action'] === ($match['target'] . 'Delete')) {
+        } elseif ($_GET['id'] > 0 && $_GET['action'] === ($match['target'] . 'Delete')) {
             // Soon
+            ($match['target'] . 'Delete')($_GET['id'], $database);
         } else {
             echo 'ERREUR';
         }
-    } else {
+    } elseif($match['target'] == 'posts' || $match['target'] == 'comment') {
 
         echo $twig->render($match['target'] . '.twig', [$match['target'] => ($match['target'] . 'List')($database)]);
+    } else {
+        echo $twig->render($match['target'] . '.twig');
     }
 } else {
 
