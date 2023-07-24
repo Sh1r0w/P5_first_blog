@@ -1,9 +1,8 @@
 <?php
 
 
-function sendPost(array $input)
+function postsSend(array $input, $database)
 {
-    require '../src/controllers/db.php';
     $title = null;
     $texte = null;
 
@@ -26,4 +25,14 @@ function sendPost(array $input)
 
     };
 
-};
+}
+
+function postsList($database) 
+
+{
+
+    $l = getPost($database);
+
+    return $l;
+    
+}

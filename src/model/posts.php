@@ -2,9 +2,8 @@
 
 // model for save one post
 
-function getPost(){
+function getPost($database){
 
-    require '../src/controllers/db.php';
 
     $statement = $database->query( 
         "SELECT id, title, txt, DATE_FORMAT(addDate, '%d/%m/%Y %H:%i:%S') AS addDate FROM ae_post ORDER BY addDate DESC"
@@ -20,7 +19,7 @@ function getPost(){
         $posts[] = $post;
     }
 
-    if ($posts != null) {
+    if (isset($posts)) {
         return $posts;
     }
 

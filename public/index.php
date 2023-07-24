@@ -3,8 +3,8 @@
 require_once '../vendor/autoload.php';
 
 
-// Access to database
-//require '../src/controllers/db.php';
+// Required files
+require_once '../src/controllers/db.php';
 require_once '../src/controllers/add_posts.php';
 require_once '../src/model/posts.php';
 
@@ -29,17 +29,17 @@ $match = $router->match();
 if (is_array($match)) {
 
     if(isset($_GET['action']) && $_GET['action'] !== '') {
-        if($_GET['action'] === 'sendPost') {
+        if($_GET['action'] === ($match['target'] . 'Send')) {
             
-                sendPost($_POST);
+            ($match['target'] . 'Send')($_POST, $database);
              
             
         } else {
-            echo 'ERREUR' . implode($_POST);
+            echo 'ERREUR';
         }
     } else {
 
-        echo $twig->render($match['target'] . '.twig', [$match['target'] => getPost()]);
+        echo $twig->render($match['target'] . '.twig', [$match['target'] => ($match['target'] . 'List')($database)]);
 
     }
 
