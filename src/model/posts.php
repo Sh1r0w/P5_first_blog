@@ -11,6 +11,7 @@ function getPost($database){
     
     while (($row = $statement->fetch())) {
         $post = [
+            'id' => $row['id'],
             'title' => $row['title'],
             'txt' => $row['txt'],
             'addDate' => $row['addDate'],
