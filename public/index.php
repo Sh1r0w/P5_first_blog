@@ -28,27 +28,24 @@ $match = $router->match();
 
 if (is_array($match)) {
 
-    if(isset($_GET['action']) && $_GET['action'] !== '') {
-        if($_GET['action'] === ($match['target'] . 'Send')) {
-            
+    if (isset($_GET['action']) && $_GET['action'] !== '') {
+        if ($_GET['action'] === ($match['target'] . 'Send')) {
+
             ($match['target'] . 'Send')($_POST, $database);
-             
-            
+        } elseif ($_GET['action'] === ($match['target'] . 'Update')) {
+            // Soon
+        } elseif ($_GET['action'] === ($match['target'] . 'Delete')) {
+            // Soon
         } else {
             echo 'ERREUR';
         }
     } else {
-
+        
         echo $twig->render($match['target'] . '.twig', [$match['target'] => ($match['target'] . 'List')($database)]);
-
     }
-
-
-
 } else {
 
     require "../views/404.twig";
 }
 
 // Add New Post
-
