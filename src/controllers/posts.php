@@ -40,7 +40,7 @@ function postsList($database)
 function postsDelete($id, $database)
 
 {
-    if($id !== '' && $id > 0){
+    if(isset($id) && $id > 0){
    deletePost($id, $database);
 } else {
     header('location: posts');
