@@ -50,7 +50,7 @@ public function createPost(string $title, string $texte, $database)
 }
 }
 
-function deletePost($id, $database)
+function deletePost(int $id, $database)
 {
     if (isset($id)) {
         $statement = $database->prepare(
