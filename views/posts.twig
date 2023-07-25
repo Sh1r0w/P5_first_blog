@@ -1,48 +1,49 @@
 {% extends 'layout.twig' %}
-
 {% block head %}
-
-<title>Mes posts</title>
-
+    <title>
+        Mes posts
+            
+    </title>
 {% endblock %}
-
 {% block content %}
-<h1>MES POSTS</h1>
-
-<h2>Envoi d'un post sur le blog</h2>
-
-<form action="posts?action=postsSend" method="post">
-
-    <div>
-        <label for="title">Title</label></br>
-        <input type="text" id="title" name="title" />
-    </div>
-
-    <div>
-        <label for="texte">texte</label></br>
-        <textarea id="texte" name="texte"></textarea>
-    </div>
-    <div>
-        <input class="btn btn-primary btn-success" type="submit"/>
-    </div>
-<div class="row d-flex">
-    {% for p in posts %}
+<h1>
+    MES POSTS
     
+</h1>
+<h2>
+    Envoi d'un post sur le blog
+    
+</h2>
+<form action="posts?action=postsSend" method="post">
+    <div>
+        <label for="title">
+            Title
+                    
+        </label>
+    </br>
+    <input type="text" id="title" name="title" />
+</div>
+<div>
+    <label for="texte">
+        texte
+            
+    </label>
+</br>
+<textarea id="texte" name="texte"></textarea></div><div>
+<input class="btn btn-primary btn-success" type="submit" /></div><div class="row d-flex">
+{% for p in posts %}
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-    <h4>{{ p.title }}</h4></br>
-    {{ p.txt }}</br>
+            <h4>
+                {{ p.title }}
+            </h4>
+        </br>
+        {{ p.txt }}
+    </br>
     {{ p.addDate }}
-    </form>
-    <form action="posts?action=postsDelete&id={{ p.id }}"  method="post">
-        <div>
-            <input class="btn btn-primary btn-danger" type="submit" value="Delete"/>
-        </div>
-    </div>
-    </div>
-    {% endfor %}
-
-</div>
 </form>
-
-{% endblock %}
+<form action="posts?action=postsDelete&id={{ p.id }}" method="post">
+    <div>
+        <input class="btn btn-primary btn-danger" type="submit" value="Delete" />
+    </div>
+</div></div>{% endfor %}</div></form>{% endblock %}

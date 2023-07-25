@@ -1,0 +1,33 @@
+{% extends 'layout.twig' %}
+{% block head %}
+    <title>
+        Page de connection
+    </title>
+{% endblock %}
+
+
+{% block content %}
+    <form action="login?action=loginSend" method="post">
+        <div>
+            <label for="title">
+            Votre email:
+                            
+            </label>
+        </br>
+        <input type="email" id="login" name="login" />
+    </div>
+    <div>
+        <label for="texte">
+            Mot de passe
+                    
+        </label>
+    </br>
+    <input type="password" id="pwd" name="pwd"></textarea>
+</div>
+<div>
+    <input class="btn btn-primary btn-success" type="submit" />
+</div>
+<div class="row d-flex">
+
+</form>
+{% endblock %}

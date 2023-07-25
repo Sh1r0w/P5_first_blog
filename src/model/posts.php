@@ -2,11 +2,16 @@
 
 // model for save one post
 
-function getPost($database)
+declare(strict_types=1);
+
+class ListPost
+{
+    
+    public function getPost($db)
 {
 
 
-    $statement = $database->query(
+    $statement = $db->query(
         "SELECT id, title, txt, DATE_FORMAT(addDate, '%d/%m/%Y %H:%i:%S') AS addDate FROM ae_post ORDER BY addDate DESC"
     );
 
@@ -19,14 +24,20 @@ function getPost($database)
         ];
 
         $posts[] = $post;
+        
     }
 
     if (isset($posts)) {
+
         return $posts;
+        
     }
 }
+}
 
-function createPost(string $title, string $texte, $database)
+class sendPost 
+{
+public function createPost(string $title, string $texte, $database)
 {
 
     $statement = $database->prepare(
@@ -36,6 +47,7 @@ function createPost(string $title, string $texte, $database)
     $sendPost = $statement->execute([$title, $texte]);
 
     return ($sendPost > 0);
+}
 }
 
 function deletePost($id, $database)

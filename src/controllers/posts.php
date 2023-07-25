@@ -14,7 +14,10 @@ function postsSend(array $input, $database)
         die('Formulaire Vide');
     };
 
-    $success = createPost($title, $texte, $database);
+    $success = new sendPost;
+    $success->createPost($title, $texte, $database);
+
+    //$success = createPost($title, $texte, $database);
 
 
     if(!$success) {
@@ -31,9 +34,8 @@ function postsList($database)
 
 {
 
-    $l = getPost($database);
-
-    return $l;
+    $postList = new ListPost;
+    return $postList->getPost($database);
     
 }
 

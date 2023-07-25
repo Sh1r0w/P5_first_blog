@@ -23,10 +23,12 @@ $router = new AltoRouter();
 $router->map('GET', '/', 'home', 'homepage');
 $router->map('GET|POST', '/posts', 'posts', 'sendPost');
 $router->map('GET|POST', '/comments', 'comments', 'comments');
-
+$router->map('GET|POST', '/login', 'login');
 $match = $router->match();
 
 if (is_array($match)) {
+
+// Root for send / update / delete page
 
     if (isset($_GET['action']) && $_GET['action'] !== '') {
         if ($_GET['action'] === ($match['target'] . 'Send')) {
@@ -46,6 +48,7 @@ if (is_array($match)) {
     } elseif($match['target'] == 'posts' || $match['target'] == 'comment') {
 
         echo $twig->render($match['target'] . '.twig', [$match['target'] => ($match['target'] . 'List')($database)]);
+
     } else {
         echo $twig->render($match['target'] . '.twig');
     }
@@ -54,4 +57,3 @@ if (is_array($match)) {
     require "../views/404.twig";
 }
 
-// Add New Post
