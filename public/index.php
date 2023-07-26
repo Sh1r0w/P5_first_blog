@@ -35,7 +35,7 @@ if (is_array($match)) {
     if (isset($_GET['action']) && $_GET['action'] !== '') {
         if ($_GET['action'] === ($match['target'] . 'Send')) {
 
-            ($match['target'] . 'Send')($_POST, $database);
+            ($match['target'] . 'Send')($_POST);
 
         } elseif ($_GET['action'] === ($match['target'] . 'Update')) {
             // Soon
@@ -43,13 +43,13 @@ if (is_array($match)) {
             
         } elseif ($_GET['id'] > 0 && $_GET['action'] === ($match['target'] . 'Delete')) {
             // Soon
-            ($match['target'] . 'Delete')($_GET['id'], $database);
+            ($match['target'] . 'Delete')($_GET['id']);
         } else {
             echo 'ERREUR';
         }
     } elseif($match['target'] == 'posts' || $match['target'] == 'comment') {
 
-        echo $twig->render($match['target'] . '.twig', [$match['target'] => ($match['target'] . 'List')($database)]);
+        echo $twig->render($match['target'] . '.twig', [$match['target'] => ($match['target'] . 'List')()]);
 
     } else {
         echo $twig->render($match['target'] . '.twig');

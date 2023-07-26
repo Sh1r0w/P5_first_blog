@@ -1,17 +1,13 @@
 <?php
 
-// model for save one post
-
 declare(strict_types=1);
 
-class ListPost
+class ListPost extends DbConnect
+{ 
+    public function getPost()
 {
     
-    public function getPost($db)
-{
-
-
-    $statement = $db->query(
+    $statement = $this->database()->query(
         "SELECT id, title, txt, DATE_FORMAT(addDate, '%d/%m/%Y %H:%i:%S') AS addDate FROM ae_post ORDER BY addDate DESC"
     );
 
@@ -35,12 +31,12 @@ class ListPost
 }
 }
 
-class sendPost 
+class sendPost extends ListPost
 {
-public function createPost(string $title, string $texte, $database)
+public function createPost(string $title, string $texte)
 {
 
-    $statement = $database->prepare(
+    $statement = $this->database()->prepare(
         "INSERT INTO ae_post(title, txt, id_user, addDate) VALUES(?,?,1, NOW())"
     );
 
@@ -50,13 +46,13 @@ public function createPost(string $title, string $texte, $database)
 }
 }
 
-Class deletePost
+Class deletePost extends ListPost
 {
 
-    public function deletePost(int $id, $database)
+    public function deletePost(int $id)
 {
     if (isset($id)) {
-        $statement = $database->prepare(
+        $statement = $this->database()->prepare(
             "DELETE FROM ae_post WHERE id = $id"
         );
 

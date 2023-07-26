@@ -1,7 +1,7 @@
 <?php
 
 
-function postsSend(array $input, $database)
+function postsSend(array $input)
 {
     $title = null;
     $texte = null;
@@ -15,7 +15,7 @@ function postsSend(array $input, $database)
     };
 
     $success = new sendPost;
-    $success->createPost($title, $texte, $database);
+    $success->createPost($title, $texte);
 
     //$success = createPost($title, $texte, $database);
 
@@ -30,21 +30,21 @@ function postsSend(array $input, $database)
 
 }
 
-function postsList($database) 
+function postsList() 
 
 {
 
     $postList = new ListPost;
-    return $postList->getPost($database);
+    return $postList->getPost();
     
 }
 
-function postsDelete($id, $database)
+function postsDelete($id)
 
 {
     if(isset($id) && $id > 0){
    $delete = new DeletePost;
-   $delete->deletePost($id, $database);
+   $delete->deletePost($id);
 } else {
     header('location: posts');
 }

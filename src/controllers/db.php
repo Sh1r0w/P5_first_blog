@@ -1,5 +1,12 @@
 <?php
 
+
+
+class DbConnect 
+{
+    
+public static function database(){
+
 $dotenv = Dotenv\Dotenv::createMutable(__DIR__);
 $dotenv->safeLoad();
 
@@ -73,6 +80,8 @@ try {
             try {
                 $database = new PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
 
+                return $database;
+
                 //echo 'Base déjà créer';
             } catch(Exception $e) {
                 die('Erreur : '.$e->getMessage());
@@ -86,5 +95,6 @@ try {
 
     die('Erreur : ' . $e->getMessage());
 }
+}
 
-
+}
