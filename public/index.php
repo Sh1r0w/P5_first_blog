@@ -8,6 +8,8 @@ require_once '../src/controllers/db.php';
 require_once '../src/controllers/posts.php';
 require_once '../src/model/posts.php';
 
+
+
 // Twig
 
 $loader = new \Twig\Loader\FilesystemLoader('../views/');

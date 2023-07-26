@@ -43,7 +43,8 @@ function postsDelete($id, $database)
 
 {
     if(isset($id) && $id > 0){
-   deletePost($id, $database);
+   $delete = new DeletePost;
+   $delete->deletePost($id, $database);
 } else {
     header('location: posts');
 }

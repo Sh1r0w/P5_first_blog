@@ -50,7 +50,10 @@ public function createPost(string $title, string $texte, $database)
 }
 }
 
-function deletePost(int $id, $database)
+Class deletePost
+{
+
+    public function deletePost(int $id, $database)
 {
     if (isset($id)) {
         $statement = $database->prepare(
@@ -64,4 +67,5 @@ function deletePost(int $id, $database)
         header('location: 404');
         echo $id;
     }
+}
 }
