@@ -4,13 +4,11 @@ require_once '../vendor/autoload.php';
 
 
 // Required files
+require_once '../src/controllers/params.php';
 require_once '../src/controllers/db.php';
 require_once '../src/controllers/posts.php';
 require_once '../src/model/posts.php';
 
-
-
-// Twig
 
 $loader = new \Twig\Loader\FilesystemLoader('../views/');
 
@@ -20,7 +18,7 @@ $twig = new \Twig\Environment($loader, [
 
 // Routing
 $router = new AltoRouter();
-
+DbConnect::database();
 
 $router->map('GET', '/', 'home', 'homepage');
 $router->map('GET|POST', '/posts', 'posts', 'sendPost');
@@ -42,7 +40,7 @@ if (is_array($match)) {
   
             
         } elseif ($_GET['id'] > 0 && $_GET['action'] === ($match['target'] . 'Delete')) {
-            // Soon
+           
             ($match['target'] . 'Delete')($_GET['id']);
         } else {
             echo 'ERREUR';

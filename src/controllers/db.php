@@ -1,40 +1,37 @@
 <?php
 
+require '../src/controllers/params.php';
 
-
-class DbConnect 
+class DbConnect
 {
-    
-public static function database(){
 
-$dotenv = Dotenv\Dotenv::createMutable(__DIR__);
-$dotenv->safeLoad();
+    public static function database()
+    {
+        $user = $_ENV['USER'];
+        $pwd = $_ENV['PWD'];
+        $db = $_ENV['DATABASE'];
+        $server = $_ENV['SERVER'];
 
-$user = $_ENV['USER'];
-$pwd = $_ENV['PWD'];
-$db = $_ENV['DATABASE'];
-$server = $_ENV['SERVER'];
+        // We create or connect to the database and create tables.
 
-// We create or connect to the database and create tables.
+        try {
 
-try {
+            $database = new PDO("mysql:host=$server;utf8", $user, $pwd);
 
-    $database = new PDO("mysql:host=$server;utf8", $user, $pwd);
+            if ($database->exec("CREATE DATABASE IF NOT EXISTS $db")) {
 
-    if ($database->exec("CREATE DATABASE IF NOT EXISTS $db")) {
+                $database = new PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
 
-        $database = new PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
-
-        $database->exec(
-            "CREATE TABLE IF NOT EXISTS ae_connect (
+                $database->exec(
+                    "CREATE TABLE IF NOT EXISTS ae_connect (
         id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
         log VARCHAR(30) NOT NULL,
         pwd VARCHAR(30) NOT NULL
         )"
-        );
+                );
 
-        $database->exec(
-            "CREATE TABLE IF NOT EXISTS ae_user (
+                $database->exec(
+                    "CREATE TABLE IF NOT EXISTS ae_user (
             id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
             firstname VARCHAR(30) NOT NULL,
             lastname VARCHAR(30) NOT NULL,
@@ -44,10 +41,10 @@ try {
             id_login INT NOT NULL,
             FOREIGN KEY (id_login) REFERENCES ae_connect (id) ON DELETE CASCADE ON UPDATE NO ACTION
             )"
-        );
+                );
 
-        $database->exec(
-            "CREATE TABLE IF NOT EXISTS ae_post (
+                $database->exec(
+                    "CREATE TABLE IF NOT EXISTS ae_post (
                 id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                 title VARCHAR(30) NOT NULL,
                 txt VARCHAR(30) NOT NULL,
@@ -55,10 +52,10 @@ try {
                 id_user INT NOT NULL,
                 FOREIGN KEY (id_user) REFERENCES ae_user (id) ON DELETE CASCADE ON UPDATE NO ACTION
                 )"
-        );
+                );
 
-        $database->exec(
-            "CREATE TABLE IF NOT EXISTS ae_comment (
+                $database->exec(
+                    "CREATE TABLE IF NOT EXISTS ae_comment (
                     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                     txt VARCHAR(30) NOT NULL,
                     addDate DATETIME NOT NULL,
@@ -67,34 +64,37 @@ try {
                     FOREIGN KEY (id_user) REFERENCES ae_user (id) ON DELETE CASCADE ON UPDATE NO ACTION,
                     FOREIGN KEY (id_post) REFERENCES ae_post (id) ON DELETE CASCADE ON UPDATE NO ACTION
                     )"
-        );
+                );
 
 
-         echo "<script>alert(\"base de donnée créer\")</script>";
-    } else {
-
-                $user = $_ENV['USER'];
-                $pwd = $_ENV['PWD'];
-                $db = $_ENV['DATABASE'];
-                $server = $_ENV['SERVER'];
-            try {
-                $database = new PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
-
-                return $database;
-
-                //echo 'Base déjà créer';
-            } catch(Exception $e) {
-                die('Erreur : '.$e->getMessage());
+                echo "<script>alert(\"base de donnée créer\")</script>";
+            }else {
+                //echo "<script>alert(\"base de donnée déjà créer\")</script>";
             }
-            
-        
-                
-            }
-} catch (Exception $e) {
+        } catch (Exception $e) {
 
 
-    die('Erreur : ' . $e->getMessage());
-}
-}
+            die('Erreur : ' . $e->getMessage());
+        }
+    }
 
+    public static function connectDatabase()
+    {
+
+
+        $user = $_ENV['USER'];
+        $pwd = $_ENV['PWD'];
+        $db = $_ENV['DATABASE'];
+        $server = $_ENV['SERVER'];
+
+        try {
+            $database = new PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
+
+            return $database;
+
+            //echo 'Base déjà créer';
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+    }
 }

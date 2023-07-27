@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @param $input string get $title and $content for create posts
+ */
 
 function postsSend(array $input)
 {
@@ -17,8 +20,6 @@ function postsSend(array $input)
     $success = new sendPost;
     $success->createPost($title, $texte);
 
-    //$success = createPost($title, $texte, $database);
-
 
     if(!$success) {
         die('Ajout impossible');
@@ -30,6 +31,10 @@ function postsSend(array $input)
 
 }
 
+/**
+ * return array list of posts
+ */
+
 function postsList() 
 
 {
@@ -38,6 +43,10 @@ function postsList()
     return $postList->getPost();
     
 }
+
+/**
+ * @var $id int get id for delete one posts
+ */
 
 function postsDelete($id)
 
