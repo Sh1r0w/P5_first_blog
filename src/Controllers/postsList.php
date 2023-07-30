@@ -1,6 +1,6 @@
 <?php
 
-namespace model\Posts;
+namespace Controllers;
 
 class postsList
 { 

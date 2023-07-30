@@ -18,7 +18,7 @@ class Autoloader
                 $path = str_replace(['model\Posts\\', '\\'], ['../src/model/', '/'], $class) . '.php';
                 require_once($path);
             } else {
-                $path = str_replace(['Controllers\Fonction\\', '\\'], ['../src/Controllers/Fonction/', '/'], $class) . '.php';
+                $path = str_replace(['Controllers\\', '\\'], ['../src/Controllers/', '/'], $class) . '.php';
                 require_once($path);
             }
 

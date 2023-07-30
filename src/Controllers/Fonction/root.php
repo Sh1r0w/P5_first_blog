@@ -13,7 +13,10 @@ class root
             'cache' => false,
         ]);
 
-        if (is_array($match)) {
+        echo $twig->render($match['target'] . '.twig');
+
+
+        /*if (is_array($match)) {
 
             // Root for send / update / delete page
 
@@ -33,7 +36,7 @@ class root
                 }
             } elseif ($match['target'] == 'posts' || $match['target'] == 'comment') {
 
-                $p = new \model\Posts\postsList;
+                $p = new \Controllers\postsList;
                 $t = $match['target'];
                 $m = $p->$t;
                 echo $twig->render($match['target'] . '.twig', [$match['target'] => $m]);
@@ -43,6 +46,6 @@ class root
         } else {
 
             require "../views/404.twig";
-        }
+        }*/
     }
 }

@@ -6,7 +6,7 @@ require '../src/controllers/fonction/params.php';
 class db
 {
 
-    public static function database()
+    public function __construct()
     {
         $user = $_ENV['USER'];
         $pwd = $_ENV['PWD'];
@@ -69,6 +69,7 @@ class db
 
 
                 echo "<script>alert(\"base de donnée créer\")</script>";
+                header("Location: home");
             }else {
                 //echo "<script>alert(\"base de donnée déjà créer\")</script>";
             }
