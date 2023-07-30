@@ -35,14 +35,7 @@ function postsSend(array $input)
  * return array list of posts
  */
 
-function postsList() 
 
-{
-
-    $postList = new ListPost;
-    return $postList->getPost();
-    
-}
 
 /**
  * @var $id int get id for delete one posts

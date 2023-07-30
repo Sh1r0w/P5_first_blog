@@ -1,8 +1,9 @@
 <?php
+namespace Controllers\Fonction;
 
-require '../src/controllers/params.php';
+require '../src/controllers/fonction/params.php';
 
-class DbConnect
+class db
 {
 
     public static function database()
@@ -16,11 +17,11 @@ class DbConnect
 
         try {
 
-            $database = new PDO("mysql:host=$server;utf8", $user, $pwd);
+            $database = new \PDO("mysql:host=$server;utf8", $user, $pwd);
 
             if ($database->exec("CREATE DATABASE IF NOT EXISTS $db")) {
 
-                $database = new PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
+                $database = new \PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
 
                 $database->exec(
                     "CREATE TABLE IF NOT EXISTS ae_connect (
@@ -71,7 +72,7 @@ class DbConnect
             }else {
                 //echo "<script>alert(\"base de donnée déjà créer\")</script>";
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
 
 
             die('Erreur : ' . $e->getMessage());
@@ -88,12 +89,12 @@ class DbConnect
         $server = $_ENV['SERVER'];
 
         try {
-            $database = new PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
+            $database = new \PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
 
             return $database;
 
             //echo 'Base déjà créer';
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
     }
