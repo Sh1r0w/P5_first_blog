@@ -20,4 +20,4 @@ $router->map('GET|POST', '/login', 'login');
 $match = $router->match();
 
 $d = new \Controllers\Fonction\db;
-$r = new \Controllers\Fonction\root($match);
+$a = new \Controllers\Fonction\action($match);

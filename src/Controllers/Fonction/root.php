@@ -4,6 +4,7 @@ namespace Controllers\Fonction;
 
 class root
 {
+    
     function __construct($match)
     {
         
@@ -13,8 +14,20 @@ class root
             'cache' => false,
         ]);
 
-        echo $twig->render($match['target'] . '.twig');
 
+            if(file_exists('../src/controllers' . '/' . $match['target'] . 'List' . '.php')){
+                $t = '\Controllers\\' . $match['target'] . 'List';
+                $p = new $t;
+                $s = $match['target'];
+                $m = $p->$s;
+                echo $twig->render($match['target'] . '.twig', [$match['target'] => $m]);
+                
+            } else
+            {
+                echo $twig->render($match['target'] . '.twig');
+            }
+                
+            
 
         /*if (is_array($match)) {
 
