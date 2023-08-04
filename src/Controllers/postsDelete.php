@@ -1,12 +1,14 @@
 <?php
 
-Class deletePost extends ListPost
+namespace Controllers;
+
+Class postsDelete
 {
 
-    public function deletePost(int $id)
+    public function __construct(int $id)
 {
     if (isset($id)) {
-        $statement = DbConnect::connectDatabase()->prepare(
+        $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
             "DELETE FROM ae_post WHERE id = $id"
         );
 

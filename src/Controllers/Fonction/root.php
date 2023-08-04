@@ -13,8 +13,6 @@ class root
         $twig = new \Twig\Environment($loader, [
             'cache' => false,
         ]);
-
-
             if(file_exists('../src/controllers' . '/' . $match['target'] . 'List' . '.php')){
                 $t = '\Controllers\\' . $match['target'] . 'List';
                 $p = new $t;

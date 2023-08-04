@@ -12,7 +12,6 @@ require_once '../src/Controllers/Fonction/Autoloader.php';
 // Routing
 $router = new AltoRouter();
 
-
 $router->map('GET', '/', 'home', 'homepage');
 $router->map('GET|POST', '/posts', 'posts', 'postsList');
 $router->map('GET|POST', '/comments', 'comments', 'comments');
@@ -20,4 +19,4 @@ $router->map('GET|POST', '/login', 'login');
 $match = $router->match();
 
 $d = new \Controllers\Fonction\db;
-$a = new \Controllers\Fonction\action($match);
+$a = new \Controllers\Fonction\action($match, $_POST);
