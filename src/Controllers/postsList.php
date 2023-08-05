@@ -9,7 +9,7 @@ class postsList
    public function __construct()
 {
     $statement = \Controllers\Fonction\db::connectDatabase()->query(
-        "SELECT id, title, txt, DATE_FORMAT(addDate, '%d/%m/%Y %H:%i:%S') AS addDate FROM ae_post ORDER BY addDate DESC"
+        "SELECT id, title, txt, addDate AS addDate FROM ae_post ORDER BY addDate DESC"
     );
     while (($row = $statement->fetch())) {
         $post = [

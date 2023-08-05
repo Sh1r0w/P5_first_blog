@@ -12,7 +12,7 @@ class Autoloader
         {
 
                 $path = str_replace(['Controllers\\', '\\'], ['../src/Controllers/', '/'], $class) . '.php';
-                echo $path;
+
                 require_once($path);
             
 

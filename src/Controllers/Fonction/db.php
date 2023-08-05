@@ -27,7 +27,7 @@ class db
                     "CREATE TABLE IF NOT EXISTS ae_connect (
         id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
         log VARCHAR(30) NOT NULL,
-        pwd VARCHAR(30) NOT NULL
+        pwd VARCHAR(255) NOT NULL
         )"
                 );
 

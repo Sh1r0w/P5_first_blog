@@ -17,7 +17,6 @@ Class postsDelete
         header('location: posts');
     } else {
         header('location: 404');
-        echo $id;
     }
 }
 }

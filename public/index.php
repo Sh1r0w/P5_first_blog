@@ -3,20 +3,27 @@
 require_once '../vendor/autoload.php';
 
 
-
-// Required files
+/**
+ * load Autoloader for add require path
+ */
 require_once '../src/Controllers/Fonction/Autoloader.php';
 
 \Controllers\Fonction\Autoloader::register();
 
-// Routing
+/**
+ * use Altorooter
+ */
 $router = new AltoRouter();
 
 $router->map('GET', '/', 'home', 'homepage');
 $router->map('GET|POST', '/posts', 'posts', 'postsList');
 $router->map('GET|POST', '/comments', 'comments', 'comments');
-$router->map('GET|POST', '/login', 'login');
 $match = $router->match();
+
+/**
+ * load bdd 
+ * @param action $match altorouter and $_POST
+ */
 
 $d = new \Controllers\Fonction\db;
 $a = new \Controllers\Fonction\action($match, $_POST);
