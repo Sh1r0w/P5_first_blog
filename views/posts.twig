@@ -1,49 +1,76 @@
 {% extends 'layout.twig' %}
+{% import "forms.twig" as forms %}
 {% block head %}
     <title>
         Mes posts
+                    
             
     </title>
 {% endblock %}
 {% block content %}
-<h1>
-    MES POSTS
-    
-</h1>
-<h2>
-    Envoi d'un post sur le blog
-    
-</h2>
-<form action="posts?action=postsSend" method="post">
+    <h1>
+        MES POSTS
+            
+        
+    </h1>
+    <h2>
+        Envoi d'un post sur le blog
+            
+        
+    </h2>
+    <form action="posts?action=postsSend" method="post">
+        <div>
+
+        {{ forms.input('Votre titre', 'title', null, 'texte')}}
+    </div>
     <div>
-        <label for="title">
-            Title
-                    
-        </label>
-    </br>
-    <input type="text" id="title" name="title" />
+
+        {{ forms.textarea('Votre texte', 'texte', 5, 60)}}
 </div>
 <div>
-    <label for="texte">
-        texte
-            
-    </label>
-</br>
-<textarea id="texte" name="texte"></textarea></div><div>
-<input class="btn btn-primary btn-success" type="submit" /></div><div class="row d-flex">
-{% for p in posts %}
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h4>
-                {{ p.title }}
-            </h4>
+    <input class="btn btn-primary btn-success" type="submit" />
+</div>
+<div class="row d-flex">
+    {% for p in posts %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h4>
+                    {{ p.title }}
+                </h4>
+            </br>
+            {{ p.txt }}
         </br>
-        {{ p.txt }}
-    </br>
-    {{ p.addDate }}
-</form>
-<form action="posts?action=postsDelete&id={{ p.id }}" method="post">
-    <div>
-        <input class="btn btn-primary btn-danger" type="submit" value="Delete" />
+        {{ p.addDate|date("m/d/Y H:i:s" , "Europe/Paris") }}
+    </form>
+    <form action="posts?action=postsDelete&id={{ p.id }}" method="post">
+        <div>
+            <input class="btn btn-primary btn-danger" type="submit" value="Delete" />
+        </div>
+    </form>
+    <button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vue{{ p.id }}">
+    Modification
+  </button>
+  <form action="posts?action=postsUpdate&id={{ p.id }}" method="post">
+  <div class="modal fade "  id="vue{{ p.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+              
+            <input type="text" id="title" name="upTitle" value="{{ p.title }}"/>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <textarea id="texte" name="upTexte">{{ p.txt }}</textarea></div><div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
     </div>
-</div></div>{% endfor %}</div></form>{% endblock %}
+    </form>
+</div>
+</div>
+
+{% endfor %}</div>{% endblock %}

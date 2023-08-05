@@ -1,33 +1,29 @@
-{% extends 'layout.twig' %}
-{% block head %}
-    <title>
-        Page de connection
-    </title>
-{% endblock %}
-
-
-{% block content %}
-    <form action="login?action=loginSend" method="post">
+<!-- Modal -->
+{% import "forms.twig" as forms %}
+<div class="modal fade" id="login" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel">Connection</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="posts?action=loginSend" method="post">
+          <div>
+          {{ forms.input('Votre Email :', 'email', null, 'email')}}
+        </div>
         <div>
-            <label for="title">
-            Votre email:
-                            
-            </label>
-        </br>
-        <input type="email" id="login" name="login" />
+        {{ forms.input('Mot de passe', 'password', null, 'password')}}
+      </div>
+      <div>
+        <input class="btn btn-primary btn-success" type="submit" value="Connection"/>
+      </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#create" data-bs-toggle="modal" data-bs-dismiss="modal">Créer un compte</button>
+      </div>
     </div>
-    <div>
-        <label for="texte">
-            Mot de passe
-                    
-        </label>
-    </br>
-    <input type="password" id="pwd" name="pwd"></textarea>
+  </div>
 </div>
-<div>
-    <input class="btn btn-primary btn-success" type="submit" />
-</div>
-<div class="row d-flex">
-
-</form>
-{% endblock %}
+{% include 'loginCreate.twig' %}

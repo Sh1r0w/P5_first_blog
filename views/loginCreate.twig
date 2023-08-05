@@ -1,0 +1,28 @@
+{% import "forms.twig" as forms %}
+<div class="modal fade" id="create" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">Création d'un compte</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="posts?action=loginCreateSend" method="post">
+          <div>
+          {{ forms.input('Votre email','title', null, 'email')}}
+        </div>
+        <div>
+        {{ forms.input('Mot de passe', 'password', null, 'password')}}</br>
+        {{ forms.input('Vérification du mot de passe','password2', null, 'password')}}
+      </div>
+      <div>
+        <input class="btn btn-primary btn-success" type="submit" />
+      </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#login" data-bs-toggle="modal" data-bs-dismiss="modal">Se connecter</button>
+      </div>
+    </div>
+  </div>
+</div>
