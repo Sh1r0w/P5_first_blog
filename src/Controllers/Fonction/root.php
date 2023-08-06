@@ -1,6 +1,4 @@
 <?php
-
-
 namespace Controllers\Fonction;
 
 class root
@@ -14,10 +12,12 @@ class root
     {
         
         $loader = new \Twig\Loader\FilesystemLoader('../views/');
-
         $twig = new \Twig\Environment($loader, [
             'cache' => false,
+       
         ]);
+        $twig->addGlobal('session', $_SESSION);
+        if(isset($_SESSION['logged_user'])){
             if(file_exists('../src/controllers' . '/' . $match['target'] . 'List' . '.php')){
                 $t = '\Controllers\\' . $match['target'] . 'List';
                 $p = new $t;
@@ -29,6 +29,9 @@ class root
             {
                 echo $twig->render($match['target'] . '.twig');
             }
+        }else{
+            echo $twig->render('layout' . '.twig');
+        }
                 
     }
 }

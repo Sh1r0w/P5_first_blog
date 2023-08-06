@@ -1,5 +1,6 @@
 {% extends 'layout.twig' %}
 {% import "forms.twig" as forms %}
+{% if session.logged_user == null %}{% endif %}
 {% block head %}
     <title>
         Mes posts
@@ -19,17 +20,28 @@
         
     </h2>
     <form action="posts?action=postsSend" method="post">
-        <div>
-
-        {{ forms.input('Votre titre', 'title', null, 'texte')}}
+<button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createPost">
+    Création d'un post
+  </button>
+<div class="modal fade "  id="createPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+              
+          {{ forms.input('Votre titre', 'title', null, 'texte')}}
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            {{ forms.textarea('Votre texte', 'texte', 5, 60)}}</div><div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-primary">Valider</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div>
-
-        {{ forms.textarea('Votre texte', 'texte', 5, 60)}}
-</div>
-<div>
-    <input class="btn btn-primary btn-success" type="submit" />
-</div>
+</form>
 <div class="row d-flex">
     {% for p in posts %}
         <div class="card" style="width: 18rem;">
@@ -41,10 +53,10 @@
             {{ p.txt }}
         </br>
         {{ p.addDate|date("m/d/Y H:i:s" , "Europe/Paris") }}
-    </form>
+    
     <form action="posts?action=postsDelete&id={{ p.id }}" method="post">
         <div>
-            <input class="btn btn-primary btn-danger" type="submit" value="Delete" />
+            <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-primary btn-danger" type="submit"> Delete </button>
         </div>
     </form>
     <button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vue{{ p.id }}">
@@ -56,11 +68,12 @@
         <div class="modal-content">
           <div class="modal-header">
               
-            <input type="text" id="title" name="upTitle" value="{{ p.title }}"/>
+            {{ forms.input('Votre titre', 'upTitle',  p.title, 'texte')}}
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-              <textarea id="texte" name="upTexte">{{ p.txt }}</textarea></div><div>
+
+                {{ forms.textarea('Votre texte', 'upTexte', p.txt, 5, 60)}}</div><div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

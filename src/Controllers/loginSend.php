@@ -1,5 +1,4 @@
 <?php
-
 namespace Controllers;
 
 class loginSend 
@@ -12,18 +11,21 @@ class loginSend
         $email = $input['email'];
         $password = $input['password'];
 
-        if(isset($email)&& isset($password)){
+        if(isset($email) && isset($password)){
             $statement = \Controllers\Fonction\db::connectDatabase()->query(
-                "SELECT pwd FROM ae_connect WHERE log = '$email'"
+                "SELECT pwd, id FROM ae_connect WHERE log = '$email'"
             );
 
             while (($result = $statement->fetch())){
             $return = [
                 'pwd' => $result['pwd'],
+                'id' => $result['id'],
             ];
 
         }
-        if(password_verify($password, implode($return))){     
+        if(password_verify($password, $return['pwd'])){     
+            $_SESSION['logged_user'] = $email;
+            $_SESSION['id'] = $return['id'];
             header('location: posts');
             //echo 'OK j ai dis';
         }else{
