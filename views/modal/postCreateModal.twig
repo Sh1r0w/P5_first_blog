@@ -1,0 +1,29 @@
+{% import "macro/forms.twig" as forms %}
+<div class="modal fade " id="createPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form action="posts?action=postsSend" method="post">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    {{ forms.input('Votre titre', 'title', null, 'texte') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{ forms.textarea('Votre texte', 'texte', null, 5, 60) }}
+                </div>
+                <div></div>
+                <div class="modal-footer">
+                    
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Annuler
+                                            
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Valider
+                                            
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+        </form>
+</div>

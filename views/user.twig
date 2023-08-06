@@ -1,0 +1,26 @@
+{% extends 'layout.twig'%}
+    {% import "macro/forms.twig" as forms %}
+    
+    
+    
+    {% block head %}
+    <title>Mon Profile</title>
+    {% endblock %}
+
+
+    {% block content %}
+    
+        <div class="row mb-4">
+            <h2>Votre Profile</h2>
+            {{ forms.input('Votre avatar', 'avatar',  null, 'file') }}
+        </div>
+        <div class="mb-4">
+
+            {{ forms.input('Votre Prénom', 'first_name',  null, 'texte') }}
+            {{ forms.input('Votre Nom', 'name',  null, 'texte') }}
+        </div>
+        <div class="mb-4">
+            {{ forms.textarea('Votre Citation', 'citation',  null, 5, 60) }}
+        </div>
+
+    {% endblock %}

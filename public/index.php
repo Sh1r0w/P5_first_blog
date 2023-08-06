@@ -16,6 +16,7 @@ require_once '../src/Controllers/Fonction/Autoloader.php';
 $router = new AltoRouter();
 
 $router->map('GET', '/', 'home', 'homepage');
+$router->map('GET', '/user', 'user', 'profile');
 $router->map('GET|POST', '/posts', 'posts', 'postsList');
 $router->map('GET|POST', '/comments', 'comments', 'comments');
 $match = $router->match();

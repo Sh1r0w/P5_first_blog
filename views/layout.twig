@@ -12,17 +12,15 @@
 </head>
 
 <body>
-  {% include 'menu.twig' %}
-  {% include 'login.twig' %}
+  {% include 'add/menu.twig' %}
+  {% include 'modal/loginModal.twig' %}
+  
+  
 <div class="container">
     {% block content %}{% endblock %}
 </div>
-<footer> 
 
-Copyright &copy;
-
-</footer>
-
+  {% include 'add/footer.twig' %}
 </body>
 
 </html>

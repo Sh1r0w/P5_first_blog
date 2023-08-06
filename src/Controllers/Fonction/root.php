@@ -30,7 +30,7 @@ class root
                 echo $twig->render($match['target'] . '.twig');
             }
         }else{
-            echo $twig->render('layout' . '.twig');
+            echo $twig->render('home' . '.twig');
         }
                 
     }

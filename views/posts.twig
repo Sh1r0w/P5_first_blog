@@ -1,89 +1,33 @@
 {% extends 'layout.twig' %}
-{% import "forms.twig" as forms %}
+{% import "macro/forms.twig" as forms %}
 {% if session.logged_user == null %}{% endif %}
 {% block head %}
     <title>
-        Mes posts
+        Tous les posts
+                            
                     
             
     </title>
 {% endblock %}
 {% block content %}
-    <h1>
-        MES POSTS
-            
-        
-    </h1>
-    <h2>
-        Envoi d'un post sur le blog
-            
-        
-    </h2>
-    <form action="posts?action=postsSend" method="post">
-<button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createPost">
-    Création d'un post
-  </button>
-<div class="modal fade "  id="createPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-          <div class="modal-header">
-              
-          {{ forms.input('Votre titre', 'title', null, 'texte')}}
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            {{ forms.textarea('Votre texte', 'texte', 5, 60)}}</div><div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-            <button type="submit" class="btn btn-primary">Valider</button>
-          </div>
-        </div>
-      </div>
-    </div>
-</form>
+<h1>
+   Derniers Posts    
+</h1>
+
+    <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createPost" role="button">
+        Création d'un post
+    </a>
+    {% include 'modal/postCreateModal.twig' %}
 <div class="row d-flex">
     {% for p in posts %}
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h4>
-                    {{ p.title }}
-                </h4>
-            </br>
-            {{ p.txt }}
-        </br>
-        {{ p.addDate|date("m/d/Y H:i:s" , "Europe/Paris") }}
+        <div class="card m-5" style="width: 18rem;">
+        {% include 'add/postOne.twig' %}
     
-    <form action="posts?action=postsDelete&id={{ p.id }}" method="post">
-        <div>
-            <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-primary btn-danger" type="submit"> Delete </button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vue{{ p.id }}">
+            Modification   
+        </button>
         </div>
-    </form>
-    <button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vue{{ p.id }}">
-    Modification
-  </button>
-  <form action="posts?action=postsUpdate&id={{ p.id }}" method="post">
-  <div class="modal fade "  id="vue{{ p.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-          <div class="modal-header">
-              
-            {{ forms.input('Votre titre', 'upTitle',  p.title, 'texte')}}
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-
-                {{ forms.textarea('Votre texte', 'upTexte', p.txt, 5, 60)}}</div><div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
-          </div>
+        <div class="modal fade " id="vue{{ p.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            {% include 'modal/postModifModal.twig' %}
         </div>
-      </div>
-    </div>
-    </form>
-</div>
-</div>
-
 {% endfor %}</div>{% endblock %}
