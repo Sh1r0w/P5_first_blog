@@ -12,7 +12,8 @@
         <form action="user?action=userSend" method="post" enctype="multipart/form-data">
         <div class="row mb-4">
             <h2>Votre Profile</h2>
-            Mon ID : {{ session.id }}
+            Mon ID us: {{ session.idUs }}</br>
+            Mon ID co: {{ session.idCo }}
             {{ forms.input('Votre avatar', 'picture',  null, 'file') }}
         </div>
         <div class="mb-4">

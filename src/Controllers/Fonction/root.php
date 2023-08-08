@@ -17,7 +17,7 @@ class root
        
         ]);
         $twig->addGlobal('session', $_SESSION);
-        if(isset($_SESSION['logged_user'])){
+        if(isset($_SESSION['logged_user'], $_SESSION['idUs'])){
             if(file_exists('../src/controllers' . '/' . $match['target'] . 'List' . '.php')){
                 $t = '\Controllers\\' . $match['target'] . 'List';
                 $p = new $t;
@@ -25,13 +25,13 @@ class root
                 $m = $p->$s;
                 echo $twig->render($match['target'] . '.twig', [$match['target'] => $m]);
                 
-            } elseif(!isset($_SESSION['firstname'])){
-                echo $twig->render('user' . '.twig');
-
-            } else
+            }  else
             {
                 echo $twig->render($match['target'] . '.twig');
             }
+        }elseif(isset($_SESSION['logged_user']) && !isset($_SESSION['idUs'])){
+            echo $twig->render('user' . '.twig');
+
         }else{
             echo $twig->render('home' . '.twig');
         }
