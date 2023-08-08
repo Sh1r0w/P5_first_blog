@@ -19,16 +19,18 @@ class loginSend
             exit(($e->getMessage()));
         }
 
-            while (($result = $statement->fetch(\PDO::FETCH_LAZY))){
+            while (($result = $statement->fetch(\PDO::FETCH_PROPS_LATE, \PDO::FETCH_CLASS))){
+                var_dump($result);
             if(password_verify($password, $result['pwd'])){     
                 $_SESSION['logged_user'] = $email;
-                $_SESSION['id'] = $result['id'];
+                $_SESSION['id'] = $result[0];
                 $_SESSION['firstname'] = $result['firstname'];
                 $_SESSION['lastname'] = $result['lastname'];
                 $_SESSION['img'] = $result['pictures'];
                 $_SESSION['citation'] = $result['citation'];
                 $_SESSION['admin'] = $result['globalAdmin'];
                 header('location: /');
+
             }else{
                 echo 'mauvais mot de passe';
             }
