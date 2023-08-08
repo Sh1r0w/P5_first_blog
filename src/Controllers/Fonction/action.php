@@ -5,7 +5,7 @@ class action extends \Controllers\Fonction\root
 {
 
     public function __construct($match, array $input){
-      var_dump($input);
+      //var_dump($input);
         if (isset($_GET['action']) && $_GET['action'] === (($match['target']) . 'Send') && empty($_GET['id']))
         {  
           $m = 'Controllers\\' . ($match['target'] . 'Send');
@@ -27,7 +27,7 @@ class action extends \Controllers\Fonction\root
           $m = 'Controllers\\' . $_GET['action'];
           new $m($input);
           echo 'ok3';
-          var_dump($match);
+          //var_dump($match);
         }else{
             parent::__construct($match);
         }

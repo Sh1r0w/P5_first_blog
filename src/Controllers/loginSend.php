@@ -11,18 +11,18 @@ class loginSend
         $email = $input['email'];
         $password = $input['password'];
         if(isset($email) && isset($password)){
+            try {
             $statement = \Controllers\Fonction\db::connectDatabase()->query(
                 "SELECT * FROM ae_connect a LEFT JOIN ae_user e ON a.id = e.id_login WHERE a.log = '$email'"
             );
+        } catch (\Exception $e) {
+            exit(($e->getMessage()));
+        }
 
-            while (($result = $statement->fetch())){
-            $return = [
-                'pwd' => $result['pwd'],
-                'id' => $result['id'],
-            ];
-            if(password_verify($password, $return['pwd'])){     
+            while (($result = $statement->fetch(\PDO::FETCH_LAZY))){
+            if(password_verify($password, $result['pwd'])){     
                 $_SESSION['logged_user'] = $email;
-                $_SESSION['id'] = $return['id'];
+                $_SESSION['id'] = $result['id'];
                 $_SESSION['firstname'] = $result['firstname'];
                 $_SESSION['lastname'] = $result['lastname'];
                 $_SESSION['img'] = $result['pictures'];

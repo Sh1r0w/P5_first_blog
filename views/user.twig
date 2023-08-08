@@ -12,8 +12,8 @@
         <form action="user?action=userSend" method="post" enctype="multipart/form-data">
         <div class="row mb-4">
             <h2>Votre Profile</h2>
-           
-            {{ forms.input('Votre avatar', 'picture',  null, 'texte') }}
+            Mon ID : {{ session.id }}
+            {{ forms.input('Votre avatar', 'picture',  null, 'file') }}
         </div>
         <div class="mb-4">
 
