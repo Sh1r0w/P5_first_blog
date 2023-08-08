@@ -10,10 +10,9 @@ class loginSend
     {
         $email = $input['email'];
         $password = $input['password'];
-
         if(isset($email) && isset($password)){
             $statement = \Controllers\Fonction\db::connectDatabase()->query(
-                "SELECT pwd, id FROM ae_connect WHERE log = '$email'"
+                "SELECT * FROM ae_connect a LEFT JOIN ae_user e ON a.id = e.id_login WHERE a.log = '$email'"
             );
 
             while (($result = $statement->fetch())){
@@ -21,16 +20,21 @@ class loginSend
                 'pwd' => $result['pwd'],
                 'id' => $result['id'],
             ];
+            if(password_verify($password, $return['pwd'])){     
+                $_SESSION['logged_user'] = $email;
+                $_SESSION['id'] = $return['id'];
+                $_SESSION['firstname'] = $result['firstname'];
+                $_SESSION['lastname'] = $result['lastname'];
+                $_SESSION['img'] = $result['pictures'];
+                $_SESSION['citation'] = $result['citation'];
+                $_SESSION['admin'] = $result['globalAdmin'];
+                header('location: /');
+            }else{
+                echo 'mauvais mot de passe';
+            }
+        }
 
-        }
-        if(password_verify($password, $return['pwd'])){     
-            $_SESSION['logged_user'] = $email;
-            $_SESSION['id'] = $return['id'];
-            header('location: posts');
-            //echo 'OK j ai dis';
-        }else{
-            echo 'mauvais mot de passe';
-        }
+        
         }
 
     }

@@ -25,6 +25,9 @@ class root
                 $m = $p->$s;
                 echo $twig->render($match['target'] . '.twig', [$match['target'] => $m]);
                 
+            } elseif($_SESSION['id'] == NULL){
+                echo $twig->render('user' . '.twig');
+
             } else
             {
                 echo $twig->render($match['target'] . '.twig');

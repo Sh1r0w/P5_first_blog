@@ -7,6 +7,7 @@ class postsSend
 
    protected $title = null;
    protected $texte = null;
+   protected $id = null;
     
 public function __construct(array $input)
 {
@@ -14,10 +15,10 @@ public function __construct(array $input)
     $texte = $input['texte'];
 
     $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
-        "INSERT INTO ae_post(title, txt, id_user, addDate) VALUES(?,?,1, NOW())"
+        "INSERT INTO ae_post(title, txt, id_user, addDate) VALUES(?,?,?, NOW())"
     );
 
-    $sendPost = $statement->execute([$title, $texte]);
+    $sendPost = $statement->execute([$title, $texte, $_SESSION['id']]);
     header('location: posts');
     return ($sendPost > 0);
 }
