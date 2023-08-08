@@ -9,18 +9,20 @@
 
 
     {% block content %}
-    
+        <form action="user?action=userSend" method="post" enctype="multipart/form-data">
         <div class="row mb-4">
             <h2>Votre Profile</h2>
-            {{ forms.input('Votre avatar', 'avatar',  null, 'file') }}
+           
+            {{ forms.input('Votre avatar', 'picture',  null, 'texte') }}
         </div>
         <div class="mb-4">
 
-            {{ forms.input('Votre Prénom', 'first_name',  null, 'texte') }}</br>
-            {{ forms.input('Votre Nom', 'name',  null, 'texte') }}
+            {{ forms.input('Votre Prénom', 'firstname',  null, 'texte') }}</br>
+            {{ forms.input('Votre Nom', 'lastname',  null, 'texte') }}
         </div>
         <div class="mb-4">
             {{ forms.textarea('Votre Citation', 'citation',  null, 5, 60) }}
         </div>
-
+        <button action=""> envoyer </button>
+        </form>
     {% endblock %}
