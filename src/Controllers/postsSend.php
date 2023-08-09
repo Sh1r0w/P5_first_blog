@@ -18,7 +18,7 @@ public function __construct(array $input)
         "INSERT INTO ae_post(title, txt, id_user, addDate) VALUES(?,?,?, NOW())"
     );
 
-    $sendPost = $statement->execute([$title, $texte, $_SESSION['id']]);
+    $sendPost = $statement->execute([$title, $texte, $_SESSION['idUs']]);
     header('location: posts');
     return ($sendPost > 0);
 }
