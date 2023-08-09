@@ -18,11 +18,11 @@
         </div>
         <div class="mb-4">
 
-            {{ forms.input('Votre Prénom', 'firstname',  null, 'texte') }}</br>
-            {{ forms.input('Votre Nom', 'lastname',  null, 'texte') }}
+            {{ forms.input('Votre Prénom', 'firstname',   session.firstname , 'texte') }}</br>
+            {{ forms.input('Votre Nom', 'lastname',  session.lastname , 'texte') }}
         </div>
         <div class="mb-4">
-            {{ forms.textarea('Votre Citation', 'citation',  null, 5, 60) }}
+            {{ forms.textarea('Votre Citation', 'citation',  session.citation, 5, 60) }}
         </div>
         <button action=""> envoyer </button>
         </form>
