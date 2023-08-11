@@ -31,7 +31,6 @@ class loginSend
                 $_SESSION['citation'] = $result['citation'];
                 $_SESSION['admin'] = $result['globalAdmin'];
                 header('location: /');
-
             }else{
                 echo 'mauvais mot de passe';
             }

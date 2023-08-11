@@ -13,7 +13,7 @@ class userSend
 
     public function __construct(array $input)
     {
-        var_dump($_FILES['picture']);
+        //var_dump($_FILES['picture']);
         $firstName = $input['firstname'];;
         $lastName = $input['lastname'];
         $citation = $input['citation'];

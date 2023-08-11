@@ -6,13 +6,15 @@
     </br>
     {{ p.txt }}
 </br>
+{{ p.firstname }} {{ p.lastname }}</br>
 {{ p.addDate|date("m/d/Y H:i:s" , "Europe/Paris") }}
 <form action="posts?action=postsDelete&id={{ p.id }}" method="post">
     <div>
+    {% if p.admin == 1 or session.idUs == p.id_user %}
         <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-primary btn-danger" type="submit">
-            Delete 
-                                        
-                    
+            Delete             
         </button>
+
+    {% endif %}
     </div>
 </form></div>

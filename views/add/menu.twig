@@ -30,7 +30,7 @@
                 {% if session.firstname == null %}
                   {{ session.idUs}} Anonyme
                 {% else %}
-                {{ session.firstname }}
+                {{ session.firstname }} {{ session.lastname }}
                 {% endif %}
                 </button>
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
