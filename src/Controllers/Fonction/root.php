@@ -17,7 +17,7 @@ class root
        
         ]);
         $twig->addGlobal('session', $_SESSION);
-        if(isset($_SESSION['logged_user'], $_SESSION['idUs'])){
+        if(isset($_SESSION['logged_user'], $_SESSION['lastname'], $_SESSION['firstname'])){
             if(file_exists('../src/controllers' . '/' . $match['target'] . 'List' . '.php')){
                 $t = '\Controllers\\' . $match['target'] . 'List';
                 $p = new $t;

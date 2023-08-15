@@ -37,7 +37,7 @@ class db
             firstname VARCHAR(30) NOT NULL,
             lastname VARCHAR(30) NOT NULL,
             pictures VARCHAR(30),
-            citation VARCHAR(30),
+            citation VARCHAR(255),
             globalAdmin INT DEFAULT '0',
             id_login INT NOT NULL,
             FOREIGN KEY (id_login) REFERENCES ae_connect (id) ON DELETE CASCADE ON UPDATE NO ACTION
@@ -48,8 +48,9 @@ class db
                     "CREATE TABLE IF NOT EXISTS ae_post (
                 id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                 title VARCHAR(30) NOT NULL,
-                txt VARCHAR(30) NOT NULL,
+                content VARCHAR(500) NOT NULL,
                 addDate DATETIME NOT NULL,
+                updDate DATETIME NOT NULL,
                 id_user INT NOT NULL,
                 FOREIGN KEY (id_user) REFERENCES ae_user (id) ON DELETE CASCADE ON UPDATE NO ACTION
                 )"
@@ -58,7 +59,7 @@ class db
                 $database->exec(
                     "CREATE TABLE IF NOT EXISTS ae_comment (
                     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                    txt VARCHAR(30) NOT NULL,
+                    content VARCHAR(255) NOT NULL,
                     addDate DATETIME NOT NULL,
                     id_user INT NOT NULL,
                     id_post INT NOT NULL,

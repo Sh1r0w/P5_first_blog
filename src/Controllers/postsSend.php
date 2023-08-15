@@ -6,19 +6,19 @@ class postsSend
 {
 
    protected $title = null;
-   protected $texte = null;
+   protected $content = null;
    protected $id = null;
     
 public function __construct(array $input)
 {
     $title = $input['title'];
-    $texte = $input['texte'];
+    $content = $input['content'];
 
     $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
-        "INSERT INTO ae_post(title, txt, id_user, addDate) VALUES(?,?,?, NOW())"
+        "INSERT INTO ae_post(title, content, id_user, addDate, updDate) VALUES(?,?,?, NOW(), NOW())"
     );
 
-    $sendPost = $statement->execute([$title, $texte, $_SESSION['idUs']]);
+    $sendPost = $statement->execute([$title, $content, $_SESSION['idUs']]);
     header('location: posts');
     return ($sendPost > 0);
 }

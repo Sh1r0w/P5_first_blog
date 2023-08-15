@@ -18,7 +18,7 @@ class postsUpdate
         $upTexte = $input['upTexte'];
 
         $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
-            "UPDATE ae_post SET title = ?, txt = ? WHERE id = $id"
+            "UPDATE ae_post SET title = ?, content = ?, updDate = NOW() WHERE id = $id"
         );
         $statement->execute([$upTitle, $upTexte]);
 
