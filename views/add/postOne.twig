@@ -1,20 +1,15 @@
-
-    <div class="card-body">
-        <h4>
-            {{ p.title }}
-        </h4>
-    </br>
-    {{ p.txt }}
+<div class="card-body" data-bs-toggle="modal" data-bs-target="#read{{ p.id }}" style="cursor:pointer;">
+    <h4>
+        {{ p.title }}
+    </h4>
 </br>
-{{ p.firstname }} {{ p.lastname }}</br>
-{{ p.addDate|date("m/d/Y H:i:s" , "Europe/Paris") }}
-<form action="posts?action=postsDelete&id={{ p.id }}" method="post">
-    <div>
-    {% if p.admin == 1 or session.idUs == p.id_user %}
-        <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-primary btn-danger" type="submit">
-            Delete             
-        </button>
-
-    {% endif %}
-    </div>
-</form></div>
+<div class="text-truncate">
+{{ p.txt }}
+</div></br>
+{% if p.img == null %}
+    <img class="me-2" src="uploads/anonyme.png" alt="{{ p.firstname }} {{ p.lastname }}" style="width:50px;"/>
+  {% else %}
+    <img class="me-2" src="{{ p.img}}" alt="{{ p.firstname }} {{ p.lastname }}" style="width:50px;">
+  {% endif %}
+{{ p.firstname }}{{ p.lastname }}</br>{{ p.addDate|date("m/d/Y H:i:s" , "Europe/Paris") }}
+</div>

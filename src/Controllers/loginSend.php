@@ -1,44 +1,42 @@
 <?php
+
 namespace Controllers;
 
-class loginSend 
+class loginSend
 {
-    private $email = null;
-    private $password = null;
+    protected $email = null;
+    protected $password = null;
 
     public function __construct(array $input)
     {
         $email = $input['email'];
         $password = $input['password'];
-        if(isset($email) && isset($password)){
-            try {
-            $statement = \Controllers\Fonction\db::connectDatabase()->query(
-                "SELECT * FROM ae_connect a LEFT JOIN ae_user e ON a.id = e.id_login WHERE a.log = '$email'"
-            );
-        } catch (\Exception $e) {
-            exit(($e->getMessage()));
-        }
-
-            while (($result = $statement->fetch(\PDO::FETCH_PROPS_LATE, \PDO::FETCH_CLASS))){
-                var_dump($result);
-            if(password_verify($password, $result['pwd'])){     
-                $_SESSION['logged_user'] = $email;
-                $_SESSION['idCo'] = $result[0];
-                $_SESSION['idUs'] = $result['id'];
-                $_SESSION['firstname'] = $result['firstname'];
-                $_SESSION['lastname'] = $result['lastname'];
-                $_SESSION['img'] = $result['pictures'];
-                $_SESSION['citation'] = $result['citation'];
-                $_SESSION['admin'] = $result['globalAdmin'];
-                header('location: /');
-            }else{
-                echo 'mauvais mot de passe';
+        try {
+            if (!empty($email)) {
+                if (!empty($password)) {
+                    $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
+                        "SELECT * FROM ae_connect a LEFT JOIN ae_user e ON a.id = e.id_login WHERE a.log = ?"
+                    );
+                    $statement->execute([$email]);
+                    if (!empty($result = $statement->fetch())) {
+                        if (password_verify($password, $result['pwd'])) {
+                            new \Controllers\Fonction\session($result);
+                            header('location: /');
+                        } else {
+                            throw new \Exception("Mot de passe Invalide");
+                        }
+                    }else{
+                        throw new \Exception("Compte non trouvé");
+                    }
+                } else {
+                    throw new \Exception("Mot de passe vide");
+                }
+            } else {
+                throw new \Exception("login vide");
             }
+        } catch (\Exception $e) {
+            $_SESSION['flash'] = $e->getMessage();
+            header('location: /');   
         }
-
-        
-        }
-
     }
-
 }

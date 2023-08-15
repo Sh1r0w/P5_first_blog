@@ -11,7 +11,6 @@ Class postsDelete
         $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
             "DELETE FROM ae_post WHERE id = $id"
         );
-
         $statement->execute();
         
         header('location: posts');

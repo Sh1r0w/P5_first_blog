@@ -4,32 +4,35 @@
 {% block head %}
     <title>
         Tous les posts
+                                    
                             
                     
             
     </title>
 {% endblock %}
 {% block content %}
-<h1>
-   Derniers Posts    
-</h1>
-
+    <h1>
+        Derniers Posts    
+        
+    </h1>
     <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createPost" role="button">
         Création d'un post
+            
     </a>
     {% include 'modal/postCreateModal.twig' %}
-<div class="row d-flex">
-    {% for p in posts %}
-        <div class="card m-5" style="width: 18rem;">
-        {% include 'add/postOne.twig' %}
-        {% if p.admin == 1 or session.idUs == p.id_user %}
-
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vue{{ p.id }}">
-            Modification   
-        </button>
-        {% endif %}
-        </div>
-        <div class="modal fade " id="vue{{ p.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            {% include 'modal/postModifModal.twig' %}
-        </div>
-{% endfor %}</div>{% endblock %}
+    <div class="row d-flex">
+        {% for p in posts %}
+            <div class="card m-5" style="width: 18rem;">
+                {% include 'add/postOne.twig' %}
+                <div class="modal fade " id="read{{ p.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    {% include 'modal/postRead.twig' %}
+                </div>
+                {% if p.admin == 1 or session.idUs == p.id_user %}
+                    <div class="modal fade " id="vue{{ p.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        {% include 'modal/postModifModal.twig' %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

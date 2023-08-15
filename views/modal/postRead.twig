@@ -1,0 +1,41 @@
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header d-flex flex-raw">
+                    <div class="modal-header col-md-4">
+                        {% if p.img == null %}
+                            <img class="me-2" src="uploads/anonyme.png" alt="{{ p.firstname }} {{ p.lastname }}" style="width:50px;"/>
+                          {% else %}
+                            <img class="me-2" src="{{ p.img}}" alt="{{ p.firstname }} {{ p.lastname }}" style="width:50px;">
+                          {% endif %}
+                    <span>De: <strong> {{ p.firstname }} {{ p.lastname }} </strong></span>
+                    </div></br>
+                    <div class="modal-header col-md-3">
+                    <h2> {{ p.title }}   </h2>       
+                    </div>         
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{ p.txt }}
+                </div>
+                
+                <div class="modal-body">{{ p.addDate|date("m/d/Y H:i:s" , "Europe/Paris") }}</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                                                
+                    </button>
+                    {% if p.admin == 1 or session.idUs == p.id_user %}
+                        <form action="posts?action=postsDelete&id={{ p.id }}" method="post"><div>
+
+                        <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-primary btn-danger" type="submit">
+                            Delete             
+                            </div></form>
+                        </button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vue{{ p.id }}" data-bs-dismiss="modal">
+                            Modification   
+                                    
+                        </button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>

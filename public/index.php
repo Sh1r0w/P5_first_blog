@@ -2,14 +2,12 @@
 session_start();
 require_once '../vendor/autoload.php';
 
-
 /**
  * load Autoloader for add require path
  */
 require_once '../src/Controllers/Fonction/Autoloader.php';
 
 \Controllers\Fonction\Autoloader::register();
-
 /**
  * use Altorooter
  */

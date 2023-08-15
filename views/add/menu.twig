@@ -25,13 +25,19 @@
               Connection / Creation
             </a>
           {% else %}
-            <li class="nav-item dropdown">
-              <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <li class="nav-item dropdown ">
+              <button class="btn btn-dark dropdown-toggle  " data-bs-toggle="dropdown" aria-expanded="false">
                 {% if session.firstname == null %}
                   {{ session.idUs}} Anonyme
                 {% else %}
+                  {% if session.img == null %}
+                    <img class="me-2" src="uploads/anonyme.png" alt="{{ session.firstname }} {{ session.lastname }}" style="width:50px;"/>
+                  {% else %}
+                    <img class="me-2" src="{{ session.img}}" alt="{{ session.firstname }} {{ session.lastname }}" style="width:50px;">
+                  {% endif %}
                 {{ session.firstname }} {{ session.lastname }}
                 {% endif %}
+
                 </button>
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
                   <li>

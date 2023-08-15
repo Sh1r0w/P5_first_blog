@@ -10,4 +10,12 @@
 
 <h1>HomePage</h1>
 
+{% if session.flash != null %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ session.flash }}
+    
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endif %}
+
 {% endblock %}
