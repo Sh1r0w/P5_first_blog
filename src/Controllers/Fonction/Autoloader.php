@@ -14,12 +14,11 @@ class Autoloader
                 session_destroy();
                 header('Location: /');
             }elseif($class != 'Controllers\logout'){
-                $path = str_replace(['Controllers\\', '\\'], ['../src/Controllers/', '/'], $class) . '.php';
-                require_once($path);
-            
+                if(file_exists(dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . $class. '.php')){
+                $path = dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . $class. '.php';
+                require_once $path;
             }
-           
-            //echo file_exists($class);
+            }
             
         });
     }

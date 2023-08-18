@@ -2,28 +2,39 @@
 
 namespace Controllers;
 
-class loginCreateSend
+class loginCreateSend extends \Controllers\loginSend
 {
-    private $login = null;
-    private $password = null;
+    protected $login = null;
+    protected $password = null;
     private $password2 = null;
     private $passwordH = null;
 
-    public function __construct(array $input){
+    public function loginCreateSend(array $input){
         $login = $input['title'];
         $password = $input['password'];
         $password2 = $input['password2'];
-        
+        try{
         if(isset($login) && isset($password) && $password === $password2){
             $passwordH = password_hash($password, PASSWORD_DEFAULT);
-            $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
-                "INSERT INTO ae_connect(log, pwd) VALUES(?,?)"
-            );
-            $create = $statement->execute([$login, $passwordH]);
+            $check = new \Model\loginCheck;
+            if($check->loginCheck($login) == false){
+            $l = new \Model\loginCreate;
+            $l->loginCreate($login, $passwordH);
+        
+            $autoL = [
+                'email' => $login,
+                'password' => $password
+            ];
+            parent::loginSend($autoL);
             header('location: posts');
-            return ($create > 0);
         } else {
-            echo 'ne marche pas';
+            throw new \Exception("Compte déjà existant");
+            header('location: /');
         }
+        } 
+    } catch (\Exception $e){
+        $_SESSION['flash'] = $e->getMessage();
+        header('location: /');
+    }
     }
 }

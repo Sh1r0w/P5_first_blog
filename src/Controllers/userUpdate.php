@@ -4,7 +4,7 @@ namespace Controllers;
 
 class userUpdate extends \Controllers\userSend
 {
-    public function __construct(array $input){
+    public function userUpdate(array $input){
         $id = $_SESSION['idUs'];
         $firstName = $input['firstname'];;
         $lastName = $input['lastname'];
@@ -29,7 +29,7 @@ class userUpdate extends \Controllers\userSend
         
 
     } elseif(isset($_SESSION['idUs']) == null){
-        parent::__construct($input);
+        parent::userSend($input);
     }
 
     }

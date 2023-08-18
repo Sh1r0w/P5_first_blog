@@ -11,5 +11,5 @@
   {% else %}
     <img class="me-2" src="{{ p.img}}" alt="{{ p.firstname }} {{ p.lastname }}" style="width:50px;">
   {% endif %}
-{{ p.firstname }}{{ p.lastname }}</br>{{ p.updDate|date("m/d/Y H:i:s" , "Europe/Paris") }}
+{{ p.firstname }}{{ p.lastname }}</br>{{ p.addDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
 </div>

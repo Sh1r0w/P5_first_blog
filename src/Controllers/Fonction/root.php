@@ -18,7 +18,7 @@ class root
         ]);
         $twig->addGlobal('session', $_SESSION);
         if(isset($_SESSION['logged_user'], $_SESSION['lastname'], $_SESSION['firstname'])){
-            if(file_exists('../src/controllers' . '/' . $match['target'] . 'List' . '.php')){
+            if(file_exists(dirname(__DIR__) . '/' . $match['target'] . 'List' . '.php')){
                 $t = '\Controllers\\' . $match['target'] . 'List';
                 $p = new $t;
                 $s = $match['target'];
@@ -31,7 +31,7 @@ class root
             }
         }elseif(isset($_SESSION['logged_user']) && !isset($_SESSION['idUs'])){
             echo $twig->render('user' . '.twig');
-
+            
         }else{
             echo $twig->render('home' . '.twig');
         }

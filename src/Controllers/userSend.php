@@ -12,7 +12,7 @@ class userSend
     protected $img = null;
     protected $id = null;
 
-    public function __construct(array $input)
+    public function userSend(array $input)
     {
         $firstname = $input['firstname'];;
         $lastname = $input['lastname'];
@@ -21,11 +21,7 @@ class userSend
         $id = $_SESSION['idCo'];
 
         if (isset($id)) {
-            $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
-                "INSERT INTO ae_user(firstname, lastname,pictures, citation, id_login) VALUES(?,?,?,?,?)"
-            );
-            $img = new \Controllers\Fonction\img;
-            $sendUser = $statement->execute([$firstname, $lastname, $img->name = $_SESSION['img'], $citation, $id]);
+            $sendUser = \Controllers\Fonction\factory::user('Push')->userPush($firstname, $lastname, $citation, $id, $img);
             if (isset($firstname, $lastname, $id)) {
                 $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
                     "SELECT * FROM ae_connect a LEFT JOIN ae_user e ON a.id = e.id_login WHERE a.id = ?"

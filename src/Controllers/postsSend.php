@@ -9,7 +9,7 @@ class postsSend
    protected $content = null;
    protected $id = null;
     
-public function __construct(array $input)
+public function postsSend(array $input)
 {
     $title = $input['title'];
     $content = $input['content'];

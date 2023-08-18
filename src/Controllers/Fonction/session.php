@@ -4,9 +4,19 @@ namespace Controllers\Fonction;
 
 class session
 {
+    public $session = [];
+    private static $_getSession;
+
+
+    public static function getSession($input){
+        if(is_null(self::$_getSession)){
+            self::$_getSession = new session($input);
+        }
+    }
+
     public function __construct(array $input)
     {
-        var_dump($input);
+
         $_SESSION['logged_user'] = $input[1];
         $_SESSION['idCo'] = $input[0];
         $_SESSION['idUs'] = $input['id'];

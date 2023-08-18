@@ -11,16 +11,16 @@ class postsUpdate
      * one post with id 
      */
     protected $upTitle = null;
-    protected $upTexte = null;
+    protected $upContent = null;
     public function __construct(int $id, array $input)
     {
         $upTitle = $input['upTitle'];
-        $upTexte = $input['upTexte'];
+        $upContent = $input['upContent'];
 
         $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
             "UPDATE ae_post SET title = ?, content = ?, updDate = NOW() WHERE id = $id"
         );
-        $statement->execute([$upTitle, $upTexte]);
+        $statement->execute([$upTitle, $upContent]);
 
         header('location: posts');
     }
