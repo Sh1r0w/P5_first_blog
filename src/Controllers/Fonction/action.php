@@ -3,14 +3,16 @@ namespace Controllers\Fonction;
 
 class action extends \Controllers\Fonction\root
 {
+  
   protected $n;
     public function __construct($match, array $input){
+      $fact = factory::getInstance();
       //var_dump($input);
         if (isset($_GET['action']) && $_GET['action'] === (($match['target']) . 'Send') && empty($_GET['id']))
         {  
-          $this->n = new factory;
-          $this->n->posts('Send');
-          echo 'ok';
+          $fact->titlePost($input);
+          $fact->contentPost($input);
+          $fact->posts('Send');
           
         }elseif(isset($_GET['id']) && $_GET['id'] > 0 && $_GET['action'] === ($match['target'] . 'Delete')) {
 

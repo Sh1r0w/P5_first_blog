@@ -21,7 +21,8 @@
     </a>
     {% include 'modal/postCreateModal.twig' %}
     <div class="row d-flex">
-        {% for p in posts %}
+        {% for p in posts.posts %}
+        
             <div class="card m-5" style="width: 18rem;">
                 {% include 'add/postOne.twig' %}
                 <div class="modal fade " id="read{{ p.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

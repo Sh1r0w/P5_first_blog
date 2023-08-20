@@ -8,6 +8,9 @@ require_once '../vendor/autoload.php';
 require_once '../src/Controllers/Fonction/Autoloader.php';
 
 \Controllers\Fonction\Autoloader::register();
+
+$fact = \Controllers\Fonction\factory::getInstance();
+
 /**
  * use Altorooter
  */

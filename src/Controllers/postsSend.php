@@ -9,10 +9,11 @@ class postsSend
    protected $content = null;
    protected $id = null;
     
-public function postsSend(array $input)
+public function postsSend($title, $content)
 {
-    $title = $input['title'];
-    $content = $input['content'];
+    echo 'ok';
+    //$title = $input['title'];
+    //$content = $input['content'];
 
     $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
         "INSERT INTO ae_post(title, content, id_user, addDate, updDate) VALUES(?,?,?, NOW(), NOW())"
