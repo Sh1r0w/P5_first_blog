@@ -48,7 +48,9 @@ class db
                     "CREATE TABLE IF NOT EXISTS ae_post (
                 id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                 title VARCHAR(30) NOT NULL,
+                chapo VARCHAR(255) NOT NULL,
                 content VARCHAR(500) NOT NULL,
+                author VARCHAR(255) NOT NULL,
                 addDate DATETIME NOT NULL,
                 updDate DATETIME NOT NULL,
                 id_user INT NOT NULL,
@@ -65,6 +67,20 @@ class db
                     id_post INT NOT NULL,
                     FOREIGN KEY (id_user) REFERENCES ae_user (id) ON DELETE CASCADE ON UPDATE NO ACTION,
                     FOREIGN KEY (id_post) REFERENCES ae_post (id) ON DELETE CASCADE ON UPDATE NO ACTION
+                    )"
+                );
+
+                $database->exec(
+                    "CREATE TABLE IF NOT EXISTS ae_like (
+                    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                    ilike INT NOT NULL,
+                    dislike INT NOT NULL,
+                    id_user INT NOT NULL,
+                    id_post INT NOT NULL,
+                    id_comment INT NOT NULL,
+                    FOREIGN KEY (id_user) REFERENCES ae_user (id) ON DELETE CASCADE ON UPDATE NO ACTION,
+                    FOREIGN KEY (id_post) REFERENCES ae_post (id) ON DELETE CASCADE ON UPDATE NO ACTION,
+                    FOREIGN KEY (id_comment) REFERENCES ae_comment (id) ON DELETE CASCADE ON UPDATE NO ACTION
                     )"
                 );
 

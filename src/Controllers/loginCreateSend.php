@@ -9,14 +9,17 @@ class loginCreateSend extends \Controllers\loginSend
     private $password2 = null;
     private $passwordH = null;
 
-    public function loginCreateSend(array $input){
+    public function __construct(array $input){
+        $this->fact = \Controllers\Fonction\factory::getInstance();
         $login = $input['title'];
         $password = $input['password'];
         $password2 = $input['password2'];
+        
         try{
         if(isset($login) && isset($password) && $password === $password2){
+
             $passwordH = password_hash($password, PASSWORD_DEFAULT);
-            $check = new \Model\loginCheck;
+            $check = $this->fact->instance('Model', 'loginCheck');
             if($check->loginCheck($login) == false){
             $l = new \Model\loginCreate;
             $l->loginCreate($login, $passwordH);
@@ -25,7 +28,7 @@ class loginCreateSend extends \Controllers\loginSend
                 'email' => $login,
                 'password' => $password
             ];
-            parent::loginSend($autoL);
+            $this->fact->userLog('Send', $autoL);
             header('location: posts');
         } else {
             throw new \Exception("Compte déjà existant");

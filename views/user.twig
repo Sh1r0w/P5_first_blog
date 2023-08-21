@@ -11,11 +11,13 @@
     {% block content %}
         <form action="user?action=userUpdate" method="post" enctype="multipart/form-data">
         <div class="row mb-4">
+            <div class="col-6">
             <h2>Votre Profile</h2>
             Mon ID us: {{ session.idUs }}</br>
             Mon ID co: {{ session.idCo }}</br>
-            Mon Image: <img src="{{ session.img }}" />
+            Mon Image: <img src="{{ session.img }}" style='max-width: 150px;' /></br>
             {{ forms.input('Votre avatar', 'picture',  null, 'file') }}
+            </div>
         </div>
         <div class="mb-4">
 

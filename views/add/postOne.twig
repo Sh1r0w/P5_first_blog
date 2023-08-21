@@ -4,12 +4,12 @@
     </h4>
 </br>
 <div class="text-truncate">
-{{ p.content }}
+{{ p.chapo }}
 </div></br>
 {% if p.img == null %}
-    <img class="me-2" src="uploads/anonyme.png" alt="{{ p.firstname }} {{ p.lastname }}" style="width:50px;"/>
+    <img class="me-2" src="uploads/anonyme.png" alt="{{ p.author }}" style="width:50px;"/>
   {% else %}
-    <img class="me-2" src="{{ p.img}}" alt="{{ p.firstname }} {{ p.lastname }}" style="width:50px;">
+    <img class="me-2" src="{{ p.img}}" alt="{{ p.author }}" style="width:50px;">
   {% endif %}
-{{ p.firstname }}{{ p.lastname }}</br>{{ p.addDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
+{{ p.author }}</br>{{ p.addDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
 </div>

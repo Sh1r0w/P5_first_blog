@@ -12,15 +12,19 @@ class postsUpdate
      */
     protected $upTitle = null;
     protected $upContent = null;
+    protected $upChapo = null;
+    protected $upAuthor = null;
     public function __construct(int $id, array $input)
     {
         $upTitle = $input['upTitle'];
         $upContent = $input['upContent'];
+        $upChapo = $input['upChapo'];
+        $upAuthor = $input['upAuthor'];
 
         $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
-            "UPDATE ae_post SET title = ?, content = ?, updDate = NOW() WHERE id = $id"
+            "UPDATE ae_post SET title = ?, content = ?, chapo = ?, author = ?, updDate = NOW() WHERE id = $id"
         );
-        $statement->execute([$upTitle, $upContent]);
+        $statement->execute([$upTitle, $upContent, $upChapo, $upAuthor]);
 
         header('location: posts');
     }

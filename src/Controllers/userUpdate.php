@@ -10,6 +10,7 @@ class userUpdate extends \Controllers\userSend
         $lastName = $input['lastname'];
         $citation = $input['citation'];
         $test = $_FILES['picture'];
+        echo 'user update';
         
         if(isset($_SESSION['idCo'], $_SESSION['idUs'])){
         $statement = \Controllers\Fonction\db::connectDatabase()->prepare(

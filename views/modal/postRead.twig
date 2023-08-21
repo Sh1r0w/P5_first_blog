@@ -13,8 +13,8 @@
                                                                 
                                             
                         <strong>
-                            {{ p.firstname }}
-                            {{ p.lastname }}
+                            {{ p.author }}
+
                         </strong>
                     </span>
                 </div>
@@ -45,7 +45,7 @@
                                                                                                     
                                                                 
                                             
-                        {{ p.addDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
+                        {{ p.updDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
                     {% endif %}
                 </div>
             </div>

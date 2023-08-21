@@ -20,6 +20,8 @@ class postsList
             'updDate' => $row['updDate'],
             'lastname' => $row['lastname'],
             'firstname' => $row['firstname'],
+            'author' => $row['author'],
+            'chapo' => $row['chapo'],
             'admin' => $row['globalAdmin'],
             'img'=> $row['pictures'],
             'id_user' => $row['id_user'],

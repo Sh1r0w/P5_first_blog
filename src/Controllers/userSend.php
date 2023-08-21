@@ -14,6 +14,7 @@ class userSend
 
     public function userSend(array $input)
     {
+        $fact = \Controllers\Fonction\factory::getInstance();
         $firstname = $input['firstname'];;
         $lastname = $input['lastname'];
         $citation = $input['citation'];
@@ -21,7 +22,7 @@ class userSend
         $id = $_SESSION['idCo'];
 
         if (isset($id)) {
-            $sendUser = \Controllers\Fonction\factory::user('Push')->userPush($firstname, $lastname, $citation, $id, $img);
+            $sendUser = $fact->user('user', 'Push')->userPush($firstname, $lastname, $citation, $id, $img);
             if (isset($firstname, $lastname, $id)) {
                 $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
                     "SELECT * FROM ae_connect a LEFT JOIN ae_user e ON a.id = e.id_login WHERE a.id = ?"
@@ -31,7 +32,7 @@ class userSend
                 new \Controllers\Fonction\session($result);
                 header('location: /');
             }
-            header('location: /user');
+            header('location: /posts');
             return ($sendUser > 0);
         } else {
             echo 'nop';
