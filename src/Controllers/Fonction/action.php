@@ -7,7 +7,6 @@ class action extends \Controllers\Fonction\root
   protected $n;
     public function __construct($match, array $input){
       $fact = factory::getInstance();
-      //var_dump($input);
         if (isset($_GET['action']) && $_GET['action'] === (($match['target']) . 'Send') && empty($_GET['id']))
         {  
           $fact->titlePost($input);
@@ -26,14 +25,9 @@ class action extends \Controllers\Fonction\root
           new $m($_GET['id'], $input);
           
         }elseif(isset($_GET['action']) && $_GET['action'] != ($match['target']) . 'Send'){
-          $m = 'Controllers\\' . $_GET['action'];
-          $n = new $m;
-          $s = $_GET['action'];
-          $n->$s($input);
-          
+          $fact->userLog($_GET['action'], 'Send', $input);
 
           echo 'ok3';
-          echo $m;
         }else{
             parent::__construct($match);
         }

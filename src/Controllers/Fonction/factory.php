@@ -15,12 +15,33 @@ class factory
 
     public $contentP;
 
+    private $valid;
+
     public static function getInstance()
     {
         if (is_null(self::$_instance)) {
             self::$_instance = new factory();
         }
         return self::$_instance;
+    }
+
+    public function userLog($key, $type, $input)
+    {
+        $this->className = 'Controllers\login' . ucfirst($type);
+        if($type == 'Send' && $key != 'logout')
+        {
+        $classUser = 'Model\login' . ucfirst($type);
+        echo $type;
+        $cu = new $classUser;
+        $re = $cu->getUser($input['email']);
+        $n = new $this->className($input, $re);
+        $n->loginSend();
+        }else if($key == 'logout'){
+            session_destroy();
+            header('Location: /');
+        }
+        
+       // return $n($input, $re);
     }
 
     public function posts($type)
@@ -53,5 +74,19 @@ class factory
     {
         $this->contentP = $input['content'];
         return $this->contentP;
+    }
+
+    public function validSession($valid)
+    {
+        $this->valid = $valid;
+        return $this->valid;
+    }
+
+    public function openSession($data)
+    {
+        if($this->valid == '1')
+        {
+            new session($data);
+        }
     }
 }

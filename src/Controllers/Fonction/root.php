@@ -23,13 +23,6 @@ class root
         $twig->addGlobal('session', $_SESSION);
         if(isset($_SESSION['logged_user'], $_SESSION['lastname'], $_SESSION['firstname'])){
             if(file_exists(dirname(__DIR__) . '/' . $match['target'] . 'List' . '.php')){
-                
-               // $t = '\Controllers\\' . $match['target'] . 'List';
-               // $p = new $t;
-               // $s = $match['target'];
-
-                //$fac->posts('List');
-                //var_dump($fac->posts('List'));
                 echo $twig->render($match['target'] . '.twig', [$match['target'] => $fact->posts('List')]);
                 
             }  else
