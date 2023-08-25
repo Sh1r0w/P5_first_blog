@@ -13,7 +13,6 @@ class postsSend
     
 public function postsSend($title, $chapo ,$content, $author)
 {
-    echo $title, $chapo ,$content, $author;
 
     $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
         "INSERT INTO ae_post(title, chapo, content, author, id_user, addDate, updDate) VALUES(?,?,?,?,?, NOW(), NOW())"

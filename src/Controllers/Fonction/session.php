@@ -7,7 +7,6 @@ class session
     public $session = [];
     private static $_getSession;
 
-
     public static function getSession($input){
         if(is_null(self::$_getSession)){
             self::$_getSession = new session($input);

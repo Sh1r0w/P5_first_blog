@@ -22,7 +22,7 @@ class userSend
         $id = $_SESSION['idCo'];
 
         if (isset($id)) {
-            $sendUser = $fact->user('user', 'Push')->userPush($firstname, $lastname, $citation, $id, $img);
+            $sendUser = $fact->instance('Model', 'userPush')->userPush($firstname, $lastname, $citation, $id, $img);
             if (isset($firstname, $lastname, $id)) {
                 $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
                     "SELECT * FROM ae_connect a LEFT JOIN ae_user e ON a.id = e.id_login WHERE a.id = ?"

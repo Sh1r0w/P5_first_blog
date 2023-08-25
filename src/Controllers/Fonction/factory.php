@@ -24,10 +24,12 @@ class factory
     private $classUser;
 
     private $instance;
+    
+    private $contentC;
 
-    private $key;
+    private $nameSpace;
 
-    private $key2;
+    private $classN;
 
     public $result;
 
@@ -39,14 +41,11 @@ class factory
         return self::$_instance;
     }
 
-    public function instance($key, $key2){
-        
-        if (is_null($this->instance)) {          
-            $this->result = $key . DIRECTORY_SEPARATOR . $key2;     
+    public function instance($nameSpace, $classN){
+        $this->result = $nameSpace . DIRECTORY_SEPARATOR . $classN;
+        if ($this->instance != $this->result) {             
             $this->instance = new $this->result;
-
-        }
-        
+        }      
         return $this->instance;
         
     }
@@ -63,51 +62,45 @@ class factory
         $this->className = 'Controllers\login' . ucfirst($type);
         if($type == 'Send'){
             echo 'test';
-        $classUser = 'Model\login' . ucfirst($type);
-        $cu = new $classUser;
-        $re = $cu->getUser($input['email']);
-        $n = new $this->className($input, $re);
+        $userExist = $this->instance('Model', 'login' . ucfirst($type))->getUser($input['email']);
+        $n = new $this->className($input, $userExist);
         $s = 'login' . ucfirst($type);
         $n->$s();
     }elseif($type == 'CreateSend'){
 
-        new $this->className($input);
+        new $this->className($input, $this->getInstance());
     }
         
        // return $n($input, $re);
     }
 
-    public function posts($type)
+    public function posts($type, $input = null)
     {
         $this->className = 'Controllers\posts' . ucfirst($type);
         if($type != 'Send'){
-        return new $this->className;
-    }else{
+        return $this->instance('Controllers', 'posts' . ucfirst($type));
+    }elseif($type == 'Send'){
         $c = 'posts' . ucfirst($type);
-        $n = new $this->className;
-        return $n->$c($this->titleP, $this->chapoP,$this->contentP, $this->authorP);
+        $n = $this->instance('Controllers', 'posts' . ucfirst($type));
+        return $n->$c($this->titlePost($input), $this->chapoPost($input),$this->contentPost($input), $this->authorPost($input));
     }
 
     }
 
-    public function user($key, $type, $input = null)
-    {
-        echo 'ok1';
-        echo $key;
-        $valid = $key . ucfirst($type);
-        if(file_exists(dirname(dirname(__DIR__)). DIRECTORY_SEPARATOR . 'Model' . DIRECTORY_SEPARATOR . $valid . '.php')){
-        $this->classUser = 'Model'. DIRECTORY_SEPARATOR. $key . ucfirst($type);
-        return new $this->classUser();
-        }else{
-            echo 'ok2';
-        $this->classUser = 'Controllers'. DIRECTORY_SEPARATOR . $key . ucfirst($type);
-        echo $this->classUser;
-        $n = new $this->classUser;
-        $s = $key . ucfirst($type);
-        $n->$s($input);
+    public function comment($type, $id){
+
+        $this->className = 'Controllers\comment' . ucfirst($type);
+        if($type == 'Send'){
+            $c = 'comment' . ucfirst($type);
+            return $this->instance('Controllers', 'comment' . ucfirst($type))->$c($this->contentC, $id);
         }
-        
 
+    }
+
+    public function user($classN, $type, $input = null)
+    {
+        $s = $classN . ucfirst($type);
+        $this->instance('Controllers', $classN . ucfirst($type))->$s($input);
     }
     
     public function titlePost($input)
@@ -136,11 +129,17 @@ class factory
         return $this->authorP;
     }
 
+    public function contentComment($input){
+        $this->contentC = $input['comment'];
+    }
+
     public function validSession($valid)
     {
         $this->valid = $valid;
         return $this->valid;
     }
+
+    
 
     public function openSession($data)
     {

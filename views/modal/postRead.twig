@@ -1,4 +1,5 @@
-<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+{% import "macro/forms.twig" as forms %}
+<div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
         <div class="modal-header">
             <div>
@@ -10,75 +11,80 @@
                     {% endif %}
                     <span>
                         De: 
-                                                                
-                                            
+                                                                                        
+                                                                    
+                                                
                         <strong>
                             {{ p.author }}
-
                         </strong>
                     </span>
                 </div>
-                
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-title ps-3">
-                    <h2>
-                        {{ p.title }}
-                    </h2>
-                    
-                </div>
+                <h2>
+                    {{ p.title }}
+                </h2>
+            </div>
             <div class="modal-body">
                 <div>
                     {{ p.content }}
                 </div>
                 <div class="pt-5">
                     Créer le 
-                                                                                        
+                                                                                                            
+                                                                            
                                                         
-                                    
+                                        
                     {{ p.addDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
                 </div>
                 <div class="font-italic">
                     {% if p.addDate != p.updDate %}
-                        
                         Modifié le 
-                                                                                                    
-                                                                
-                                            
+                                                                                                                            
+                                                                                        
+                                                                    
+                                                
                         {{ p.updDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
                     {% endif %}
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    Close 
-                                                                                        
-                                                        
-                                
-                </button>
+
                 {% if p.admin == 1 or session.idUs == p.id_user %}
                     <form action="posts?action=postsDelete&id={{ p.id }}" method="post">
                         <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-primary btn-danger" type="submit">
                             Delete             
-                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                    
                                                                                                                                                                                                                                                         
-                                                                                                                                                                                                                            
-                                                                                                                                                                                             
-                                                                                                                                                                
-                                                                                                    
-                                                                                                                        
-                                                                                
-                                                
+                                                                                                                                                                                                                         
+                                                                                                                                                                                            
+                                                                                                                                
+                                                                                                                                                    
+                                                                                                            
+                                                                            
+                                                    
                         </form>
                     </button>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vue{{ p.id }}" data-bs-dismiss="modal">
                         Modification   
-                                                                         
-                                                                    
-                                        
+                                                                                                 
+                                                                                            
+                                                                
+                                            
                     </button>
                 {% endif %}
             </div>
+            <div class="modal-footer">
+               <form action="posts?action=commentSend&id={{ p.id }}" method="post">
+                {{ forms.textarea('Votre commentaire', 'comment', null, 2, 45) }}
+                <button type="submit" class="btn btn-primary">
+                        Valider
+                                            
+                    </button>
+               </form>
+                </div>
         </div>
     </div>
     

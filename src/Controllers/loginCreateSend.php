@@ -8,9 +8,10 @@ class loginCreateSend extends \Controllers\loginSend
     protected $password = null;
     private $password2 = null;
     private $passwordH = null;
+    public $fact;
 
-    public function __construct(array $input){
-        $this->fact = \Controllers\Fonction\factory::getInstance();
+    public function __construct(array $input, \Controllers\Fonction\factory $factory){
+        $this->fact = $factory;
         $login = $input['title'];
         $password = $input['password'];
         $password2 = $input['password2'];
@@ -21,7 +22,7 @@ class loginCreateSend extends \Controllers\loginSend
             $passwordH = password_hash($password, PASSWORD_DEFAULT);
             $check = $this->fact->instance('Model', 'loginCheck');
             if($check->loginCheck($login) == false){
-            $l = new \Model\loginCreate;
+            $l = $this->fact->instance('Model', 'loginCreate');
             $l->loginCreate($login, $passwordH);
         
             $autoL = [
