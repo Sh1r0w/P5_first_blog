@@ -62,13 +62,13 @@ class factory
         $this->className = 'Controllers\login' . ucfirst($type);
         if($type == 'Send'){
             echo 'test';
-        $userExist = $this->instance('Model', 'login' . ucfirst($type))->getUser($input['email']);
+        $userExist = self::instance('Model', 'login' . ucfirst($type))->getUser($input['email']);
         $n = new $this->className($input, $userExist);
         $s = 'login' . ucfirst($type);
         $n->$s();
     }elseif($type == 'CreateSend'){
 
-        new $this->className($input, $this->getInstance());
+        new $this->className($input, self::getInstance());
     }
         
        // return $n($input, $re);
@@ -78,21 +78,22 @@ class factory
     {
         $this->className = 'Controllers\posts' . ucfirst($type);
         if($type != 'Send'){
-        return $this->instance('Controllers', 'posts' . ucfirst($type));
+        return self::instance('Controllers', 'posts' . ucfirst($type));
     }elseif($type == 'Send'){
         $c = 'posts' . ucfirst($type);
-        $n = $this->instance('Controllers', 'posts' . ucfirst($type));
-        return $n->$c($this->titlePost($input), $this->chapoPost($input),$this->contentPost($input), $this->authorPost($input));
+        $n = self::instance('Controllers', 'posts' . ucfirst($type));
+        return $n->$c(self::titlePost($input), self::chapoPost($input),self::contentPost($input), self::authorPost($input));
     }
 
     }
 
+  
     public function comment($type, $id){
 
         $this->className = 'Controllers\comment' . ucfirst($type);
         if($type == 'Send'){
             $c = 'comment' . ucfirst($type);
-            return $this->instance('Controllers', 'comment' . ucfirst($type))->$c($this->contentC, $id);
+            return self::instance('Controllers', 'comment' . ucfirst($type))->$c($this->contentC, $id);
         }
 
     }
@@ -100,7 +101,7 @@ class factory
     public function user($classN, $type, $input = null)
     {
         $s = $classN . ucfirst($type);
-        $this->instance('Controllers', $classN . ucfirst($type))->$s($input);
+        self::instance('Controllers', $classN . ucfirst($type))->$s($input);
     }
     
     public function titlePost($input)

@@ -16,7 +16,7 @@ class postsList
             'id' => $row[0],
             'title' => $row['title'],
             'content' => $row[3],
-            'addDate' => $row['addDate'],
+            'addDate' => $row[5],
             'updDate' => $row['updDate'],
             'lastname' => $row['lastname'],
             'firstname' => $row['firstname'],
