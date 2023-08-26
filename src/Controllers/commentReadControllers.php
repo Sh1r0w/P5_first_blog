@@ -12,9 +12,7 @@ class commentReadControllers
         if(isset($data))
         {
             return $this->commentsRead = $data;
-        }/*else{
-            header('location: posts');
-        }*/
+        }
 
     }
 }

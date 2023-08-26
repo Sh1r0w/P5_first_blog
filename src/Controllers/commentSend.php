@@ -9,7 +9,7 @@ class commentSend{
             "INSERT INTO ae_comment(content, addDate, id_user, id_post) VALUES (?, NOW(),?,?)"
         );
         $statement->execute([$content, $_SESSION['idUs'], $idpost]);
-        header('location: posts');
+        header('location: /postsRead?action=postsRead&id=' . $idpost);
 
     }
 }

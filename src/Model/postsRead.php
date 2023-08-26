@@ -15,6 +15,7 @@ class postsRead
         while($row = $statement->fetch())
            {
             $posts =[
+            'id' => $row['id'],
             'title' => $row['title'],
             'content' => $row['content'],
             'author' => $row['author'],

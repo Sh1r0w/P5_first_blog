@@ -10,7 +10,7 @@ class commentRead
     {
 
         $statement = \Controllers\Fonction\db::connectDatabase()->query(
-            "SELECT * FROM ae_comment WHERE id_post = $id"
+            "SELECT * FROM ae_comment WHERE id_post = $id ORDER BY addDate DESC"
         );
         
         while($row = $statement->fetch())

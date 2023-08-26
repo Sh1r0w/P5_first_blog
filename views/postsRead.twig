@@ -1,10 +1,46 @@
 {% extends 'layout.twig' %}
-    {% block content %}
-        <div>
-        {{ dump(postsRead) }}
-
-        </div>
-        <div>
-        {{ dump(commentsRead) }}
-        </div>
-    {% endblock %}
+{% import "macro/forms.twig" as forms %}
+{% block head %}
+    {% for p in postsRead %}
+        <title>
+            {{ p.title }}
+        </title>
+    {% endfor %}
+{% endblock %}
+{% block content %}
+    
+        {% for p in postsRead %}
+            <div class="card">
+            <div class="card-body text-white bg-secondary">
+                <H1 class="card-title">
+                {{ p.title }}
+                 </H1>
+                <p class="card-text text-center">{{ p.content }}</p>
+            <div class="card-footer text-end">
+                {{ p.addDate }}
+            </div>
+            </div>
+            </div>
+            <form action="posts?action=commentSend&id={{ p.id }}" method="post">
+        {{ forms.textarea('Votre commentaire', 'comment', null, 2, 45) }}
+        <button type="submit" class="btn btn-primary">
+            Valider
+                                                        
+                                
+        </button>
+    </form>
+        {% endfor %}
+    
+    <div class="card">
+        {% for p in commentsRead %}
+            <div class="card-body">
+                {{ p.content }}
+            
+            
+            </div>
+            <div class="card-footer text-end">
+                {{ p.addDate }}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

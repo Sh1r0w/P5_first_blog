@@ -32,7 +32,13 @@
                         {% include 'modal/postModifModal.twig' %}
                     </div>
                 {% endif %}
+                {% for c in count %}
+                    {% if p.id == c.0 %}
+                        {{ c.1 }} Commentaire(s).
+                    {% endif %}
+                {% endfor %}
             </div>
         {% endfor %}
     </div>
 {% endblock %}
+

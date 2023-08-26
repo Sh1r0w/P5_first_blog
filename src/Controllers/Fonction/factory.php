@@ -112,11 +112,16 @@ class factory
 
     public function commentRead($id)
     {
-
+            
         if(isset($id))
         {
             return self::instance('Controllers', 'commentReadControllers')->commentReadControllers(self::instance('Model', 'commentRead')->commentRead($id));
         }
+    }
+
+    public function countComment()
+    {
+        return self::instance('Model', 'countComment')->countComment();
     }
 
     public function titlePost($input)
