@@ -8,8 +8,9 @@ class root
     *  the function waits for the rooter's $match to return to the correct file twig
     *   
     */
-        function __construct($match)
+        public function __construct($match)
     {
+    
         
         $loader = new \Twig\Loader\FilesystemLoader('../views/');
         $twig = new \Twig\Environment($loader, [
@@ -22,10 +23,14 @@ class root
 
         $twig->addGlobal('session', $_SESSION);
         if(isset($_SESSION['logged_user'], $_SESSION['lastname'], $_SESSION['firstname'])){
-            if(file_exists(dirname(__DIR__) . '/' . $match['target'] . 'List' . '.php')){
+            if(file_exists(dirname(__DIR__) . DIRECTORY_SEPARATOR . $match['target'] . 'List' . '.php')){
+                
                 echo $twig->render($match['target'] . '.twig', [$match['target'] => $fact->posts('List')]);
                 
-            }  else
+            } elseif(file_exists(dirname(__DIR__) . DIRECTORY_SEPARATOR . $match['target']. 'Controllers' . '.php') && $_GET['action'] == 'postsRead')
+            {
+                echo $twig->render($match['target'] . '.twig', [$match['target'] => [$fact->postsRead($_GET['id']), $fact->commentRead($_GET['id'])]]);
+            }else
             {
                 echo $twig->render($match['target'] . '.twig');
             }

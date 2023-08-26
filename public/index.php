@@ -19,6 +19,7 @@ $router = new AltoRouter();
 $router->map('GET', '/', 'home', 'homepage');
 $router->map('GET|POST', '/user', 'user', 'user');
 $router->map('GET|POST', '/posts', 'posts', 'postsList');
+$router->map('GET|POST', '/postsRead', 'postsRead', 'postsRead');
 $router->map('GET|POST', '/comments', 'comments', 'comments');
 $match = $router->match();
 

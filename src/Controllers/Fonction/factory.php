@@ -24,7 +24,7 @@ class factory
     private $classUser;
 
     private $instance;
-    
+
     private $contentC;
 
     private $nameSpace;
@@ -32,6 +32,8 @@ class factory
     private $classN;
 
     public $result;
+
+    public $read;
 
     public static function getInstance()
     {
@@ -41,13 +43,13 @@ class factory
         return self::$_instance;
     }
 
-    public function instance($nameSpace, $classN){
+    public function instance($nameSpace, $classN)
+    {
         $this->result = $nameSpace . DIRECTORY_SEPARATOR . $classN;
-        if ($this->instance != $this->result) {             
+        if ($this->instance != $this->result) {
             $this->instance = new $this->result;
-        }      
+        }
         return $this->instance;
-        
     }
 
     public function logout()
@@ -55,47 +57,44 @@ class factory
         session_destroy();
         header('Location: /');
     }
-    
+
 
     public function userLog($type, $input)
     {
         $this->className = 'Controllers\login' . ucfirst($type);
-        if($type == 'Send'){
+        if ($type == 'Send') {
             echo 'test';
-        $userExist = self::instance('Model', 'login' . ucfirst($type))->getUser($input['email']);
-        $n = new $this->className($input, $userExist);
-        $s = 'login' . ucfirst($type);
-        $n->$s();
-    }elseif($type == 'CreateSend'){
+            $userExist = self::instance('Model', 'login' . ucfirst($type))->getUser($input['email']);
+            $n = new $this->className($input, $userExist);
+            $s = 'login' . ucfirst($type);
+            $n->$s();
+        } elseif ($type == 'CreateSend') {
 
-        new $this->className($input, self::getInstance());
-    }
-        
-       // return $n($input, $re);
+            new $this->className($input, self::getInstance());
+        }
     }
 
     public function posts($type, $input = null)
     {
         $this->className = 'Controllers\posts' . ucfirst($type);
-        if($type != 'Send'){
-        return self::instance('Controllers', 'posts' . ucfirst($type));
-    }elseif($type == 'Send'){
-        $c = 'posts' . ucfirst($type);
-        $n = self::instance('Controllers', 'posts' . ucfirst($type));
-        return $n->$c(self::titlePost($input), self::chapoPost($input),self::contentPost($input), self::authorPost($input));
+        if ($type != 'Send') {
+            return self::instance('Controllers', 'posts' . ucfirst($type));
+        } elseif ($type == 'Send') {
+            $c = 'posts' . ucfirst($type);
+            $n = self::instance('Controllers', 'posts' . ucfirst($type));
+            return $n->$c(self::titlePost($input), self::chapoPost($input), self::contentPost($input), self::authorPost($input));
+        }
     }
 
-    }
 
-  
-    public function comment($type, $id){
+    public function comment($type, $id)
+    {
 
         $this->className = 'Controllers\comment' . ucfirst($type);
-        if($type == 'Send'){
+        if ($type == 'Send') {
             $c = 'comment' . ucfirst($type);
             return self::instance('Controllers', 'comment' . ucfirst($type))->$c($this->contentC, $id);
         }
-
     }
 
     public function user($classN, $type, $input = null)
@@ -103,7 +102,23 @@ class factory
         $s = $classN . ucfirst($type);
         self::instance('Controllers', $classN . ucfirst($type))->$s($input);
     }
-    
+
+    public function postsRead($id)
+    {
+        if(isset($id)){
+            return self::instance('Controllers', 'postsReadControllers')->postsReadControllers(self::instance('Model', 'postsRead')->postsRead($id));
+        }
+    }
+
+    public function commentRead($id)
+    {
+
+        if(isset($id))
+        {
+            return self::instance('Controllers', 'commentReadControllers')->commentReadControllers(self::instance('Model', 'commentRead')->commentRead($id));
+        }
+    }
+
     public function titlePost($input)
     {
         $this->titleP = $input['title'];
@@ -112,7 +127,7 @@ class factory
 
     public function contentPost($input)
     {
-       
+
         $this->contentP = $input['content'];
         return $this->contentP;
     }
@@ -130,7 +145,8 @@ class factory
         return $this->authorP;
     }
 
-    public function contentComment($input){
+    public function contentComment($input)
+    {
         $this->contentC = $input['comment'];
     }
 
@@ -140,12 +156,11 @@ class factory
         return $this->valid;
     }
 
-    
+
 
     public function openSession($data)
     {
-        if($this->valid == '1')
-        {
+        if ($this->valid == '1') {
             new session($data);
         }
     }

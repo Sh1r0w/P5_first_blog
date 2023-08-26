@@ -10,7 +10,7 @@ class action extends \Controllers\Fonction\root
   {
     $fact = factory::getInstance();
     if (isset($_GET['action']) && $_GET['action'] != 'postsUpdate' && $_GET['action'] != 'postsDelete') {
-      echo 'ok2';
+
       if ($_GET['action'] == 'postsSend') {
         $fact->posts('Send', $input);
       } elseif ($_GET['action'] == 'commentSend') {
@@ -24,6 +24,8 @@ class action extends \Controllers\Fonction\root
         $fact->userLog('Send', $input);
       } elseif ($_GET['action'] == 'loginCreateSend') {
         $fact->userLog('CreateSend', $input);
+      } elseif ($_GET['action'] == 'postsRead'){
+        parent::__construct($match);
       }
     } elseif (isset($_GET['id']) && $_GET['id'] > 0 && $_GET['action'] === ($match['target'] . 'Delete')) {
 
