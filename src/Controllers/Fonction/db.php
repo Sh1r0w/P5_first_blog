@@ -3,6 +3,9 @@ namespace Controllers\Fonction;
 
 require '../src/controllers/fonction/params.php';
 
+/* The `class db` is responsible for creating and connecting to a MySQL database. It creates the
+necessary tables if they don't already exist. It also provides a static method `connectDatabase()`
+that can be used to establish a connection to the database. */
 class db
 {
 
@@ -26,7 +29,7 @@ class db
                 $database->exec(
                     "CREATE TABLE IF NOT EXISTS ae_connect (
         id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-        log VARCHAR(30) NOT NULL,
+        log VARCHAR(255) NOT NULL,
         pwd VARCHAR(255) NOT NULL
         )"
                 );
@@ -34,9 +37,9 @@ class db
                 $database->exec(
                     "CREATE TABLE IF NOT EXISTS ae_user (
             id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-            firstname VARCHAR(30) NOT NULL,
-            lastname VARCHAR(30) NOT NULL,
-            pictures VARCHAR(30),
+            firstname VARCHAR(255) NOT NULL,
+            lastname VARCHAR(255) NOT NULL,
+            pictures VARCHAR(255),
             citation VARCHAR(255),
             globalAdmin INT DEFAULT '0',
             id_login INT NOT NULL,
@@ -47,13 +50,15 @@ class db
                 $database->exec(
                     "CREATE TABLE IF NOT EXISTS ae_post (
                 id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                title VARCHAR(30) NOT NULL,
+                title VARCHAR(255) NOT NULL,
                 chapo VARCHAR(255) NOT NULL,
                 content VARCHAR(500) NOT NULL,
                 author VARCHAR(255) NOT NULL,
                 addDate DATETIME NOT NULL,
                 updDate DATETIME NOT NULL,
                 id_user INT NOT NULL,
+                picture VARCHAR(255),
+                valide INT DEFAULT '0',
                 FOREIGN KEY (id_user) REFERENCES ae_user (id) ON DELETE CASCADE ON UPDATE NO ACTION
                 )"
                 );
@@ -65,6 +70,7 @@ class db
                     addDate DATETIME NOT NULL,
                     id_user INT NOT NULL,
                     id_post INT NOT NULL,
+                    valide INT DEFAULT '0',
                     FOREIGN KEY (id_user) REFERENCES ae_user (id) ON DELETE CASCADE ON UPDATE NO ACTION,
                     FOREIGN KEY (id_post) REFERENCES ae_post (id) ON DELETE CASCADE ON UPDATE NO ACTION
                     )"

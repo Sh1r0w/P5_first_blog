@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+/* The commentSend class is used for sending comments. */
 class commentSend{
 
     public function commentSend($content, $idpost) {

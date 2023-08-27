@@ -37,7 +37,9 @@
                   {% endif %}
                 {{ session.firstname }} {{ session.lastname }}
                 {% endif %}
-
+                {% if session.admin == '1' %}
+                  <span>Administrateur</span>
+                {% endif %}
                 </button>
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
                   <li>

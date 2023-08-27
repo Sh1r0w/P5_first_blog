@@ -15,20 +15,24 @@
                 <H1 class="card-title">
                 {{ p.title }}
                  </H1>
+                 {% if p.imgP != null%}
+                    <img src="{{ p.imgP }}" class="card-img-top text-center" alt=" {{ p.title }}" style="max-width: 250px;">
+                  {% endif %}
                 <p class="card-text text-center">{{ p.content }}</p>
             <div class="card-footer text-end">
-                {{ p.addDate }}
+              <span>  De {{ p.author }} Le {{ p.addDate }} </span>
             </div>
             </div>
             </div>
+            <div class="text-center">
             <form action="posts?action=commentSend&id={{ p.id }}" method="post">
-        {{ forms.textarea('Commenter', 'comment', null, 2, 45) }}
-        <button type="submit" class="btn btn-primary">
+        {{ forms.textarea('Commenter', 'comment', null, 2, 45) }}<button type="submit" class="btn btn-primary">
+        
             Valider
-                                                        
-                                
+                                                                            
         </button>
     </form>
+    </div>
         {% endfor %}
     
     <div class="card">
@@ -39,8 +43,9 @@
             
             </div>
             <div class="card-footer text-end">
-                {{ p.addDate }}
+                <span> {{ p.addDate }}</span>
             </div>
         {% endfor %}
     </div>
+
 {% endblock %}

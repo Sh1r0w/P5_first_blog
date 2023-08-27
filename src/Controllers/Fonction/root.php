@@ -3,11 +3,14 @@ namespace Controllers\Fonction;
 
 class root
 {
-    /**
-    * @param __construct $match
-    *  the function waits for the rooter's $match to return to the correct file twig
-    *   
-    */
+        /**
+         * This PHP function renders different Twig templates based on the user's session and the
+         * existence of certain files.
+         * 
+         * @param match The `` parameter is an array that contains information about the current
+         * route or URL being accessed. It typically includes the target or controller name, which is
+         * used to determine which template to render.
+         */
         public function __construct($match)
     {
     
@@ -18,10 +21,11 @@ class root
             'debug' => true,
         ]);
         $twig->addExtension(new \Twig\Extension\DebugExtension());
+        $twig->addGlobal('session', $_SESSION);
 
         $fact = factory::getInstance();
 
-        $twig->addGlobal('session', $_SESSION);
+       
         if(isset($_SESSION['logged_user'], $_SESSION['lastname'], $_SESSION['firstname'])){
             if(file_exists(dirname(__DIR__) . DIRECTORY_SEPARATOR . $match['target'] . 'List' . '.php')){
                 

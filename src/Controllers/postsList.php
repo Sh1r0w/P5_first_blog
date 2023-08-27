@@ -13,7 +13,7 @@ class postsList
     );
     while ($row = $statement->fetch()) {
         $post = [
-            'id' => $row[0],
+            'id' => $row['id'],
             'title' => $row['title'],
             'content' => $row[3],
             'addDate' => $row[5],
@@ -22,8 +22,8 @@ class postsList
             'firstname' => $row['firstname'],
             'author' => $row['author'],
             'chapo' => $row['chapo'],
-            'admin' => $row['globalAdmin'],
             'img'=> $row['pictures'],
+            'imgP' => $row['picture'],
             'id_user' => $row[7],
         ];
 

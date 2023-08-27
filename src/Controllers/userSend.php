@@ -2,6 +2,8 @@
 
 namespace Controllers;
 
+/* The `class userSend` is a PHP class that handles the logic for sending user data. It has a
+constructor method `userSend` that takes an array of input data as a parameter. */
 class userSend
 
 {
@@ -12,7 +14,7 @@ class userSend
     protected $img = null;
     protected $id = null;
 
-    public function userSend(array $input)
+    public function userSend(array $input, $count)
     {
         $fact = \Controllers\Fonction\factory::getInstance();
         $firstname = $input['firstname'];;
@@ -22,7 +24,8 @@ class userSend
         $id = $_SESSION['idCo'];
 
         if (isset($id)) {
-            $sendUser = $fact->instance('Model', 'userPush')->userPush($firstname, $lastname, $citation, $id, $img);
+            $sendUser = $fact->instance('Model', 'userPush')->userPush($firstname, $lastname, $citation, $id, $img, $count);
+            
             if (isset($firstname, $lastname, $id)) {
                 $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
                     "SELECT * FROM ae_connect a LEFT JOIN ae_user e ON a.id = e.id_login WHERE a.id = ?"

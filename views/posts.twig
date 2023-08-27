@@ -30,11 +30,10 @@
                 <div class="modal fade " id="read{{ p.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     {% include 'modal/postRead.twig' %}
                 </div>
-                {% if p.admin == 1 or session.idUs == p.id_user %}
                     <div class="modal fade " id="vue{{ p.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         {% include 'modal/postModifModal.twig' %}
                     </div>
-                {% endif %}
+
                 {% for c in count %}
                     {% if p.id == c.0 %}
                         {{ c.1 }}

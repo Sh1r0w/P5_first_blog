@@ -4,17 +4,11 @@ namespace Controllers;
 
 class postsUpdate
 {
-    /**
-     * @param __construct 
-     * wait INT $id and 
-     * Array $input for edit 
-     * one post with id 
-     */
     protected $upTitle = null;
     protected $upContent = null;
     protected $upChapo = null;
     protected $upAuthor = null;
-    public function __construct(array $input, int $id)
+    public function postsUpdate(array $input, int $id)
     {
         $upTitle = $input['upTitle'];
         $upContent = $input['upContent'];

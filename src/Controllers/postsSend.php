@@ -11,14 +11,13 @@ class postsSend
    protected $author = null;
    protected $id = null;
     
-public function postsSend($title, $chapo ,$content, $author)
+public function postsSend( $title, $chapo ,$content, $author, $img)
 {
-
     $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
-        "INSERT INTO ae_post(title, chapo, content, author, id_user, addDate, updDate) VALUES(?,?,?,?,?, NOW(), NOW())"
+        "INSERT INTO ae_post(title, chapo, content, author, id_user, picture, addDate, updDate ) VALUES(?,?,?,?,?,?, NOW(), NOW())"
     );
 
-    $sendPost = $statement->execute([$title, $chapo, $content, $author, $_SESSION['idUs']]);
+    $sendPost = $statement->execute([ $title, $chapo, $content, $author, $_SESSION['idUs'], $img]);
     header('location: posts');
     return ($sendPost > 0);
 }

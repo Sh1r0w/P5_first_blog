@@ -1,7 +1,10 @@
 <form action="post?id={{ p.id }}" method="post">
 <div type="button" class="card-body" data-bs-toggle="modal" data-bs-target="#read{{ p.id }}" style="cursor:pointer;">
+{% if p.imgP != null%}
+  <img src="{{ p.imgP }}" class="card-img-top" alt=" {{ p.title }}">
+{% endif %}
     <h4>
-        {{ p.title }}
+          {{ p.title }}
     </h4>
 </br>
 <div class="text-truncate">

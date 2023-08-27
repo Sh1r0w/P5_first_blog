@@ -2,6 +2,9 @@
 
 namespace Controllers\Fonction;
 
+/* The `class Autoloader` is responsible for registering an autoloader function in PHP. This autoloader
+function is used to automatically load classes when they are needed, without the need to manually
+include the class files. */
 class Autoloader
 {
     

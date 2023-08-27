@@ -2,6 +2,11 @@
 
 namespace Controllers\Fonction;
 
+/* The `class session` is a PHP class that is used to manage session data. It has a constructor method
+that takes an array of input data and sets various session variables using the ``
+superglobal. These variables include information about the logged-in user, such as their ID, first
+name, last name, profile image, citation, and admin status. The class also has a static method
+`getSession` that creates a new instance of the `session` class if one does not already exist. */
 class session
 {
     public $session = [];

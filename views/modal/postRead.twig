@@ -27,6 +27,9 @@
                 </h2>
             </div>
             <div class="modal-body">
+                {% if p.imgP != null%}
+                    <img src="{{ p.imgP }}" class="card-img-top" alt=" {{ p.title }}">
+                {% endif %}
                 <div>
                     {{ p.content }}
                 </div>
@@ -49,21 +52,11 @@
                     {% endif %}
                 </div>
             </div>
+            {% if session.admin == '1' or session.idUs == p.id_user %}
             <div class="modal-footer">
-
-                {% if p.admin == 1 or session.idUs == p.id_user %}
                     <form action="posts?action=postsDelete&id={{ p.id }}" method="post">
                         <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-primary btn-danger" type="submit">
-                            Delete             
-                                                                                                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                         
-                                                                                                                                                                                            
-                                                                                                                                
-                                                                                                                                                    
-                                                                                                            
-                                                                            
+                            Delete                                                          
                                                     
                         </form>
                     </button>
@@ -74,8 +67,9 @@
                                                                 
                                             
                     </button>
-                {% endif %}
+                
             </div>
+        {% endif %}
             <div class="modal-footer">
                
                 </div>

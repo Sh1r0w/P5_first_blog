@@ -15,6 +15,7 @@
             <h2>Votre Profile</h2>
             Mon ID us: {{ session.idUs }}</br>
             Mon ID co: {{ session.idCo }}</br>
+            admin : {{ session.admin }}</br>
             Mon Image: <img src="{{ session.img }}" style='max-width: 150px;' /></br>
             {{ forms.input('Votre avatar', 'picture',  null, 'file') }}
             </div>

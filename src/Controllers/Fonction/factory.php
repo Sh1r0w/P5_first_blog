@@ -4,12 +4,19 @@ namespace Controllers\Fonction;
 
 require '../src/controllers/fonction/params.php';
 
+/* The `class factory` is a PHP class that serves as a factory for creating instances of other classes.
+It contains various methods for creating and manipulating objects of different types, such as login,
+posts, comments, and user updates. It also has methods for handling sessions and authentication. The
+`getInstance` method ensures that only one instance of the `factory` class is created, following the
+Singleton design pattern. */
 class factory
 {
 
     private static $_instance;
 
     public $className;
+
+    public $pictureP;
 
     public $titleP;
 
@@ -61,7 +68,7 @@ class factory
 
     public function loginSend($type, $input)
     {
-        $this->className = 'Controllers\\' . $type;
+            $this->className = 'Controllers\\' . $type;
             $userExist = self::instance('Model', $type)->getUser($input['email']);
             $n = new $this->className($input, $userExist);
             $n->$type();
@@ -71,38 +78,45 @@ class factory
     public function loginCreateSend($type, $input)
     {
         $this->className = 'Controllers\\' . $type;
-        new $this->className($input, self::getInstance());
+        new $this->className($input, self::loginCheck($input), self::getInstance());
+    }
+
+    public function loginCheck($input)
+    {
+        return self::instance('Model', 'loginCheck')->loginCheck($input);
+    }
+
+    public function loginCheckCount()
+    {
+        return self::instance('Model', 'loginCheckCount')->loginCheckCount();
     }
 
     public function postsSend($type, $input)
     {
-       
+        var_dump($input);
         $this->className = 'Controllers\\' . $type;
         if ($type != 'postsSend') {
             echo 'ok';
             return self::instance('Controllers', $type);
         } elseif ($type == 'postsSend') {
             $n = self::instance('Controllers', $type);
-            return $n->$type(self::titlePost($input), self::chapoPost($input), self::contentPost($input), self::authorPost($input));
+            return $n->$type(self::titlePost($input), self::chapoPost($input), self::contentPost($input), self::authorPost($input), self::picturePost()->name);
         }
     }
 
     public function postsUpdate($type, $input, $id)
     {
-        $this->className = 'Controllers\\' . $type;
-        new $this->className($input, $id);
+        self::instance('Controllers', $type)->$type($input, $id);
     }
 
     public function postsList($type)
     {
-        $this->className = 'Controllers\\' . $type;
         return self::instance('Controllers', $type);
     }
 
     public function postsDelete($type, $input, $id)
     {
-        $this->className = 'Controllers\\' . $type;
-        new $this->className($id);
+        self::instance('Controllers', $type)->$type($id);
     }
 
 
@@ -114,9 +128,9 @@ class factory
         
     }
 
-    public function userUpdate($type, $input, $id)
+    public function userUpdate($type, $input)
     {
-        self::instance('Controllers', $type)->$type($input);
+        self::instance('Controllers', $type)->$type($input, self::loginCheckCount(), self::picturePost()->name);
     }
 
     public function postsRead($id)
@@ -138,6 +152,13 @@ class factory
     public function countComment()
     {
         return self::instance('Model', 'countComment')->countComment();
+    }
+
+    public function picturePost()
+    {
+        $this->pictureP = self::instance('Controllers\Fonction', 'img');
+        return $this->pictureP;
+        
     }
 
     public function titlePost($input)
