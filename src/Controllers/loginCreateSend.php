@@ -29,7 +29,7 @@ class loginCreateSend extends \Controllers\loginSend
                 'email' => $login,
                 'password' => $password
             ];
-            $this->fact->userLog('Send', $autoL);
+            $this->fact->loginSend('loginSend', $autoL);
             header('location: posts');
         } else {
             throw new \Exception("Compte déjà existant");

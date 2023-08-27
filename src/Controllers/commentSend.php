@@ -5,6 +5,7 @@ namespace Controllers;
 class commentSend{
 
     public function commentSend($content, $idpost) {
+        echo $idpost;
         $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
             "INSERT INTO ae_comment(content, addDate, id_user, id_post) VALUES (?, NOW(),?,?)"
         );

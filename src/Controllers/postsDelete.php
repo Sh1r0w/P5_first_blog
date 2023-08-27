@@ -7,6 +7,7 @@ Class postsDelete
 
     public function __construct(int $id)
 {
+    echo 'delete';
     if (isset($id)) {
         $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
             "DELETE FROM ae_post WHERE id = $id"

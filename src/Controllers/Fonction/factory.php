@@ -59,48 +59,64 @@ class factory
     }
 
 
-    public function userLog($type, $input)
+    public function loginSend($type, $input)
     {
-        $this->className = 'Controllers\login' . ucfirst($type);
-        if ($type == 'Send') {
-            echo 'test';
-            $userExist = self::instance('Model', 'login' . ucfirst($type))->getUser($input['email']);
+        $this->className = 'Controllers\\' . $type;
+            $userExist = self::instance('Model', $type)->getUser($input['email']);
             $n = new $this->className($input, $userExist);
-            $s = 'login' . ucfirst($type);
-            $n->$s();
-        } elseif ($type == 'CreateSend') {
+            $n->$type();
 
-            new $this->className($input, self::getInstance());
+    }
+
+    public function loginCreateSend($type, $input)
+    {
+        $this->className = 'Controllers\\' . $type;
+        new $this->className($input, self::getInstance());
+    }
+
+    public function postsSend($type, $input)
+    {
+       
+        $this->className = 'Controllers\\' . $type;
+        if ($type != 'postsSend') {
+            echo 'ok';
+            return self::instance('Controllers', $type);
+        } elseif ($type == 'postsSend') {
+            $n = self::instance('Controllers', $type);
+            return $n->$type(self::titlePost($input), self::chapoPost($input), self::contentPost($input), self::authorPost($input));
         }
     }
 
-    public function posts($type, $input = null)
+    public function postsUpdate($type, $input, $id)
     {
-        $this->className = 'Controllers\posts' . ucfirst($type);
-        if ($type != 'Send') {
-            return self::instance('Controllers', 'posts' . ucfirst($type));
-        } elseif ($type == 'Send') {
-            $c = 'posts' . ucfirst($type);
-            $n = self::instance('Controllers', 'posts' . ucfirst($type));
-            return $n->$c(self::titlePost($input), self::chapoPost($input), self::contentPost($input), self::authorPost($input));
-        }
+        $this->className = 'Controllers\\' . $type;
+        new $this->className($input, $id);
+    }
+
+    public function postsList($type)
+    {
+        $this->className = 'Controllers\\' . $type;
+        return self::instance('Controllers', $type);
+    }
+
+    public function postsDelete($type, $input, $id)
+    {
+        $this->className = 'Controllers\\' . $type;
+        new $this->className($id);
     }
 
 
-    public function comment($type, $id)
+    public function commentSend($type, $input, $id)
     {
 
-        $this->className = 'Controllers\comment' . ucfirst($type);
-        if ($type == 'Send') {
-            $c = 'comment' . ucfirst($type);
-            return self::instance('Controllers', 'comment' . ucfirst($type))->$c($this->contentC, $id);
-        }
+        $this->className = 'Controllers\\' . $type;
+            return self::instance('Controllers', $type)->$type(self::contentComment($input), $id);
+        
     }
 
-    public function user($classN, $type, $input = null)
+    public function userUpdate($type, $input, $id)
     {
-        $s = $classN . ucfirst($type);
-        self::instance('Controllers', $classN . ucfirst($type))->$s($input);
+        self::instance('Controllers', $type)->$type($input);
     }
 
     public function postsRead($id)
@@ -152,7 +168,7 @@ class factory
 
     public function contentComment($input)
     {
-        $this->contentC = $input['comment'];
+        return $this->contentC = $input['comment'];
     }
 
     public function validSession($valid)

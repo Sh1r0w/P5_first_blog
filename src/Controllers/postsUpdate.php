@@ -14,7 +14,7 @@ class postsUpdate
     protected $upContent = null;
     protected $upChapo = null;
     protected $upAuthor = null;
-    public function __construct(int $id, array $input)
+    public function __construct(array $input, int $id)
     {
         $upTitle = $input['upTitle'];
         $upContent = $input['upContent'];

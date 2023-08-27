@@ -25,9 +25,9 @@ class root
         if(isset($_SESSION['logged_user'], $_SESSION['lastname'], $_SESSION['firstname'])){
             if(file_exists(dirname(__DIR__) . DIRECTORY_SEPARATOR . $match['target'] . 'List' . '.php')){
                 
-                echo $twig->render($match['target'] . '.twig', [$match['target'] => $fact->posts('List'), 'count' => $fact->countComment()]);
+                echo $twig->render($match['target'] . '.twig', [$match['target'] => $fact->postsList('postsList'), 'count' => $fact->countComment()]);
                 
-            } elseif(file_exists(dirname(__DIR__) . DIRECTORY_SEPARATOR . $match['target']. 'Controllers' . '.php') && $_GET['action'] == 'postsRead')
+            } elseif(file_exists(dirname(__DIR__) . DIRECTORY_SEPARATOR . $match['target']. 'Controllers' . '.php'))
             {
                 echo $twig->render($match['target'] . '.twig', ['postsRead' => $fact->postsRead($_GET['id']), 'commentsRead' => $fact->commentRead($_GET['id'])]);
             }else
