@@ -13,12 +13,8 @@ class postsSend
     
 public function postsSend( $title, $chapo ,$content, $author, $img)
 {
-    $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
-        "INSERT INTO ae_post(title, chapo, content, author, id_user, picture, addDate, updDate ) VALUES(?,?,?,?,?,?, NOW(), NOW())"
-    );
-
-    $sendPost = $statement->execute([ $title, $chapo, $content, $author, $_SESSION['idUs'], $img]);
+    $fact = \Controllers\Fonction\factory::getInstance();
+    $fact->instance('Controllers\Repository', 'postsRepo')->postsSend($title, $chapo ,$content, $author, $img);
     header('location: posts');
-    return ($sendPost > 0);
 }
 }

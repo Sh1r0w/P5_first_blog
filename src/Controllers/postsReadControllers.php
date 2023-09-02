@@ -4,15 +4,28 @@ namespace Controllers;
 
 class postsReadControllers
 {
-    public $postsRead;
+    public $read;
 
-    public function postsReadControllers($data)
+    public function postsReadControllers($id)
     {
-        if(isset($data)){
-            return $this->postsRead = $data;
-        }else{
-            header('location: posts');
-        }
+        $fact = \Controllers\Fonction\factory::getInstance();
+        $read = $fact->instance('Controllers\Repository', 'postsRepo')->postsRead($id);
+        
+        while($row = $read->fetch())
+           {
+            $posts =[
+            'id' => $row['id'],
+            'title' => $row['title'],
+            'content' => $row['content'],
+            'author' => $row['author'],
+            'addDate' => $row['addDate'],
+            'updDate' => $row['updDate'],
+            'author' => $row['author'],
+            'imgP' =>$row['picture'],
+            ];
+            $this->read[] = $posts;
+           }
+        return $this->read;
 
 
     }

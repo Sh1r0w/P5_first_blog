@@ -15,11 +15,8 @@ class postsUpdate
         $upChapo = $input['upChapo'];
         $upAuthor = $input['upAuthor'];
 
-        $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
-            "UPDATE ae_post SET title = ?, content = ?, chapo = ?, author = ?, updDate = NOW() WHERE id = $id"
-        );
-        $statement->execute([$upTitle, $upContent, $upChapo, $upAuthor]);
-
+        $fact = \Controllers\Fonction\factory::getInstance();
+        $fact->instance('Controllers\Repository', 'postsRepo')->postsUpdate($id, $upTitle, $upContent, $upChapo, $upAuthor);
         header('location: posts');
     }
 }

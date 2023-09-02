@@ -2,7 +2,7 @@
 
 namespace Model;
 
-class postsGetAll
+/*class postsGetAll
 {
     public $result;
     public function postsGetAll()
@@ -14,4 +14,4 @@ class postsGetAll
         );
         return $statement->fetch();
     }
-}
+}*/

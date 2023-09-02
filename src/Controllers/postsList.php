@@ -4,16 +4,17 @@ namespace Controllers;
 
 class postsList
 { 
+
     public $posts;
 
+    
    public function __construct()
 {
-    $statement = \Controllers\Fonction\db::connectDatabase()->query(
-        "SELECT * FROM ae_post a LEFT JOIN ae_user e ON a.id_user = e.id ORDER BY a.addDate DESC"
-    );
-    while ($row = $statement->fetch()) {
+    $fact = \Controllers\Fonction\factory::getInstance();
+    $test = $fact->instance('Controllers\Repository', 'postsRepo')->postsList();
+    while ($row = $test->fetch()) {
         $post = [
-            'id' => $row['id'],
+            'id' => $row[0],
             'title' => $row['title'],
             'content' => $row[3],
             'addDate' => $row[5],

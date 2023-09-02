@@ -5,16 +5,16 @@ namespace Model;
 /* The `class postsRead` is a PHP class that is used to read posts from a database. It has a
 constructor method `postsRead` that takes an `id` parameter. Inside the constructor, it connects to
 the database using the `db::connectDatabase()` method from the `Controllers\Fonction\db` class. */
-class postsRead
+/*class postsRead
 {
     Public $read;
 
     public function postsRead($id)
     {
-        $statement = \Controllers\Fonction\db::connectDatabase()->query(
-            "SELECT * FROM ae_post WHERE id = $id"
-        );
-        while($row = $statement->fetch())
+        $fact = \Controllers\Fonction\factory::getInstance();
+        $read = $fact->instance('Controllers\Repository', 'postsRepo')->postsRead($id);
+        
+        while($row = $read->fetch())
            {
             $posts =[
             'id' => $row['id'],
@@ -31,4 +31,4 @@ class postsRead
         return $this->read;
     }
     
-}
+}*/

@@ -122,7 +122,6 @@ class factory
 
     public function commentSend($type, $input, $id)
     {
-
         $this->className = 'Controllers\\' . $type;
             return self::instance('Controllers', $type)->$type(self::contentComment($input), $id);
         
@@ -136,7 +135,7 @@ class factory
     public function postsRead($id)
     {
         if(isset($id)){
-            return self::instance('Controllers', 'postsReadControllers')->postsReadControllers(self::instance('Model', 'postsRead')->postsRead($id));
+            return self::instance('Controllers', 'postsReadControllers')->postsReadControllers($id);
         }
     }
 
