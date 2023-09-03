@@ -1,8 +1,8 @@
 <?php
 
-namespace Controllers;
+namespace Controllers\Posts;
 
-class postsUpdate
+class postsUpdateControllers
 {
     protected $upTitle = null;
     protected $upContent = null;

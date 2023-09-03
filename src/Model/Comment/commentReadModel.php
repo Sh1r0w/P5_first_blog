@@ -1,22 +1,22 @@
 <?php
 
-namespace Model;
+namespace Model\Comment;
 
-class commentRead
+class commentReadModel
 {
     Public $read;
 
     public function commentRead($id)
     {
-
-        $statement = \Controllers\Fonction\db::connectDatabase()->query(
-            "SELECT * FROM ae_comment WHERE id_post = $id ORDER BY addDate DESC"
-        );
+        $fact = \Controllers\Fonction\factory::getInstance();
+        $nComment = $fact->instance('Controllers\Repository', 'commentRepo')->read($id);
         
-        while($row = $statement->fetch())
+        while($row = $nComment->fetch())
         
            {
             $comment =[
+            'id' => $row['id'],
+            'id_user' => $row['id_user'],
             'content' => $row['content'],
             'addDate' => $row['addDate'],
             ];

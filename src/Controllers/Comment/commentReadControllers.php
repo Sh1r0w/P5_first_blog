@@ -1,6 +1,6 @@
 <?php
 
-namespace Controllers;
+namespace Controllers\Comment;
 
 /* The `class commentReadControllers` is a PHP class that represents a controller for reading comments.
 It has a public property `` and a constructor method `commentReadControllers` that

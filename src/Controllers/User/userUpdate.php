@@ -1,8 +1,8 @@
 <?php
 
-namespace Controllers;
+namespace Controllers\User;
 
-class userUpdate extends \Controllers\userSend
+class userUpdate extends \Controllers\User\userSend
 {
     public function userUpdate(array $input, $count, $picture = null){
         $id = $_SESSION['idUs'];

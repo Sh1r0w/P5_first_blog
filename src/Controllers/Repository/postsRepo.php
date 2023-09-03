@@ -10,9 +10,15 @@ reading, listing, sending, deleting, and updating posts in a database. */
 
 class postsRepo implements postsInterface
 {
+    private $dbase;
+
+    public function __construct()
+    {
+        $this->dbase = \Controllers\Fonction\db::connectDatabase();
+    }
 
 public function postsRead($id){
-    $statement = \Controllers\Fonction\db::connectDatabase()->query(
+    $statement = $this->dbase->query(
         "SELECT * FROM ae_post WHERE id = $id"
     );
 
@@ -21,7 +27,7 @@ public function postsRead($id){
 
 public function postsList()
 {
-    $statement = \Controllers\Fonction\db::connectDatabase()->query(
+    $statement = $this->dbase->query(
         "SELECT * FROM ae_post a LEFT JOIN ae_user e ON a.id_user = e.id ORDER BY a.addDate DESC"
     );
 
@@ -30,7 +36,7 @@ public function postsList()
 
 public function postsSend($title, $chapo, $content, $author, $img)
 {
-    $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
+    $statement = $this->dbase->prepare(
         "INSERT INTO ae_post(title, chapo, content, author, id_user, picture, addDate, updDate ) VALUES(?,?,?,?,?,?, NOW(), NOW())"
     );
     $sendPost = $statement->execute([ $title, $chapo, $content, $author, $_SESSION['idUs'], $img]);
@@ -39,7 +45,7 @@ public function postsSend($title, $chapo, $content, $author, $img)
 
 public function postsDelete($id)
 {
-    $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
+    $statement = $this->dbase->prepare(
         "DELETE FROM ae_post WHERE id = $id"
     );
     $statement->execute();
@@ -47,7 +53,7 @@ public function postsDelete($id)
 
 public function postsUpdate($id, $upTitle, $upContent, $upChapo, $upAuthor)
 {
-    $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
+    $statement = $this->dbase->prepare(
         "UPDATE ae_post SET title = ?, content = ?, chapo = ?, author = ?, updDate = NOW() WHERE id = $id"
     );
     $statement->execute([$upTitle, $upContent, $upChapo, $upAuthor]);

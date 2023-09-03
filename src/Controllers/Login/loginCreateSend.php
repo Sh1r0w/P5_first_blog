@@ -1,11 +1,11 @@
 <?php
 
-namespace Controllers;
+namespace Controllers\Login;
 
 /* The `class loginCreateSend extends \Controllers\loginSend` is creating a new class called
 `loginCreateSend` that extends the `loginSend` class. This means that the `loginCreateSend` class
 inherits all the properties and methods from the `loginSend` class. */
-class loginCreateSend extends \Controllers\loginSend
+class loginCreateSend extends \Controllers\Login\loginSend
 {
     protected $login = null;
     protected $password = null;
@@ -24,7 +24,7 @@ class loginCreateSend extends \Controllers\loginSend
 
             $passwordH = password_hash($password, PASSWORD_DEFAULT);
             if($check == false){
-            $l = $this->fact->instance('Model', 'loginCreate');
+            $l = $this->fact->instance('Model\Login', 'loginCreate');
             $l->loginCreate($login, $passwordH);
         
             $autoL = [

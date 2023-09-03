@@ -68,8 +68,8 @@ class factory
 
     public function loginSend($type, $input)
     {
-            $this->className = 'Controllers\\' . $type;
-            $userExist = self::instance('Model', $type)->getUser($input['email']);
+            $this->className = 'Controllers\Login\\' . $type;
+            $userExist = self::instance('Model\Login', $type)->getUser($input['email']);
             $n = new $this->className($input, $userExist);
             $n->$type();
 
@@ -77,65 +77,61 @@ class factory
 
     public function loginCreateSend($type, $input)
     {
-        $this->className = 'Controllers\\' . $type;
+        $this->className = 'Controllers\Login' . $type;
         new $this->className($input, self::loginCheck($input), self::getInstance());
     }
 
     public function loginCheck($input)
     {
-        return self::instance('Model', 'loginCheck')->loginCheck($input);
+        return self::instance('Model\Login', 'loginCheck')->loginCheck($input);
     }
 
     public function loginCheckCount()
     {
-        return self::instance('Model', 'loginCheckCount')->loginCheckCount();
+        return self::instance('Model\Login', 'loginCheckCount')->loginCheckCount();
     }
 
     public function postsSend($type, $input)
     {
-        var_dump($input);
-        $this->className = 'Controllers\\' . $type;
         if ($type != 'postsSend') {
-            echo 'ok';
-            return self::instance('Controllers', $type);
+            return self::instance('Controllers\Posts', 'postsSendControllers');
         } elseif ($type == 'postsSend') {
-            $n = self::instance('Controllers', $type);
+            $n = self::instance('Controllers\Posts', 'postsSendControllers');
             return $n->$type(self::titlePost($input), self::chapoPost($input), self::contentPost($input), self::authorPost($input), self::picturePost()->name);
         }
     }
 
     public function postsUpdate($type, $input, $id)
     {
-        self::instance('Controllers', $type)->$type($input, $id);
+        self::instance('Controllers\Posts', 'postsUpdateControllers')->$type($input, $id);
     }
 
     public function postsList($type)
     {
-        return self::instance('Controllers', $type);
+        return self::instance('Controllers\Posts', 'postsListControllers')->$type(self::instance('Model\Posts', 'postsListModel'));
     }
 
-    public function postsDelete($type, $input, $id)
+    public function postsDelete($type, $input, $id, $key)
     {
-        self::instance('Controllers', $type)->$type($id);
+        self::instance('Controllers\Posts', 'postsDeleteControllers')->$type($id);
     }
 
 
     public function commentSend($type, $input, $id)
     {
-        $this->className = 'Controllers\\' . $type;
-            return self::instance('Controllers', $type)->$type(self::contentComment($input), $id);
+            return self::instance('Controllers\Comment', 'commentSendControllers')->$type(self::contentComment($input), $id);
         
     }
 
     public function userUpdate($type, $input)
     {
-        self::instance('Controllers', $type)->$type($input, self::loginCheckCount(), self::picturePost()->name);
+        self::instance('Controllers\User', $type)->$type($input, self::loginCheckCount(), self::picturePost()->name);
     }
 
     public function postsRead($id)
     {
         if(isset($id)){
-            return self::instance('Controllers', 'postsReadControllers')->postsReadControllers($id);
+            return self::instance('Controllers\Posts', 'postsReadControllers')->postsReadControllers(self::instance('Model\Posts', 'postsReadModel')->postsReadModel($id));
         }
     }
 
@@ -144,13 +140,29 @@ class factory
             
         if(isset($id))
         {
-            return self::instance('Controllers', 'commentReadControllers')->commentReadControllers(self::instance('Model', 'commentRead')->commentRead($id));
+            
+            return self::instance('Controllers\Comment', 'commentReadControllers')->commentReadControllers(self::instance('Model\Comment', 'commentReadModel')->commentRead($id));
         }
     }
 
-    public function countComment()
+    public function commentCount()
     {
-        return self::instance('Model', 'countComment')->countComment();
+        return self::instance('Controllers\Comment', 'commentCountControllers')->countComment();
+    }
+
+    public function commentDelete($type, $input, $id, $key)
+    {
+        self::instance('Controllers\Comment', 'commentDeleteControllers')->$type($id, $key);
+    }
+
+    public function adminList()
+    {
+        return self::instance('Controllers\Admin', 'adminControllers')->userList(self::instance('Model\Admin','adminUserListModel'));
+    }
+
+    public function adminUserUpdate($type, $input, $id, $key)
+    {
+         self::instance('Controllers\Admin', 'adminUserControllers')->userUpdate($id, self::instance('Model\Admin', 'adminUserUpdateModel')->adminUpdate($key));
     }
 
     public function picturePost()

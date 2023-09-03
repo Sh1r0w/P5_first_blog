@@ -1,8 +1,8 @@
 <?php
 
-namespace Controllers;
+namespace Controllers\Posts;
 
-class postsSend
+class postsSendControllers
 {
 
    protected $title = null;

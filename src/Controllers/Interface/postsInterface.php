@@ -5,6 +5,8 @@ namespace Controllers\Interface;
 interface postsInterface
 {
 
+public function __construct();
+
 public function postsRead($id);
 
 public function postsList();

@@ -1,11 +1,11 @@
 <?php
 
-namespace Controllers;
+namespace Controllers\Posts;
 
 /* The postsDelete class is responsible for deleting a post by calling the postsDelete method in the
 postsRepo class and redirecting to the posts page. */
 
-Class postsDelete
+Class postsDeleteControllers
 {
 
     public function postsDelete(int $id)

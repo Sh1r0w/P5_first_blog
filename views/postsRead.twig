@@ -33,19 +33,34 @@
         </button>
     </form>
     </div>
-        {% endfor %}
+       
     
     <div class="card">
-        {% for p in commentsRead %}
+        {% for c in commentsRead %}
             <div class="card-body">
-                {{ p.content }}
+                {{ c.content }}
             
             
             </div>
             <div class="card-footer text-end">
-                <span> {{ p.addDate }}</span>
+                <span> {{ c.addDate }}</span>
+                {% if session.admin == '1' or session.idUs == c.id_user %}
+                    <div class="modal-footer">
+                            <form action="posts?key={{ p.id }}&action=commentDelete&id={{ c.id }}" method="post">
+                                <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-primary btn-danger" type="submit">
+                                    Delete                                                          
+                                                            
+                                </form>
+                            </button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vue{{ c.id }}" data-bs-dismiss="modal">
+                                Modification                  
+                                                    
+                            </button>
+                        
+                    </div>
+                {% endif %}
             </div>
         {% endfor %}
     </div>
-
+{% endfor %}
 {% endblock %}
