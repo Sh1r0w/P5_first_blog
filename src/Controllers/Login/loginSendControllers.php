@@ -6,22 +6,20 @@ namespace Controllers\Login;
 
 /* The loginSend class is responsible for validating user input, checking if the login exists,
 validating the password, and opening a session if successful. */
-class loginSend
+class loginSendControllers
 {
     protected $email = null;
     protected $password = null;
     protected $loginM;
     protected $fact;
+    protected $loginSendM;
 
-    public function __construct(array $input, $loginSendM)
-    {
+    public function loginSend(array $input, $loginSendM){
+
         $this->fact = \Controllers\Fonction\factory::getInstance();
         $this->email = $input['email'];
         $this->password = $input['password'];
         $this->loginM = $loginSendM;
-    }
-
-    public function loginSend(){
 
         try {
             $this->validateInput();

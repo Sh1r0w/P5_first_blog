@@ -68,27 +68,24 @@ class factory
 
     public function loginSend($type, $input)
     {
-            $this->className = 'Controllers\Login\\' . $type;
-            $userExist = self::instance('Model\Login', $type)->getUser($input['email']);
-            $n = new $this->className($input, $userExist);
-            $n->$type();
+            self::instance('Controllers\Login', 'loginSendControllers')->loginSend($input, self::instance('Model\Login', 'loginSendModel')->getUser($input['email']));
 
     }
 
-    public function loginCreateSend($type, $input)
+    public function loginCreateSend($type, $input, $id, $key)
     {
-        $this->className = 'Controllers\Login' . $type;
-        new $this->className($input, self::loginCheck($input), self::getInstance());
+ 
+            self::instance('Controllers\Login', 'loginCreateSendControllers')->loginCreateSend($input, self::loginCheck($input));
     }
 
     public function loginCheck($input)
     {
-        return self::instance('Model\Login', 'loginCheck')->loginCheck($input);
+        return self::instance('Model\Login', 'loginCheckModel')->loginCheck($input);
     }
 
     public function loginCheckCount()
     {
-        return self::instance('Model\Login', 'loginCheckCount')->loginCheckCount();
+        return self::instance('Model\Login', 'loginCheckCountModel')->loginCheckCount();
     }
 
     public function postsSend($type, $input)

@@ -4,14 +4,12 @@ namespace Model\Login;
 
 /* The loginCheckCount class is used to retrieve the count of log entries from the ae_connect table in
 a database. */
-class loginCheckCount
+class loginCheckCountModel
 {
     public function loginCheckCount()
     {
-        $statement = \Controllers\Fonction\db::connectDatabase()->query(
-            "SELECT COUNT(log) FROM ae_connect"
-        );
+        $fact = \Controllers\Fonction\factory::getInstance();
         
-        return $statement->fetch();
+        return $fact->instance('Controllers\Repository', 'loginRepo')->count()->fetch();
     }
 }
