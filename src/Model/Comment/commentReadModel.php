@@ -2,6 +2,7 @@
 
 namespace Model\Comment;
 
+/* The commentReadModel class is responsible for retrieving and storing comments from a database. */
 class commentReadModel
 {
     Public $read;

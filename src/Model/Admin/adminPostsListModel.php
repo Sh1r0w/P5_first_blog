@@ -2,6 +2,8 @@
 
 namespace Model\Admin;
 
+/* The adminPostsListModel class retrieves a list of posts from the adminRepo repository and stores
+them in the posts property. */
 class adminPostsListModel
 {
     public $posts;

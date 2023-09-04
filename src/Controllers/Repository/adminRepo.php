@@ -4,6 +4,10 @@ namespace Controllers\Repository;
 
 use Controllers\Interface\adminInterface;
 
+/* The `class adminRepo implements adminInterface` statement is declaring a class named `adminRepo`
+that implements the `adminInterface` interface. This means that the `adminRepo` class must provide
+implementations for all the methods defined in the `adminInterface` interface. */
+
 class adminRepo implements adminInterface
 {
     private $dbase;
@@ -13,6 +17,13 @@ class adminRepo implements adminInterface
         $this->dbase = \Controllers\Fonction\db::connectDatabase();
     }
 
+   /**
+    * The code defines three functions in PHP for retrieving a list of users, updating a user's
+    * globalAdmin status, and deleting a user.
+    * 
+    * @return The `userList()` function is returning a statement object that contains the result of the
+    * SQL query.
+    */
     public function userList()
     {
         $statement = $this->dbase->query(
@@ -35,6 +46,13 @@ class adminRepo implements adminInterface
         
     }
 
+    /**
+     * The above code defines three functions in PHP for retrieving, updating, and deleting posts from
+     * a database.
+     * 
+     * @return The `postsList()` function is returning a statement object that contains the result of
+     * the SQL query.
+     */
     public function postsList()
     {
         $statement = $this->dbase->query(
@@ -60,6 +78,13 @@ class adminRepo implements adminInterface
         $statement->execute();
     }
 
+    /**
+     * The above code defines three functions in PHP for managing comments in a database, including
+     * listing comments, updating the validation status of a comment, and deleting a comment.
+     * 
+     * @return The `commentList()` function is returning a statement object that contains the result of
+     * the SQL query.
+     */
     public function commentList()
     {
         $statement = $this->dbase->query(

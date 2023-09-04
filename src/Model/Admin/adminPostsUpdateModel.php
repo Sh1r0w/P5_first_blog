@@ -2,6 +2,8 @@
 
 namespace Model\Admin;
 
+/* The adminPostsUpdateModel class is used to update the value of the key property based on the input
+key value. */
 class adminPostsUpdateModel
 {
     public $key;

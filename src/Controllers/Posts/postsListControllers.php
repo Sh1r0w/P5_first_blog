@@ -2,6 +2,7 @@
 
 namespace Controllers\Posts;
 
+/* The "postsListControllers" class is used to manage a list of posts. */
 class postsListControllers
 { 
 

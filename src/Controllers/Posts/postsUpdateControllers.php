@@ -2,21 +2,19 @@
 
 namespace Controllers\Posts;
 
+/* The `postsUpdateControllers` class is responsible for updating posts in a repository based on user
+input. */
 class postsUpdateControllers
 {
-    protected $upTitle = null;
-    protected $upContent = null;
-    protected $upChapo = null;
-    protected $upAuthor = null;
-    public function postsUpdate(array $input, int $id)
+    
+    public function postUpdate(array $input, $id)
     {
-        $upTitle = $input['upTitle'];
-        $upContent = $input['upContent'];
-        $upChapo = $input['upChapo'];
-        $upAuthor = $input['upAuthor'];
+        if(isset($input, $id)){
+            $fact = \Controllers\Fonction\factory::getInstance();
+            $fact->instance('Model\Posts','postsUpdateModel')->postsUpdate($input, $id);
+        }
 
-        $fact = \Controllers\Fonction\factory::getInstance();
-        $fact->instance('Controllers\Repository', 'postsRepo')->postsUpdate($id, $upTitle, $upContent, $upChapo, $upAuthor);
+        
         header('location: posts');
     }
 }

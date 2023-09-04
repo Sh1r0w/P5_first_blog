@@ -2,6 +2,8 @@
 
 namespace Controllers\Interface;
 
+/* The code is defining an interface called `postsInterface` within the `Controllers\Interface`
+namespace. */
 interface postsInterface
 {
 

@@ -2,6 +2,7 @@
 
 namespace Controllers\User;
 
+/* The userUpdate class is responsible for updating user information in a PHP application. */
 class userUpdate extends \Controllers\User\userSend
 {
     public function userUpdate(array $input, $count, $picture = null){

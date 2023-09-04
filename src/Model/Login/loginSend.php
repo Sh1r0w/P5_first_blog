@@ -2,6 +2,7 @@
 
 namespace Model\Login;
 
+/* The loginSend class in PHP retrieves user information from a database based on the provided email. */
 class loginSend
 
 {

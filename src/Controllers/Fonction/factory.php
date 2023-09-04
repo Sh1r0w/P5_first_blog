@@ -93,17 +93,13 @@ class factory
 
     public function postsSend($type, $input)
     {
-        if ($type != 'postsSend') {
-            return self::instance('Controllers\Posts', 'postsSendControllers');
-        } elseif ($type == 'postsSend') {
-            $n = self::instance('Controllers\Posts', 'postsSendControllers');
-            return $n->$type(self::titlePost($input), self::chapoPost($input), self::contentPost($input), self::authorPost($input), self::picturePost()->name);
-        }
+            self::instance('Controllers\Posts', 'postsSendControllers')->$type(self::titlePost($input), self::chapoPost($input), self::contentPost($input), self::authorPost($input), self::picturePost()->name);
+
     }
 
-    public function postsUpdate($type, $input, $id)
+    public function postsUpdate($type, $input, $id, $key)
     {
-        self::instance('Controllers\Posts', 'postsUpdateControllers')->$type($input, $id);
+        self::instance('Controllers\Posts', 'postsUpdateControllers')->postUpdate($input, $id);
     }
 
     public function postsList($type)
@@ -218,8 +214,6 @@ class factory
         $this->valid = $valid;
         return $this->valid;
     }
-
-
 
     public function openSession($data)
     {

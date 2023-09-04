@@ -4,6 +4,8 @@ namespace Controllers\Repository;
 
 use Controllers\Interface\commentInterface;
 
+/* The commentRepo class is a PHP class that implements the commentInterface and provides methods for
+creating, reading, deleting, updating, and counting comments in a database. */
 class commentRepo implements commentInterface
 {
     private $dbase;

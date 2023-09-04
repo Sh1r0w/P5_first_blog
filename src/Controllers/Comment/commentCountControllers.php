@@ -2,6 +2,7 @@
 
 namespace Controllers\Comment;
 
+/* The commentCountControllers class counts the number of comments using a factory pattern. */
 class commentCountControllers
 {
     public function countComment()

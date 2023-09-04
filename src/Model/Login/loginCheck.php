@@ -2,6 +2,8 @@
 
 namespace Model\Login;
 
+/* The loginCheck class checks if a given email exists in the ae_connect table and returns true if it
+does, false otherwise. */
 class loginCheck
 {
     protected $result = null;

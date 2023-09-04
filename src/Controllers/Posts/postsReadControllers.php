@@ -2,6 +2,8 @@
 
 namespace Controllers\Posts;
 
+/* The class "postsReadControllers" is used to handle the reading of posts and redirect to the "posts"
+page if no data is provided. */
 class postsReadControllers
 {
     public $postsRead;

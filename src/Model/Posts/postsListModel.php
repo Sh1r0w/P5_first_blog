@@ -2,6 +2,7 @@
 
 namespace Model\Posts;
 
+/* The `postsListModel` class retrieves a list of posts from a repository and stores them in an array. */
 class postsListModel
 {
     public $posts;

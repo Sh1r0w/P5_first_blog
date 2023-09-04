@@ -2,6 +2,8 @@
 
 namespace Controllers\Admin;
 
+/* The adminUserControllers class is responsible for updating a user's information and redirecting to
+the user list page. */
 class adminUserControllers
 {
 

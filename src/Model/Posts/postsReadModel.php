@@ -2,9 +2,9 @@
 
 namespace Model\Posts;
 
-/* The `class postsRead` is a PHP class that is used to read posts from a database. It has a
-constructor method `postsRead` that takes an `id` parameter. Inside the constructor, it connects to
-the database using the `db::connectDatabase()` method from the `Controllers\Fonction\db` class. */
+
+/* The `postsReadModel` class is responsible for retrieving and storing information about posts from a
+database. */
 class postsReadModel
 {
     Public $read;

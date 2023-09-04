@@ -2,16 +2,19 @@
 
 namespace Controllers\Posts;
 
-/* The postsDelete class is responsible for deleting a post by calling the postsDelete method in the
-postsRepo class and redirecting to the posts page. */
+
+
+/* The postsDeleteControllers class is responsible for deleting a post based on its ID. */
 
 Class postsDeleteControllers
 {
 
     public function postsDelete(int $id)
 {
+    if(isset($id)){     
     $fact = $fact = \Controllers\Fonction\factory::getInstance();
-    $fact->instance('Controllers\Repository', 'postsRepo')->postsDelete($id);
+    $fact->instance('Model\Posts', 'postsDeleteModel')->postsDelete($id);
+    }
     header('location: posts');
 }
 }

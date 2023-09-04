@@ -2,6 +2,8 @@
 
 namespace Model\Admin;
 
+/* The adminUserListModel class retrieves a list of users from the adminRepo repository and stores them
+in an array. */
 class adminUserListModel
 {
     public $users;

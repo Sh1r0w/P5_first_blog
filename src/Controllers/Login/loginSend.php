@@ -4,6 +4,8 @@ namespace Controllers\Login;
 
 
 
+/* The loginSend class is responsible for validating user input, checking if the login exists,
+validating the password, and opening a session if successful. */
 class loginSend
 {
     protected $email = null;

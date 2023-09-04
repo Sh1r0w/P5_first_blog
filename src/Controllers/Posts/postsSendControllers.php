@@ -2,6 +2,8 @@
 
 namespace Controllers\Posts;
 
+/* The `postsSendControllers` class is responsible for sending posts with a title, chapo, content,
+author, and image. */
 class postsSendControllers
 {
 
@@ -13,8 +15,10 @@ class postsSendControllers
     
 public function postsSend( $title, $chapo ,$content, $author, $img)
 {
+    if(isset($title, $chapo, $content, $author)){
     $fact = \Controllers\Fonction\factory::getInstance();
-    $fact->instance('Controllers\Repository', 'postsRepo')->postsSend($title, $chapo ,$content, $author, $img);
+    $fact->instance('Model\Posts', 'postsSendModel')->postsSend($title, $chapo ,$content, $author, $img);
+    }
     header('location: posts');
 }
 }
