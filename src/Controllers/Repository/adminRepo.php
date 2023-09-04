@@ -38,7 +38,7 @@ class adminRepo implements adminInterface
     public function postsList()
     {
         $statement = $this->dbase->query(
-            "SELECT * FROM ae_user WHERE valide = '0'"
+            "SELECT * FROM ae_post WHERE valide = '0'"
         );
 
         return $statement;

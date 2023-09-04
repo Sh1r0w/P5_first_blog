@@ -28,7 +28,7 @@ public function postsRead($id){
 public function postsList()
 {
     $statement = $this->dbase->query(
-        "SELECT * FROM ae_post a LEFT JOIN ae_user e ON a.id_user = e.id ORDER BY a.addDate DESC"
+        "SELECT * FROM ae_post a LEFT JOIN ae_user e ON a.id_user = e.id WHERE a.valide = 1 ORDER BY a.addDate DESC"
     );
 
     return $statement;

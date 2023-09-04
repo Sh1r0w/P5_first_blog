@@ -165,6 +165,16 @@ class factory
          self::instance('Controllers\Admin', 'adminUserControllers')->userUpdate($id, self::instance('Model\Admin', 'adminUserUpdateModel')->adminUpdate($key));
     }
 
+    public function adminPostsList()
+    {
+        return self::instance('Controllers\Admin', 'adminPostsListControllers')->postsList(self::instance('Model\Admin','adminPostsListModel'));
+    }
+
+    public function adminPostsUpdate($type, $input, $id, $key)
+    {
+        self::instance('Controllers\Admin', 'adminPostsUpdateControllers')->postsUpdate($id, self::instance('Model\Admin', 'adminPostsUpdateModel')->postsUpdate($key));
+    }
+
     public function picturePost()
     {
         $this->pictureP = self::instance('Controllers\Fonction', 'img');

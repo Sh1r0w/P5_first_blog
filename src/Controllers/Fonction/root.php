@@ -34,18 +34,17 @@ class root
             } elseif (file_exists(dirname(__DIR__) . DIRECTORY_SEPARATOR . 'posts' . DIRECTORY_SEPARATOR . $match['target'] . 'Controllers' . '.php') && $match['target'] != 'admin') {
                 echo $twig->render($match['target'] . '.twig', ['postsRead' => $fact->postsRead($_GET['id']), 'commentsRead' => $fact->commentRead($_GET['id'])]);
             
-            }elseif($match['target'] == 'admin' || $match['target'] == 'userList') {
+            }elseif($match['target'] == 'admin' || $match['target'] == 'userList' || $match['target'] == 'postsListValid') {
                 if($_SESSION['admin'] == '1' && $match['target'] == 'userList' ){
                     echo $twig->render('userListAdmin.twig', ['userList' => $fact->adminList()]);
                  } elseif ($match['target'] == 'admin'){ 
                     echo $twig->render('admin.twig');
                  } elseif ($match['target'] == 'postsListValid'){ 
-                    echo $twig->render('postsList.twig');
+                    echo $twig->render('postsListValid.twig', ['adminPostsList' => $fact->adminPostsList()]);
                  }else{
                     echo $twig->render('home.twig');
                  }
             } else {
-                
                 echo $twig->render($match['target'] . '.twig');
             }
         } elseif (isset($_SESSION['logged_user']) && !isset($_SESSION['idUs'])) {

@@ -17,7 +17,11 @@
                     {% for u in userList.users %}
                   <tr>
                     <th scope="row">{{ u.id }}</th>
-                    <td><img src="{{ u.picture }}" alt="{{ p.author }}" style="width:50px;"></td>
+                    <td>
+                      {% if u.picture != null %}
+                      <img src="{{ u.picture }}" alt="{{ u.lastName }}" style="width:50px;">
+                      {% endif %}
+                      </td>
                     <td>{{ u.firstName }}</td>
                     <td>{{ u.lastName }}</td>
                     <td>
