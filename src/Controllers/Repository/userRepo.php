@@ -4,6 +4,8 @@ namespace Controllers\Repository;
 
 use Controllers\Interface\userInterface;
 
+/* The userRepo class is a PHP class that implements the userInterface and provides methods for
+creating, reading, and updating user data in a database. */
 class userRepo implements userInterface
 {
     private $dbase;

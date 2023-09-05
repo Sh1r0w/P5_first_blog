@@ -4,6 +4,9 @@ namespace Controllers\Repository;
 
 use Controllers\Interface\loginInterface;
 
+
+/* The `loginRepo` class is a PHP class that implements the `loginInterface` interface and provides
+methods for creating, checking, counting, and connecting users in a login system. */
 class loginRepo implements loginInterface
 {
     private $dbase;
