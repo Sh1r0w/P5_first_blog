@@ -22,6 +22,7 @@ $router->map('GET|POST', '/comments', 'comments', 'comments');
 $router->map('GET|POST', '/admin', 'admin', 'admin');
 $router->map('GET|POST', '/userList', 'userList', 'userList');
 $router->map('GET|POST', '/postsListValid', 'postsListValid', 'postsListValid');
+$router->map('GET|POST', '/commentListValid', 'commentListValid', 'commentListValid');
 
 $match = $router->match();
 

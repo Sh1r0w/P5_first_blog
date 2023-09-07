@@ -88,7 +88,7 @@ class adminRepo implements adminInterface
     public function commentList()
     {
         $statement = $this->dbase->query(
-            "SELECT * FROM ae_comment WHERE valide = '0'"
+            "SELECT c.*, p.title, u.lastname, u.firstname FROM ae_comment c INNER JOIN ae_post p ON p.id = c.id_post AND c.valide = 0  INNER JOIN ae_user u ON u.id = c.id_user ORDER BY c.addDate DESC"
         );
 
         return $statement;

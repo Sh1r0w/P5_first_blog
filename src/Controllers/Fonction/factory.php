@@ -168,6 +168,17 @@ class factory
         self::instance('Controllers\Admin', 'adminPostsUpdateControllers')->postsUpdate($id, self::instance('Model\Admin', 'adminPostsUpdateModel')->postsUpdate($key));
     }
 
+    public function adminCommentList()
+    {
+
+        return self::instance('Controllers\Admin', 'adminCommentListControllers')->commentList(self::instance('Model\Admin', 'adminCommentListModel')->commentList());
+    }
+
+    public function adminCommentUpdate($type, $input, $id, $key)
+    {
+        self::instance('Controllers\Admin', 'adminCommentUpdateControllers')->commentUpdate($id, self::instance('Model\Admin', 'adminCommentUpdateModel')->commentUpdate($key));
+    }
+
     public function picturePost()
     {
         $this->pictureP = self::instance('Controllers\Fonction', 'img');
