@@ -28,7 +28,7 @@ $router->map(
     'GET',
     '/',
     function () use ($twig, $fact) {
-        echo $twig->render('home.twig', ['posts' => $fact->postsList('postsList')]);
+        echo $twig->render('home.twig', ['posts' => $fact->postsList('postsList'), 'count' => $fact->commentCount()]);
     },
     'homepage'
 );
