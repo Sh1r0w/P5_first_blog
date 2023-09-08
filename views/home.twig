@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-<h1>HomePage</h1>
+<H1>HomePage</H1>
 
 {% if session.flash != null %}
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -17,4 +17,17 @@
     </div>
 {% endif %}
 
+{% if session.firstname != null %}
+    {{ dump(posts) }}
+    <div class="container">        
+        {% if session.img == null %}
+            <img class="me-2" src="uploads/anonyme.png" alt="{{ session.firstname }} {{ session.lastname }}" style="width:50px;"/>
+          {% else %}
+            <img class="me-2" src="{{ session.img }}" alt="{{ session.firstname }} {{ session.lastname }}" style="width:50px;">
+          {% endif %}
+        <H2> Bienvenue {{ session.firstname }} Voici les derniers posts publié.</H2>
+
+    </div>
+
+{% endif %}
 {% endblock %}

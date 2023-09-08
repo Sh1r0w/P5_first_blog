@@ -28,9 +28,8 @@ class loginCreateSendControllers
                 'email' => $login,
                 'password' => $password
             ];
-
             $fact->loginSend('loginSend', $autoL);
-            header('location: posts');
+            header('location: /user');
         } else {
             throw new \Exception("Compte déjà existant");
             header('location: /');

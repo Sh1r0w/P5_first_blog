@@ -111,7 +111,9 @@ class db
         $pwd = $_ENV['PWD'];
         $db = $_ENV['DATABASE'];
         $server = $_ENV['SERVER'];
+        $database = null;
 
+        if(is_null($database)){
         try {
             $database = new \PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
 
@@ -121,5 +123,8 @@ class db
         } catch (\Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
+    }
+        return $database;
+    
     }
 }

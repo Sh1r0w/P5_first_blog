@@ -62,7 +62,7 @@ class factory
     public function logout()
     {
         session_destroy();
-        header('Location: /');
+        header('location: /');
     }
 
 
@@ -88,7 +88,7 @@ class factory
         return self::instance('Model\Login', 'loginCheckCountModel')->loginCheckCount();
     }
 
-    public function postsSend($type, $input)
+    public function postsSend($type, $input, $id, $key)
     {
             self::instance('Controllers\Posts', 'postsSendControllers')->$type(self::titlePost($input), self::chapoPost($input), self::contentPost($input), self::authorPost($input), self::picturePost()->name);
 
