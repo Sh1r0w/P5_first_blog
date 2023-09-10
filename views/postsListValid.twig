@@ -12,6 +12,7 @@
                 <th scope="col">Auteur</th>
                 <th scope="col">Date d'ajout</th>
                 <th scope="col">Validé</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -31,7 +32,15 @@
                 <td>
                  <form action="postsList?action=adminPostsUpdate&id={{ p.id }}&key={{ p.valide }}" method="post"> <button type="submit" class="btn btn-success">
                     Oui          
-                </button></form></td>
+                </button>
+                </form></td>
+                <td>
+                 <form action="postsListA?action=adminPostsDelete&id={{ p.id }}" method="post">
+                  <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-danger" type="submit">
+                    Supprimer          
+                </button>
+                </td>
+                
               </tr>
             
             {% endfor %}

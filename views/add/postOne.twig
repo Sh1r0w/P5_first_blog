@@ -15,7 +15,7 @@
   {% else %}
     <img class="me-2" src="{{ p.img}}" alt="{{ p.author }}" style="width:50px;">
   {% endif %}
-{{ p.author }}</br>{{ p.addDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
+</br>{{ p.addDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
 </div>
 </form>
 <form action="postsRead?id={{ p.id }}" method="post">

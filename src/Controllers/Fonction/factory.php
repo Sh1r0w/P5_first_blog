@@ -168,6 +168,11 @@ class factory
         self::instance('Controllers\Admin', 'adminPostsUpdateControllers')->postsUpdate($id, self::instance('Model\Admin', 'adminPostsUpdateModel')->postsUpdate($key));
     }
 
+    public function adminPostsDelete($type, $input, $id, $key)
+    {
+        self::instance('Controllers\Admin', 'adminPostsDeleteControllers')->postsDelete($id, self::instance('Model\Admin', 'adminPostsDeleteModel')->postsDelete($id));
+    }
+
     public function adminCommentList()
     {
 
@@ -184,6 +189,11 @@ class factory
         $this->pictureP = self::instance('Controllers\Fonction', 'img');
         return $this->pictureP;
         
+    }
+
+    public function getProfil($id)
+    {
+        return self::instance('Controllers\User', 'getProfilControllers')->getUser(self::instance('Model\User', 'getProfilModel')->getUser($id));
     }
 
     public function titlePost($input)
