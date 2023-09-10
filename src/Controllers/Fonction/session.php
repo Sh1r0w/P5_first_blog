@@ -27,4 +27,9 @@ class session
             return $_SESSION[$name];
         }
     }
+    
+    public function __isset($name)
+    {
+        return isset($_SESSION[$name]);
+    }
 }
