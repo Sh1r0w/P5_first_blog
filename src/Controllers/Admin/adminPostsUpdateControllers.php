@@ -6,9 +6,8 @@ namespace Controllers\Admin;
 redirecting to the postsListValid page. */
 class adminPostsUpdateControllers
 {
-    public function postsUpdate($id, $key)
+    public function postsUpdate($id, $key,\Controllers\Fonction\factory $fact)
     {
-        $fact = \Controllers\Fonction\factory::getInstance();
         $fact->instance('Controllers\Repository', 'adminRepo')->postsUpdate($id, $key);
         header('location: \postsListValid');
     }

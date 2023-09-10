@@ -12,7 +12,7 @@ class postsUpdateModel
     protected $upChapo = null;
     protected $upAuthor = null;
 
-    public function postsUpdate(array $input, $id)
+    public function postsUpdate(array $input, $id, $fact)
     {
 
         $upTitle = $input['upTitle'];
@@ -20,8 +20,6 @@ class postsUpdateModel
         $upChapo = $input['upChapo'];
         $upAuthor = $input['upAuthor'];
 
-
-        $fact = \Controllers\Fonction\factory::getInstance();
         $fact->instance('Controllers\Repository', 'postsRepo')->postsUpdate($id, $upTitle, $upContent, $upChapo, $upAuthor);
     }
 }

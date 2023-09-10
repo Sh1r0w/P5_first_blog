@@ -14,9 +14,9 @@ class loginSendControllers
     protected $fact;
     protected $loginSendM;
 
-    public function loginSend(array $input, $loginSendM){
+    public function loginSend(array $input, $loginSendM, \Controllers\Fonction\factory $fact){
 
-        $this->fact = \Controllers\Fonction\factory::getInstance();
+        $this->fact = $fact;
         $this->email = $input['email'];
         $this->password = $input['password'];
         $this->loginM = $loginSendM;
@@ -27,7 +27,6 @@ class loginSendControllers
                     throw new \Exception("Compte inexistant");
                 }
                 $this->validatePassword($this->loginM['pwd']);
-                $this->fact->openSession($this->loginM);
                 header('location: /');
 
         } catch (\Exception $e) {

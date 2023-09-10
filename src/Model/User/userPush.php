@@ -6,12 +6,12 @@ class userPush
 
 {
     private $count = 0;
-    public function userPush($firstname, $lastname, $citation, $id, $img, $countCkeck)
+    public function userPush($firstname, $lastname, $citation, $id, $img, $countCheck)
     {
-        $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
+        $statement = \Controllers\Fonction\db::connectDatabase()->dbConnect->prepare(
             "INSERT INTO ae_user(firstname, lastname,pictures, citation, id_login, globalAdmin) VALUES(?,?,?,?,?,?)"
         );
-        if($countCkeck[0] == '1'){
+        if($countCheck->result == '1'){
             $this->count = '1';
         }
         $img = new \Controllers\Fonction\img;

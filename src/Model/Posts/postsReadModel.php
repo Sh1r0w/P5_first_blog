@@ -9,9 +9,9 @@ class postsReadModel
 {
     Public $read;
 
-    public function postsReadModel($id)
+    public function postsReadModel($id, \Controllers\Fonction\factory $fact)
     {
-        $fact = \Controllers\Fonction\factory::getInstance();
+        //$fact = \Controllers\Fonction\factory::getInstance();
         $read = $fact->instance('Controllers\Repository', 'postsRepo')->postsRead($id);
         
         while($row = $read->fetch())

@@ -8,25 +8,36 @@ necessary tables if they don't already exist. It also provides a static method `
 that can be used to establish a connection to the database. */
 class db
 {
+    private static $_connect;
 
+    private $database;
+
+    public $dbConnect;
+
+    /**
+     * This PHP function creates or connects to a MySQL database and creates tables if they don't
+     * exist.
+     * 
+     * @return The code is returning an instance of the PDO class, which represents a connection to a
+     * database.
+     */
     public function __construct()
     {
         $user = $_ENV['USER'];
         $pwd = $_ENV['PWD'];
         $db = $_ENV['DATABASE'];
         $server = $_ENV['SERVER'];
-
+        
         // We create or connect to the database and create tables.
 
         try {
 
-            $database = new \PDO("mysql:host=$server;utf8", $user, $pwd);
+            $this->database = new \PDO("mysql:host=$server;utf8", $user, $pwd);
 
-            if ($database->exec("CREATE DATABASE IF NOT EXISTS $db")) {
+            if ($this->database->exec("CREATE DATABASE IF NOT EXISTS $db")) {
+                $this->database = new \PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
 
-                $database = new \PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
-
-                $database->exec(
+                $this->database->exec(
                     "CREATE TABLE IF NOT EXISTS ae_connect (
         id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
         log VARCHAR(255) NOT NULL,
@@ -34,7 +45,7 @@ class db
         )"
                 );
 
-                $database->exec(
+                $this->database->exec(
                     "CREATE TABLE IF NOT EXISTS ae_user (
             id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
             firstname VARCHAR(255) NOT NULL,
@@ -47,7 +58,7 @@ class db
             )"
                 );
 
-                $database->exec(
+                $this->database->exec(
                     "CREATE TABLE IF NOT EXISTS ae_post (
                 id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                 title VARCHAR(255) NOT NULL,
@@ -63,7 +74,7 @@ class db
                 )"
                 );
 
-                $database->exec(
+                $this->database->exec(
                     "CREATE TABLE IF NOT EXISTS ae_comment (
                     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                     content VARCHAR(255) NOT NULL,
@@ -76,7 +87,7 @@ class db
                     )"
                 );
 
-                $database->exec(
+                $this->database->exec(
                     "CREATE TABLE IF NOT EXISTS ae_like (
                     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                     ilike INT NOT NULL,
@@ -94,7 +105,7 @@ class db
                 echo "<script>alert(\"base de donnée créer\")</script>";
                 header("Location: home");
             }else {
-                //echo "<script>alert(\"base de donnée déjà créer\")</script>";
+               return $this->dbConnect = new \PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
             }
         } catch (\Exception $e) {
 
@@ -103,28 +114,18 @@ class db
         }
     }
 
+/**
+ * The function `connectDatabase` returns an instance of the `db` class if it is not already
+ * instantiated.
+ * 
+ * @return an instance of the "db" class.
+ */
     public static function connectDatabase()
     {
-
-
-        $user = $_ENV['USER'];
-        $pwd = $_ENV['PWD'];
-        $db = $_ENV['DATABASE'];
-        $server = $_ENV['SERVER'];
-        $database = null;
-
-        if(is_null($database)){
-        try {
-            $database = new \PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
-
-            return $database;
-
-            //echo 'Base déjà créer';
-        } catch (\Exception $e) {
-            die('Erreur : ' . $e->getMessage());
+        if(is_null(self::$_connect)){
+            self::$_connect = new db;
         }
+        return self::$_connect;
     }
-        return $database;
-    
-    }
+
 }

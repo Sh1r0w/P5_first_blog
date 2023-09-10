@@ -6,10 +6,12 @@ namespace Model\Login;
 a database. */
 class loginCheckCountModel
 {
-    public function loginCheckCount()
+    public $result;
+
+    public function __construct(\Controllers\Fonction\factory $fact)
     {
-        $fact = \Controllers\Fonction\factory::getInstance();
+        $this->result = $fact->instance('Controllers\Repository', 'loginRepo')->count()->fetch()[0];
         
-        return $fact->instance('Controllers\Repository', 'loginRepo')->count()->fetch();
+        return $this->result;
     }
 }

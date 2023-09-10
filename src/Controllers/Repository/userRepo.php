@@ -12,7 +12,7 @@ class userRepo implements userInterface
 
     public function __construct()
     {
-        $this->dbase = \Controllers\Fonction\db::connectDatabase();
+        $this->dbase = \Controllers\Fonction\db::connectDatabase()->dbConnect;
     }
 
     public function userCreate()

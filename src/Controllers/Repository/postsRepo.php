@@ -14,10 +14,11 @@ class postsRepo implements postsInterface
 
     public function __construct()
     {
-        $this->dbase = \Controllers\Fonction\db::connectDatabase();
+        $this->dbase = \Controllers\Fonction\db::connectDatabase()->dbConnect;
     }
 
 public function postsRead($id){
+    
     $statement = $this->dbase->query(
         "SELECT * FROM ae_post WHERE id = $id"
     );

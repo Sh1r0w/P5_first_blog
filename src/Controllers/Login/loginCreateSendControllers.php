@@ -13,8 +13,7 @@ class loginCreateSendControllers
     private $passwordH = null;
 
 
-    public function loginCreateSend(array $input, $check){
-        $fact = \Controllers\Fonction\factory::getInstance();
+    public function loginCreateSend(array $input, $check, \Controllers\Fonction\factory $fact){
         $login = $input['email'];
         $password = $input['password'];
         $password2 = $input['password2'];
@@ -22,8 +21,7 @@ class loginCreateSendControllers
         if(isset($login) && isset($password) && $password === $password2){
             $passwordH = password_hash($password, PASSWORD_DEFAULT);
             if($check == false){
-            $fact->instance('Model\Login', 'loginCreateModel')->loginCreate($login, $passwordH);
-
+            $fact->instance('Model\Login', 'loginCreateModel')->loginCreate($login, $passwordH, $fact);
             $autoL = [
                 'email' => $login,
                 'password' => $password

@@ -7,9 +7,8 @@ the user list page. */
 class adminUserControllers
 {
 
-    public function userUpdate($id, $key)
+    public function userUpdate($id, $key, \Controllers\Fonction\factory $fact)
     {
-        $fact = \Controllers\Fonction\factory::getInstance();
         $fact->instance('Controllers\Repository', 'adminRepo')->userUpdate($id, $key);
         header('location: \userList');
     }

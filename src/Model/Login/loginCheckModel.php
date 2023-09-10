@@ -8,10 +8,10 @@ class loginCheckModel
 {
     protected $result = null;
 
-    public function loginCheck($input)
+    public function loginCheck($input, \Controllers\Fonction\factory $fact)
     {
+        
         if (isset($input['email'])) {
-            $fact = \Controllers\Fonction\factory::getInstance();
             $check = $fact->instance('Controllers\Repository', 'loginRepo')->check($input['email'])->fetch();
             if(isset($check['log']) == $input['email']){
                $this->result = true;

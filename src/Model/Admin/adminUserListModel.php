@@ -7,9 +7,8 @@ in an array. */
 class adminUserListModel
 {
     public $users;
-    public function __construct()
+    public function __construct(\Controllers\Fonction\factory $fact)
     {
-        $fact = \Controllers\Fonction\factory::getInstance();
         $list = $fact->instance('Controllers\Repository', 'adminRepo')->userList();
         while($row = $list->fetch()){
             $user = [

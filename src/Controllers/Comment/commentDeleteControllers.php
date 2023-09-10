@@ -6,9 +6,8 @@ namespace Controllers\Comment;
 the post page. */
 class commentDeleteControllers
 {
-    public function commentDelete($id, $key)
+    public function commentDelete($id, $key,\Controllers\Fonction\factory $fact)
     {
-        $fact = \Controllers\Fonction\factory::getInstance();
         $fact->instance('Controllers\Repository', 'commentRepo')->delete($id);
         header('location: http://localhost:3000/postsRead?id=' . $key);
     }

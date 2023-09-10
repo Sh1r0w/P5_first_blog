@@ -13,11 +13,10 @@ class postsSendControllers
    protected $author = null;
    protected $id = null;
     
-public function postsSend( $title, $chapo ,$content, $author, $img)
+public function postsSend( $title, $chapo ,$content, $author, $img, \Controllers\Fonction\factory $fact)
 {
     if(isset($title, $chapo, $content, $author)){
-    $fact = \Controllers\Fonction\factory::getInstance();
-    $fact->instance('Model\Posts', 'postsSendModel')->postsSend($title, $chapo ,$content, $author, $img);
+    $fact->instance('Model\Posts', 'postsSendModel')->postsSend($title, $chapo ,$content, $author, $img, $fact);
     }
     header('location: posts');
 }

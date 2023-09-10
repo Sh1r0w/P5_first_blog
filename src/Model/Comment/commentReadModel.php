@@ -7,9 +7,8 @@ class commentReadModel
 {
     Public $read;
 
-    public function commentRead($id)
+    public function commentRead($id, \Controllers\Fonction\factory $fact)
     {
-        $fact = \Controllers\Fonction\factory::getInstance();
         $nComment = $fact->instance('Controllers\Repository', 'commentRepo')->read($id);
         
         while($row = $nComment->fetch())

@@ -1,11 +1,16 @@
 <?php
 session_start();
 require_once '../vendor/autoload.php';
+
 /**
  * Load Autoloader for add require path
  */
 require_once '../src/Controllers/Fonction/Autoloader.php';
 \Controllers\Fonction\Autoloader::register();
+
+/** 
+ *  This code snippet is setting up the Twig templating engine for the PHP application. 
+ */
 $loader = new \Twig\Loader\FilesystemLoader('../views/');
 $twig = new \Twig\Environment(
     $loader, [
@@ -16,15 +21,17 @@ $twig = new \Twig\Environment(
 $twig->addExtension(new \Twig\Extension\DebugExtension());
 $twig->addGlobal('session', $_SESSION);
 $fact = \Controllers\Fonction\factory::getInstance();
-/**
- * Use Altorooter
+
+/** 
+ * The code snippet is creating a router using the AltoRouter library. The router is used to map
+ * different routes to specific functions or actions. 
  */
 $router = new AltoRouter();
 $router->map(
     'GET',
     '/',
     function () use ($twig, $fact) {
-        echo $twig->render('home.twig', ['posts' => $fact->postsList('postsList'), 'count' => $fact->commentCount()]);
+        echo $twig->render('home.twig', ['posts' => $fact->postsList('postsList'), 'count' => $fact->commentCount()->count]);
     },
     'homepage'
 );
@@ -40,7 +47,7 @@ if (isset($_SESSION['logged_user'])) {
     if (isset($_SESSION['idUs']) != null) {
         $router->map(
             'GET|POST', '/posts', function () use ($twig, $fact) {
-                echo $twig->render('posts.twig', ['posts' => $fact->postsList('postsList'), 'count' => $fact->commentCount()]);
+                echo $twig->render('posts.twig', ['posts' => $fact->postsList('postsList'), 'count' => $fact->commentCount()->count]);
             }, 'postsList'
         );
         $router->map(
@@ -71,7 +78,7 @@ if (isset($_SESSION['logged_user'])) {
             );
             $router->map(
                 'GET|POST', '/commentListValid', function () use ($twig, $fact) {
-                    echo $twig->render('commentListValid.twig', ['adminCommentList' => $fact->adminCommentList()]);
+                    echo $twig->render('commentListValid.twig', ['adminCommentList' => $fact->adminCommentList()->comments]);
                 }, 'commentListValid'
             );
         };
@@ -89,5 +96,5 @@ if (is_array($match) && is_callable($match['target'])) {
  *
  * @Param action $match altorouter and $_POST
  */
-$d = new \Controllers\Fonction\db;
+$d = \Controllers\Fonction\db::connectDatabase();
 $a = new \Controllers\Fonction\action($match, $_POST);
