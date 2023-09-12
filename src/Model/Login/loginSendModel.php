@@ -6,17 +6,15 @@ namespace Model\Login;
 class loginSendModel
 
 {
-    private $list;
     private $session;
+
 
     public Function getUser($email, \Controllers\Fonction\factory $fact)
     
     {
-
-        $openSession = $fact->instance('Controllers\Fonction', 'session');
         $list = $fact->instance('Controllers\Repository', 'loginRepo')->connect($email)->fetch();
-
         if($this->session == '1'){
+        $openSession = $fact->instance('Controllers\Fonction', 'session');
         $openSession->logged_user = $list[1];    
         $openSession->idCo = $list[0];
         $openSession->idUs = $list['id'];
@@ -39,6 +37,6 @@ class loginSendModel
 
     public function __get($name)
     {
-        
+        return $this->$name;
     }
 }
