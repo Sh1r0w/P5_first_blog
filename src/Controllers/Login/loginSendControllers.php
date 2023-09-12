@@ -52,7 +52,10 @@ class loginSendControllers
         if (!password_verify($this->password, $hashedPassword)) {
             throw new \Exception("Mot de passe invalide");
         }
-        $this->fact->validSession('1');
+        $n = new \Model\Login\loginSendModel;
+        $n->session = '1';
+        $n->getUser($this->email,$this->fact);
+
     }
     
 }

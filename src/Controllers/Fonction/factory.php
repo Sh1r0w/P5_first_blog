@@ -307,19 +307,5 @@ public function userUpdate($type, $input, $id, $key)
         return $this->contentC = $input['comment'];
     }
 
-    /**
-     * The function checks if a session is valid and opens a new session if it is.
-     * 
-     * @param valid The "valid" parameter is a boolean value that determines whether the session is
-     * valid or not. If it is set to true (1), it means the session is valid and can be opened. If it
-     * is set to false (0), it means the session is not valid and cannot be opened.
-     * 
-     * @return The function `validSession` returns the value of the `` variable.
-     */
-    public function validSession($valid)
-    {
-        $this->valid = $valid;
-        return $this->valid;
-    }
 
 }
