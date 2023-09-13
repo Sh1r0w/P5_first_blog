@@ -90,7 +90,7 @@ class factory
      */
     public function loginSend($type, $input)
     {
-        self::instance('Controllers\Login', 'loginSendControllers')->loginSend($input, self::getInstance());
+        self::instance('Controllers\Login', 'loginSendControllers')->loginSend($input, self::getInstance(), self::instance('Model\Login', 'loginSendModel'));
     }
 
     public function loginCreateSend($type, $input, $id, $key)

@@ -14,19 +14,22 @@ class loginSendControllers
     protected $fact;
     protected $loginSendM;
 
-    public function loginSend(array $input, \Controllers\Fonction\factory $fact){
+    public function loginSend(array $input, \Controllers\Fonction\factory $fact, \Model\login\loginSendModel $lSendM){
 
+        $lSendM->email = $input['email'];
         $this->fact = $fact;
         $this->password = $input['password'];
-        $lSendM = $fact->instance('Model\Login', 'loginSendModel');
-        $this->loginM = $fact->instance('Model\Login', 'loginSendModel')->getUser($input['email'], $fact);
+        $this->loginM = $lSendM->getUser($fact);
+        
+        $n = $fact->instance('Model\Login', 'loginSendModel');
 
         try {            
-            $this->validateInput($input['email']);
+            $this->validateInput($lSendM);
+            
                 if(!$this->loginM){
                     throw new \Exception("Compte inexistant");
                 }
-                $this->validatePassword($this->loginM['pwd'], $lSendM, $input['email']);
+                $this->validatePassword($this->loginM['pwd'], $lSendM);
                 header('location: /');
 
         } catch (\Exception $e) {
@@ -36,9 +39,9 @@ class loginSendControllers
 
     }
 
-    public function validateInput($email)
+    public function validateInput($lSendM)
     {
-        if (empty($email)) {
+        if (empty($lSendM->email)) {
             throw new \Exception("Login vide");
         }
 
@@ -47,13 +50,14 @@ class loginSendControllers
         }
     }
 
-    protected function validatePassword($hashedPassword, $loginSM, $email)
+    protected function validatePassword($hashedPassword, $loginSM)
     {
         if (!password_verify($this->password, $hashedPassword)) {
             throw new \Exception("Mot de passe invalide");
         }
+
         $loginSM->session = '1';
-        $loginSM->getUser($email, $this->fact);
+        $loginSM->getUser($this->fact);
 
     }
     

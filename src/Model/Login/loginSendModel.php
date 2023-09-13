@@ -6,14 +6,33 @@ namespace Model\Login;
 class loginSendModel
 
 {
-    private $session;
+    private $list;
+    private $data = array();
 
+    public function __set($name, $value)
+    {
+            $this->data[$name] = $value;
 
-    public Function getUser($email, \Controllers\Fonction\factory $fact)
+    }
+
+    public function __get($name)
+    {
+        return $this->data[$name];
+    }
+
+    public function __isset($name)
+    {
+        return isset($this->data[$name]);
+    }
+    
+    public Function getUser(\Controllers\Fonction\factory $fact)
     
     {
-        $list = $fact->instance('Controllers\Repository', 'loginRepo')->connect($email)->fetch();
-        if($this->session == '1'){
+        
+        $list = $fact->instance('Controllers\Repository', 'loginRepo')->connect($this->data['email'])->fetch();
+        
+        if($this->data['session'] == '1'){
+            
         $openSession = $fact->instance('Controllers\Fonction', 'session');
         $openSession->logged_user = $list[1];    
         $openSession->idCo = $list[0];
@@ -30,13 +49,5 @@ class loginSendModel
        
     }
 
-    public function __set($name, $value)
-    {
-        $this->$name = $value;
-    }
-
-    public function __get($name)
-    {
-        return $this->$name;
-    }
+    
 }
