@@ -7,24 +7,19 @@ namespace Controllers\Login;
 inherits all the properties and methods from the `loginSend` class. */
 class loginCreateSendControllers
 {
-    protected $login = null;
-    protected $password = null;
-    private $password2 = null;
-    private $passwordH = null;
 
-
-    public function loginCreateSend(array $input, $check, \Controllers\Fonction\factory $fact){
-        $login = $input['email'];
+    public function loginCreateSend(array $input, $check, \Controllers\Fonction\factory $fact, \Model\Login\loginCreateModel $loginC){
+        $loginC->email = $input['email'];
         $password = $input['password'];
         $password2 = $input['password2'];
         try{
-        if(isset($login) && isset($password) && $password === $password2){
-            $passwordH = password_hash($password, PASSWORD_DEFAULT);
+        if(isset($input['email']) && isset($password) && $password === $password2){
+            $loginC->passwordH = password_hash($password, PASSWORD_DEFAULT);
             if($check == false){
-            $fact->instance('Model\Login', 'loginCreateModel')->loginCreate($login, $passwordH, $fact);
+            $loginC->loginCreate($fact);
             $autoL = [
-                'email' => $login,
-                'password' => $password
+                'email' => $input['email'],
+                'password' => $input['password']
             ];
             $fact->loginSend('loginSend', $autoL);
             header('location: /user');

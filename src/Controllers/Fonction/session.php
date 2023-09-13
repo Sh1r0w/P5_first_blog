@@ -5,8 +5,6 @@ namespace Controllers\Fonction;
 class session
 {
 
-    private static $_getSession;
-
 
 
     public function __set($name, $value)

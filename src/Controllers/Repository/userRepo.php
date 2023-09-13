@@ -17,7 +17,7 @@ class userRepo implements userInterface
 
     public function userCreate()
     {
-        $statement = $this->dbase->prepare(
+            $this->dbase->prepare(
             "INSERT INTO ae_user(firstname, lastname,pictures, citation, id_login, globalAdmin) VALUES(?,?,?,?,?,?)"
         );
     }

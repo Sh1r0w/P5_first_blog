@@ -96,7 +96,7 @@ class factory
     public function loginCreateSend($type, $input, $id, $key)
     {
 
-        self::instance('Controllers\Login', 'loginCreateSendControllers')->loginCreateSend($input, self::loginCheck($input), self::getInstance());
+        self::instance('Controllers\Login', 'loginCreateSendControllers')->loginCreateSend($input, self::loginCheck($input), self::getInstance(), self::instance('Model\Login', 'loginCreateModel'));
     }
 
     public function loginCheck($input)
