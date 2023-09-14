@@ -21,7 +21,6 @@ class loginSendControllers
         $this->password = $input['password'];
         $this->loginM = $lSendM->getUser($fact);
         
-        $n = $fact->instance('Model\Login', 'loginSendModel');
 
         try {            
             $this->validateInput($lSendM);

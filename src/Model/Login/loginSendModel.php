@@ -9,6 +9,7 @@ class loginSendModel
     private $list;
     private $data = array();
 
+
     public function __set($name, $value)
     {
             $this->data[$name] = $value;
