@@ -6,8 +6,8 @@ class adminCommentListModel
 {
     public $comments;
 
-    public function commentList(){
-        $fact = \Controllers\Fonction\factory::getInstance();
+    public function __construct(\Controllers\Fonction\factory $fact)
+    {
         $list = $fact->instance('Controllers\Repository', 'adminRepo')->commentList();
         while($row = $list->fetch()){
             $comment = [

@@ -1,0 +1,14 @@
+{% extends 'layout.twig'%}
+
+    {% block content %}
+        page Profil
+        <div class="card">
+
+        {% for u in user %}
+
+            {% include 'add/profile.twig' %}
+
+        {% endfor %}
+
+        </div>
+    {% endblock %}

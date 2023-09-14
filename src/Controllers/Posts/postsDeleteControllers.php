@@ -9,11 +9,10 @@ namespace Controllers\Posts;
 Class postsDeleteControllers
 {
 
-    public function postsDelete(int $id)
+    public function postsDelete(int $id, \Controllers\Fonction\factory $fact)
 {
     if(isset($id)){     
-    $fact = $fact = \Controllers\Fonction\factory::getInstance();
-    $fact->instance('Model\Posts', 'postsDeleteModel')->postsDelete($id);
+    $fact->instance('Model\Posts', 'postsDeleteModel')->postsDelete($id, $fact);
     }
     header('location: posts');
 }

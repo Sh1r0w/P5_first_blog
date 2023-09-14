@@ -7,36 +7,32 @@ constructor method `userSend` that takes an array of input data as a parameter. 
 class userSend
 
 {
-
-    protected $firstname = null;
-    protected $lastname = null;
-    protected $citation = null;
     protected $img = null;
     protected $id = null;
 
-    public function userSend(array $input, $count)
+    public function userSend(array $input, $count, $fact)
     {
-        $fact = \Controllers\Fonction\factory::getInstance();
-        $firstname = $input['firstname'];;
-        $lastname = $input['lastname'];
-        $citation = $input['citation'];
+        $openSession = $fact->instance('Controllers\Fonction', 'session');
         $img = $_FILES['picture']['name'];
-        $id = $_SESSION['idCo'];
 
-        if (isset($id)) {
-            $sendUser = $fact->instance('Model\User', 'userPush')->userPush($firstname, $lastname, $citation, $id, $img, $count);
+        if (isset($openSession->idCo)) {
+            $fact->instance('Model\User', 'userPush')->userPush($input['firstname'], $input['lastname'], $input['citation'], $openSession->idCo, $img, $count, $fact);
             
-            if (isset($firstname, $lastname, $id)) {
-                $statement = \Controllers\Fonction\db::connectDatabase()->prepare(
+            if (isset($input['firstname'], $input['lastname'], $openSession->idCo)) {
+                
+                $statement = \Controllers\Fonction\db::connectDatabase()->dbConnect->prepare(
                     "SELECT * FROM ae_connect a LEFT JOIN ae_user e ON a.id = e.id_login WHERE a.id = ?"
                 );
-                $statement->execute([$id]);
-                $result = $statement->fetch();
-                new \Controllers\Fonction\session($result);
+                $statement->execute([$openSession->idCo]);
+                $list = $statement->fetch();
+                $openSession->firstname = $list['firstname'];
+                $openSession->lastname = $list['lastname'];
+                $openSession->citation = $list['citation'];
+                $openSession->idUs = $list['id'];
+                $openSession->admin = $list['globalAdmin'];
                 header('location: /');
             }
             header('location: /posts');
-            return ($sendUser > 0);
         } else {
             echo 'nop';
         }

@@ -10,13 +10,11 @@
                     <img class="me-2" src="{{ p.img }}" alt="{{ p.firstname }} {{ p.lastname }}" style="width:50px;">
                     {% endif %}
                     <span>
-                        De: 
-                                                                                        
-                                                                    
-                                                
+                        De:                
                         <strong>
                             {{ p.author }}
-                        </strong>
+                        </strong></br>
+                        <a href="profil?id={{ p.id_user }}" form="post" target="_blank">Voir le profil</a>
                     </span>
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -54,7 +52,7 @@
             </div>
             {% if session.admin == '1' or session.idUs == p.id_user %}
             <div class="modal-footer">
-                    <form action="posts?action=postsDelete&id={{ p.id }}" method="post">
+                    <form action="postsDelete?action=postsDelete&id={{ p.id }}" method="post">
                         <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-primary btn-danger" type="submit">
                             Delete                                                          
                                                     

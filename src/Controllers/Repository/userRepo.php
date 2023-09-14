@@ -12,12 +12,12 @@ class userRepo implements userInterface
 
     public function __construct()
     {
-        $this->dbase = \Controllers\Fonction\db::connectDatabase();
+        $this->dbase = \Controllers\Fonction\db::connectDatabase()->dbConnect;
     }
 
     public function userCreate()
     {
-        $statement = $this->dbase->prepare(
+            $this->dbase->prepare(
             "INSERT INTO ae_user(firstname, lastname,pictures, citation, id_login, globalAdmin) VALUES(?,?,?,?,?,?)"
         );
     }

@@ -7,10 +7,8 @@ them in the posts property. */
 class adminPostsListModel
 {
     public $posts;
-
-    public function __construct()
+    public function __construct(\Controllers\Fonction\factory $fact)
     {
-        $fact = \Controllers\Fonction\factory::getInstance();
         $list = $fact->instance('Controllers\Repository', 'adminRepo')->postsList();
         while($row = $list->fetch()){
             $post = [

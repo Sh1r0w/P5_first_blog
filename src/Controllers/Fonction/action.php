@@ -3,7 +3,7 @@
 namespace Controllers\Fonction;
 
 /* The "action" class in PHP handles actions based on the "action" parameter in the URL. */
-class action extends \Controllers\Fonction\root
+class action
 {
 
   /**
@@ -17,14 +17,14 @@ class action extends \Controllers\Fonction\root
    * @param array input The `` parameter is an array that contains the input data for the
    * constructor. It is passed as an argument to the constructor when it is called.
    */
-  public function __construct($match, array $input)
+  public function __construct($type, array $input)
   {
     $fact = factory::getInstance();
     if (isset($_GET['action'])) { 
         $action = $_GET['action'];
         $fact->$action($action, $input, $_GET['id'], $_GET['key']);
     }else {
-      parent::__construct($match);
+      //parent::__construct($match);
     }
   }
 }

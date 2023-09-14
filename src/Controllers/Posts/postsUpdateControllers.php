@@ -7,11 +7,10 @@ input. */
 class postsUpdateControllers
 {
     
-    public function postUpdate(array $input, $id)
+    public function postUpdate(array $input, $id, \Controllers\Fonction\factory $fact)
     {
         if(isset($input, $id)){
-            $fact = \Controllers\Fonction\factory::getInstance();
-            $fact->instance('Model\Posts','postsUpdateModel')->postsUpdate($input, $id);
+            $fact->instance('Model\Posts','postsUpdateModel')->postsUpdate($input, $id, $fact);
         }
 
         

@@ -6,9 +6,8 @@ namespace Model\Posts;
 and image. */
 class postsSendModel
 {
-    public function postsSend($title, $chapo ,$content, $author, $img)
+    public function postsSend($title, $chapo ,$content, $author, $img, $fact)
     {
-        $fact = \Controllers\Fonction\factory::getInstance();
         $fact->instance('Controllers\Repository', 'postsRepo')->postsSend($title, $chapo ,$content, $author, $img);
     }
 }

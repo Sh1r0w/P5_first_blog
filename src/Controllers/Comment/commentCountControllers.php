@@ -5,10 +5,10 @@ namespace Controllers\Comment;
 /* The commentCountControllers class counts the number of comments using a factory pattern. */
 class commentCountControllers
 {
-    public function countComment()
+    public $count;
+    public function __construct(\Controllers\Fonction\factory $fact)
     {
-        $fact = \Controllers\Fonction\factory::getInstance();
-        $count = $fact->instance('Controllers\Repository', 'commentRepo')->count();
-        return $count->fetchAll(\PDO::FETCH_NUM);
+        return $this->count = $fact->instance('Controllers\Repository', 'commentRepo')->count()->fetchAll(\PDO::FETCH_NUM);
+
     }
 }

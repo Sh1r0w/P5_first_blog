@@ -7,9 +7,8 @@ the postsRepo class. */
 class postsDeleteModel
 {
 
-    public function postsDelete($id)
+    public function postsDelete($id, \Controllers\Fonction\factory $fact)
     {
-        $fact = $fact = \Controllers\Fonction\factory::getInstance();
     $fact->instance('Controllers\Repository', 'postsRepo')->postsDelete($id);
     }
 }

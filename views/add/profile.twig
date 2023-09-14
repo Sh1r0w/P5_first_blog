@@ -1,0 +1,12 @@
+{% if u.img != null%}
+{% block head %}<title>Profil de {{ u.firstname }} </title>{% endblock %}
+    <img src="{{ u.img }}" class="card-img-top" alt=" {{ u.lastname }}" style="width: 250px">
+  {% endif %}
+      <h4>
+            Nom : {{ u.lastname }} </br>
+            Prénom : {{ u.firstname }}</br>
+
+            Citation : {{ u.citation }}
+      </h4>
+  </br>
+</br>

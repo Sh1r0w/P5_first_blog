@@ -5,13 +5,31 @@ namespace Model\Login;
 /* The loginCreate class is used to create a new login and password entry in a database table. */
 class loginCreateModel
 {
-    public function loginCreate(string $login, string $password): bool
+
+    private $data = array();
+
+    public function loginCreate(\Controllers\Fonction\factory $fact): bool
     {
-        if(isset($login, $password))
+
+        if(isset($this->data['email'], $this->data['passwordH']))
         {
-            $fact = \Controllers\Fonction\factory::getInstance();
-            return $fact->instance('Controllers\Repository', 'loginRepo')->create($login, $password);
+
+            return $fact->instance('Controllers\Repository', 'loginRepo')->create($this->data['email'], $this->data['passwordH']);
         }
     }
+
+    public function __set($name, $value)
+    {
+        $this->data[$name] = $value;
+    }
     
+    public function __get($name)
+    {
+        return $this->data[$name];
+    }
+
+    public function __isset($name)
+    {
+        return isset($this->data[$name]);
+    }
 }

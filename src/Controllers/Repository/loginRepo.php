@@ -13,7 +13,7 @@ class loginRepo implements loginInterface
 
     public function __construct()
     {
-        $this->dbase = \Controllers\Fonction\db::connectDatabase();
+        $this->dbase = \Controllers\Fonction\db::connectDatabase()->dbConnect;
     }
 
     public function create($login, $password)

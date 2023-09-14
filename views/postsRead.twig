@@ -25,7 +25,7 @@
             </div>
             </div>
             <div class="text-center">
-            <form action="posts?action=commentSend&id={{ p.id }}" method="post">
+            <form action="postsAddComment?action=commentSend&id={{ p.id }}" method="post">
         {{ forms.textarea('Commenter', 'comment', null, 2, 45) }}<button type="submit" class="btn btn-primary">
         
             Valider
@@ -46,7 +46,7 @@
                 <span> {{ c.addDate }}</span>
                 {% if session.admin == '1' or session.idUs == c.id_user %}
                     <div class="modal-footer">
-                            <form action="posts?key={{ p.id }}&action=commentDelete&id={{ c.id }}" method="post">
+                            <form action="postsDelete?key={{ p.id }}&action=commentDelete&id={{ c.id }}" method="post">
                                 <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-primary btn-danger" type="submit">
                                     Delete                                                          
                                                             

@@ -12,7 +12,7 @@ class commentRepo implements commentInterface
 
     public function __construct()
     {
-        $this->dbase = \Controllers\Fonction\db::connectDatabase();
+        $this->dbase = \Controllers\Fonction\db::connectDatabase()->dbConnect;
     }
 
     public function create($content, $idpost)
