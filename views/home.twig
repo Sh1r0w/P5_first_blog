@@ -25,10 +25,10 @@
                 <H2>
                     Bienvenue 
                     {{ session.firstname }}
-                    Voici les derniers posts publié.
+                    Voici les derniers post publié.
                 </H2>
                 <div class="row d-flex">
-                {% for p in posts.posts|slice(0,3) %}
+                {% for p in post.post|slice(0,3) %}
                     <div class="card m-5" style="width: 18rem;">
                 {% include 'add/postOne.twig' %}
                 <div class="modal fade " id="read{{ p.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

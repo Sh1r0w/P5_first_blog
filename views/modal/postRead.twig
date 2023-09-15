@@ -52,7 +52,7 @@
             </div>
             {% if session.admin == '1' or session.idUs == p.id_user %}
             <div class="modal-footer">
-                    <form action="postsDelete?action=postsDelete&id={{ p.id }}" method="post">
+                    <form action="postDelete?action=postDelete&id={{ p.id }}" method="post">
                         <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-primary btn-danger" type="submit">
                             Delete                                                          
                                                     

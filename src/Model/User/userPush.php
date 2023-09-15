@@ -9,7 +9,7 @@ class userPush
     public function userPush($firstname, $lastname, $citation, $id, $img, $countCheck)
     {
         $statement = \Controllers\Fonction\db::connectDatabase()->dbConnect->prepare(
-            "INSERT INTO ae_user(firstname, lastname,pictures, citation, id_login, globalAdmin) VALUES(?,?,?,?,?,?)"
+            "INSERT INTO ae_user(firstname, lastname,pictures, citation, id_connect, globalAdmin) VALUES(?,?,?,?,?,?)"
         );
         if($countCheck->result == '1'){
             $this->count = '1';

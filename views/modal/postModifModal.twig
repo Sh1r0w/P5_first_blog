@@ -1,6 +1,6 @@
 {% import "macro/forms.twig" as forms %}
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <form action="postsUpdate?action=postsUpdate&id={{ p.id }}" method="post">
+            <form action="postUpdate?action=postUpdate&id={{ p.id }}" method="post">
             <div class="modal-content">
                 <div class="modal-header">
                     {{ forms.input('Votre titre', 'upTitle',  p.title, 'texte') }}

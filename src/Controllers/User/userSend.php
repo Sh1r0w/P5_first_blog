@@ -21,7 +21,7 @@ class userSend
             if (isset($input['firstname'], $input['lastname'], $openSession->idCo)) {
                 
                 $statement = \Controllers\Fonction\db::connectDatabase()->dbConnect->prepare(
-                    "SELECT * FROM ae_connect a LEFT JOIN ae_user e ON a.id = e.id_login WHERE a.id = ?"
+                    "SELECT * FROM ae_connect a LEFT JOIN ae_user e ON a.id = e.id_connect WHERE a.id = ?"
                 );
                 $statement->execute([$openSession->idCo]);
                 $list = $statement->fetch();
@@ -32,7 +32,7 @@ class userSend
                 $openSession->admin = $list['globalAdmin'];
                 header('location: /');
             }
-            header('location: /posts');
+            header('location: /post');
         } else {
             echo 'nop';
         }

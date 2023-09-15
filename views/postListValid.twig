@@ -1,0 +1,50 @@
+{% extends 'admin.twig' %}
+
+    {% block adminContent %}
+        <table class="table table-dark table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Image</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Résumé</th>
+                <th scope="col">Contenue</th>
+                <th scope="col">Auteur</th>
+                <th scope="col">Date d'ajout</th>
+                <th scope="col">Validé</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for p in adminPostList[0].post %}
+              <tr>
+                <th scope="row">{{ p.id }}</th>
+                <td>
+                    {% if p.picture != null %}
+                    <img src="{{ p.picture }}" alt="{{ p.author }}" style="width:50px;">
+                    {% endif %}
+                </td>
+                <td>{{ p.title }}</td>
+                <td>{{ p.chapo }}</td>
+                <td>{{ p.content }}</td>
+                <td>{{ p.author }}</td>
+                <td>{{ p.addDate }}</td>
+                <td>
+                 <form action="postList?action=adminPostUpdate&id={{ p.id }}&key={{ p.valide }}" method="post"> <button type="submit" class="btn btn-success">
+                    Oui          
+                </button>
+                </form></td>
+                <td>
+                 <form action="postListA?action=adminPostDelete&id={{ p.id }}" method="post">
+                  <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-danger" type="submit">
+                    Supprimer          
+                </button>
+                </td>
+                
+              </tr>
+            
+            {% endfor %}
+            </tbody>
+          </table>
+
+{% endblock %}

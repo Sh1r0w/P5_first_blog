@@ -4,11 +4,11 @@ namespace Model\Admin;
 
 /* The adminpostUpdateModel class is used to update the value of the key property based on the input
 key value. */
-class adminCommentUpdateModel
+class adminPostUpdateModel
 {
     public $key;
     
-    public function commentUpdate($key)
+    public function postUpdate($key)
     {
         if($key == "1"){
             return $this->key = "0";
