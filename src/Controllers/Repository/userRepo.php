@@ -18,14 +18,14 @@ class userRepo implements userInterface
     public function userCreate()
     {
             $this->dbase->prepare(
-            "INSERT INTO ae_user(firstname, lastname,pictures, citation, id_connect, globalAdmin) VALUES(?,?,?,?,?,?)"
+            "INSERT INTO ae_user(firstname, lastname,pictures, citation, id_login, globalAdmin) VALUES(?,?,?,?,?,?)"
         );
     }
 
     public function userRead($id)
     {
         $statement = $this->dbase->prepare(
-            "SELECT * FROM ae_connect a LEFT JOIN ae_user e ON a.id = e.id_connect WHERE a.id = ?"
+            "SELECT * FROM ae_connect a LEFT JOIN ae_user u ON a.id = u.id_connect WHERE a.id = ?"
         );
         $statement->execute([$id]);
         return $statement;

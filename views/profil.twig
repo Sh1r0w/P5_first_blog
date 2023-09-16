@@ -1,4 +1,5 @@
 {% extends 'layout.twig'%}
+    {% import "macro/forms.twig" as forms %}
 
     {% block content %}
         page Profil
@@ -7,8 +8,23 @@
         {% for u in user %}
 
             {% include 'add/profile.twig' %}
+                <div>
+                    <form action="email?action=sendEmail" method="post">
+                       <div class="d-none">
+                        {{ forms.input('Email', 'email_to', u.email, 'email')}}</br>
+                       {{ forms.input('Votre Email', 'email_from', session.logged_user, 'email')}}</br>
+                       </div>
+                       {{ forms.input("Object du Message", 'object', null, 'text')}}</br>
+                       
+                       {{ forms.textarea('Votre Message', 'body', null, 5,60) }}</br>
+                       <button type="submit" class="btn btn-primary">Envoyer</button>
+
+                    </form>
+                </div>
+
 
         {% endfor %}
 
         </div>
     {% endblock %}
+    

@@ -307,5 +307,14 @@ public function userUpdate($type, $input, $id, $key)
         return $this->contentC = $input['comment'];
     }
 
+    /**
+     * Send email 
+     * 
+     */
+
+     public function sendEmail()
+     {
+        self::instance('Controllers\Mail', 'sendEmail');
+     }
 
 }

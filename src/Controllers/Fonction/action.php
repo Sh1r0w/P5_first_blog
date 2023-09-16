@@ -23,8 +23,6 @@ class action
     if (isset($_GET['action'])) { 
         $action = $_GET['action'];
         $fact->$action($action, $input, $_GET['id'], $_GET['key']);
-    }else {
-      //parent::__construct($match);
     }
   }
 }
