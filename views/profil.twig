@@ -9,7 +9,7 @@
 
             {% include 'add/profile.twig' %}
                 <div>
-                    <form action="email?action=sendEmail" method="post">
+                    <form action="email?action=sendEmail&id={{u.id}}" method="post">
                        <div class="d-none">
                         {{ forms.input('Email', 'email_to', u.email, 'email')}}</br>
                        {{ forms.input('Votre Email', 'email_from', session.logged_user, 'email')}}</br>

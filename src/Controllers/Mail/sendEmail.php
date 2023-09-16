@@ -6,9 +6,8 @@ namespace Controllers\Mail;
 class sendEmail
 {
 
-    function __construct()
+    function sendEmail($id)
     {
-
         $mail = new \PHPMailer\PHPMailer\PHPMailer();
         $mail->isSMTP();
         $mail->Host = 'sandbox.smtp.mailtrap.io';
@@ -30,7 +29,7 @@ class sendEmail
         if (!$mail->send()) {
             echo $mail->ErrorInfo;
         } else {
-            echo 'Message bien envoyé';
+            header('location: profil?id=' . $id);
         }
     }
 }

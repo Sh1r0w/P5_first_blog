@@ -312,9 +312,9 @@ public function userUpdate($type, $input, $id, $key)
      * 
      */
 
-     public function sendEmail()
+     public function sendEmail($type, $input, $id, $key)
      {
-        self::instance('Controllers\Mail', 'sendEmail');
+        self::instance('Controllers\Mail', 'sendEmail')->sendEmail($id);
      }
 
 }
