@@ -37,4 +37,12 @@ class userRepo implements userInterface
             "UPDATE ae_user SET firstname = ?, lastname = ?, citation = ?, pictures = ? WHERE id = $id"
         );
     }
+
+    public function userPasswordUpdate($password, $id)
+    {
+        $statement = $this->dbase->prepare(
+            "UPDATE ae_connect SET pwd = ? WHERE id = ?"
+        );
+        $statement->execute([$password, $id]);
+    }
 }

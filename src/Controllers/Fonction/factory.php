@@ -10,7 +10,6 @@ class factory
 
     private static $_instance;
 
-
     public $pictureP;
 
     public $pdf;
@@ -157,9 +156,14 @@ class factory
  * @param input The  parameter is the data that you want to update for the user. It could be an
  * array or an object containing the updated information for the user.
  */
-public function userUpdate($type, $input, $id, $key)
+    public function userUpdate($type, $input, $id, $key)
     {
         self::instance('Controllers\User', $type)->$type($input, self::connectCheckCount(),self::getInstance(), self::picturePost()->name, self::pdfPost()->name);
+    }
+
+    public function updatePass($type, $input, $id, $key)
+    {
+        self::instance('Controllers\User', 'updatePassControllers')->updatePass($input, self::getInstance(), self::instance('Model\User', 'updatePassModel'));
     }
 
     /**

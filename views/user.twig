@@ -1,35 +1,43 @@
-{% extends 'layout.twig'%}
-    {% import "macro/forms.twig" as forms %}
-    
-    
-    
-    {% block head %}
-    <title>Mon Profile</title>
-    {% endblock %}
-
-
-    {% block content %}
-        <form action="userSend?action=userUpdate" method="post" enctype="multipart/form-data">
+{% extends 'layout.twig' %}
+{% import "macro/forms.twig" as forms %}
+{% block head %}
+    <title>
+        Mon Profile
+    </title>
+{% endblock %}
+{% block content %}
+    <form action="userSend?action=userUpdate" method="post" enctype="multipart/form-data">
         <div class="row mb-4">
             <div class="col-6">
-            <h2>Votre Profile</h2>
-            Mon ID us: {{ session.idUs }}</br>
-            Mon ID co: {{ session.idCo }}</br>
-            admin : {{ session.admin }}</br>
-            Mon Image: <img src="{{ session.img }}" style='max-width: 150px;' /></br>
-            {{ forms.input('Votre avatar', 'picture',  null, 'file') }}
-            </div>
-            
-            {{ forms.input('Votre CV au format PDF:', 'pdf',  null, 'file') }}
-        </div>
-        <div class="mb-4">
-            <embed src ="{{ session.pdf }}" width="250" height="350" type="application/pdf" />
-            {{ forms.input('Votre Prénom', 'firstname',   session.firstname , 'texte') }}</br>
-            {{ forms.input('Votre Nom', 'lastname',  session.lastname , 'texte') }}
-        </div>
-        <div class="mb-4">
-            {{ forms.textarea('Votre Citation', 'citation',  session.citation, 5, 60) }}
-        </div>
-        <button> envoyer </button>
-        </form>
-    {% endblock %}
+                <h2>
+                    Votre Profile
+                </h2>
+                Mon ID us: 
+                {{ session.idUs }}
+            </br>
+            Mon ID co: 
+            {{ session.idCo }}
+        </br>
+        admin : 
+        {{ session.admin }}
+    </br>
+    Mon Image: 
+    <img src="{{ session.img }}" style='max-width: 150px;' />
+</br>
+{{ forms.input('Votre avatar', 'picture',  null, 'file') }}</div>
+{{ forms.input('Votre CV au format PDF:', 'pdf',  null, 'file') }}</div>
+<div class="mb-4">
+{% if session.pdf != null %}
+<embed src="{{ session.pdf }}" width="250" height="350" type="application/pdf" />
+{% endif %}{{ forms.input('Votre Prénom', 'firstname',   session.firstname , 'texte') }}</br>
+{{ forms.input('Votre Nom', 'lastname',  session.lastname , 'texte') }}</div>
+<div class="mb-4">{{ forms.textarea('Votre Citation', 'citation',  session.citation, 5, 60) }}</div>
+<button>envoyer </button>
+<a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#passwordChange" role="button">
+       Changer sont mot de passe 
+       
+    </a>
+    
+</form>
+{% include 'modal/adminUpdateUser.twig' %}
+{% endblock %}

@@ -43,6 +43,7 @@ class connectSendModel
         $openSession->img = $list[6];
         $openSession->citation = $list['citation'];
         $openSession->admin = $list['globalAdmin'];
+        $openSession->pdf = $list['cv'];
         $openSession->flash = null;
     }
 
