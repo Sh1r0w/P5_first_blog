@@ -223,6 +223,11 @@ public function userUpdate($type, $input, $id, $key)
         self::instance('Controllers\Admin', 'adminUserControllers')->userUpdate($id, self::instance('Model\Admin', 'adminUserUpdateModel')->adminUpdate($key), self::getInstance());
     }
 
+    public function adminUserDelete($type, $input, $id, $key)
+    {
+        self::instance('Controllers\Admin', 'adminUserDeleteControllers')->adminUserDelete($id, self::getInstance());
+    }
+
     public function adminPostList()
     {
         return self::instance('Controllers\Admin', 'adminPostListControllers')->postList(self::instance('Model\Admin', 'adminPostListModel'));
@@ -247,6 +252,11 @@ public function userUpdate($type, $input, $id, $key)
     public function adminCommentUpdate($type, $input, $id, $key)
     {
         self::instance('Controllers\Admin', 'adminCommentUpdateControllers')->commentUpdate($id, self::instance('Model\Admin', 'adminCommentUpdateModel')->commentUpdate($key), self::getInstance());
+    }
+
+    public function adminCommentDelete($type, $input, $id, $key)
+    {
+        self::instance('Controllers\Admin', 'adminCommentDeleteControllers')->commentDelete($id, self::getInstance());
     }
 
     /**

@@ -43,7 +43,10 @@ class adminRepo implements adminInterface
 
     public function userDelete($id)
     {
-        
+        $statement = $this->dbase->prepare(
+            "DELETE FROM ae_connect WHERE id = $id"
+        );
+        $statement->execute();
     }
 
     /**

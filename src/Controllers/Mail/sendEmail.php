@@ -29,7 +29,9 @@ class sendEmail
         if (!$mail->send()) {
             echo $mail->ErrorInfo;
         } else {
+
             header('location: profil?id=' . $id);
+            
         }
     }
 }

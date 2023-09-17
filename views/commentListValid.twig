@@ -10,6 +10,7 @@
                 <th scope="col">Auteur</th>
                 <th scope="col">Date d'ajout</th>
                 <th scope="col">Validé</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             
@@ -24,6 +25,10 @@
                 <td>
                  <form action="commentList?action=adminCommentUpdate&id={{ c.id }}&key={{ c.valide }}" method="post"> <button type="submit" class="btn btn-success">
                     Oui          
+                </button></form></td>
+                <td>
+                 <form action="commentList?action=adminCommentDelete&id={{ c.id }}" method="post"> <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" type="submit" class="btn btn-danger">
+                    Supprimer          
                 </button></form></td>
               </tr>
             
