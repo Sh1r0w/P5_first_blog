@@ -22,7 +22,7 @@ class profilRepo implements profilInterface
     public function get($id)
     {
         $statement = $this->dbase->query(
-            "SELECT u.id, u.lastname, u.firstname, u.citation, u.pictures, c.log FROM ae_user u LEFT JOIN ae_connect c ON c.id = u.id_login WHERE u.id = $id"
+            "SELECT u.id, u.lastname, u.firstname, u.citation, u.pictures, u.cv, c.log FROM ae_user u LEFT JOIN ae_connect c ON c.id = u.id_login WHERE u.id = $id"
         );
         return $statement;
     }

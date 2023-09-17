@@ -14,8 +14,8 @@ class img
         $extension = $fileInfo['extension'];
         $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
         if (in_array($extension, $allowedExtensions)) {
-            move_uploaded_file($_FILES['picture']['tmp_name'], 'uploads/'. '254' . $_SESSION['idCo'] .date('YmdHis') . '.' . $extension);
-            $this->name = 'uploads/'. '254' . $_SESSION['idCo'] .date('YmdHis') . '.' . $extension;
+            move_uploaded_file($_FILES['picture']['tmp_name'], 'uploads/profile/254' . $_SESSION['idCo'] .date('YmdHis') . '.' . $extension);
+            $this->name = 'uploads/profile/'. '254' . $_SESSION['idCo'] .date('YmdHis') . '.' . $extension;
             return $this->name;
         }
     

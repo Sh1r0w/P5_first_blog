@@ -17,6 +17,7 @@ class getProfilControllers
                 'citation' => $row['citation'],
                 'img' => $row['pictures'],
                 'email' => $row['log'],
+                'pdf' => $row['cv'],
 
             ];
              $this->profile[] = $profil;

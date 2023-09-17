@@ -52,6 +52,7 @@ class db
             lastname VARCHAR(255) NOT NULL,
             pictures VARCHAR(255),
             citation VARCHAR(255),
+            cv VARCHAR(255),
             globalAdmin INT DEFAULT '0',
             id_login INT NOT NULL,
             FOREIGN KEY (id_login) REFERENCES ae_connect (id) ON DELETE CASCADE ON UPDATE NO ACTION

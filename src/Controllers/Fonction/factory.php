@@ -10,9 +10,10 @@ class factory
 
     private static $_instance;
 
-    public $className;
 
     public $pictureP;
+
+    public $pdf;
 
     public $titleP;
 
@@ -21,10 +22,6 @@ class factory
     public $contentP;
 
     public $authorP;
-
-    private $valid;
-
-    private $classUser;
 
     private $instance;
 
@@ -162,7 +159,7 @@ class factory
  */
 public function userUpdate($type, $input, $id, $key)
     {
-        self::instance('Controllers\User', $type)->$type($input, self::connectCheckCount(),self::getInstance(), self::picturePost()->name);
+        self::instance('Controllers\User', $type)->$type($input, self::connectCheckCount(),self::getInstance(), self::picturePost()->name, self::pdfPost()->name);
     }
 
     /**
@@ -268,6 +265,12 @@ public function userUpdate($type, $input, $id, $key)
     {
         $this->pictureP = self::instance('Controllers\Fonction', 'img');
         return $this->pictureP;
+    }
+
+    public function pdfPost()
+    {
+        $this->pdf = self::instance('Controllers\Fonction', 'uploadPdf');
+        return $this->pdf;
     }
 
     public function getProfil($id)

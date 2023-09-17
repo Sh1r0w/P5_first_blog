@@ -19,9 +19,11 @@
             Mon Image: <img src="{{ session.img }}" style='max-width: 150px;' /></br>
             {{ forms.input('Votre avatar', 'picture',  null, 'file') }}
             </div>
+            
+            {{ forms.input('Votre CV au format PDF:', 'pdf',  null, 'file') }}
         </div>
         <div class="mb-4">
-
+            <embed src ="{{ session.pdf }}" width="250" height="350" type="application/pdf" />
             {{ forms.input('Votre Prénom', 'firstname',   session.firstname , 'texte') }}</br>
             {{ forms.input('Votre Nom', 'lastname',  session.lastname , 'texte') }}
         </div>

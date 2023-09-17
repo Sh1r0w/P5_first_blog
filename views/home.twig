@@ -18,7 +18,7 @@
         <div class="container">
             {% if session.img == null %}
                 <img
-            class="me-2" src="uploads/anonyme.png" alt="{{ session.firstname }} {{ session.lastname }}" style="width:50px;" />
+            class="me-2" src="uploads/profile/anonyme.png" alt="{{ session.firstname }} {{ session.lastname }}" style="width:50px;" />
                 {% else %}
                 <img class="me-2" src="{{ session.img }}" alt="{{ session.firstname }} {{ session.lastname }}" style="width:50px;">
                 {% endif %}
