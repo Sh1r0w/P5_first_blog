@@ -4,13 +4,17 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        {% if session.logged_user != null and session.lastname != null and session.firstname != null and session.lastname != null %}
+          <a class="nav-link active d-none d-lg-block" aria-current="page" href="/">
+          <img src="uploads/logo.png" style="max-width:100px;">
+          </a>
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item d-lg-none d-block">
           <a class="nav-link active" aria-current="page" href="/">
             Home
           </a>
         </li>
-        {% if session.logged_user != null and session.lastname != null and session.firstname != null and session.lastname != null %}
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="post">
               posts
@@ -28,12 +32,12 @@
       <ul>
         <li class="nav-item">
           {% if session.logged_user == null %}
-            <a class="btn btn-primary" data-bs-toggle="modal" href="#login" role="button">
-              Connection / Creation
+            <a class="btn btn-outline-primary mt-3" data-bs-toggle="modal" href="#login" role="button">
+              Connection
             </a>
           {% else %}
             <li class="nav-item dropdown ">
-              <button class="btn btn-dark dropdown-toggle  " data-bs-toggle="dropdown" aria-expanded="false">
+              <button class="btn btn-dark dropdown-toggle mx-auto " data-bs-toggle="dropdown" aria-expanded="false">
                 {% if session.firstname == null %}
                   {{ session.idUs}} Anonyme
                 {% else %}
@@ -42,7 +46,7 @@
                   {% else %}
                     <img class="me-2" src="{{ session.img }}" alt="{{ session.firstname }} {{ session.lastname }}" style="width:50px;">
                   {% endif %}
-                {{ session.firstname }} {{ session.lastname }}
+                {{ session.firstname }} {{ session.lastname }}<br/>
                 {% endif %}
                 {% if session.admin == '1' %}
                   <span>Administrateur</span>
