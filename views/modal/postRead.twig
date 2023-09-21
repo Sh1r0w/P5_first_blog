@@ -5,7 +5,7 @@
             <div>
                 {% if p.img == null %}
                     <img
-                class="me-2" src="uploads/anonyme.png" alt="{{ p.firstname }} {{ p.lastname }}" style="width:50px;" />
+                class="me-2" src="uploads/profile/anonyme.png" alt="{{ p.firstname }} {{ p.lastname }}" style="width:50px;" />
                     {% else %}
                     <img class="me-2" src="{{ p.img }}" alt="{{ p.firstname }} {{ p.lastname }}" style="width:50px;">
                     {% endif %}
@@ -52,7 +52,7 @@
             </div>
             {% if session.admin == '1' or session.idUs == p.id_user %}
             <div class="modal-footer">
-                    <form action="postsDelete?action=postsDelete&id={{ p.id }}" method="post">
+                    <form action="postDelete?action=postDelete&id={{ p.id }}" method="post">
                         <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-primary btn-danger" type="submit">
                             Delete                                                          
                                                     

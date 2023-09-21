@@ -15,4 +15,6 @@ interface userInterface
 
     public function userUpdate($id);
 
+    public function userPasswordUpdate($password, $id);
+
 }

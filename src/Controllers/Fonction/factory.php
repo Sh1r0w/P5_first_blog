@@ -10,9 +10,9 @@ class factory
 
     private static $_instance;
 
-    public $className;
-
     public $pictureP;
+
+    public $pdf;
 
     public $titleP;
 
@@ -21,10 +21,6 @@ class factory
     public $contentP;
 
     public $authorP;
-
-    private $valid;
-
-    private $classUser;
 
     private $instance;
 
@@ -81,41 +77,41 @@ class factory
 
 
     /**
-     * The code defines several functions related to login functionality in a PHP application.
+     * The code defines several functions related to connect functionality in a PHP application.
      * 
      * @param type The "type" parameter is not used in any of the functions provided. It seems to be an
      * unused parameter in the code.
-     * @param input The "input" parameter is an array that contains the user's login credentials, such
+     * @param input The "input" parameter is an array that contains the user's connect credentials, such
      * as their email and password.
      */
-    public function loginSend($type, $input)
+    public function connectSend($type, $input)
     {
-        self::instance('Controllers\Login', 'loginSendControllers')->loginSend($input, self::getInstance(), self::instance('Model\Login', 'loginSendModel'));
+        self::instance('Controllers\Connect', 'connectSendControllers')->connectSend($input, self::getInstance(), self::instance('Model\Connect', 'connectSendModel'));
     }
 
-    public function loginCreateSend($type, $input, $id, $key)
+    public function connectCreateSend($type, $input, $id, $key)
     {
 
-        self::instance('Controllers\Login', 'loginCreateSendControllers')->loginCreateSend($input, self::loginCheck($input), self::getInstance(), self::instance('Model\Login', 'loginCreateModel'));
+        self::instance('Controllers\Connect', 'connectCreateSendControllers')->connectCreateSend($input, self::connectCheck($input), self::getInstance(), self::instance('Model\Connect', 'connectCreateModel'));
     }
 
-    public function loginCheck($input)
+    public function connectCheck($input)
     {
-        return self::instance('Model\Login', 'loginCheckModel')->loginCheck($input, self::getInstance());
+        return self::instance('Model\Connect', 'connectCheckModel')->connectCheck($input, self::getInstance());
     }
 
-    public function loginCheckCount()
+    public function connectCheckCount()
     {
-        return self::instance('Model\Login', 'loginCheckCountModel');
+        return self::instance('Model\Connect', 'connectCheckCountModel');
     }
 
     
     /**
-     * The code defines several functions related to handling posts in a PHP application.
+     * The code defines several functions related to handling post in a PHP application.
      * 
      * @param type The "type" parameter is used to determine the specific action to be performed on the
-     * posts. It could be values like "send", "update", "list", "delete", or "read".
-     * @param input The "input" parameter is a variable that contains the input data for the posts. It
+     * post. It could be values like "send", "update", "list", "delete", or "read".
+     * @param input The "input" parameter is a variable that contains the input data for the post. It
      * could be an array, object, or any other data structure that holds the necessary information for
      * creating or updating a post.
      * @param id The "id" parameter is used to identify a specific post. It is typically an integer
@@ -123,36 +119,36 @@ class factory
      * @param key The "key" parameter is not used in any of the functions provided. It is not clear
      * what its purpose is or how it should be used.
      */
-    public function postsSend($type, $input, $id, $key)
+    public function postSend($type, $input, $id, $key)
     {
-        self::instance('Controllers\Posts', 'postsSendControllers')->$type(self::titlePost($input), self::chapoPost($input), self::contentPost($input), self::authorPost($input), self::picturePost()->name, self::getInstance());
+        self::instance('Controllers\Post', 'postSendControllers')->$type(self::titlePost($input), self::chapoPost($input), self::contentPost($input), self::authorPost($input), self::picturePost()->name, self::getInstance());
     }
 
-    public function postsUpdate($type, $input, $id, $key)
+    public function postUpdate($type, $input, $id, $key)
     {
-        self::instance('Controllers\Posts', 'postsUpdateControllers')->postUpdate($input, $id, self::getInstance());
+        self::instance('Controllers\Post', 'postUpdateControllers')->postUpdate($input, $id, self::getInstance());
     }
 
-    public function postsList($type)
+    public function postList($type)
     {
-        return self::instance('Controllers\Posts', 'postsListControllers')->$type(self::instance('Model\Posts', 'postsListModel'));
+        return self::instance('Controllers\Post', 'postListControllers')->$type(self::instance('Model\post', 'postListModel'));
     }
 
-    public function postsDelete($type, $input, $id, $key)
+    public function postDelete($type, $input, $id, $key)
     {
-        self::instance('Controllers\Posts', 'postsDeleteControllers')->$type($id, self::getInstance());
+        self::instance('Controllers\Post', 'postDeleteControllers')->$type($id, self::getInstance());
     }
 
-    public function postsRead($id)
+    public function postRead($id)
     {
         if (isset($id)) {
-            return self::instance('Controllers\Posts', 'postsReadControllers')->postsReadControllers(self::instance('Model\Posts', 'postsReadModel')->postsReadModel($id, self::getInstance()));
+            return self::instance('Controllers\Post', 'postReadControllers')->postReadControllers(self::instance('Model\Post', 'postReadModel')->postReadModel($id, self::getInstance()));
         }
     }
 
 /**
  * The userUpdate function calls a method in the User controller with the given type and input
- * parameters, along with the login check count and the name of the picture post.
+ * parameters, along with the connect check count and the name of the picture post.
  * 
  * @param type The "type" parameter is a string that specifies the type of update operation to be
  * performed on the user. It could be "create", "update", "delete", or any other operation that is
@@ -160,9 +156,14 @@ class factory
  * @param input The  parameter is the data that you want to update for the user. It could be an
  * array or an object containing the updated information for the user.
  */
-public function userUpdate($type, $input, $id, $key)
+    public function userUpdate($type, $input, $id, $key)
     {
-        self::instance('Controllers\User', $type)->$type($input, self::loginCheckCount(),self::getInstance(), self::picturePost()->name);
+        self::instance('Controllers\User', $type)->$type($input, self::connectCheckCount(),self::getInstance(), self::picturePost()->name, self::pdfPost()->name);
+    }
+
+    public function updatePass($type, $input, $id, $key)
+    {
+        self::instance('Controllers\User', 'updatePassControllers')->updatePass($input, self::getInstance(), self::instance('Model\User', 'updatePassModel'));
     }
 
     /**
@@ -207,7 +208,7 @@ public function userUpdate($type, $input, $id, $key)
 
     
     /**
-     * The code defines several functions for managing users, posts, and comments in an admin panel.
+     * The code defines several functions for managing users, post, and comments in an admin panel.
      * 
      * @return The adminList() function returns the result of calling the userList() function on an
      * instance of the 'adminControllers' class with an instance of the 'adminUserListModel' class as a
@@ -223,19 +224,24 @@ public function userUpdate($type, $input, $id, $key)
         self::instance('Controllers\Admin', 'adminUserControllers')->userUpdate($id, self::instance('Model\Admin', 'adminUserUpdateModel')->adminUpdate($key), self::getInstance());
     }
 
-    public function adminPostsList()
+    public function adminUserDelete($type, $input, $id, $key)
     {
-        return self::instance('Controllers\Admin', 'adminPostsListControllers')->postsList(self::instance('Model\Admin', 'adminPostsListModel'));
+        self::instance('Controllers\Admin', 'adminUserDeleteControllers')->adminUserDelete($id, self::getInstance());
     }
 
-    public function adminPostsUpdate($type, $input, $id, $key)
+    public function adminPostList()
     {
-        self::instance('Controllers\Admin', 'adminPostsUpdateControllers')->postsUpdate($id, self::instance('Model\Admin', 'adminPostsUpdateModel')->postsUpdate($key), self::getInstance());
+        return self::instance('Controllers\Admin', 'adminPostListControllers')->postList(self::instance('Model\Admin', 'adminPostListModel'));
     }
 
-    public function adminPostsDelete($type, $input, $id, $key)
+    public function adminPostUpdate($type, $input, $id, $key)
     {
-        self::instance('Controllers\Admin', 'adminPostsDeleteControllers')->postsDelete($id, self::instance('Model\Admin', 'adminPostsDeleteModel')->postsDelete($id), self::getInstance());
+        self::instance('Controllers\Admin', 'adminPostUpdateControllers')->postUpdate($id, self::instance('Model\Admin', 'adminPostUpdateModel')->postUpdate($key), self::getInstance());
+    }
+
+    public function adminPostDelete($type, $input, $id, $key)
+    {
+        self::instance('Controllers\Admin', 'adminPostDeleteControllers')->postDelete($id, self::instance('Model\Admin', 'adminPostDeleteModel')->postDelete($id), self::getInstance());
     }
 
     public function adminCommentList()
@@ -249,6 +255,11 @@ public function userUpdate($type, $input, $id, $key)
         self::instance('Controllers\Admin', 'adminCommentUpdateControllers')->commentUpdate($id, self::instance('Model\Admin', 'adminCommentUpdateModel')->commentUpdate($key), self::getInstance());
     }
 
+    public function adminCommentDelete($type, $input, $id, $key)
+    {
+        self::instance('Controllers\Admin', 'adminCommentDeleteControllers')->commentDelete($id, self::getInstance());
+    }
+
     /**
      * The code defines two functions, `picturePost()` and `getProfil()`, in a PHP class.
      * 
@@ -258,6 +269,12 @@ public function userUpdate($type, $input, $id, $key)
     {
         $this->pictureP = self::instance('Controllers\Fonction', 'img');
         return $this->pictureP;
+    }
+
+    public function pdfPost()
+    {
+        $this->pdf = self::instance('Controllers\Fonction', 'uploadPdf');
+        return $this->pdf;
     }
 
     public function getProfil($id)
@@ -307,5 +324,14 @@ public function userUpdate($type, $input, $id, $key)
         return $this->contentC = $input['comment'];
     }
 
+    /**
+     * Send email 
+     * 
+     */
+
+     public function sendEmail($type, $input, $id, $key)
+     {
+        self::instance('Controllers\Mail', 'sendEmail')->sendEmail($id);
+     }
 
 }

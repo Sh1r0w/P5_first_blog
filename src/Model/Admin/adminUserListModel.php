@@ -17,6 +17,7 @@ class adminUserListModel
                 'lastName' => $row['lastname'],
                 'picture' => $row['pictures'],
                 'admin' => $row['globalAdmin'],
+                'idCo' => $row['id_login'],
             ];
             $this->users[] = $user;
         }

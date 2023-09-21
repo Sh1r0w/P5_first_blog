@@ -7,7 +7,7 @@ class commentSendControllers{
 
     public function commentSend($content, $idpost, \Controllers\Fonction\factory $fact) {
         $fact->instance('Controllers\Repository', 'commentRepo')->create($content, $idpost);
-        header('location: /postsRead?id=' . $idpost);
+        header('location: /postRead?id=' . $idpost);
 
     }
 }

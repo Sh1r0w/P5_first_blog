@@ -14,11 +14,11 @@ interface adminInterface
 
     public function userDelete($id);
 
-    public function postsList();
+    public function postList();
 
-    public function postsUpdate($id, $value);
+    public function postUpdate($id, $value);
 
-    public function postsDelete($id);
+    public function postDelete($id);
 
     public function commentList();
 

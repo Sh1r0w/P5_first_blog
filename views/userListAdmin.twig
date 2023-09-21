@@ -25,14 +25,18 @@
                     <td>{{ u.firstName }}</td>
                     <td>{{ u.lastName }}</td>
                     <td>
-                      
                       {% if u.admin == 1 %} Oui {% else %} Non {% endif %}</td>
                     <td>{% if session.idUs != u.id %}<form action="userListValid?action=adminUserUpdate&id={{ u.id }}&key={{u.admin}}" method="post"> {% if u.admin == 1 %}  <button type="submit" class="btn btn-danger">
                     No Admin </button>{% else %}  <button type="submit" class="btn btn-success">
                         Admin          
                     </button>{% endif %}</form>{% endif %}</td>
+                    <td>
+                      {% if session.idCo != u.idCo %}
+                 <form action="commentList?action=adminUserDelete&id={{ u.idCo }}" method="post"> <button onClick="return confirm('Etes vous sûr de vouloir supprimer cette utilisateur ?')" type="submit" class="btn btn-danger">
+                    Supprimer          
+                </button></form></td>
+                      {% endif %}
                   </tr>
-                
                 {% endfor %}
                 </tbody>
               </table>

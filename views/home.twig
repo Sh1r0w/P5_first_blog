@@ -1,54 +1,71 @@
 {% extends 'layout.twig' %}
 {% block head %}
     <title>
-        Homepage
+        Homepage Mon premier blog
+                            
+                    
+            
     </title>
 {% endblock %}
 {% block content %}
-    <H1>
-        HomePage
-    </H1>
-    {% if session.flash != null %}
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ session.flash }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    {% endif %}
-    {% if session.firstname != null %}
-        <div class="container">
-            {% if session.img == null %}
-                <img
-            class="me-2" src="uploads/anonyme.png" alt="{{ session.firstname }} {{ session.lastname }}" style="width:50px;" />
-                {% else %}
-                <img class="me-2" src="{{ session.img }}" alt="{{ session.firstname }} {{ session.lastname }}" style="width:50px;">
-                {% endif %}
-                <H2>
-                    Bienvenue 
-                    {{ session.firstname }}
-                    Voici les derniers posts publié.
-                </H2>
-                <div class="row d-flex">
-                {% for p in posts.posts|slice(0,3) %}
-                    <div class="card m-5" style="width: 18rem;">
-                {% include 'add/postOne.twig' %}
-                <div class="modal fade " id="read{{ p.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    {% include 'modal/postRead.twig' %}
-                </div>
-                    <div class="modal fade " id="vue{{ p.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        {% include 'modal/postModifModal.twig' %}
-                    </div>
-                {% for c in count %}
-                    {% if p.id == c.0 %}
-                        {{ c.1 }}
-                        Commentaire(s).
-   
-                    {% endif %}
-                {% endfor %}
-                
-            </div>
-                {% endfor %}
-                </div>
+    <div class="text-center">
+        {% if session.flash != null %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session.flash }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         {% endif %}
+        {% if session.firstname != null %}
+            <div class="container">
+                <div class="title mt-5">
+                    <H2>
+                        Bienvenue 
+                                                                                                            
+                                                                                        
+                                                                    
+                                                
+                        {{ session.firstname }},</br>
+                        voici les derniers posts publié.
+                                                                                                        
+                                                                                    
+                                                                
+                                            
+                    </H2>
+                </div>
+                <div class="row d-flex mt-5">
+                    {% for p in post.post|slice(0,3) %}
+                        <div class="card mt-3 mx-auto pb-3" style="width: 18rem;">
+                            {% include 'add/postOne.twig' %}
+                            <div class="modal fade " id="read{{ p.id }}" tabindex="-1" aria-labelledby="{{ p.title }}" aria-hidden="true">
+                                {% include 'modal/postRead.twig' %}
+                            </div>
+                            <div class="modal fade " id="vue{{ p.id }}" tabindex="-1" aria-labelledby="{{ p.title }}" aria-hidden="true">
+                                {% include 'modal/postModifModal.twig' %}
+                            </div>
+                            {% for c in count %}
+                                {% if p.id == c.0 %}
+                                    {{ c.1 }}
+                                    Commentaire(s).
+                                                                                                                                                       
+                                                                                                                                                                        
+                                                                                                                                                
+                                                                                                            
+                                                                        
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <H1>
+                Bienvenue sur Mon Premier   
+                                                    
+                                            
+                                
+            </H1>
+            <img class="img-fluid" src="uploads/logo.png" alt="Mon Premier blog" >
+            {% endif %}
+        </div>
     {% endblock %}
     

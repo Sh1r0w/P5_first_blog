@@ -14,9 +14,11 @@ class userSend
     {
         $openSession = $fact->instance('Controllers\Fonction', 'session');
         $img = $_FILES['picture']['name'];
+        $pdf = $_FILES['pdf']['name'];
+
 
         if (isset($openSession->idCo)) {
-            $fact->instance('Model\User', 'userPush')->userPush($input['firstname'], $input['lastname'], $input['citation'], $openSession->idCo, $img, $count, $fact);
+            $fact->instance('Model\User', 'userPush')->userPush($input['firstname'], $input['lastname'], $input['citation'], $openSession->idCo, $img, $count, $fact, $pdf);
             
             if (isset($input['firstname'], $input['lastname'], $openSession->idCo)) {
                 
@@ -30,9 +32,10 @@ class userSend
                 $openSession->citation = $list['citation'];
                 $openSession->idUs = $list['id'];
                 $openSession->admin = $list['globalAdmin'];
+                $openSession->pdf = $list['cv'];
                 header('location: /');
             }
-            header('location: /posts');
+            header('location: /post');
         } else {
             echo 'nop';
         }

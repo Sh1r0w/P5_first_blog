@@ -4,6 +4,11 @@ namespace Controllers\Repository;
 
 use Controllers\Interface\profilInterface;
 
+/** 
+ * The `profilRepo` class is a PHP class that implements the `profilInterface` interface and provides a
+ * method to retrieve user profile information from a database.
+ */
+
 class profilRepo implements profilInterface
 {
 
@@ -17,7 +22,7 @@ class profilRepo implements profilInterface
     public function get($id)
     {
         $statement = $this->dbase->query(
-            "SELECT lastname, firstname, citation, pictures FROM ae_user WHERE id = $id"
+            "SELECT u.id, u.lastname, u.firstname, u.citation, u.pictures, u.cv, c.log FROM ae_user u LEFT JOIN ae_connect c ON c.id = u.id_login WHERE u.id = $id"
         );
         return $statement;
     }

@@ -10,7 +10,8 @@
         "twbs/bootstrap": "^5.3",
         "vlucas/phpdotenv": "^5.5",
         "altorouter/altorouter": "^2.0",
-        "twig/string-extra": "^3.7"
+        "twig/string-extra": "^3.7",
+        "phpmailer/phpmailer": "^6.8"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.7"

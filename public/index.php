@@ -31,7 +31,7 @@ $router->map(
     'GET',
     '/',
     function () use ($twig, $fact) {
-        echo $twig->render('home.twig', ['posts' => $fact->postsList('postsList'), 'count' => $fact->commentCount()->count]);
+        echo $twig->render('home.twig', ['post' => $fact->postList('postList'), 'count' => $fact->commentCount()->count]);
     },
     'homepage'
 );
@@ -46,14 +46,14 @@ if (isset($_SESSION['logged_user'])) {
     );
     if (isset($_SESSION['idUs']) != null) {
         $router->map(
-            'GET|POST', '/posts', function () use ($twig, $fact) {
-                echo $twig->render('posts.twig', ['posts' => $fact->postsList('postsList'), 'count' => $fact->commentCount()->count]);
-            }, 'postsList'
+            'GET|POST', '/post', function () use ($twig, $fact) {
+                echo $twig->render('post.twig', ['post' => $fact->postList('postList'), 'count' => $fact->commentCount()->count]);
+            }, 'postList'
         );
         $router->map(
-            'GET|POST', '/postsRead', function () use ($twig, $fact) {
-                echo $twig->render('postsRead.twig', ['postsRead' => $fact->postsRead($_GET['id']), 'commentsRead' => $fact->commentRead($_GET['id'])]);
-            }, 'postsRead'
+            'GET|POST', '/postRead', function () use ($twig, $fact) {
+                echo $twig->render('postRead.twig', ['postRead' => $fact->postRead($_GET['id']), 'commentsRead' => $fact->commentRead($_GET['id'])]);
+            }, 'postRead'
         );
         $router->map(
             'GET|POST', '/profil', function () use ($twig, $fact) {
@@ -72,9 +72,9 @@ if (isset($_SESSION['logged_user'])) {
                 }, 'userList'
             );
             $router->map(
-                'GET|POST', '/postsListValid', function () use ($twig, $fact) {
-                    echo $twig->render('postsListValid.twig', ['adminPostsList' => $fact->adminPostsList()]);
-                }, 'postsListValid'
+                'GET|POST', '/postListValid', function () use ($twig, $fact) {
+                    echo $twig->render('postListValid.twig', ['adminPostList' => $fact->adminPostList()]);
+                }, 'postListValid'
             );
             $router->map(
                 'GET|POST', '/commentListValid', function () use ($twig, $fact) {

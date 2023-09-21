@@ -43,17 +43,20 @@ class adminRepo implements adminInterface
 
     public function userDelete($id)
     {
-        
+        $statement = $this->dbase->prepare(
+            "DELETE FROM ae_connect WHERE id = $id"
+        );
+        $statement->execute();
     }
 
     /**
-     * The above code defines three functions in PHP for retrieving, updating, and deleting posts from
+     * The above code defines three functions in PHP for retrieving, updating, and deleting post from
      * a database.
      * 
-     * @return The `postsList()` function is returning a statement object that contains the result of
+     * @return The `postList()` function is returning a statement object that contains the result of
      * the SQL query.
      */
-    public function postsList()
+    public function postList()
     {
         $statement = $this->dbase->query(
             "SELECT * FROM ae_post WHERE valide = '0'"
@@ -62,7 +65,7 @@ class adminRepo implements adminInterface
         return $statement;
     }
 
-    public function postsUpdate($id, $value)
+    public function postUpdate($id, $value)
     {
         $statement = $this->dbase->prepare(
             "UPDATE ae_post SET valide = $value WHERE id = $id"
@@ -70,7 +73,7 @@ class adminRepo implements adminInterface
         $statement->execute();
     }
 
-    public function postsDelete($id)
+    public function postDelete($id)
     {
         $statement = $this->dbase->prepare(
             "DELETE FROM ae_post WHERE id = $id"

@@ -2,7 +2,7 @@
 
 namespace Model\Admin;
 
-/* The adminPostsUpdateModel class is used to update the value of the key property based on the input
+/* The adminpostUpdateModel class is used to update the value of the key property based on the input
 key value. */
 class adminCommentUpdateModel
 {
