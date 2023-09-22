@@ -4,7 +4,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        {% if session.logged_user != null and session.lastname != null and session.firstname != null and session.lastname != null %}
+        {% if session.logged_user != null and session.idUs != null %}
           <a class="nav-link active d-none d-lg-block" aria-current="page" href="/">
           <img src="uploads/logo.png" style="max-width:100px;">
           </a>
@@ -20,6 +20,8 @@
               posts
             </a>
           </li>
+        {% else %}
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         {% endif %}
         {% if session.admin == '1' %}
           <li class="nav-item">

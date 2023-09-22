@@ -13,9 +13,10 @@ class postSendControllers
    protected $author = null;
    protected $id = null;
     
-public function postSend( $title, $chapo ,$content, $author, $img, \Controllers\Fonction\factory $fact)
+public function postSend( $title, $chapo ,$content, $author,\Controllers\Fonction\factory $fact)
 {
     if(isset($title, $chapo, $content, $author)){
+    $img = $fact->instance('Controllers\Fonction', 'img')->getImg();
     $fact->instance('Model\post', 'postSendModel')->postSend($title, $chapo ,$content, $author, $img, $fact);
     }
     header('location: post');

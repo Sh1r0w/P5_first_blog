@@ -121,7 +121,7 @@ class factory
      */
     public function postSend($type, $input, $id, $key)
     {
-        self::instance('Controllers\Post', 'postSendControllers')->$type(self::titlePost($input), self::chapoPost($input), self::contentPost($input), self::authorPost($input), self::picturePost()->name, self::getInstance());
+        self::instance('Controllers\Post', 'postSendControllers')->$type(self::titlePost($input), self::chapoPost($input), self::contentPost($input), self::authorPost($input), self::getInstance());
     }
 
     public function postUpdate($type, $input, $id, $key)
@@ -158,7 +158,7 @@ class factory
  */
     public function userUpdate($type, $input, $id, $key)
     {
-        self::instance('Controllers\User', $type)->$type($input, self::connectCheckCount(),self::getInstance(), self::picturePost()->name, self::pdfPost()->name);
+        self::instance('Controllers\User', 'userSendControllers')->userSend($input, self::connectCheckCount(),self::getInstance(), self::instance('Model\User', 'userPushModel'));
     }
 
     public function updatePass($type, $input, $id, $key)
@@ -260,23 +260,19 @@ class factory
         self::instance('Controllers\Admin', 'adminCommentDeleteControllers')->commentDelete($id, self::getInstance());
     }
 
+
+
     /**
-     * The code defines two functions, `picturePost()` and `getProfil()`, in a PHP class.
+     * The getProfil function retrieves a user's profile by calling the getUser function from the User
+     * model and passing the result to the getUser function from the User controller.
      * 
-     * @return In the `picturePost()` function, the `pictureP` property is being returned.
+     * @param id The parameter "id" is the unique identifier of the user whose profile we want to
+     * retrieve.
+     * 
+     * @return the result of calling the `getUser` method on the `getProfilControllers` instance,
+     * passing the result of calling the `getUser` method on the `getProfilModel` instance with the
+     * given `` and the current instance as arguments.
      */
-    public function picturePost()
-    {
-        $this->pictureP = self::instance('Controllers\Fonction', 'img');
-        return $this->pictureP;
-    }
-
-    public function pdfPost()
-    {
-        $this->pdf = self::instance('Controllers\Fonction', 'uploadPdf');
-        return $this->pdf;
-    }
-
     public function getProfil($id)
     {
         return self::instance('Controllers\User', 'getProfilControllers')->getUser(self::instance('Model\User', 'getProfilModel')->getUser($id, self::getInstance()));
