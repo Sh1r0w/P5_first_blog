@@ -17,6 +17,7 @@
                        {{ forms.input("Object du Message", 'object', null, 'text')}}</br>
                        
                        {{ forms.textarea('Votre Message', 'body', null, 5,60) }}</br>
+                       {{ forms.csrf }}
                        <button type="submit" class="btn btn-primary">Envoyer</button>
                        
                     </form>

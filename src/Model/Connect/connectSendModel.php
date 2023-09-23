@@ -29,7 +29,8 @@ class connectSendModel
     public Function getUser(\Controllers\Fonction\factory $fact)
     
     {
-        
+        $csrf_token = bin2hex(random_bytes(32));
+
         $list = $fact->instance('Controllers\Repository', 'connectRepo')->connect($this->data['email'])->fetch();
         if($this->data['session'] == '1'){
         $openSession = $fact->instance('Controllers\Fonction', 'session');
@@ -43,7 +44,7 @@ class connectSendModel
         $openSession->admin = $list['globalAdmin'];
         $openSession->pdf = $list['cv'];
         $openSession->flash = null;
-        
+        $openSession->csrf_token = $csrf_token;
     }
 
         return $list;

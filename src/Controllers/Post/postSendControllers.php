@@ -15,7 +15,7 @@ class postSendControllers
     
 public function postSend( $title, $chapo ,$content, $author,\Controllers\Fonction\factory $fact)
 {
-    if(isset($title, $chapo, $content, $author)){
+    if(isset($title, $chapo, $content, $author) && $_POST['csrf_token'] === $_SESSION['csrf_token']){
     $img = $fact->instance('Controllers\Fonction', 'getImg')->getImg();
     $fact->instance('Model\post', 'postSendModel')->postSend($title, $chapo ,$content, $author, $img, $fact);
     }

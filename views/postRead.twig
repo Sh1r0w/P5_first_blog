@@ -27,7 +27,7 @@
             <div class="text-center">
             <form action="postAddComment?action=commentSend&id={{ p.id }}" method="post">
         {{ forms.textarea('Commenter', 'comment', null, 2, 45) }}<button type="submit" class="btn btn-primary">
-        
+        {{ forms.csrf }}
             Valider
                                                                             
         </button>

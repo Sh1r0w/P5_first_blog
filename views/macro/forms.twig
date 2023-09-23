@@ -12,3 +12,9 @@
     <textarea name="{{ name }}" rows="{{ rows }}" cols="{{ cols }}">{{value}}</textarea>
     
 {% endmacro %}
+
+{% macro csrf() %}
+
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+
+{% endmacro %}

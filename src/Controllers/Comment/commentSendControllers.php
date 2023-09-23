@@ -5,9 +5,13 @@ namespace Controllers\Comment;
 /* The commentSend class is used for sending comments. */
 class commentSendControllers{
 
+    
     public function commentSend($content, $idpost, \Controllers\Fonction\factory $fact) {
+
+        if($_POST['csrf_token'] === $_SESSION['csrf_token']){
         $fact->instance('Controllers\Repository', 'commentRepo')->create($content, $idpost);
         header('location: /postRead?id=' . $idpost);
+    }
 
     }
 }

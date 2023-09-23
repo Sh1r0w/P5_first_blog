@@ -15,7 +15,7 @@ class userSendControllers
     {
         $openSession = $fact->instance('Controllers\Fonction', 'session');
 
-        if (isset($openSession->idCo)) {
+        if (isset($openSession->idCo) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
            $img = $fact->instance('Controllers\Fonction', 'getImg')->getImg();
            $pdf = $fact->instance('Controllers\Fonction', 'getPdf')->getPdf();
 

@@ -13,6 +13,7 @@
                     {{ forms.textarea('Votre Chapo', 'upChapo', p.chapo, 5, 60) }}
                     {{ forms.textarea('Votre texte', 'upContent', p.content, 5, 60) }}
                   {{ forms.input('Fichier joint :', 'picture',  null, 'file') }}
+                  {{ forms.csrf }}
                 </div>
                 <div></div>
                 <div class="modal-footer">
