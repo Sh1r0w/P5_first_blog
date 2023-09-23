@@ -5,7 +5,7 @@ namespace Controllers\Fonction;
 /* The `class img` is a PHP class that handles the uploading and processing of image files. */
 class getImg
 {
-    public $name;
+    public $name = null;
 
     public function getImg()
     {
