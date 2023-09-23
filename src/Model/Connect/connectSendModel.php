@@ -31,9 +31,7 @@ class connectSendModel
     {
         
         $list = $fact->instance('Controllers\Repository', 'connectRepo')->connect($this->data['email'])->fetch();
-        
         if($this->data['session'] == '1'){
-            
         $openSession = $fact->instance('Controllers\Fonction', 'session');
         $openSession->logged_user = $list[1];    
         $openSession->idCo = $list[0];
@@ -45,6 +43,7 @@ class connectSendModel
         $openSession->admin = $list['globalAdmin'];
         $openSession->pdf = $list['cv'];
         $openSession->flash = null;
+        
     }
 
         return $list;

@@ -20,6 +20,7 @@ $twig = new \Twig\Environment(
 );
 $twig->addExtension(new \Twig\Extension\DebugExtension());
 $twig->addGlobal('session', $_SESSION);
+$twig->addGlobal('cookie', $_COOKIE);
 $fact = \Controllers\Fonction\factory::getInstance();
 
 /** 
@@ -35,7 +36,8 @@ $router->map(
     },
     'homepage'
 );
-if (isset($_SESSION['logged_user'])) {
+
+if (isset($_SESSION['logged_user'], $_COOKIE['BLOG_COOKIE'])) {
     $router->map(
         'GET|POST',
         '/user',
@@ -84,6 +86,7 @@ if (isset($_SESSION['logged_user'])) {
         };
     }
 }
+
 $match = $router->match();
 if (is_array($match) && is_callable($match['target'])) {
     call_user_func_array($match['target'], $match['params']);

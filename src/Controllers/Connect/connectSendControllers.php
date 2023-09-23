@@ -29,6 +29,7 @@ class connectSendControllers
                     throw new \Exception("Compte inexistant");
                 }
                 $this->validatePassword($this->connectM['pwd'], $lSendM);
+                $fact->instance('Controllers\Fonction', 'cookie')->cookie();
                 header('location: /');
 
         } catch (\Exception $e) {
@@ -57,6 +58,7 @@ class connectSendControllers
 
         $connectSM->session = '1';
         $connectSM->getUser($this->fact);
+        
 
     }
     
