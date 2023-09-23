@@ -12,20 +12,22 @@
     </title>
 {% endblock %}
 {% block content %}
+    <div class="text-center">
     <h1>
         Derniers post    
                 
             
     </h1>
-    <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createPost" role="button">
+    <a type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#createPost" role="button">
         Création d'un post
                     
          
     </a>
+    </div>
     {% include 'modal/postCreateModal.twig' %}  
-    <div class="row d-flex">
+    <div class="row d-flex flex-column align-content-center">
         {% for p in post.post %}
-            <div class="card m-5" style="width: 18rem;">
+            <div class="card m-5" >
                 {% include 'add/postOne.twig' %}
                 <div class="modal fade " id="read{{ p.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     {% include 'modal/postRead.twig' %}

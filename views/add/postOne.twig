@@ -1,21 +1,28 @@
 <form action="post?id={{ p.id }}" method="post">
-<div type="button" class="card-body" data-bs-toggle="modal" data-bs-target="#read{{ p.id }}" style="cursor:pointer;">
-{% if p.imgP != null%}
-  <img src="{{ p.imgP }}" class="card-img-top" alt=" {{ p.title }}">
-{% endif %}
-    <h4>
-          {{ p.title }}
-    </h4>
+<div type="button" data-bs-toggle="modal" data-bs-target="#read{{ p.id }}" style="cursor:pointer;">
+  <h4 class="card-title">
+    {{ p.title }}
+</h4>
+<div class="card-body">
+  
+  {% if p.img == null %}
+    <img class="me-2 img-onePost" src="uploads/profile/anonyme.png" alt="{{ p.author }}"/>
+  {% else %}
+    <img class="me-2 img-onePost" src="{{ p.img}}" alt="{{ p.author }}" >
+  {% endif %}
+  {{ p.author }}<br/>
+  {{ p.addDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
+    </div>
+    {% if p.imgP != null%}
+      <img src="{{ p.imgP }}" class="card-img-top" alt=" {{ p.title }}">
+    {% endif %}
+
 </br>
 <div class="text-truncate">
 {{ p.chapo }}
 </div></br>
-{% if p.img == null %}
-    <img class="me-2" src="uploads/profile/anonyme.png" alt="{{ p.author }}" style="width:50px;"/>
-  {% else %}
-    <img class="me-2" src="{{ p.img}}" alt="{{ p.author }}" style="width:50px;">
-  {% endif %}
-</br>{{ p.addDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
+
+</br>
 </div>
 </form>
 <form action="postRead?id={{ p.id }}" method="post">

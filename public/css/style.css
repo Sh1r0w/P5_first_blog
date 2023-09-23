@@ -1,0 +1,26 @@
+body {
+    background-image: url('/uploads/background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+h1,
+h2,
+h3,
+span,
+p {
+    color: white;
+}
+
+.card {
+    max-width: 500px !important;
+}
+
+.img-onePost {
+    max-width: 40px !important; 
+}
+
+.card-title {
+    text-align: center !important;
+}
+
