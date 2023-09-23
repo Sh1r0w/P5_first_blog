@@ -1,14 +1,18 @@
 {% import "macro/forms.twig" as forms %}
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <form action="postUpdate?action=postUpdate&id={{ p.id }}" method="post">
+            <form action="postUpdate?action=postUpdate&id={{ p.id }}" method="post" enctype="multipart/form-data">
             <div class="modal-content">
                 <div class="modal-header">
                     {{ forms.input('Votre titre', 'upTitle',  p.title, 'texte') }}
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    {% if p.imgP != null%}
+                        <img src="{{ p.imgP }}" class="card-img-top text-center" alt=" {{ p.title }}" style="max-width: 250px;">
+                      {% endif %}
                     {{ forms.textarea('Votre Chapo', 'upChapo', p.chapo, 5, 60) }}
                     {{ forms.textarea('Votre texte', 'upContent', p.content, 5, 60) }}
+                  {{ forms.input('Fichier joint :', 'picture',  null, 'file') }}
                 </div>
                 <div></div>
                 <div class="modal-footer">

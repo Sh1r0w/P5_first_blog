@@ -16,7 +16,7 @@ class postSendControllers
 public function postSend( $title, $chapo ,$content, $author,\Controllers\Fonction\factory $fact)
 {
     if(isset($title, $chapo, $content, $author)){
-    $img = $fact->instance('Controllers\Fonction', 'img')->getImg();
+    $img = $fact->instance('Controllers\Fonction', 'getImg')->getImg();
     $fact->instance('Model\post', 'postSendModel')->postSend($title, $chapo ,$content, $author, $img, $fact);
     }
     header('location: post');

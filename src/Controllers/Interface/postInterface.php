@@ -17,6 +17,6 @@ public function postSend($title, $chapo ,$content, $author, $img);
 
 public function postDelete($id);
 
-public function postUpdate($id, $upTitle, $upContent, $upChapo, $upAuthor);
+public function postUpdate($id, $upTitle, $upContent, $upChapo, $upAuthor, $upImg);
 
 }
