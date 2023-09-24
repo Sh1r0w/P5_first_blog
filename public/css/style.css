@@ -7,13 +7,17 @@ body {
 h1,
 h2,
 h3,
-span,
 p {
     color: white;
 }
 
 .card {
     max-width: 500px !important;
+    
+}
+
+.cardOne{
+    cursor:pointer;
 }
 
 .img-onePost {
@@ -24,3 +28,20 @@ p {
     text-align: center !important;
 }
 
+.logo-home {
+    text-align: center;
+}
+
+.card-footer {
+    text-align: end !important;
+}
+
+.card-button {
+    margin-bottom: 15px;
+    float:right;
+}
+
+.button-login {
+    margin-top: 15px !important;
+    
+}

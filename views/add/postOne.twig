@@ -1,30 +1,33 @@
-<form action="post?id={{ p.id }}" method="post">
-<div type="button" data-bs-toggle="modal" data-bs-target="#read{{ p.id }}" style="cursor:pointer;">
-  <h4 class="card-title">
+<div class="cardOne" type="button" data-bs-toggle="modal" data-bs-target="#read{{ p.id }}">
+  <h4 class="card-header card-title">
     {{ p.title }}
-</h4>
-<div class="card-body">
-  
-  {% if p.img == null %}
-    <img class="me-2 img-onePost" src="uploads/profile/anonyme.png" alt="{{ p.author }}"/>
-  {% else %}
-    <img class="me-2 img-onePost" src="{{ p.img}}" alt="{{ p.author }}" >
-  {% endif %}
-  {{ p.author }}<br/>
-  {{ p.addDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
-    </div>
-    {% if p.imgP != null%}
-      <img src="{{ p.imgP }}" class="card-img-top" alt=" {{ p.title }}">
+  </h4>
+  {% if p.imgP != null %}
+    <img src="{{ p.imgP }}" class="card-img-top" alt=" {{ p.title }}">
     {% endif %}
-
+  </br>
+  <div class="card-body text-truncate">
+    {{ p.chapo }}
+  </div>
+</br></br></div><form action="postRead?id={{ p.id }}" method="post"><button class="btn btn-primary card-button">
+Voir le post</button></form><div class="card-footer"><small class="text-muted">
+de : 
+    
+{% if p.img == null %}
+  <img
+class="me-2 img-onePost" src="uploads/profile/anonyme.png" alt="{{ p.author }}" />
+  {% else %}
+  <img class="me-2 img-onePost" src="{{ p.img }}" alt="{{ p.author }}">
+  {% endif %}
+  <cite title="Auteur">
+    {{ p.author }}
+  </cite>
+  <br/>
+  {% if p.addDate != p.updDate %}
+    Modifié le 
+  </br>
+  {{ p.updDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
+{% else %}
+  Crée le 
 </br>
-<div class="text-truncate">
-{{ p.chapo }}
-</div></br>
-
-</br>
-</div>
-</form>
-<form action="postRead?id={{ p.id }}" method="post">
-<button class="btn btn-primary">Voir le post</button>
-</form>
+{{ p.addDate|date("d/m/Y H:i:s" , "Europe/Paris") }}</br>{% endif %}</small></div>

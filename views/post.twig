@@ -14,7 +14,7 @@
 {% block content %}
     <div class="text-center">
     <h1>
-        Derniers post    
+        Tous les posts   
                 
             
     </h1>
@@ -29,10 +29,10 @@
         {% for p in post.post %}
             <div class="card m-5" >
                 {% include 'add/postOne.twig' %}
-                <div class="modal fade " id="read{{ p.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade " id="read{{ p.id }}" tabindex="-1" aria-hidden="true">
                     {% include 'modal/postRead.twig' %}
                 </div>
-                    <div class="modal fade " id="vue{{ p.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade " id="vue{{ p.id }}" tabindex="-1" aria-hidden="true">
                         {% include 'modal/postModifModal.twig' %}
                     </div>
 

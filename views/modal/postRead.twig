@@ -2,21 +2,9 @@
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
         <div class="modal-header">
-            <div>
-                {% if p.img == null %}
-                    <img
-                class="me-2" src="uploads/profile/anonyme.png" alt="{{ p.firstname }} {{ p.lastname }}" style="width:50px;" />
-                    {% else %}
-                    <img class="me-2" src="{{ p.img }}" alt="{{ p.firstname }} {{ p.lastname }}" style="width:50px;">
-                    {% endif %}
-                    <span>
-                        De:                
-                        <strong>
-                            {{ p.author }}
-                        </strong></br>
-                        <a href="profil?id={{ p.id_user }}" form="post" target="_blank">Voir le profil</a>
-                    </span>
-                </div>
+            <h4 class="card-title">
+    {{ p.title }}
+</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-title ps-3">
@@ -30,47 +18,43 @@
                 {% endif %}
                 <div>
                     {{ p.content }}
-                </div>
-                <div class="pt-5">
-                    Créer le 
-                                                                                                            
-                                                                            
-                                                        
-                                        
-                    {{ p.addDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
-                </div>
-                <div class="font-italic">
-                    {% if p.addDate != p.updDate %}
-                        Modifié le 
-                                                                                                                            
-                                                                                        
-                                                                    
-                                                
-                        {{ p.updDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
-                    {% endif %}
-                </div>
+                </div>                
             </div>
+            
+        <div class="modal-footer justify-content-end">
             {% if session.admin == '1' or session.idUs == p.id_user %}
-            <div class="modal-footer">
-                    <form action="postDelete?action=postDelete&id={{ p.id }}" method="post">
-                        <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-primary btn-danger" type="submit">
-                            Delete                                                          
-                                                    
-                        </form>
-                    </button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vue{{ p.id }}" data-bs-dismiss="modal">
-                        Modification   
-                                                                                                 
-                                                                                            
-                                                                
-                                            
-                    </button>
+
+                       
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vue{{ p.id }}" data-bs-dismiss="modal">
+                            Modification   
+                        </button>
+                        <form action="postDelete?action=postDelete&id={{ p.id }}" method="post">
+                            <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-primary btn-danger" type="submit">
+                                Delete                                                          
+                                                        
+                            </form>
+                        </button>
+                    
+
+            {% endif %}
+            <small class="text-muted"> de : 
+              {% if p.img == null %}
+                <img class="me-2 img-onePost" src="uploads/profile/anonyme.png" alt="{{ p.author }}"/>
+              {% else %}
+                <img class="me-2 img-onePost" src="{{ p.img}}" alt="{{ p.author }}" >
+              {% endif %}
+              <cite title="Auteur">
+              <a href="profil?id={{ p.id_user }}" form="post" target="_blank">{{ p.author }}</a>
+               </cite><br/>
                 
-            </div>
-        {% endif %}
-            <div class="modal-footer">
-               
-                </div>
+                {% if p.addDate != p.updDate %}
+                    Modifié le </br> 
+                    {{ p.updDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
+                {% else %}
+                    Crée le </br>
+                    {{ p.addDate|date("d/m/Y H:i:s" , "Europe/Paris") }}</br>
+                {% endif %}</small>
+          </div>
         </div>
     </div>
     
