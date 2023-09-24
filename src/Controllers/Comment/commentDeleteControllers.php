@@ -9,6 +9,6 @@ class commentDeleteControllers
     public function commentDelete($id, $key,\Controllers\Fonction\factory $fact)
     {
         $fact->instance('Controllers\Repository', 'commentRepo')->delete($id);
-        header('location: http://localhost:3000/postRead?id=' . $key);
+        header('location: postRead?id=' . $key);
     }
 }
