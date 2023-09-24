@@ -15,7 +15,7 @@ class commentReadModel
         
            {
             $comment =[
-            'id' => $row['id'],
+            'id' => $row['0'],
             'id_user' => $row['id_user'],
             'content' => $row['content'],
             'addDate' => $row['addDate'],
@@ -23,6 +23,7 @@ class commentReadModel
             'firstname' => $row['firstname'],
             'img' => $row['pictures'],
             'citation' => $row['citation'],
+            'id_post' => $row['id_post'],
             ];
             $this->read[] = $comment;
            }

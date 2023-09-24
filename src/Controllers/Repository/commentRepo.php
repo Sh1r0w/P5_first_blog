@@ -39,9 +39,12 @@ class commentRepo implements commentInterface
         $statement->execute();
     }
 
-    public function update()
+    public function update($id, $content)
     {
-        
+        $statement = $this->dbase->prepare(
+            "UPDATE ae_comment SET content = ? WHERE id = $id"
+        );
+        $statement->execute([$content]);
     }
 
     public function count()

@@ -206,6 +206,11 @@ class factory
         self::instance('Controllers\Comment', 'commentDeleteControllers')->$type($id, $key, self::getInstance());
     }
 
+    public function commentUpdate($type, $input, $id, $key)
+    {
+        self::instance('Controllers\Comment', 'commentUpdateControllers')->commentUpdateControllers($input, $id, $key, self::getInstance(), self::instance('Model\Comment', 'commentUpdateModel'));
+    }
+
     
     /**
      * The code defines several functions for managing users, post, and comments in an admin panel.
