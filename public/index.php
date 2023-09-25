@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../vendor/autoload.php';
-header("Content-Security-Policy: default-src 'self' ; style-src 'self' 'unsafe-inline' cdn.jsdelivr.net; script-src 'self' cdn.jsdelivr.net");
+
 /**
  * Load Autoloader for add require path
  */
@@ -22,6 +22,8 @@ $twig->addExtension(new \Twig\Extension\DebugExtension());
 $twig->addGlobal('session', $_SESSION);
 $twig->addGlobal('cookie', $_COOKIE);
 $fact = \Controllers\Fonction\factory::getInstance();
+
+$fact->instance('Controllers\Fonction', 'csp');
 
 /** 
  * The code snippet is creating a router using the AltoRouter library. The router is used to map
