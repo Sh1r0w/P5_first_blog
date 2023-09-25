@@ -14,6 +14,8 @@ class cookie
                 'expires' => time() + 86400,
                 'secure' => true,
                 'httponly' => true,
+                
+
             ]
         );
     }

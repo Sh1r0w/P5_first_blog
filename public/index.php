@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../vendor/autoload.php';
-
+header("Content-Security-Policy: default-src 'self' ; style-src 'self' 'unsafe-inline' cdn.jsdelivr.net; script-src 'self' cdn.jsdelivr.net");
 /**
  * Load Autoloader for add require path
  */
