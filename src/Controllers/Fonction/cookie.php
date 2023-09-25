@@ -7,6 +7,7 @@ class cookie
 
     public function cookie()
     {
+        
         setcookie(
                 "BLOG_COOKIE",
                 uniqid(),
@@ -14,7 +15,7 @@ class cookie
                 'expires' => time() + 86400,
                 'secure' => true,
                 'httponly' => true,
-                
+                'samesite' => 'Strict',
 
             ]
         );
