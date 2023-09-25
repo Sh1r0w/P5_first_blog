@@ -45,3 +45,18 @@ p {
     margin-top: 15px !important;
     
 }
+
+.profil .card{
+    margin-top: 15px !important;
+    padding : 15px !important;
+}
+
+.profil img {
+    width: 160px;
+    margin: 0 50px 0 0;
+}
+
+.addProfil {
+    padding : 40px;
+    font-size: 1.2rem;
+}

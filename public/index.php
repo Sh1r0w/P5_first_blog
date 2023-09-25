@@ -102,4 +102,4 @@ if (is_array($match) && is_callable($match['target'])) {
  * @Param action $match altorouter and $_POST
  */
 $d = \Controllers\Fonction\db::connectDatabase();
-$a = new \Controllers\Fonction\action($match, $_POST);
+$a = new \Controllers\Fonction\action($_POST);
