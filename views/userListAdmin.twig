@@ -1,5 +1,5 @@
 {% extends 'admin.twig' %}
-
+  {% import "macro/forms.twig" as forms %}
     {% block adminContent %}
 
             <table class="table table-dark table-striped">
@@ -26,13 +26,17 @@
                     <td>{{ u.lastName }}</td>
                     <td>
                       {% if u.admin == 1 %} Oui {% else %} Non {% endif %}</td>
-                    <td>{% if session.idUs != u.id %}<form action="userListValid?action=adminUserUpdate&id={{ u.id }}&key={{u.admin}}" method="post"> {% if u.admin == 1 %}  <button type="submit" class="btn btn-danger">
+                    <td>{% if session.idUs != u.id %}<form action="userListValid?action=adminUserUpdate&id={{ u.id }}&key={{u.admin}}" method="post"> {% if u.admin == 1 %}  
+                      {{ forms.csrf }}
+                      <button type="submit" class="btn btn-danger">
                     No Admin </button>{% else %}  <button type="submit" class="btn btn-success">
                         Admin          
                     </button>{% endif %}</form>{% endif %}</td>
                     <td>
                       {% if session.idCo != u.idCo %}
-                 <form action="commentList?action=adminUserDelete&id={{ u.idCo }}" method="post"> <button onClick="return confirm('Etes vous sûr de vouloir supprimer cette utilisateur ?')" type="submit" class="btn btn-danger">
+                 <form action="commentList?action=adminUserDelete&id={{ u.idCo }}" method="post">
+                  {{ forms.csrf }}
+                  <button onClick="return confirm('Etes vous sûr de vouloir supprimer cette utilisateur ?')" type="submit" class="btn btn-danger">
                     Supprimer          
                 </button></form></td>
                       {% endif %}

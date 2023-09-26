@@ -1,5 +1,5 @@
 {% extends 'admin.twig' %}
-
+  {% import "macro/forms.twig" as forms %}
     {% block adminContent %}
         <table class="table table-dark table-striped">
             <thead>
@@ -30,12 +30,15 @@
                 <td>{{ p.author }}</td>
                 <td>{{ p.addDate }}</td>
                 <td>
-                 <form action="postList?action=adminPostUpdate&id={{ p.id }}&key={{ p.valide }}" method="post"> <button type="submit" class="btn btn-success">
+                 <form action="postList?action=adminPostUpdate&id={{ p.id }}&key={{ p.valide }}" method="post">
+                  {{ forms.csrf }}
+                   <button type="submit" class="btn btn-success">
                     Oui          
                 </button>
                 </form></td>
                 <td>
                  <form action="postListA?action=adminPostDelete&id={{ p.id }}" method="post">
+                  {{ forms.csrf }}
                   <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-danger" type="submit">
                     Supprimer          
                 </button>

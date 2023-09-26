@@ -33,6 +33,7 @@
                         {% include 'modal/postModifModal.twig' %}
                     </div>
                     <form action="postDelete?action=postDelete&id={{ p.id }}" method="post">
+                        {{ forms.csrf }}
                         <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-primary btn-danger" type="submit">
                             Delete                                                           
                         
@@ -40,6 +41,7 @@
                     </form>
 
         {% endif %}
+        
                 <small class="text-muted">
                     de :   
                     {% if p.img == null %}
@@ -81,11 +83,10 @@
     <div class="card-footer text-end">
         <small class="text-muted">
         de : 
-                                          
                     {% if c.img == null %}
                         <img class="me-2 img-onePost" src="uploads/profile/anonyme.png" alt="{{ p.author }}" />
                         {% else %}
-                        <img class="me-2 img-onePost" src="{{ p.img }}" alt="{{ p.author }}">
+                        <img class="me-2 img-onePost" src="{{ c.img }}" alt="{{ c.author }}">
                         {% endif %}
         <cite title="Auteur">
             <a href="profil?id={{ c.id_user }}" form="post" target="_blank">{{ c.firstname }} {{ c.lastname }}</a></br>
@@ -103,6 +104,7 @@
                 {% include 'modal/commentUpdateModal.twig' %}
                 </div>
                 <form action="postDelete?key={{ p.id }}&action=commentDelete&id={{ c.id }}" method="post">
+                    {{ forms.csrf }}
                     <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-primary btn-danger" type="submit">
                         Delete                                                                                       
                     

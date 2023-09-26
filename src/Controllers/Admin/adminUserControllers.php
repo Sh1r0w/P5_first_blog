@@ -9,7 +9,9 @@ class adminUserControllers
 
     public function userUpdate($id, $key, \Controllers\Fonction\factory $fact)
     {
+        if($_POST['csrf_token'] === $_SESSION['csrf_token']){
         $fact->instance('Controllers\Repository', 'adminRepo')->userUpdate($id, $key);
+        }
         header('location: \userList');
     }
 

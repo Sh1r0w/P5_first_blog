@@ -8,7 +8,9 @@ class commentDeleteControllers
 {
     public function commentDelete($id, $key,\Controllers\Fonction\factory $fact)
     {
+        if($_POST['csrf_token'] === $_SESSION['csrf_token']){
         $fact->instance('Controllers\Repository', 'commentRepo')->delete($id);
+        }
         header('location: postRead?id=' . $key);
     }
 }

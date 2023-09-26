@@ -29,6 +29,7 @@
                             Modification   
                         </button>
                         <form action="postDelete?action=postDelete&id={{ p.id }}" method="post">
+                            {{ forms.csrf }}
                             <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-primary btn-danger" type="submit">
                                 Delete                                                          
                                                         
@@ -38,6 +39,7 @@
 
             {% endif %}
             <small class="text-muted"> de : 
+                
               {% if p.img == null %}
                 <img class="me-2 img-onePost" src="uploads/profile/anonyme.png" alt="{{ p.author }}"/>
               {% else %}
