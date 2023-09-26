@@ -20,7 +20,7 @@ class="me-2 img-onePost" src="uploads/profile/anonyme.png" alt="{{ p.author }}" 
   <img class="me-2 img-onePost" src="{{ p.img }}" alt="{{ p.author }}">
   {% endif %}
   <cite title="Auteur">
-    {{ p.author }}
+    <a href="profil?id={{ p.id_user }}" form="post" target="_blank">{{ p.author }}</a>
   </cite>
   <br/>
   {% if p.addDate != p.updDate %}
@@ -30,4 +30,5 @@ class="me-2 img-onePost" src="uploads/profile/anonyme.png" alt="{{ p.author }}" 
 {% else %}
   Crée le 
 </br>
-{{ p.addDate|date("d/m/Y H:i:s" , "Europe/Paris") }}</br>{% endif %}</small></div>
+{{ p.addDate|date("d/m/Y H:i:s" , "Europe/Paris") }}</br>{% endif %}</small>
+</div>
