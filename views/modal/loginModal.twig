@@ -15,13 +15,19 @@
         {{ forms.password('Mot de passe', 'password', null, 'password', 8, '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' )}}
         {{ forms.csrf }}
       </div>
-      <div>
-        <ul>
-          <li>Le mot de passe doit :</li>
-          <li>Avoir 8 caractères minimum</li>
-          <li>Contenir minimum 1 minuscule / majuscule</li>
-          <li>Contenir minimum 1 chiffre</li>
-          </ul>
+      <div class="mt-2">
+            Le mot de passe doit :
+            <ul>
+                <li>
+                    Avoir 8 caractères minimum
+                </li>
+                <li>
+                    Contenir minimum 1 minuscule et majuscule
+                </li>
+                <li>
+                    Contenir minimum 1 chiffre
+                </li>
+            </ul>
         </div>
       <div>
         <input class="button-login btn btn-outline-success" type="submit" value="Connection"/>
