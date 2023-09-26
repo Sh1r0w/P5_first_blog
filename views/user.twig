@@ -31,10 +31,17 @@
 
         {{ forms.input('Changer votre image', 'picture',  null, 'file') }}
 
+        {% if session.img != null %}
+            
+            <button name="deleteImg" class="btn btn-outline-danger"> Supprimer votre image </button> </br>
+
+        {% endif %}
+
         {{ forms.input('Votre CV au format PDF:', 'pdf',  null, 'file') }}
 
             {% if session.pdf != null %}
-                <embed src="{{ session.pdf }}" width="250" height="350" type="application/pdf" />
+                <embed src="{{ session.pdf }}" width="250" height="350" type="application/pdf" /></br>
+                <button name="deletePdf" class="btn btn-outline-danger"> Supprimer votre CV </button> </br>
             {% endif %}
 
     </div>
@@ -48,4 +55,5 @@
     </button>
     </div>
     </div>
-</div></form>{% include 'modal/adminUpdateUser.twig' %}{% endblock %}
+</div>
+</form>{% include 'modal/adminUpdateUser.twig' %}{% endblock %}

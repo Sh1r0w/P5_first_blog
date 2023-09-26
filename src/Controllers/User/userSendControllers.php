@@ -22,8 +22,17 @@ class userSendControllers
             $userPush->lastname = $input['lastname'];
             $userPush->firstname = $input['firstname'];
             $userPush->citation = $input['citation'];
-            $userPush->img = $img;
-            $userPush->pdf = $pdf;
+            if(isset($input['deleteImg'])){
+                $userPush->deleteImg = 1;
+            }else{
+                $userPush->img = $img;
+            }
+
+            if(isset($input['deletePdf'])){
+                $userPush->deletePdf = 1;
+            }else{
+                $userPush->pdf = $pdf;
+            }
             $userPush->count = $count;
 
             if($count == '0'){

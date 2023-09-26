@@ -14,6 +14,16 @@ class userPushModel
         if ($this->img != null) {
             unlink($openSession->img);
             $openSession->img = $this->img;
+        } 
+        
+        if($this->deleteImg == 1) {
+            unlink($openSession->img);
+            $openSession->img = null;
+        }
+
+        if($this->deletePdf == 1) {
+            unlink($openSession->pdf);
+            $openSession->pdf = null;
         }
 
         if($this->pdf != null) {
