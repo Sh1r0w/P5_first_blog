@@ -10,7 +10,6 @@
                 <th scope="col">Auteur</th>
                 <th scope="col">Date d'ajout</th>
                 <th scope="col">Validé</th>
-                <th scope="col"></th>
               </tr>
             </thead>
             
@@ -20,21 +19,23 @@
                 <th scope="row">{{ c.id }}</th>
                 <td>{{ c.postTitle }}</td>
                 <td>{{ c.content }}</td>
-                <td>{{ c.lastname }} {{ c.firstname }}</td>
+                <td><a href="profil?id={{ c.id_user }}" form="post" target="_blank">{{ c.lastname }} {{ c.firstname }}</a></td>
                 <td>{{ c.addDate }}</td>
                 <td>
+                  <div class="d-flex flex-wrap">
                  <form action="commentList?action=adminCommentUpdate&id={{ c.id }}&key={{ c.valide }}" method="post">
                   {{ forms.csrf }}
                    <button type="submit" class="btn btn-success">
                   
                     Oui          
-                </button></form></td>
-                <td>
+                </button></form>
                  <form action="commentList?action=adminCommentDelete&id={{ c.id }}" method="post"> 
                   {{ forms.csrf }}
                  <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" type="submit" class="btn btn-danger">
                     Supprimer          
-                </button></form></td>
+                </button></form>
+                </div>
+                </td>
               </tr>
             
             {% endfor %}

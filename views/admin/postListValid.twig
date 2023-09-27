@@ -5,25 +5,16 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Image</th>
                 <th scope="col">Titre</th>
-                <th scope="col">Résumé</th>
-                <th scope="col">Contenue</th>
                 <th scope="col">Auteur</th>
-                <th scope="col">Date d'ajout</th>
                 <th scope="col">Validé</th>
-                <th></th>
+
               </tr>
             </thead>
             <tbody>
                 {% for p in adminPostList[0].post %}
               <tr>
                 <th scope="row">{{ p.id }}</th>
-                <td>
-                    {% if p.imgP != null %}
-                    <img src="{{ p.imgP }}" alt="{{ p.author }}" style="width:50px;">
-                    {% endif %}
-                </td>
                 <td><a class="cardOne" type="button" data-bs-toggle="modal" data-bs-target="#read{{ p.id }}">{{ p.title }}
                   </a>
                   <div class="modal fade " id="read{{ p.id }}" tabindex="-1" aria-hidden="true">
@@ -33,23 +24,21 @@
                         {% include 'modal/postModifModal.twig' %}
                     </div>
                 </td>
-                <td>{{ p.chapo }}</td>
-                <td>{{ p.content }}</td>
                 <td><a href="profil?id={{ p.id_user }}" form="post" target="_blank">{{ p.author }}</a></td>
-                <td>{{ p.addDate }}</td>
                 <td>
+                  <div class="d-flex flex-wrap">
                  <form action="postList?action=adminPostUpdate&id={{ p.id }}&key={{ p.valide }}" method="post">
                   {{ forms.csrf }}
                    <button type="submit" class="btn btn-success">
                     Oui          
                 </button>
-                </form></td>
-                <td>
+                </form>
                  <form action="postListA?action=adminPostDelete&id={{ p.id }}" method="post">
                   {{ forms.csrf }}
                   <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-danger" type="submit">
                     Supprimer          
                 </button>
+                </div>
                 </td>
                 
               </tr>
