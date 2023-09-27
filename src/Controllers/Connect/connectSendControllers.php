@@ -14,7 +14,7 @@ class connectSendControllers
     protected $fact;
     protected $connectSendM;
 
-    public function connectSend(array $input, \Controllers\Fonction\factory $fact, \Model\connect\connectSendModel $lSendM){
+    public function connectSend(array $input, \Controllers\Fonction\factory $fact, \Model\Connect\connectSendModel $lSendM){
 
         $lSendM->email = $input['email'];
         $this->fact = $fact;

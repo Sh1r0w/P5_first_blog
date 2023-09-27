@@ -11,6 +11,10 @@ p {
     color: white;
 }
 
+.logo-home {
+    text-align: center;
+}
+
 .card {
     max-width: 500px !important;
     
@@ -26,10 +30,11 @@ p {
 
 .card-title {
     text-align: center !important;
+    color:black !important;
 }
 
-.logo-home {
-    text-align: center;
+.card-body {
+    color:black !important;
 }
 
 .card-footer {

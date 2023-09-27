@@ -1,4 +1,4 @@
-{% extends 'admin.twig' %}
+{% extends 'admin/admin.twig' %}
   {% import "macro/forms.twig" as forms %}
     {% block adminContent %}
         <table class="table table-dark table-striped">
@@ -20,14 +20,22 @@
               <tr>
                 <th scope="row">{{ p.id }}</th>
                 <td>
-                    {% if p.picture != null %}
-                    <img src="{{ p.picture }}" alt="{{ p.author }}" style="width:50px;">
+                    {% if p.imgP != null %}
+                    <img src="{{ p.imgP }}" alt="{{ p.author }}" style="width:50px;">
                     {% endif %}
                 </td>
-                <td>{{ p.title }}</td>
+                <td><a class="cardOne" type="button" data-bs-toggle="modal" data-bs-target="#read{{ p.id }}">{{ p.title }}
+                  </a>
+                  <div class="modal fade " id="read{{ p.id }}" tabindex="-1" aria-hidden="true">
+                    {% include 'modal/postRead.twig' %}
+                </div>
+                <div class="modal fade " id="vue{{ p.id }}" tabindex="-1" aria-hidden="true">
+                        {% include 'modal/postModifModal.twig' %}
+                    </div>
+                </td>
                 <td>{{ p.chapo }}</td>
                 <td>{{ p.content }}</td>
-                <td>{{ p.author }}</td>
+                <td><a href="profil?id={{ p.id_user }}" form="post" target="_blank">{{ p.author }}</a></td>
                 <td>{{ p.addDate }}</td>
                 <td>
                  <form action="postList?action=adminPostUpdate&id={{ p.id }}&key={{ p.valide }}" method="post">

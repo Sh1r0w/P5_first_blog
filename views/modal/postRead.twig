@@ -1,20 +1,15 @@
 {% import "macro/forms.twig" as forms %}
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-        <div class="modal-header">
+        <div class="card-header">
             <h4 class="card-title">
     {{ p.title }}
 </h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-title ps-3">
-                <h2>
-                    {{ p.title }}
-                </h2>
-            </div>
-            <div class="modal-body">
+
+            <div class="card-body">
                 {% if p.imgP != null%}
-                    <img src="{{ p.imgP }}" class="card-img-top" alt=" {{ p.title }}">
+                    <img src="{{ p.imgP }}" class="card-img-top m-2" alt=" {{ p.title }}">
                 {% endif %}
                 <div>
                     {{ p.content }}

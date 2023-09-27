@@ -1,4 +1,4 @@
-{% extends 'admin.twig' %}
+{% extends 'admin/admin.twig' %}
   {% import "macro/forms.twig" as forms %}
     {% block adminContent %}
 
@@ -10,6 +10,7 @@
                     <th scope="col">Prénom</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Administrateur</th>
+                    <th scope="col"></th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -26,8 +27,8 @@
                     <td>{{ u.lastName }}</td>
                     <td>
                       {% if u.admin == 1 %} Oui {% else %} Non {% endif %}</td>
-                    <td>{% if session.idUs != u.id %}<form action="userListValid?action=adminUserUpdate&id={{ u.id }}&key={{u.admin}}" method="post"> {% if u.admin == 1 %}  
-                      {{ forms.csrf }}
+                    <td>{% if session.idUs != u.id %}<form action="userListValid?action=adminUserUpdate&id={{ u.id }}&key={{u.admin}}" method="post"> {{ forms.csrf }} {% if u.admin == 1 %}  
+                      
                       <button type="submit" class="btn btn-danger">
                     No Admin </button>{% else %}  <button type="submit" class="btn btn-success">
                         Admin          

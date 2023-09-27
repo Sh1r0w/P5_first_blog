@@ -13,6 +13,7 @@
 Voir le post</button></form><div class="card-footer"><small class="text-muted">
 de : 
     
+
 {% if p.img == null %}
   <img
 class="me-2 img-onePost" src="uploads/profile/anonyme.png" alt="{{ p.author }}" />
@@ -20,15 +21,18 @@ class="me-2 img-onePost" src="uploads/profile/anonyme.png" alt="{{ p.author }}" 
   <img class="me-2 img-onePost" src="{{ p.img }}" alt="{{ p.author }}">
   {% endif %}
   <cite title="Auteur">
-    <a href="profil?id={{ p.id_user }}" form="post" target="_blank">{{ p.author }}</a>
+    <a href="profil?id={{ p.id_user }}" form="post" target="_blank">
+      {{ p.author }}
+    </a>
   </cite>
   <br/>
   {% if p.addDate != p.updDate %}
     Modifié le 
+      
   </br>
   {{ p.updDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
 {% else %}
   Crée le 
+  
 </br>
-{{ p.addDate|date("d/m/Y H:i:s" , "Europe/Paris") }}</br>{% endif %}</small>
-</div>
+{{ p.addDate|date("d/m/Y H:i:s" , "Europe/Paris") }}</br>{% endif %}</small></div>

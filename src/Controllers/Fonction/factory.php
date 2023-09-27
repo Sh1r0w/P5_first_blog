@@ -89,7 +89,7 @@ class factory
         self::instance('Controllers\Connect', 'connectSendControllers')->connectSend($input, self::getInstance(), self::instance('Model\Connect', 'connectSendModel'));
     }
 
-    public function connectCreateSend($input, $id, $key)
+    public function connectCreateSend($input)
     {
 
         self::instance('Controllers\Connect', 'connectCreateSendControllers')->connectCreateSend($input, self::connectCheck($input), self::getInstance(), self::instance('Model\Connect', 'connectCreateModel'));

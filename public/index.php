@@ -44,45 +44,45 @@ if (isset($_SESSION['logged_user'], $_COOKIE['BLOG_COOKIE'])) {
         'GET|POST',
         '/user',
         function () use ($twig) {
-            echo $twig->render('user.twig');
+            echo $twig->render('user/user.twig');
         },
         'user'
     );
     if (isset($_SESSION['idUs']) != null) {
         $router->map(
             'GET|POST', '/post', function () use ($twig, $fact) {
-                echo $twig->render('post.twig', ['post' => $fact->postList('postList'), 'count' => $fact->commentCount()->count]);
+                echo $twig->render('post/post.twig', ['post' => $fact->postList('postList'), 'count' => $fact->commentCount()->count]);
             }, 'postList'
         );
         $router->map(
             'GET|POST', '/postRead', function () use ($twig, $fact) {
-                echo $twig->render('postRead.twig', ['postRead' => $fact->postRead($_GET['id']), 'commentsRead' => $fact->commentRead($_GET['id'])]);
+                echo $twig->render('post/postRead.twig', ['postRead' => $fact->postRead($_GET['id']), 'commentsRead' => $fact->commentRead($_GET['id'])]);
             }, 'postRead'
         );
         $router->map(
             'GET|POST', '/profil', function () use ($twig, $fact) {
-                echo $twig->render('profil.twig', ['user' => $fact->getProfil($_GET['id'])]);
+                echo $twig->render('user/profil.twig', ['user' => $fact->getProfil($_GET['id'])]);
             }, 'profil'
         );
         if (isset($_SESSION['admin']) == '1') {
             $router->map(
                 'GET|POST', '/admin', function () use ($twig) {
-                    echo $twig->render('admin.twig');
+                    echo $twig->render('admin/admin.twig');
                 }, 'admin'
             );
             $router->map(
                 'GET|POST', '/userList', function () use ($twig, $fact) {
-                    echo $twig->render('userListAdmin.twig', ['userList' => $fact->adminList()]);
+                    echo $twig->render('admin/userListAdmin.twig', ['userList' => $fact->adminList()]);
                 }, 'userList'
             );
             $router->map(
                 'GET|POST', '/postListValid', function () use ($twig, $fact) {
-                    echo $twig->render('postListValid.twig', ['adminPostList' => $fact->adminPostList()]);
+                    echo $twig->render('admin/postListValid.twig', ['adminPostList' => $fact->adminPostList()]);
                 }, 'postListValid'
             );
             $router->map(
                 'GET|POST', '/commentListValid', function () use ($twig, $fact) {
-                    echo $twig->render('commentListValid.twig', ['adminCommentList' => $fact->adminCommentList()->comments]);
+                    echo $twig->render('admin/commentListValid.twig', ['adminCommentList' => $fact->adminCommentList()->comments]);
                 }, 'commentListValid'
             );
         };
