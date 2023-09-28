@@ -6,19 +6,18 @@ namespace Controllers\Post;
 author, and image. */
 class postSendControllers
 {
+    protected $title = null;
+    protected $content = null;
+    protected $chapo = null;
+    protected $author = null;
+    protected $id = null;
 
-   protected $title = null;
-   protected $content = null;
-   protected $chapo = null;
-   protected $author = null;
-   protected $id = null;
-    
-public function postSend( $title, $chapo ,$content, $author,\Controllers\Fonction\factory $fact)
-{
-    if(isset($title, $chapo, $content, $author) && $_POST['csrf_token'] === $_SESSION['csrf_token']){
-    $img = $fact->instance('Controllers\Fonction', 'getImg')->getImg();
-    $fact->instance('Model\post', 'postSendModel')->postSend($title, $chapo ,$content, $author, $img, $fact);
+    public function postSend($title, $chapo, $content, $author, \Controllers\Fonction\factory $fact)
+    {
+        if (isset($title, $chapo, $content, $author) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+            $img = $fact->instance('Controllers\Fonction', 'getImg')->getImg();
+            $fact->instance('Model\post', 'postSendModel')->postSend($title, $chapo, $content, $author, $img, $fact);
+        }
+        header('location: post');
     }
-    header('location: post');
-}
 }

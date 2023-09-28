@@ -10,14 +10,12 @@ class postReadControllers
 
     public function postReadControllers($data)
     {
-        
-        if(isset($data)){
+
+        if (isset($data)) {
             return $this->postRead = $data;
-        }else{
+        } else {
             header('location: post');
         }
         return $this->postRead;
-
-
     }
 }

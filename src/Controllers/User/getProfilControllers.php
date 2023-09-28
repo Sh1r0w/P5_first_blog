@@ -8,8 +8,9 @@ class getProfilControllers
 {
     public $profile;
 
-    public function getUser($data){
-        while($row = $data->fetch()){
+    public function getUser($data)
+    {
+        while ($row = $data->fetch()) {
             $profil = [
                 'id' => $row['id'],
                 'lastname' => $row['lastname'],
@@ -23,6 +24,5 @@ class getProfilControllers
              $this->profile[] = $profil;
         }
         return $this->profile;
-        
     }
 }

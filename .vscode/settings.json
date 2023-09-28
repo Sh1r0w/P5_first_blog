@@ -1,4 +1,7 @@
 {
     "files.autoSave": "afterDelay",
-    "docwriter.style": "Auto-detect"
+    "docwriter.style": "Auto-detect",
+    "docwriter.progress.trackFunctions": true,
+    "docwriter.progress.trackMethods": true,
+    "phpcs.standard": "/chemin/vers/phpcs.xml"
 }

@@ -27,5 +27,4 @@ class commentUpdateModel
     {
         return isset($this->$name);
     }
-
 }

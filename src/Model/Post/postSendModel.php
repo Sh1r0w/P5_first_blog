@@ -6,8 +6,8 @@ namespace Model\Post;
 and image. */
 class postSendModel
 {
-    public function postSend($title, $chapo ,$content, $author, $img, $fact)
+    public function postSend($title, $chapo, $content, $author, $img, $fact)
     {
-        $fact->instance('Controllers\Repository', 'postRepo')->postSend($title, $chapo ,$content, $author, $img);
+        $fact->instance('Controllers\Repository', 'postRepo')->postSend($title, $chapo, $content, $author, $img);
     }
 }

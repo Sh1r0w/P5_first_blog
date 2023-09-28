@@ -11,7 +11,7 @@ class connectCheckCountModel
     public function __construct(\Controllers\Fonction\factory $fact)
     {
         $this->result = $fact->instance('Controllers\Repository', 'connectRepo')->count()->fetch()[0];
-        
+
         return $this->result;
     }
 }

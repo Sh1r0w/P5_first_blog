@@ -1,23 +1,20 @@
 <?php
+
 namespace Controllers\Fonction;
 
 require '../src/controllers/fonction/params.php';
-
 /* The `class db` is responsible for creating and connecting to a MySQL database. It creates the
 necessary tables if they don't already exist. It also provides a static method `connectDatabase()`
 that can be used to establish a connection to the database. */
 class db
 {
     private static $_connect;
-
     private $database;
-
     public $dbConnect;
-
-    /**
+/**
      * This PHP function creates or connects to a MySQL database and creates tables if they don't
      * exist.
-     * 
+     *
      * @return The code is returning an instance of the PDO class, which represents a connection to a
      * database.
      */
@@ -27,26 +24,18 @@ class db
         $pwd = $_ENV['PWD'];
         $db = $_ENV['DATABASE'];
         $server = $_ENV['SERVER'];
-        
-        // We create or connect to the database and create tables.
+// We create or connect to the database and create tables.
 
         try {
-
             $this->database = new \PDO("mysql:host=$server;utf8", $user, $pwd);
-
             if ($this->database->exec("CREATE DATABASE IF NOT EXISTS $db")) {
                 $this->database = new \PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
-
-                $this->database->exec(
-                    "CREATE TABLE IF NOT EXISTS ae_connect (
+                $this->database->exec("CREATE TABLE IF NOT EXISTS ae_connect (
         id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
         log VARCHAR(255) NOT NULL,
         pwd VARCHAR(255) NOT NULL
-        )"
-                );
-
-                $this->database->exec(
-                    "CREATE TABLE IF NOT EXISTS ae_user (
+        )");
+                $this->database->exec("CREATE TABLE IF NOT EXISTS ae_user (
             id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
             firstname VARCHAR(255) NOT NULL,
             lastname VARCHAR(255) NOT NULL,
@@ -56,11 +45,8 @@ class db
             globalAdmin INT DEFAULT '0',
             id_login INT NOT NULL,
             FOREIGN KEY (id_login) REFERENCES ae_connect (id) ON DELETE CASCADE ON UPDATE NO ACTION
-            )"
-                );
-
-                $this->database->exec(
-                    "CREATE TABLE IF NOT EXISTS ae_post (
+            )");
+                $this->database->exec("CREATE TABLE IF NOT EXISTS ae_post (
                 id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                 title VARCHAR(255) NOT NULL,
                 chapo VARCHAR(255) NOT NULL,
@@ -72,11 +58,8 @@ class db
                 picture VARCHAR(255),
                 valide INT DEFAULT '0',
                 FOREIGN KEY (id_user) REFERENCES ae_user (id) ON DELETE CASCADE ON UPDATE NO ACTION
-                )"
-                );
-
-                $this->database->exec(
-                    "CREATE TABLE IF NOT EXISTS ae_comment (
+                )");
+                $this->database->exec("CREATE TABLE IF NOT EXISTS ae_comment (
                     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                     content VARCHAR(255) NOT NULL,
                     addDate DATETIME NOT NULL,
@@ -85,11 +68,8 @@ class db
                     valide INT DEFAULT '0',
                     FOREIGN KEY (id_user) REFERENCES ae_user (id) ON DELETE CASCADE ON UPDATE NO ACTION,
                     FOREIGN KEY (id_post) REFERENCES ae_post (id) ON DELETE CASCADE ON UPDATE NO ACTION
-                    )"
-                );
-
-                $this->database->exec(
-                    "CREATE TABLE IF NOT EXISTS ae_like (
+                    )");
+                $this->database->exec("CREATE TABLE IF NOT EXISTS ae_like (
                     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                     ilike INT NOT NULL,
                     dislike INT NOT NULL,
@@ -99,18 +79,13 @@ class db
                     FOREIGN KEY (id_user) REFERENCES ae_user (id) ON DELETE CASCADE ON UPDATE NO ACTION,
                     FOREIGN KEY (id_post) REFERENCES ae_post (id) ON DELETE CASCADE ON UPDATE NO ACTION,
                     FOREIGN KEY (id_comment) REFERENCES ae_comment (id) ON DELETE CASCADE ON UPDATE NO ACTION
-                    )"
-                );
-
-
+                    )");
                 echo "<script>alert(\"base de donnée créer\")</script>";
                 header("Location: home");
-            }else {
-               return $this->dbConnect = new \PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
+            } else {
+                return $this->dbConnect = new \PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
             }
         } catch (\Exception $e) {
-
-
             die('Erreur : ' . $e->getMessage());
         }
     }
@@ -118,15 +93,14 @@ class db
 /**
  * The function `connectDatabase` returns an instance of the `db` class if it is not already
  * instantiated.
- * 
+ *
  * @return an instance of the "db" class.
  */
     public static function connectDatabase()
     {
-        if(is_null(self::$_connect)){
-            self::$_connect = new db;
+        if (is_null(self::$_connect)) {
+            self::$_connect = new db();
         }
         return self::$_connect;
     }
-
 }

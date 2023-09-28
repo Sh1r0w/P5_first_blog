@@ -7,14 +7,13 @@ key value. */
 class adminPostUpdateModel
 {
     public $key;
-    
+
     public function postUpdate($key)
     {
-        if($key == "1"){
+        if ($key == "1") {
             return $this->key = "0";
-        }else{
+        } else {
             return $this->key = "1";
         }
-
     }
 }

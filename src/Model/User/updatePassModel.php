@@ -10,7 +10,7 @@ class updatePassModel
 
     public function updatePass()
     {
-        if($this->update == $this->updateVerif){
+        if ($this->update == $this->updateVerif) {
             return $this->valide = '1';
         }
     }
@@ -23,7 +23,6 @@ class updatePassModel
     public function __get($name)
     {
             return $this->$name;
-        
     }
 
     public function __isset($name)

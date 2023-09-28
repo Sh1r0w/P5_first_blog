@@ -10,7 +10,7 @@ class adminPostListModel
     public function __construct(\Controllers\Fonction\factory $fact)
     {
         $list = $fact->instance('Controllers\Repository', 'adminRepo')->postList();
-        while($row = $list->fetch()){
+        while ($row = $list->fetch()) {
             $post = [
                 'id' => $row['id'],
                 'title' => $row['title'],
@@ -24,6 +24,5 @@ class adminPostListModel
             ];
             $this->post[] = $post;
         }
-        
     }
 }

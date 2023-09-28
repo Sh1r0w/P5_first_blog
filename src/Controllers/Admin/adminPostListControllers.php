@@ -9,11 +9,9 @@ class adminPostListControllers
 
     public function postList($data)
     {
-        if(isset($data)){
-        $this->list[] = $data;
+        if (isset($data)) {
+            $this->list[] = $data;
+        }
+        return $this->list;
     }
-    return $this->list;
-
-    }
-    
 }

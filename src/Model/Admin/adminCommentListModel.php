@@ -9,7 +9,7 @@ class adminCommentListModel
     public function __construct(\Controllers\Fonction\factory $fact)
     {
         $list = $fact->instance('Controllers\Repository', 'adminRepo')->commentList();
-        while($row = $list->fetch()){
+        while ($row = $list->fetch()) {
             $comment = [
                 'id' => $row[0],
                 'content' => $row['content'],
@@ -20,7 +20,7 @@ class adminCommentListModel
                 'valide' => $row['valide'],
                 'id_user' => $row['id'],
             ];
-           $this->comments[] = $comment;
+            $this->comments[] = $comment;
         }
         return $this->comments;
     }

@@ -8,10 +8,9 @@ controller. The methods defined in the interface include `__construct()`, `creat
 `delete()`, `update()`, and `count()`. */
 
 interface commentInterface
-
 {
     public function __construct();
-    
+
     public function create($content, $idpost);
 
     public function read($id);
@@ -21,5 +20,4 @@ interface commentInterface
     public function update($id, $content);
 
     public function count();
-    
 }
