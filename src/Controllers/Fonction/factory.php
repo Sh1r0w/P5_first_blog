@@ -7,7 +7,6 @@ require '../src/controllers/fonction/params.php';
 
 class factory
 {
-
     private static $_instance;
 
     public $pictureP;
@@ -37,7 +36,7 @@ class factory
     /**
      * The getInstance function returns an instance of the factory class, creating one if it doesn't
      * already exist.
-     * 
+     *
      * @return The getInstance() function is returning an instance of the factory class.
      */
     public static function getInstance()
@@ -50,13 +49,13 @@ class factory
 
     /**
      * The function creates an instance of a class based on the provided namespace and class name.
-     * 
+     *
      * @param nameSpace The `nameSpace` parameter is a string that represents the namespace of the
      * class you want to instantiate. Namespaces are used to organize classes and avoid naming
      * conflicts.
      * @param classN The parameter `` represents the name of the class that you want to
      * instantiate.
-     * 
+     *
      * @return the instance of the class specified by the namespace and class name provided as
      * arguments.
      */
@@ -78,7 +77,7 @@ class factory
 
     /**
      * The code defines several functions related to connect functionality in a PHP application.
-     * 
+     *
      * @param type The "type" parameter is not used in any of the functions provided. It seems to be an
      * unused parameter in the code.
      * @param input The "input" parameter is an array that contains the user's connect credentials, such
@@ -105,10 +104,10 @@ class factory
         return self::instance('Model\Connect', 'connectCheckCountModel');
     }
 
-    
+
     /**
      * The code defines several functions related to handling post in a PHP application.
-     * 
+     *
      * @param type The "type" parameter is used to determine the specific action to be performed on the
      * post. It could be values like "send", "update", "list", "delete", or "read".
      * @param input The "input" parameter is a variable that contains the input data for the post. It
@@ -149,7 +148,7 @@ class factory
 /**
  * The userUpdate function calls a method in the User controller with the given type and input
  * parameters, along with the connect check count and the name of the picture post.
- * 
+ *
  * @param type The "type" parameter is a string that specifies the type of update operation to be
  * performed on the user. It could be "create", "update", "delete", or any other operation that is
  * defined in the "User" controller.
@@ -158,7 +157,7 @@ class factory
  */
     public function userUpdate($input, $id, $key)
     {
-        self::instance('Controllers\User', 'userSendControllers')->userSend($input, self::connectCheckCount(),self::getInstance(), self::instance('Model\User', 'userPushModel'));
+        self::instance('Controllers\User', 'userSendControllers')->userSend($input, self::connectCheckCount(), self::getInstance(), self::instance('Model\User', 'userPushModel'));
     }
 
     public function updatePass($input, $id, $key)
@@ -169,7 +168,7 @@ class factory
     /**
      * The code defines several functions related to commenting, including sending a comment, reading a
      * comment, counting comments, and deleting a comment.
-     * 
+     *
      * @param type The "type" parameter is used to determine the specific action to be performed in the
      * commentSend and commentDelete methods. It could be a string value indicating the type of action,
      * such as "create", "update", or "delete".
@@ -179,7 +178,7 @@ class factory
      * @param id The "id" parameter is used to identify a specific comment. It is typically an
      * identifier or a unique value that helps to locate and manipulate a specific comment in the
      * system.
-     * 
+     *
      * @return The code is returning the result of the method calls in the respective functions.
      */
     public function commentSend($input, $id)
@@ -191,7 +190,6 @@ class factory
     {
 
         if (isset($id)) {
-
             return self::instance('Controllers\Comment', 'commentReadControllers')->commentReadControllers(self::instance('Model\Comment', 'commentReadModel')->commentRead($id, self::getInstance()));
         }
     }
@@ -211,10 +209,10 @@ class factory
         self::instance('Controllers\Comment', 'commentUpdateControllers')->commentUpdateControllers($input, $id, $key, self::getInstance(), self::instance('Model\Comment', 'commentUpdateModel'));
     }
 
-    
+
     /**
      * The code defines several functions for managing users, post, and comments in an admin panel.
-     * 
+     *
      * @return The adminList() function returns the result of calling the userList() function on an
      * instance of the 'adminControllers' class with an instance of the 'adminUserListModel' class as a
      * parameter.
@@ -270,10 +268,10 @@ class factory
     /**
      * The getProfil function retrieves a user's profile by calling the getUser function from the User
      * model and passing the result to the getUser function from the User controller.
-     * 
+     *
      * @param id The parameter "id" is the unique identifier of the user whose profile we want to
      * retrieve.
-     * 
+     *
      * @return the result of calling the `getUser` method on the `getProfilControllers` instance,
      * passing the result of calling the `getUser` method on the `getProfilModel` instance with the
      * given `` and the current instance as arguments.
@@ -285,11 +283,11 @@ class factory
 
     /**
      * The code defines several functions in PHP for handling post and comment data.
-     * 
+     *
      * @param input The input parameter is an array that contains the data for the respective fields.
      * Each function takes this input array as a parameter and assigns the corresponding value to the
      * respective class property. The function then returns the assigned value.
-     * 
+     *
      * @return The functions titlePost, contentPost, chapoPost, and authorPost are returning the values
      * of the corresponding input fields (title, content, chapo, and author) respectively. The function
      * contentComment is returning the value of the input field comment.
@@ -326,13 +324,12 @@ class factory
     }
 
     /**
-     * Send email 
-     * 
+     * Send email
+     *
      */
 
-     public function sendEmail($input, $id, $key)
-     {
+    public function sendEmail($input, $id, $key)
+    {
         self::instance('Controllers\Mail', 'sendEmail')->sendEmail($id);
-     }
-
+    }
 }

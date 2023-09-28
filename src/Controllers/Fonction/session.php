@@ -4,9 +4,6 @@ namespace Controllers\Fonction;
 
 class session
 {
-
-
-
     public function __set($name, $value)
     {
         $_SESSION[$name] = $value;
@@ -14,12 +11,11 @@ class session
 
     public function __get($name)
     {
-        if (array_key_exists($name, $_SESSION))
-        {
+        if (array_key_exists($name, $_SESSION)) {
             return $_SESSION[$name];
         }
     }
-    
+
     public function __isset($name)
     {
         return isset($_SESSION[$name]);

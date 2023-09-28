@@ -6,9 +6,8 @@ namespace Model\Post;
 the postRepo class. */
 class postDeleteModel
 {
-
     public function postDelete($id, \Controllers\Fonction\factory $fact)
     {
-    $fact->instance('Controllers\Repository', 'postRepo')->postDelete($id);
+        $fact->instance('Controllers\Repository', 'postRepo')->postDelete($id);
     }
 }

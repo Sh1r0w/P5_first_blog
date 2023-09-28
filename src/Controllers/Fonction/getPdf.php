@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 
 namespace Controllers\Fonction;
 
@@ -15,10 +14,9 @@ class getPdf
         $fileInfo = pathinfo($_FILES['pdf']['name']);
         $extension = $fileInfo['extension'];
         $allowedExtensions = ['pdf'];
-        if(in_array($extension, $allowedExtensions)) {
-            move_uploaded_file($_FILES['pdf']['tmp_name'], 'uploads/cv/' . $_SESSION['firstname'] . '-' . $_SESSION['lastname'] .date('YmdHis') . '.' . $extension);
-            $this->name = 'uploads/cv/' . $_SESSION['firstname'] . '-' . $_SESSION['lastname'] .date('YmdHis') . '.' . $extension;
-            
+        if (in_array($extension, $allowedExtensions)) {
+            move_uploaded_file($_FILES['pdf']['tmp_name'], 'uploads/cv/' . $_SESSION['firstname'] . '-' . $_SESSION['lastname'] . date('YmdHis') . '.' . $extension);
+            $this->name = 'uploads/cv/' . $_SESSION['firstname'] . '-' . $_SESSION['lastname'] . date('YmdHis') . '.' . $extension;
         }
         return $this->name;
     }

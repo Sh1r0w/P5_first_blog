@@ -5,15 +5,12 @@ namespace Model\Connect;
 /* The connectCreate class is used to create a new connect and password entry in a database table. */
 class connectCreateModel
 {
-
     private $data = array();
 
     public function connectCreate(\Controllers\Fonction\factory $fact): bool
     {
 
-        if(isset($this->data['email'], $this->data['passwordH']))
-        {
-
+        if (isset($this->data['email'], $this->data['passwordH'])) {
             return $fact->instance('Controllers\Repository', 'connectRepo')->create($this->data['email'], $this->data['passwordH']);
         }
     }
@@ -22,7 +19,7 @@ class connectCreateModel
     {
         $this->data[$name] = $value;
     }
-    
+
     public function __get($name)
     {
         return $this->data[$name];

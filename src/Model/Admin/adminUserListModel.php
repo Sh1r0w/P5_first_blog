@@ -10,7 +10,7 @@ class adminUserListModel
     public function __construct(\Controllers\Fonction\factory $fact)
     {
         $list = $fact->instance('Controllers\Repository', 'adminRepo')->userList();
-        while($row = $list->fetch()){
+        while ($row = $list->fetch()) {
             $user = [
                 'id' => $row['id'],
                 'firstName' => $row['firstname'],

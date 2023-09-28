@@ -2,7 +2,6 @@
 
 namespace Controllers\Interface;
 
-
 /* The code is defining an interface called `userInterface` within the `Controllers\Interface`
 namespace. */
 interface userInterface
@@ -16,5 +15,4 @@ interface userInterface
     public function userUpdate($id);
 
     public function userPasswordUpdate($password, $id);
-
 }

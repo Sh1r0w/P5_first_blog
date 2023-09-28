@@ -20,7 +20,7 @@ class adminRepo implements adminInterface
    /**
     * The code defines three functions in PHP for retrieving a list of users, updating a user's
     * globalAdmin status, and deleting a user.
-    * 
+    *
     * @return The `userList()` function is returning a statement object that contains the result of the
     * SQL query.
     */
@@ -52,7 +52,7 @@ class adminRepo implements adminInterface
     /**
      * The above code defines three functions in PHP for retrieving, updating, and deleting post from
      * a database.
-     * 
+     *
      * @return The `postList()` function is returning a statement object that contains the result of
      * the SQL query.
      */
@@ -84,7 +84,7 @@ class adminRepo implements adminInterface
     /**
      * The above code defines three functions in PHP for managing comments in a database, including
      * listing comments, updating the validation status of a comment, and deleting a comment.
-     * 
+     *
      * @return The `commentList()` function is returning a statement object that contains the result of
      * the SQL query.
      */

@@ -22,11 +22,11 @@ class postListModel
                 'firstname' => $row['firstname'],
                 'author' => $row['author'],
                 'chapo' => $row['chapo'],
-                'img'=> $row['pictures'],
+                'img' => $row['pictures'],
                 'imgP' => $row['picture'],
                 'id_user' => $row[7],
             ];
-    
+
             $this->post[] = $post;
         }
     }

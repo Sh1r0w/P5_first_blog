@@ -19,7 +19,7 @@ class postUpdateModel
         $list = $fact->instance('Controllers\Repository', 'postRepo')->postRead($id)->fetch();
         $this->imgPost = $list['picture'];
 
-        if(isset($img) != null){
+        if (isset($img) != null) {
                     unlink($this->imgPost);
                 $this->imgPost = $img;
         }
