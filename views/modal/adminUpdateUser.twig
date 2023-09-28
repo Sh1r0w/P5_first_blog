@@ -1,32 +1,47 @@
 {% import "macro/forms.twig" as forms %}
-    <div class="modal fade " id="passwordChange" tabindex="-1" aria-labelledby="passwordUpdate" aria-hidden="true">
-        <form action="user?action=updatePass" method="post">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        Changement de mot de passe
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        {{ forms.input('Mot de passe actuel ', 'password', null, 'password') }}</br>
-                        {{ forms.input('nouveau mot de passe', 'newPassword', null, 'password') }}</br>
-                        {{ forms.input('vérification nouveau mot de passe', 'newPasswordVerif', null, 'password') }}
-                        
-                    </div>
-                    <div></div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            Annuler
-                                                
-                        </button>
-                        <button type="submit" class="btn btn-primary">
-                            Valider
-                                                
-                        </button>
-                        
-                    </div>
+<div class="modal fade " id="passwordChange" tabindex="-1" aria-labelledby="passwordUpdate" aria-hidden="true">
+    <form action="user?action=updatePass" method="post">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="card-header card-title">
+                    Changement de mot de passe
+                                            
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            </div>
-            </form>
+                <div class="modal-body">
+                    {{ forms.password('Mot de passe actuel', 'password', null, 'password', 8, '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' ) }}
+                </br>
+                {{ forms.password('Nouveau mot de passel', 'newPassword', null, 'password', 8, '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' ) }}
+            </br>
+            {{ forms.password('Vérification du nouveau mot de passe', 'newPasswordVerif', null, 'password', 8, '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' ) }}
+        </br>
+        {{ forms.csrf }}
+        <div class="mt-2">
+            Le mot de passe doit :
+            <ul>
+                <li>
+                    Avoir 8 caractères minimum
+                </li>
+                <li>
+                    Contenir minimum 1 minuscule et majuscule
+                </li>
+                <li>
+                    Contenir minimum 1 chiffre
+                </li>
+            </ul>
+        </div>
     </div>
-    
+    <div></div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            Annuler
+                                                            
+                                    
+        </button>
+        <button type="submit" class="btn btn-outline-success">
+            Valider
+                                                            
+                                    
+        </button>
+    </div>
+</div></div></form></div>

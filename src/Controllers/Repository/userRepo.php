@@ -17,25 +17,27 @@ class userRepo implements userInterface
 
     public function userCreate()
     {
-            $this->dbase->prepare(
-            "INSERT INTO ae_user(firstname, lastname,pictures, citation, id_login, globalAdmin) VALUES(?,?,?,?,?,?)"
+            $statement = $this->dbase->prepare(
+            "INSERT INTO ae_user(firstname, lastname,pictures, citation, id_login, globalAdmin, cv) VALUES(?,?,?,?,?,?,?)"
         );
+        return $statement;
     }
 
     public function userRead($id)
     {
         $statement = $this->dbase->prepare(
-            "SELECT * FROM ae_connect a LEFT JOIN ae_user u ON a.id = u.id_connect WHERE a.id = ?"
+            "SELECT * FROM ae_connect a LEFT JOIN ae_user u ON a.id = u.id_login WHERE a.id = ?"
         );
         $statement->execute([$id]);
-        return $statement;
+        return $statement->fetch();
     }
 
     public function userUpdate($id)
     {
         $statement = $this->dbase->prepare(
-            "UPDATE ae_user SET firstname = ?, lastname = ?, citation = ?, pictures = ? WHERE id = $id"
+            "UPDATE ae_user SET firstname = ?, lastname = ?, pictures = ?, citation = ?, cv = ?  WHERE id_login = $id"
         );
+        return $statement;
     }
 
     public function userPasswordUpdate($password, $id)

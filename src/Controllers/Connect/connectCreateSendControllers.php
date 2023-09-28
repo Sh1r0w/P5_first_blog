@@ -21,7 +21,7 @@ class connectCreateSendControllers
                 'email' => $input['email'],
                 'password' => $input['password']
             ];
-            $fact->connectSend('connectSend', $autoL);
+            $fact->connectSend($autoL);
             header('location: /user');
         } else {
             throw new \Exception("Compte déjà existant");

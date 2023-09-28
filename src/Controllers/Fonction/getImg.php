@@ -3,11 +3,11 @@
 namespace Controllers\Fonction;
 
 /* The `class img` is a PHP class that handles the uploading and processing of image files. */
-class img
+class getImg
 {
-    public $name;
+    public $name = null;
 
-    public function __construct()
+    public function getImg()
     {
 
         $fileInfo = pathinfo($_FILES['picture']['name']);
@@ -16,9 +16,9 @@ class img
         if (in_array($extension, $allowedExtensions)) {
             move_uploaded_file($_FILES['picture']['tmp_name'], 'uploads/profile/254' . $_SESSION['idCo'] .date('YmdHis') . '.' . $extension);
             $this->name = 'uploads/profile/'. '254' . $_SESSION['idCo'] .date('YmdHis') . '.' . $extension;
-            return $this->name;
+            echo 'ok';
         }
-    
+        return $this->name;
         
     }
 }

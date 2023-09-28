@@ -1,0 +1,120 @@
+{% extends 'layout.twig' %}
+{% import "macro/forms.twig" as forms %}
+{% block head %}
+    {% for p in postRead %}
+        <title>
+            {{ p.title }}
+        </title>
+    {% endfor %}
+{% endblock %}
+{% block content %}
+<div class="row d-flex flex-column align-content-center">
+{% for p in postRead %}
+    
+    <div class="card m-5">
+            <h4 class="card-header card-title border-dark">
+                {{ p.title }}
+            </h4>
+            {% if p.imgP != null %}
+                <img src="{{ p.imgP }}" class="card-img-top " alt=" {{ p.title }}">
+                {% endif %}
+            </br>
+            <div class="card-body">
+                {{ p.content }}
+            </div>
+            <div class="modal-footer justify-content-end">
+                {% if session.admin == '1' or session.idUs == p.idUs %}
+
+                    
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vue{{ p.id }}" data-bs-dismiss="modal">
+                        Modification   
+                    </button>
+                    <div class="modal fade " id="vue{{ p.id }}" tabindex="-1"  aria-hidden="true">
+                        {% include 'modal/postModifModal.twig' %}
+                    </div>
+                    <form action="postDelete?action=postDelete&id={{ p.id }}" method="post">
+                        {{ forms.csrf }}
+                        <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-primary btn-danger" type="submit">
+                            Delete                                                           
+                        
+                    </button>
+                    </form>
+
+        {% endif %}
+        
+                <small class="text-muted">
+                    de :   
+                    {% if p.img == null %}
+                        <img class="me-2 img-onePost" src="uploads/profile/anonyme.png" alt="{{ p.author }}" />
+                        {% else %}
+                        <img class="me-2 img-onePost" src="{{ p.img }}" alt="{{ p.author }}">
+                        {% endif %}
+                        <cite title="Auteur">
+                            <a href="profil?id={{ p.idUs }}" form="post" target="_blank">{{ p.author }}</a>
+                        </cite>
+                        <br/>
+                        {% if p.addDate != p.updDate %}
+                            Modifié le 
+                        </br>
+                        {{ p.updDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
+                    {% else %}
+                        Crée le 
+                    </br>
+                    {{ p.addDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
+                </br>
+            {% endif %}
+        </small>
+    </div>
+
+<div class="text-center">
+<form action="postAddComment?action=commentSend&id={{ p.id }}" method="post">
+    {{ forms.textarea('Commenter', 'comment', null, 2, 45) }}
+    <button type="submit" class="btn btn-primary">
+        {{ forms.csrf }}
+        Valider
+                                                                                    
+                
+    </button>
+</form></div>
+{% for c in commentsRead %}
+    <div class="card-body">
+        {{ c.content }}
+    </div>
+    <div class="card-footer text-end">
+        <small class="text-muted">
+        de : 
+                    {% if c.img == null %}
+                        <img class="me-2 img-onePost" src="uploads/profile/anonyme.png" alt="{{ p.author }}" />
+                        {% else %}
+                        <img class="me-2 img-onePost" src="{{ c.img }}" alt="{{ c.author }}">
+                        {% endif %}
+        <cite title="Auteur">
+            <a href="profil?id={{ c.id_user }}" form="post" target="_blank">{{ c.firstname }} {{ c.lastname }}</a></br>
+                            {{ c.citation }} </br>
+                            {{ c.addDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
+        </cite>
+        </small>
+        {% if session.admin == '1' or session.idUs == c.id_user %}
+            <div class="modal-footer">
+                
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#commentUpdate{{ c.id }}" data-bs-dismiss="modal">
+                    Modification                                  
+                </button>
+                <div class="modal fade" id="commentUpdate{{ c.id }}" tabindex="-1" aria-hidden="true">
+                {% include 'modal/commentUpdateModal.twig' %}
+                </div>
+                <form action="postDelete?key={{ p.id }}&action=commentDelete&id={{ c.id }}" method="post">
+                    {{ forms.csrf }}
+                    <button onClick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')" class="btn btn-primary btn-danger" type="submit">
+                        Delete                                                                                       
+                    
+                </button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+{% endfor %}
+</div>
+{% endfor %}
+</div>
+{% endblock %}

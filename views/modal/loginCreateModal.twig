@@ -12,16 +12,31 @@
           {{ forms.input('Votre email','email', null, 'email')}}
         </div>
         <div>
-        {{ forms.input('Mot de passe', 'password', null, 'password')}}</br>
-        {{ forms.input('Vérification du mot de passe','password2', null, 'password')}}
+          {{ forms.password('Mot de passe', 'password', null, 'password', 8, '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' )}}</br>
+          {{ forms.password('Vérification du Mot de passe', 'password2', null, 'password', 8, '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' )}}
+          {{ forms.csrf }}
       </div>
+      <div class="mt-2">
+            Le mot de passe doit :
+            <ul>
+                <li>
+                    Avoir 8 caractères minimum
+                </li>
+                <li>
+                    Contenir minimum 1 minuscule et majuscule
+                </li>
+                <li>
+                    Contenir minimum 1 chiffre
+                </li>
+            </ul>
+        </div>
       <div>
-        <input class="btn btn-primary btn-success" type="submit" />
+        <input class="btn btn-outline-success" type="submit" />
       </div>
       </form>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-target="#login" data-bs-toggle="modal" data-bs-dismiss="modal">Se connecter</button>
+        <button class="btn btn-outline-primary" data-bs-target="#login" data-bs-toggle="modal" data-bs-dismiss="modal">Se connecter</button>
       </div>
     </div>
   </div>

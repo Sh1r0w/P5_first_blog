@@ -1,0 +1,59 @@
+{% extends 'layout.twig' %}
+{% import "macro/forms.twig" as forms %}
+{% block head %}
+    <title>
+        Mon Profile
+            
+    </title>
+{% endblock %}
+{% block content %}
+    <form action="userSend?action=userUpdate" method="post" enctype="multipart/form-data">
+        <div class="row d-flex flex-column align-content-center">
+            <div class="card m-5">
+                <div class="card-header card-title">
+                    {% if session.img == null %}
+                        <img class="me-2 img-onePost" src="uploads/profile/anonyme.png" alt="{{ session.firstname }}" />
+                        {% else %}
+                        <img class="me-2 img-onePost" src="{{ session.img }}" alt="{{ session.firstname }}">
+                        {% endif %} {{  session.firstname }}
+                                    
+                </div>
+
+                <div class="card-body">
+
+            {{ forms.input('Votre Prénom', 'firstname',   session.firstname , 'texte') }}
+        </br>
+        {{ forms.input('Votre Nom', 'lastname',  session.lastname , 'texte') }}
+
+    {{ forms.csrf }} </br>
+
+        {{ forms.textarea('Votre Citation', 'citation',  session.citation, 5, 60) }}</br>
+
+        {{ forms.input('Changer votre image', 'picture',  null, 'file') }}
+
+        {% if session.img != null %}
+            
+            <button name="deleteImg" class="btn btn-outline-danger"> Supprimer votre image </button> </br>
+
+        {% endif %}
+
+        {{ forms.input('Votre CV au format PDF:', 'pdf',  null, 'file') }}
+
+            {% if session.pdf != null %}
+                <embed src="{{ session.pdf }}" width="250" height="350" type="application/pdf" /></br>
+                <button name="deletePdf" class="btn btn-outline-danger"> Supprimer votre CV </button> </br>
+            {% endif %}
+
+    </div>
+    <div class="card-footer">
+    
+    <a type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#passwordChange" role="button">
+        Changer son mot de passe    
+    </a>
+    <button class="btn btn-outline-success">
+        Valider
+    </button>
+    </div>
+    </div>
+</div>
+</form>{% include 'modal/adminUpdateUser.twig' %}{% endblock %}

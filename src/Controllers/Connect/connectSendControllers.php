@@ -14,7 +14,7 @@ class connectSendControllers
     protected $fact;
     protected $connectSendM;
 
-    public function connectSend(array $input, \Controllers\Fonction\factory $fact, \Model\connect\connectSendModel $lSendM){
+    public function connectSend(array $input, \Controllers\Fonction\factory $fact, \Model\Connect\connectSendModel $lSendM){
 
         $lSendM->email = $input['email'];
         $this->fact = $fact;
@@ -29,6 +29,7 @@ class connectSendControllers
                     throw new \Exception("Compte inexistant");
                 }
                 $this->validatePassword($this->connectM['pwd'], $lSendM);
+                $fact->instance('Controllers\Fonction', 'cookie')->cookie();
                 header('location: /');
 
         } catch (\Exception $e) {
@@ -57,6 +58,7 @@ class connectSendControllers
 
         $connectSM->session = '1';
         $connectSM->getUser($this->fact);
+        
 
     }
     

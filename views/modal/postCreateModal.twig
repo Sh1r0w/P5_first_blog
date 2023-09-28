@@ -10,6 +10,7 @@
                 <div class="modal-body">
                     {{ forms.textarea('Votre résumé', 'chapo', null, 5, 30) }}</br>
                     {{ forms.textarea('Votre texte', 'content', null, 5, 60) }}
+                    {{ forms.csrf }}
                     Fichier joint: {{ forms.input('Fichier joint', 'picture',  null, 'file') }}
                 </div>
                 <div></div>

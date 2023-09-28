@@ -84,12 +84,12 @@ class factory
      * @param input The "input" parameter is an array that contains the user's connect credentials, such
      * as their email and password.
      */
-    public function connectSend($type, $input)
+    public function connectSend($input)
     {
         self::instance('Controllers\Connect', 'connectSendControllers')->connectSend($input, self::getInstance(), self::instance('Model\Connect', 'connectSendModel'));
     }
 
-    public function connectCreateSend($type, $input, $id, $key)
+    public function connectCreateSend($input)
     {
 
         self::instance('Controllers\Connect', 'connectCreateSendControllers')->connectCreateSend($input, self::connectCheck($input), self::getInstance(), self::instance('Model\Connect', 'connectCreateModel'));
@@ -119,24 +119,24 @@ class factory
      * @param key The "key" parameter is not used in any of the functions provided. It is not clear
      * what its purpose is or how it should be used.
      */
-    public function postSend($type, $input, $id, $key)
+    public function postSend($input, $id, $key)
     {
-        self::instance('Controllers\Post', 'postSendControllers')->$type(self::titlePost($input), self::chapoPost($input), self::contentPost($input), self::authorPost($input), self::picturePost()->name, self::getInstance());
+        self::instance('Controllers\Post', 'postSendControllers')->postSend(self::titlePost($input), self::chapoPost($input), self::contentPost($input), self::authorPost($input), self::getInstance());
     }
 
-    public function postUpdate($type, $input, $id, $key)
+    public function postUpdate($input, $id, $key)
     {
         self::instance('Controllers\Post', 'postUpdateControllers')->postUpdate($input, $id, self::getInstance());
     }
 
-    public function postList($type)
+    public function postList()
     {
-        return self::instance('Controllers\Post', 'postListControllers')->$type(self::instance('Model\post', 'postListModel'));
+        return self::instance('Controllers\Post', 'postListControllers')->postList(self::instance('Model\post', 'postListModel'));
     }
 
-    public function postDelete($type, $input, $id, $key)
+    public function postDelete($input, $id, $key)
     {
-        self::instance('Controllers\Post', 'postDeleteControllers')->$type($id, self::getInstance());
+        self::instance('Controllers\Post', 'postDeleteControllers')->postDelete($id, self::getInstance());
     }
 
     public function postRead($id)
@@ -156,12 +156,12 @@ class factory
  * @param input The  parameter is the data that you want to update for the user. It could be an
  * array or an object containing the updated information for the user.
  */
-    public function userUpdate($type, $input, $id, $key)
+    public function userUpdate($input, $id, $key)
     {
-        self::instance('Controllers\User', $type)->$type($input, self::connectCheckCount(),self::getInstance(), self::picturePost()->name, self::pdfPost()->name);
+        self::instance('Controllers\User', 'userSendControllers')->userSend($input, self::connectCheckCount(),self::getInstance(), self::instance('Model\User', 'userPushModel'));
     }
 
-    public function updatePass($type, $input, $id, $key)
+    public function updatePass($input, $id, $key)
     {
         self::instance('Controllers\User', 'updatePassControllers')->updatePass($input, self::getInstance(), self::instance('Model\User', 'updatePassModel'));
     }
@@ -182,9 +182,9 @@ class factory
      * 
      * @return The code is returning the result of the method calls in the respective functions.
      */
-    public function commentSend($type, $input, $id)
+    public function commentSend($input, $id)
     {
-        return self::instance('Controllers\Comment', 'commentSendControllers')->$type(self::contentComment($input), $id, self::getInstance());
+        return self::instance('Controllers\Comment', 'commentSendControllers')->commentSend(self::contentComment($input), $id, self::getInstance());
     }
 
     public function commentRead($id)
@@ -201,9 +201,14 @@ class factory
         return self::instance('Controllers\Comment', 'commentCountControllers');
     }
 
-    public function commentDelete($type, $input, $id, $key)
+    public function commentDelete($input, $id, $key)
     {
-        self::instance('Controllers\Comment', 'commentDeleteControllers')->$type($id, $key, self::getInstance());
+        self::instance('Controllers\Comment', 'commentDeleteControllers')->commentDelete($id, $key, self::getInstance());
+    }
+
+    public function commentUpdate($input, $id, $key)
+    {
+        self::instance('Controllers\Comment', 'commentUpdateControllers')->commentUpdateControllers($input, $id, $key, self::getInstance(), self::instance('Model\Comment', 'commentUpdateModel'));
     }
 
     
@@ -219,12 +224,12 @@ class factory
         return self::instance('Controllers\Admin', 'adminControllers')->userList(self::instance('Model\Admin', 'adminUserListModel'));
     }
 
-    public function adminUserUpdate($type, $input, $id, $key)
+    public function adminUserUpdate($input, $id, $key)
     {
         self::instance('Controllers\Admin', 'adminUserControllers')->userUpdate($id, self::instance('Model\Admin', 'adminUserUpdateModel')->adminUpdate($key), self::getInstance());
     }
 
-    public function adminUserDelete($type, $input, $id, $key)
+    public function adminUserDelete($input, $id, $key)
     {
         self::instance('Controllers\Admin', 'adminUserDeleteControllers')->adminUserDelete($id, self::getInstance());
     }
@@ -234,12 +239,12 @@ class factory
         return self::instance('Controllers\Admin', 'adminPostListControllers')->postList(self::instance('Model\Admin', 'adminPostListModel'));
     }
 
-    public function adminPostUpdate($type, $input, $id, $key)
+    public function adminPostUpdate($input, $id, $key)
     {
         self::instance('Controllers\Admin', 'adminPostUpdateControllers')->postUpdate($id, self::instance('Model\Admin', 'adminPostUpdateModel')->postUpdate($key), self::getInstance());
     }
 
-    public function adminPostDelete($type, $input, $id, $key)
+    public function adminPostDelete($input, $id, $key)
     {
         self::instance('Controllers\Admin', 'adminPostDeleteControllers')->postDelete($id, self::instance('Model\Admin', 'adminPostDeleteModel')->postDelete($id), self::getInstance());
     }
@@ -250,33 +255,29 @@ class factory
         return self::instance('Controllers\Admin', 'adminCommentListControllers')->commentList(self::instance('Model\Admin', 'adminCommentListModel'));
     }
 
-    public function adminCommentUpdate($type, $input, $id, $key)
+    public function adminCommentUpdate($input, $id, $key)
     {
         self::instance('Controllers\Admin', 'adminCommentUpdateControllers')->commentUpdate($id, self::instance('Model\Admin', 'adminCommentUpdateModel')->commentUpdate($key), self::getInstance());
     }
 
-    public function adminCommentDelete($type, $input, $id, $key)
+    public function adminCommentDelete($input, $id, $key)
     {
         self::instance('Controllers\Admin', 'adminCommentDeleteControllers')->commentDelete($id, self::getInstance());
     }
 
+
+
     /**
-     * The code defines two functions, `picturePost()` and `getProfil()`, in a PHP class.
+     * The getProfil function retrieves a user's profile by calling the getUser function from the User
+     * model and passing the result to the getUser function from the User controller.
      * 
-     * @return In the `picturePost()` function, the `pictureP` property is being returned.
+     * @param id The parameter "id" is the unique identifier of the user whose profile we want to
+     * retrieve.
+     * 
+     * @return the result of calling the `getUser` method on the `getProfilControllers` instance,
+     * passing the result of calling the `getUser` method on the `getProfilModel` instance with the
+     * given `` and the current instance as arguments.
      */
-    public function picturePost()
-    {
-        $this->pictureP = self::instance('Controllers\Fonction', 'img');
-        return $this->pictureP;
-    }
-
-    public function pdfPost()
-    {
-        $this->pdf = self::instance('Controllers\Fonction', 'uploadPdf');
-        return $this->pdf;
-    }
-
     public function getProfil($id)
     {
         return self::instance('Controllers\User', 'getProfilControllers')->getUser(self::instance('Model\User', 'getProfilModel')->getUser($id, self::getInstance()));
@@ -329,7 +330,7 @@ class factory
      * 
      */
 
-     public function sendEmail($type, $input, $id, $key)
+     public function sendEmail($input, $id, $key)
      {
         self::instance('Controllers\Mail', 'sendEmail')->sendEmail($id);
      }

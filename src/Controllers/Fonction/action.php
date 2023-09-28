@@ -17,12 +17,12 @@ class action
    * @param array input The `` parameter is an array that contains the input data for the
    * constructor. It is passed as an argument to the constructor when it is called.
    */
-  public function __construct($type, array $input)
+  public function __construct(array $input)
   {
     $fact = factory::getInstance();
     if (isset($_GET['action'])) { 
         $action = $_GET['action'];
-        $fact->$action($action, $input, $_GET['id'], $_GET['key']);
+        $fact->$action($input, $_GET['id'], $_GET['key']);
     }
   }
 }

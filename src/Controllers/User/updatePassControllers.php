@@ -8,7 +8,7 @@ class updatePassControllers
     {   
         
         $user = $fact->instance('Controllers\Repository', 'connectRepo')->connect($_SESSION['logged_user'])->fetch();
-        if(password_verify($input['password'], $user['pwd'])){
+        if(password_verify($input['password'], $user['pwd']) && $_POST['csrf_token'] === $_SESSION['csrf_token']){
         $updatePassModel->update = $input['newPassword'];
         $updatePassModel->updateVerif = $input['newPasswordVerif'];
         $updatePassModel->updatePass();

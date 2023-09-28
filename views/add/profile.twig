@@ -1,17 +1,29 @@
-{% if u.img != null%}
-{% block head %}<title>Profil de {{ u.firstname }} </title>{% endblock %}
-    <img src="{{ u.img }}" class="card-img-top" alt=" {{ u.lastname }}" style="width: 250px">
-  {% endif %}
-      <h4>
-            Nom : {{ u.lastname }} </br>
-            Prénom : {{ u.firstname }}</br>
 
-            Citation : {{ u.citation }}</br>
-            {% if u.pdf != null %}
-            Mon CV :</br>
-            <embed src ="{{ u.pdf }}" width="250" height="350" type="application/pdf" />
-            {% endif %}
-      </h4>
-      
-  </br>
-</br>
+
+
+{% block head %}<title> Profil de {{ u.firstname }} </title>{% endblock %}
+  <div class="addProfil card-header d-flex ">
+    {% if u.img == null %}
+      <img src="uploads/profile/anonyme.png" alt="{{ u.author }}" />
+      {% else %}
+      <img src="{{ u.img }}" alt="{{ u.author }}">
+      {% endif %}
+
+      <span>
+            Nom :</br> 
+            <cite>{{ u.lastname|capitalize }} {{ u.firstname|capitalize }}</cite></br>
+
+            
+
+            Citation :</br> 
+            <cite>{{ u.citation|capitalize }}</cite></br>
+            
+      </span>
+  </div>
+  <div class="card-body text-center fs-5">
+    {% if u.pdf != null %}
+      Le CV de {{ u.firstname|capitalize }} :</br>
+      <embed src ="{{ u.pdf }}" width="250" height="350" type="application/pdf" />
+      {% endif %}
+  </div>
+

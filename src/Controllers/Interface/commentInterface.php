@@ -18,7 +18,7 @@ interface commentInterface
 
     public function delete($id);
 
-    public function update();
+    public function update($id, $content);
 
     public function count();
     

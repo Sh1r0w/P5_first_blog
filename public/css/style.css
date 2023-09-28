@@ -1,0 +1,71 @@
+body {
+    background-image: url('/uploads/background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+h1,
+h2,
+h3,
+p {
+    color: white;
+}
+
+.logo-home {
+    text-align: center;
+}
+
+.card {
+    max-width: 500px !important;
+    
+}
+
+.cardOne{
+    cursor:pointer;
+}
+
+.img-onePost {
+    max-width: 40px !important; 
+}
+
+.card-title {
+    text-align: center !important;
+    color:black !important;
+}
+
+.card-body {
+    color:black !important;
+}
+
+.card-footer {
+    text-align: end !important;
+}
+
+.card-button {
+    margin-bottom: 15px;
+    float:right;
+}
+
+.button-login {
+    margin-top: 15px !important;
+    
+}
+
+.profil .card{
+    margin-top: 15px !important;
+    padding : 15px !important;
+}
+
+.profil img {
+    width: 160px;
+    margin: 0 50px 0 0;
+}
+
+.addProfil {
+    padding : 40px;
+    font-size: 1.2rem;
+}
+
+.btn {
+    margin : 15px 15px 15px 15px;
+}

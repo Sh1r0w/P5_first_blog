@@ -15,7 +15,9 @@ class adminCommentUpdateControllers
     */
     public function commentUpdate($id, $key, \Controllers\Fonction\factory $fact)
     {
-        $fact->instance('Controllers\Repository', 'adminRepo')->commentUpdate($id, $key);
-        header('location: \commentListValid');
+        if($_POST['csrf_token'] === $_SESSION['csrf_token']){
+        $fact->instance('Controllers\Repository', 'adminRepo')->commentUpdate($id, $key);   
+    }
+    header('location: \commentListValid');
     }
 }

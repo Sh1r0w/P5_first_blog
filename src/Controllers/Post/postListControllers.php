@@ -14,6 +14,6 @@ class postListControllers
         $this->post = $data;
     }
     return $this->post;
-    
+
 }
 }

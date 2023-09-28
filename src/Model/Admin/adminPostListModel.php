@@ -18,8 +18,9 @@ class adminPostListModel
                 'content' => $row['content'],
                 'author' => $row['author'],
                 'addDate' => $row['addDate'],
-                'picture' => $row['picture'],
+                'imgP' => $row['picture'],
                 'valide' => $row['valide'],
+                'id_user' => $row['id_user'],
             ];
             $this->post[] = $post;
         }

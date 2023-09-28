@@ -26,7 +26,7 @@ class commentRepo implements commentInterface
     public function read($id)
     {
         $statement = $this->dbase->query(
-            "SELECT * FROM ae_comment WHERE id_post = $id AND valide = 1 ORDER BY addDate DESC"
+            "SELECT * FROM ae_comment c INNER JOIN ae_user u ON c.id_user = u.id WHERE c.id_post = $id AND c.valide = 1 ORDER BY addDate DESC"
         );
         return $statement;
     }
@@ -39,9 +39,12 @@ class commentRepo implements commentInterface
         $statement->execute();
     }
 
-    public function update()
+    public function update($id, $content)
     {
-        
+        $statement = $this->dbase->prepare(
+            "UPDATE ae_comment SET content = ? WHERE id = $id"
+        );
+        $statement->execute([$content]);
     }
 
     public function count()

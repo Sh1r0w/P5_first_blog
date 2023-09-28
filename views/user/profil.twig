@@ -2,21 +2,25 @@
     {% import "macro/forms.twig" as forms %}
 
     {% block content %}
-        page Profil
-        <div class="card">
+        <div class="profil row d-flex flex-column align-content-center">
 
         {% for u in user %}
 
-            {% include 'add/profile.twig' %}
-                <div>
+            
+                <div class="card">
+                    {% include 'add/profile.twig' %}
                     <form action="email?action=sendEmail&id={{u.id}}" method="post">
-                       <div class="d-none">
+                        <div class="card-header text-center fs-5">
+                            Envoyer lui un message
+                        </div>
+                       <div class="card-body d-none">
                         {{ forms.input('Email', 'email_to', u.email, 'email')}}</br>
                        {{ forms.input('Votre Email', 'email_from', session.logged_user, 'email')}}</br>
                        </div>
                        {{ forms.input("Object du Message", 'object', null, 'text')}}</br>
                        
                        {{ forms.textarea('Votre Message', 'body', null, 5,60) }}</br>
+                       {{ forms.csrf }}
                        <button type="submit" class="btn btn-primary">Envoyer</button>
                        
                     </form>
