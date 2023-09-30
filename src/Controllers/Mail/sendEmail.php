@@ -2,7 +2,7 @@
 
 namespace Controllers\Mail;
 
-class sendEmail
+class SendEmail
 {
     function sendEmail($id)
     {

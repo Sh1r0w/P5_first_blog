@@ -2,15 +2,24 @@
 
 namespace Model\Post;
 
-/* The `postListModel` class retrieves a list of post from a repository and stores them in an array. */
-class postListModel
+class PostListModel
 {
     public $post;
 
-    public function __construct(\Controllers\Fonction\factory $fact)
+    /**
+     * The function constructs an array of posts by fetching data from a repository.
+     *
+     * @param \Controllers\Fonction\Factory fact The parameter `` is an instance of the `Factory`
+     * class from the `Controllers\Fonction` namespace. It is used to create instances of different
+     * classes.
+     */
+    public function __construct(\Controllers\Fonction\Factory $fact)
     {
 
-        $list = $fact->instance('Controllers\Repository', 'postRepo')->postList();
+        $list = $fact->instance(
+            'Controllers\Repository',
+            'PostRepo'
+        )->postList();
         while ($row = $list->fetch()) {
             $post = [
                 'id' => $row[0],

@@ -2,14 +2,19 @@
 
 namespace Model\Admin;
 
-/* The adminpostListModel class retrieves a list of post from the adminRepo repository and stores
-them in the post property. */
-class adminPostListModel
+class AdminPostListModel
 {
     public $post;
-    public function __construct(\Controllers\Fonction\factory $fact)
+    /**
+     * The function constructs an array of posts by fetching data from a repository.
+     *
+     * @param \Controllers\Fonction\Factory fact The parameter `` is an instance of the `Factory`
+     * class from the `Controllers\Fonction` namespace. It is used to create instances of different
+     * classes.
+     */
+    public function __construct(\Controllers\Fonction\Factory $fact)
     {
-        $list = $fact->instance('Controllers\Repository', 'adminRepo')->postList();
+        $list = $fact->instance('Controllers\Repository', 'AdminRepo')->postList();
         while ($row = $list->fetch()) {
             $post = [
                 'id' => $row['id'],

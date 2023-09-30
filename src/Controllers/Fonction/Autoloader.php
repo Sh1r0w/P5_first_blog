@@ -2,11 +2,10 @@
 
 namespace Controllers\Fonction;
 
-/* The `class Autoloader` is responsible for registering an autoloader function in PHP. This autoloader
-function is used to automatically load classes when they are needed, without the need to manually
-include the class files. */
 class Autoloader
 {
+    /* The `register()` function is a static function within the `Autoloader` class. It is responsible
+    for registering an autoloader function using the `spl_autoload_register()` function. */
     static function register()
     {
 

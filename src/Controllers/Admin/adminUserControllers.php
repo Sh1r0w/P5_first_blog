@@ -2,14 +2,14 @@
 
 namespace Controllers\Admin;
 
-/* The adminUserControllers class is responsible for updating a user's information and redirecting to
+/* The AdminUserControllers class is responsible for updating a user's information and redirecting to
 the user list page. */
-class adminUserControllers
+class AdminUserControllers
 {
-    public function userUpdate($id, $key, \Controllers\Fonction\factory $fact)
+    public function userUpdate($id, $key, \Controllers\Fonction\Factory $fact)
     {
         if ($_POST['csrf_token'] === $_SESSION['csrf_token']) {
-            $fact->instance('Controllers\Repository', 'adminRepo')->userUpdate($id, $key);
+            $fact->instance('Controllers\Repository', 'AdminRepo')->userUpdate($id, $key);
         }
         header('location: \userList');
     }

@@ -3,11 +3,11 @@
 namespace Controllers\Fonction;
 
 /* The "action" class in PHP handles actions based on the "action" parameter in the URL. */
-class action
+class Action
 {
   /**
    * The function checks if an action is set in the GET parameters and calls the corresponding method
-   * in the factory class with the action, input, and id as arguments, otherwise it calls the parent
+   * in the Factory class with the action, input, and id as arguments, otherwise it calls the parent
    * constructor.
    *
    * @param match The "match" parameter is likely a variable that holds some sort of matching
@@ -18,7 +18,7 @@ class action
    */
     public function __construct(array $input)
     {
-        $fact = factory::getInstance();
+        $fact = Factory::getInstance();
         if (isset($_GET['action'])) {
             $action = $_GET['action'];
             $fact->$action($input, $_GET['id'], $_GET['key']);

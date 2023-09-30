@@ -2,7 +2,7 @@
 
 namespace Controllers\Admin;
 
-class adminCommentUpdateControllers
+class AdminCommentUpdateControllers
 {
    /**
     * The commentUpdate function updates a comment in the admin repository and redirects to the
@@ -13,10 +13,10 @@ class adminCommentUpdateControllers
     * @param key The key parameter is used to identify the specific comment that needs to be updated.
     * It is likely a unique identifier such as a comment ID or a comment key.
     */
-    public function commentUpdate($id, $key, \Controllers\Fonction\factory $fact)
+    public function commentUpdate($id, $key, \Controllers\Fonction\Factory $fact)
     {
         if ($_POST['csrf_token'] === $_SESSION['csrf_token']) {
-            $fact->instance('Controllers\Repository', 'adminRepo')->commentUpdate($id, $key);
+            $fact->instance('Controllers\Repository', 'AdminRepo')->commentUpdate($id, $key);
         }
         header('location: \commentListValid');
     }

@@ -2,14 +2,20 @@
 
 namespace Model\Admin;
 
-/* The adminUserListModel class retrieves a list of users from the adminRepo repository and stores them
-in an array. */
-class adminUserListModel
+class AdminUserListModel
 {
     public $users;
-    public function __construct(\Controllers\Fonction\factory $fact)
+    /**
+     * The function constructs an array of user data by fetching information from a repository using a
+     * factory.
+     *
+     * @param \Controllers\Fonction\Factory fact The parameter `` is an instance of the `Factory`
+     * class from the `Controllers\Fonction` namespace. It is used to create instances of different
+     * classes.
+     */
+    public function __construct(\Controllers\Fonction\Factory $fact)
     {
-        $list = $fact->instance('Controllers\Repository', 'adminRepo')->userList();
+        $list = $fact->instance('Controllers\Repository', 'AdminRepo')->userList();
         while ($row = $list->fetch()) {
             $user = [
                 'id' => $row['id'],

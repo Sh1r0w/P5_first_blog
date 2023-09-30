@@ -2,7 +2,7 @@
 
 namespace Controllers\Fonction;
 
-class session
+class Session
 {
     public function __set($name, $value)
     {

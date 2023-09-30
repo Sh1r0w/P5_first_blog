@@ -2,8 +2,8 @@
 
 namespace Controllers\Admin;
 
-/* The adminpostListControllers class is used to manage and display a list of post. */
-class adminPostListControllers
+/* The AdminPostListControllers class is used to manage and display a list of post. */
+class AdminPostListControllers
 {
     public $list;
 

@@ -3,10 +3,10 @@
 namespace Controllers\Fonction;
 
 require '../src/controllers/fonction/params.php';
-/* The `class db` is responsible for creating and connecting to a MySQL database. It creates the
+/* The `class Db` is responsible for creating and connecting to a MySQL database. It creates the
 necessary tables if they don't already exist. It also provides a static method `connectDatabase()`
 that can be used to establish a connection to the database. */
-class db
+class Db
 {
     private static $_connect;
     private $database;
@@ -91,15 +91,15 @@ class db
     }
 
 /**
- * The function `connectDatabase` returns an instance of the `db` class if it is not already
+ * The function `connectDatabase` returns an instance of the `Db` class if it is not already
  * instantiated.
  *
- * @return an instance of the "db" class.
+ * @return an instance of the "Db" class.
  */
     public static function connectDatabase()
     {
         if (is_null(self::$_connect)) {
-            self::$_connect = new db();
+            self::$_connect = new Db();
         }
         return self::$_connect;
     }

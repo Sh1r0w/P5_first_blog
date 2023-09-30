@@ -2,14 +2,14 @@
 
 namespace Controllers\Comment;
 
-/* The commentDeleteControllers class is responsible for deleting a comment and redirecting the user to
+/* The CommentDeleteControllers class is responsible for deleting a comment and redirecting the user to
 the post page. */
-class commentDeleteControllers
+class CommentDeleteControllers
 {
-    public function commentDelete($id, $key, \Controllers\Fonction\factory $fact)
+    public function commentDelete($id, $key, \Controllers\Fonction\Factory $fact)
     {
         if ($_POST['csrf_token'] === $_SESSION['csrf_token']) {
-            $fact->instance('Controllers\Repository', 'commentRepo')->delete($id);
+            $fact->instance('Controllers\Repository', 'CommentRepo')->delete($id);
         }
         header('location: postRead?id=' . $key);
     }

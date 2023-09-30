@@ -2,8 +2,8 @@
 
 namespace Controllers\Post;
 
-/* The "postListControllers" class is used to manage a list of post. */
-class postListControllers
+/* The "PostListControllers" class is used to manage a list of post. */
+class PostListControllers
 {
     public $post;
 
