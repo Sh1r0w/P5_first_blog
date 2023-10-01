@@ -67,7 +67,7 @@
   <div class="card-body text-center fs-5">
     {% if u.pdf != null %}
       Le CV de {{ u.firstname|capitalize }} :</br>
-      <embed src ="{{ u.pdf }}" width="250" height="350" type="application/pdf" />
+      <embed frameborder="0" src ="{{ u.pdf }}" width="250" height="350" type="application/pdf" />
       {% endif %}
   </div>
 
