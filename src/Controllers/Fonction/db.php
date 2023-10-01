@@ -42,6 +42,12 @@ class Db
             pictures VARCHAR(255),
             citation VARCHAR(255),
             cv VARCHAR(255),
+            social_network_facebook VARCHAR(255),
+            social_network_instagram VARCHAR(255),
+            social_network_x VARCHAR(255),
+            social_network_linkedin VARCHAR(255),
+            social_network_github VARCHAR(255),
+            social_network_gitlab VARCHAR(255),
             globalAdmin INT DEFAULT '0',
             id_login INT NOT NULL,
             FOREIGN KEY (id_login) REFERENCES ae_connect (id) ON DELETE CASCADE ON UPDATE NO ACTION
@@ -68,17 +74,6 @@ class Db
                     valide INT DEFAULT '0',
                     FOREIGN KEY (id_user) REFERENCES ae_user (id) ON DELETE CASCADE ON UPDATE NO ACTION,
                     FOREIGN KEY (id_post) REFERENCES ae_post (id) ON DELETE CASCADE ON UPDATE NO ACTION
-                    )");
-                $this->database->exec("CREATE TABLE IF NOT EXISTS ae_like (
-                    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                    ilike INT NOT NULL,
-                    dislike INT NOT NULL,
-                    id_user INT NOT NULL,
-                    id_post INT NOT NULL,
-                    id_comment INT NOT NULL,
-                    FOREIGN KEY (id_user) REFERENCES ae_user (id) ON DELETE CASCADE ON UPDATE NO ACTION,
-                    FOREIGN KEY (id_post) REFERENCES ae_post (id) ON DELETE CASCADE ON UPDATE NO ACTION,
-                    FOREIGN KEY (id_comment) REFERENCES ae_comment (id) ON DELETE CASCADE ON UPDATE NO ACTION
                     )");
                 echo "<script>alert(\"base de donnée créer\")</script>";
                 header("Location: home");

@@ -15,10 +15,7 @@ p {
     text-align: center;
 }
 
-.card {
-    max-width: 500px !important;
-    
-}
+
 
 .cardOne{
     cursor:pointer;
@@ -68,4 +65,8 @@ p {
 
 .btn {
     margin : 15px 15px 15px 15px;
+}
+
+embed {
+    
 }

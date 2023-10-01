@@ -37,7 +37,7 @@
     </div>
     <div class="row d-flex flex-column align-content-center">
         {% for p in post.post|slice(0,2) %}
-            <div class="card m-5" >
+            <div class="col-5 card m-5" >
                 {% include 'add/postOne.twig' %}
                 <div class="modal fade " id="read{{ p.id }}" tabindex="-1"  aria-hidden="true">
                     {% include 'modal/postRead.twig' %}

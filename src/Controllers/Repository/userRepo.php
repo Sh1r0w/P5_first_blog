@@ -27,8 +27,22 @@ class UserRepo implements UserInterface
     public function userCreate()
     {
             $statement = $this->dbase->prepare(
-                "INSERT INTO ae_user(firstname, lastname,pictures, citation, id_login, globalAdmin, cv) 
-                VALUES(?,?,?,?,?,?,?)"
+                "INSERT INTO ae_user(
+                    firstname, 
+                    lastname,
+                    pictures, 
+                    citation, 
+                    id_login, 
+                    globalAdmin, 
+                    cv,
+                    social_network_facebook,
+                    social_network_instagram,
+                    social_network_x,
+                    social_network_linkedin,
+                    social_network_github,
+                    social_network_gitlab
+                    ) 
+                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)"
             );
         return $statement;
     }
@@ -66,7 +80,18 @@ class UserRepo implements UserInterface
     public function userUpdate($id)
     {
         $statement = $this->dbase->prepare(
-            "UPDATE ae_user SET firstname = ?, lastname = ?, pictures = ?, citation = ?, cv = ?  
+            "UPDATE ae_user 
+            SET firstname = ?, 
+            lastname = ?, 
+            pictures = ?, 
+            citation = ?, 
+            cv = ?,
+            social_network_facebook = ?,
+            social_network_instagram = ?,
+            social_network_x = ?,
+            social_network_linkedin = ?,
+            social_network_github = ?,
+            social_network_gitlab = ?
             WHERE id_login = $id"
         );
         return $statement;

@@ -38,6 +38,12 @@ class UserSendControllers
             $userPush->lastname = $input['lastname'];
             $userPush->firstname = $input['firstname'];
             $userPush->citation = $input['citation'];
+            $userPush->socialFacebook = $input['socialNetworkFacebook'];
+            $userPush->socialInstagram = $input['socialNetworkInstagram'];
+            $userPush->socialX = $input['socialNetworkX'];
+            $userPush->socialLinkedin = $input['socialNetworkLinkedin'];
+            $userPush->socialGithub = $input['socialNetworkGithub'];
+            $userPush->socialGitlab = $input['socialNetworkGitlab'];
             if (isset($input['deleteImg'])) {
                 $userPush->deleteImg = 1;
             } else {

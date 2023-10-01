@@ -53,7 +53,13 @@ class UserPushModel
                     $this->citation,
                     $_SESSION['idCo'],
                     $this->count,
-                    $this->pdf
+                    $this->pdf,
+                    $this->socialFacebook,
+                    $this->socialInstagram,
+                    $this->socialX,
+                    $this->socialLinkedin,
+                    $this->socialGithub,
+                    $this->socialGitlab,
                     ]
             );
         } else {
@@ -63,8 +69,13 @@ class UserPushModel
                     $this->firstname,
                     $this->lastname,
                      $this->img = $openSession->img,
-                     $this->citation, $this->pdf =
-                     $openSession->pdf
+                     $this->citation, $this->pdf = $openSession->pdf,
+                     $this->socialFacebook,
+                     $this->socialInstagram,
+                     $this->socialX,
+                     $this->socialLinkedin,
+                     $this->socialGithub,
+                     $this->socialGitlab,
                     ]
             );
         }
@@ -95,6 +106,12 @@ class UserPushModel
         $openSession->idUs = $list['id'];
         $openSession->admin = $list['globalAdmin'];
         $openSession->pdf = $list['cv'];
+        $openSession->facebook = $list['social_network_facebook'];
+        $openSession->instagram = $list['social_network_instagram'];
+        $openSession->x = $list['social_network_x'];
+        $openSession->linkedin = $list['social_network_linkedin'];
+        $openSession->github = $list['social_network_github'];
+        $openSession->gitlab = $list['social_network_gitlab'];
     }
 
     /**
