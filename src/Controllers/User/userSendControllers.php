@@ -62,7 +62,7 @@ class UserSendControllers
             } else {
                 $userPush->count = '0';
             }
-            
+
             $userPush->userPush($fact);
 
             header('location: /user');
