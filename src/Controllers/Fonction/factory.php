@@ -103,8 +103,7 @@ class Factory
 
         self::instance(
             'Controllers\Connect',
-            'ConnectCreateSendControllers
-            '
+            'ConnectCreateSendControllers'
         )->connectCreateSend(
             $input,
             self::connectCheck($input),
@@ -234,7 +233,7 @@ class Factory
             'UserSendControllers'
         )->userSend(
             $input,
-            self::connectCheckCount(),
+            self::connectCheckCount()->result,
             self::getInstance(),
             self::instance(
                 'Model\User',

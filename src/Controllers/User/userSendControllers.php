@@ -9,7 +9,6 @@ class UserSendControllers
     protected $img = null;
     protected $pdf = null;
     protected $id = null;
-
     /**
      * The function `userSend` takes in an array of input, a count, a Factory object, and a
      * UserPushModel object, and performs various operations based on the input before redirecting the
@@ -57,11 +56,13 @@ class UserSendControllers
             }
             $userPush->count = $count;
 
-            if ($count == '0') {
+            if ($count == '1') {
                 $userPush->count = '1';
+                echo $count;
             } else {
                 $userPush->count = '0';
             }
+            
             $userPush->userPush($fact);
 
             header('location: /user');
