@@ -33,7 +33,7 @@ class ConnectCreateSendControllers
         try {
             if (isset($input['email']) && isset($password) && $password === $password2) {
                 $connectC->passwordH = password_hash($password, PASSWORD_DEFAULT);
-                if ($check == false) {
+                if ($check === false) {
                     $connectC->connectCreate($fact);
                     $autoL = [
                     'email' => $input['email'],

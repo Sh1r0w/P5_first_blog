@@ -8,7 +8,7 @@ class PostDeleteControllers
 {
     public function postDelete(int $id, \Controllers\Fonction\Factory $fact)
     {
-        if (isset($id) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+        if ($_POST['csrf_token'] === $_SESSION['csrf_token']) {
             $fact->instance('Model\post', 'PostDeleteModel')->postDelete($id, $fact);
         }
         header('location: post');

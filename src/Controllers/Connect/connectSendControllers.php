@@ -58,7 +58,7 @@ class ConnectSendControllers
      * @param lSendM The parameter `` seems to be an object that contains some properties, one
      * of which is `email`.
      */
-    public function validateInput($lSendM)
+    public function validateInput(\Model\Connect\ConnectSendModel $lSendM)
     {
         if (empty($lSendM->email)) {
             throw new \Exception("Connect vide");

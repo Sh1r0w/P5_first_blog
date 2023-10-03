@@ -29,7 +29,7 @@ class CommentUpdateControllers
         \Model\Comment\CommentUpdateModel $comment
     ) {
 
-        if (isset($input, $id) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+        if (isset($id) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
             $comment->upContent = $input['upContent'];
             $comment->id = $id;
             $comment->commentUpdate($fact);

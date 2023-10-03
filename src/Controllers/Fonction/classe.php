@@ -36,7 +36,7 @@ class Factory
      *
      * @return The getInstance() function is returning an instance of the Factory class.
      */
-    public static function getInstance()
+    public static function getInstance(): callable
     {
         if (is_null(self::$selfInstance)) {
             self::$selfInstance = new Factory();
@@ -56,7 +56,7 @@ class Factory
      * @return the instance of the class specified by the namespace and class name provided as
      * arguments.
      */
-    public function instance(string $nameSpace, string $classN)
+    public function instance(string $nameSpace, string $classN): callable
     {
         $this->result = $nameSpace . DIRECTORY_SEPARATOR . $classN;
         if ($this->instance != $this->result) {
@@ -123,7 +123,7 @@ class Factory
         );
     }
 
-    public function connectCheckCount()
+    public function connectCheckCount(): object
     {
         return self::instance(
             'Model\Connect',
@@ -301,7 +301,7 @@ class Factory
         }
     }
 
-    public function commentCount()
+    public function commentCount(): object
     {
         return self::instance(
             'Controllers\Comment',
