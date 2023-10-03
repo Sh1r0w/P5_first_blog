@@ -7,4 +7,4 @@ parameters:
     excludePaths:
         analyseAndScan:
             - vendor
-    level: 4
+    level: 9

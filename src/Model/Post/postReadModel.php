@@ -36,7 +36,6 @@ class PostReadModel
             'author' => $row['author'],
             'addDate' => $row['addDate'],
             'updDate' => $row['updDate'],
-            'author' => $row['author'],
             'imgP' => $row['picture'],
             'idUs' => $row['id_user'],
             ];
