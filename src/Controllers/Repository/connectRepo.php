@@ -37,7 +37,6 @@ class ConnectRepo implements ConnectInterface
         );
         $create = $statement->execute([$connect, $password]);
 
-        return ($create > 0);
     }
 
     /**
