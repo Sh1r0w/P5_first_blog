@@ -2,13 +2,9 @@
 
 namespace Controllers\Fonction;
 
-<<<<<<< Updated upstream
-require '../src/controllers/fonction/params.php';
-
-
 class Factory
 {
-    private static $_instance;
+    public static $selfInstance;
 
     public $pictureP;
 
@@ -42,10 +38,10 @@ class Factory
      */
     public static function getInstance()
     {
-        if (is_null(self::$_instance)) {
-            self::$_instance = new Factory();
+        if (is_null(self::$selfInstance)) {
+            self::$selfInstance = new Factory();
         }
-        return self::$_instance;
+        return self::$selfInstance;
     }
 
     /**
@@ -104,8 +100,7 @@ class Factory
 
         self::instance(
             'Controllers\Connect',
-            'ConnectCreateSendControllers
-            '
+            'ConnectCreateSendControllers'
         )->connectCreateSend(
             $input,
             self::connectCheck($input),
@@ -235,7 +230,7 @@ class Factory
             'UserSendControllers'
         )->userSend(
             $input,
-            self::connectCheckCount(),
+            self::connectCheckCount()->result,
             self::getInstance(),
             self::instance(
                 'Model\User',
@@ -548,12 +543,12 @@ class Factory
      * Send email
      *
      */
-=======
-/* The code is including two PHP files, `params.php` and `classe.php`, and then creating an instance of
-the `Factory` class using the `getInstance()` method. */
 
-require '../src/controllers/fonction/params.php';
-require 'classe.php';
->>>>>>> Stashed changes
-
-$factoryInstance = Factory::getInstance();
+    public function sendEmail($input, $id, $key)
+    {
+        self::instance(
+            'Controllers\Mail',
+            'SendEmail'
+        )->sendEmail($id);
+    }
+}

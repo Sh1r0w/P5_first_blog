@@ -17,8 +17,11 @@ class UpdatePassControllers
      * of the \Model\User\UpdatePassModel class. It is used to update the user's password in the
      * database.
      */
-    public function updatePass($input, \Controllers\Fonction\Factory $fact, \Model\User\UpdatePassModel $updatePassModel)
-    {
+    public function updatePass(
+        $input,
+        \Controllers\Fonction\Factory $fact,
+        \Model\User\UpdatePassModel $updatePassModel
+    ) {
 
         $user = $fact->instance(
             'Controllers\Repository',

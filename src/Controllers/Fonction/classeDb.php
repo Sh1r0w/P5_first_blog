@@ -2,13 +2,26 @@
 
 namespace Controllers\Fonction;
 
-require '../src/controllers/fonction/params.php';
-require 'classeDb.php';
-/* The `class Db` is responsible for creating and connecting to a MySQL database. It creates the
-necessary tables if they don't already exist. It also provides a static method `connectDatabase()`
-that can be used to establish a connection to the database. */
+class Db
+{
+    private static $selfConnect;
+    private $database;
+    public $dbConnect;
+/**
+     * This PHP function creates or connects to a MySQL database and creates tables if they don't
+     * exist.
+     *
+     * @return The code is returning an instance of the PDO class, which represents a connection to a
+     * database.
+     */
+    public function __construct()
+    {
+        $user = $_ENV['USER'];
+        $pwd = $_ENV['PWD'];
+        $db = $_ENV['DATABASE'];
+        $server = $_ENV['SERVER'];
+// We create or connect to the database and create tables.
 
-<<<<<<< Updated upstream
         try {
             $this->database = new \PDO("mysql:host=$server;utf8", $user, $pwd);
             if ($this->database->exec("CREATE DATABASE IF NOT EXISTS $db")) {
@@ -25,6 +38,12 @@ that can be used to establish a connection to the database. */
             pictures VARCHAR(255),
             citation VARCHAR(255),
             cv VARCHAR(255),
+            social_network_facebook VARCHAR(255),
+            social_network_instagram VARCHAR(255),
+            social_network_x VARCHAR(255),
+            social_network_linkedin VARCHAR(255),
+            social_network_github VARCHAR(255),
+            social_network_gitlab VARCHAR(255),
             globalAdmin INT DEFAULT '0',
             id_login INT NOT NULL,
             FOREIGN KEY (id_login) REFERENCES ae_connect (id) ON DELETE CASCADE ON UPDATE NO ACTION
@@ -52,17 +71,6 @@ that can be used to establish a connection to the database. */
                     FOREIGN KEY (id_user) REFERENCES ae_user (id) ON DELETE CASCADE ON UPDATE NO ACTION,
                     FOREIGN KEY (id_post) REFERENCES ae_post (id) ON DELETE CASCADE ON UPDATE NO ACTION
                     )");
-                $this->database->exec("CREATE TABLE IF NOT EXISTS ae_like (
-                    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                    ilike INT NOT NULL,
-                    dislike INT NOT NULL,
-                    id_user INT NOT NULL,
-                    id_post INT NOT NULL,
-                    id_comment INT NOT NULL,
-                    FOREIGN KEY (id_user) REFERENCES ae_user (id) ON DELETE CASCADE ON UPDATE NO ACTION,
-                    FOREIGN KEY (id_post) REFERENCES ae_post (id) ON DELETE CASCADE ON UPDATE NO ACTION,
-                    FOREIGN KEY (id_comment) REFERENCES ae_comment (id) ON DELETE CASCADE ON UPDATE NO ACTION
-                    )");
                 echo "<script>alert(\"base de donnée créer\")</script>";
                 header("Location: home");
             } else {
@@ -81,12 +89,9 @@ that can be used to establish a connection to the database. */
  */
     public static function connectDatabase()
     {
-        if (is_null(self::$_connect)) {
-            self::$_connect = new Db();
+        if (is_null(self::$selfConnect)) {
+            self::$selfConnect = new Db();
         }
-        return self::$_connect;
+        return self::$selfConnect;
     }
 }
-=======
-$dbInstance = Db::connectDatabase();
->>>>>>> Stashed changes

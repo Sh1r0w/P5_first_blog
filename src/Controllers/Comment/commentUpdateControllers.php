@@ -21,8 +21,13 @@ class CommentUpdateControllers
      * `CommentUpdateModel` class, which is a model class responsible for updating comments in the
      * database.
      */
-    public function commentUpdateControllers($input, $id, $key, \Controllers\Fonction\Factory $fact, \Model\Comment\CommentUpdateModel $comment)
-    {
+    public function commentUpdateControllers(
+        $input,
+        $id,
+        $key,
+        \Controllers\Fonction\Factory $fact,
+        \Model\Comment\CommentUpdateModel $comment
+    ) {
 
         if (isset($input, $id) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
             $comment->upContent = $input['upContent'];

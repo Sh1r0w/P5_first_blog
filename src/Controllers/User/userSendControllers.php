@@ -27,8 +27,12 @@ class UserSendControllers
      * `UserPushModel` class from the `Model\User` namespace. It is used to store and manipulate user
      * data such as `lastname`, `firstname`, `citation`, `img`, `pdf`, and `count`. The `userPush`
      */
-    public function userSend(array $input, $count, \Controllers\Fonction\Factory $fact, \Model\User\UserPushModel $userPush)
-    {
+    public function userSend(
+        array $input,
+        $count,
+        \Controllers\Fonction\Factory $fact,
+        \Model\User\UserPushModel $userPush
+    ) {
         $openSession = $fact->instance('Controllers\Fonction', 'Session');
 
         if (isset($openSession->idCo) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {

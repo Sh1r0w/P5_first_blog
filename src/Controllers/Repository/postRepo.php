@@ -116,7 +116,13 @@ class PostRepo implements PostInterface
     public function postUpdate($id, $upTitle, $upContent, $upChapo, $upAuthor, $upImg)
     {
         $statement = $this->dbase->prepare(
-            "UPDATE ae_post SET title = ?, content = ?, chapo = ?, author = ?, picture = ?, updDate = NOW() WHERE id = $id"
+            "UPDATE ae_post SET title = ?, 
+            content = ?, 
+            chapo = ?, 
+            author = ?, 
+            picture = ?, 
+            updDate = NOW() 
+            WHERE id = $id"
         );
         $statement->execute([$upTitle, $upContent, $upChapo, $upAuthor, $upImg]);
     }
