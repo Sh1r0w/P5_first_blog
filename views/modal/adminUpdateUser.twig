@@ -9,11 +9,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    {{ forms.password('Mot de passe actuel', 'password', null, 'password', 8, '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' ) }}
+                    {{ forms.password('Mot de passe actuel', 'password', null, 'password', 8, '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' ) }}
                 </br>
-                {{ forms.password('Nouveau mot de passel', 'newPassword', null, 'password', 8, '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' ) }}
+                {{ forms.password('Nouveau mot de passel', 'newPassword', null, 'password', 8, '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' ) }}
             </br>
-            {{ forms.password('Vérification du nouveau mot de passe', 'newPasswordVerif', null, 'password', 8, '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' ) }}
+            {{ forms.password('Vérification du nouveau mot de passe', 'newPasswordVerif', null, 'password', 8, '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' ) }}
         </br>
         {{ forms.csrf }}
         <div class="mt-2">
