@@ -2,7 +2,7 @@
 
 namespace Controllers\Repository;
 
-use Controllers\Interface\ConnectInterface;
+use Controllers\Template\ConnectInterface;
 
 /* The `ConnectRepo` class is a PHP class that implements the `ConnectInterface` interface and provides
 methods for creating, checking, counting, and connecting users in a connect system. */

@@ -1,6 +1,6 @@
 <?php
 
-namespace Controllers\Interface;
+namespace Controllers\Template;
 
 interface ProfilInterface
 {

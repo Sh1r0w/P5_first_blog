@@ -56,7 +56,7 @@ class Factory
      * @return the instance of the class specified by the namespace and class name provided as
      * arguments.
      */
-    public function instance($nameSpace, $classN)
+    public function instance(string $nameSpace, string $classN)
     {
         $this->result = $nameSpace . DIRECTORY_SEPARATOR . $classN;
         if ($this->instance != $this->result) {
@@ -65,7 +65,7 @@ class Factory
         return $this->instance;
     }
 
-    public function logout()
+    public function logout(): void
     {
         session_destroy();
         header('location: /');
@@ -80,7 +80,7 @@ class Factory
      * @param input The "input" parameter is an array that contains the user's connect credentials, such
      * as their email and password.
      */
-    public function connectSend($input)
+    public function connectSend($input): void
     {
         self::instance(
             'Controllers\Connect',
@@ -95,7 +95,7 @@ class Factory
         );
     }
 
-    public function connectCreateSend($input)
+    public function connectCreateSend(array $input): void
     {
 
         self::instance(
@@ -112,7 +112,7 @@ class Factory
         );
     }
 
-    public function connectCheck($input)
+    public function connectCheck(array $input): int
     {
         return self::instance(
             'Model\Connect',
@@ -145,7 +145,7 @@ class Factory
      * @param key The "key" parameter is not used in any of the functions provided. It is not clear
      * what its purpose is or how it should be used.
      */
-    public function postSend($input, $id, $key)
+    public function postSend(array $input): void
     {
         self::instance(
             'Controllers\Post',
@@ -159,7 +159,7 @@ class Factory
         );
     }
 
-    public function postUpdate($input, $id, $key)
+    public function postUpdate(array $input, string $id): void
     {
         self::instance(
             'Controllers\Post',
@@ -171,7 +171,7 @@ class Factory
         );
     }
 
-    public function postList()
+    public function postList(): array
     {
         return self::instance(
             'Controllers\Post',
@@ -184,7 +184,7 @@ class Factory
         );
     }
 
-    public function postDelete($input, $id, $key)
+    public function postDelete(array $input, string $id): void
     {
         self::instance(
             'Controllers\Post',
@@ -195,7 +195,7 @@ class Factory
         );
     }
 
-    public function postRead($id)
+    public function postRead(string $id): array
     {
         if (isset($id)) {
             return self::instance(
@@ -223,7 +223,7 @@ class Factory
      * @param input The  parameter is the data that you want to update for the user. It could be an
      * array or an object containing the updated information for the user.
      */
-    public function userUpdate($input, $id, $key)
+    public function userUpdate(array $input): void
     {
         self::instance(
             'Controllers\User',
@@ -239,7 +239,7 @@ class Factory
         );
     }
 
-    public function updatePass($input, $id, $key)
+    public function updatePass(array $input): void
     {
         self::instance(
             'Controllers\User',
@@ -270,7 +270,7 @@ class Factory
      *
      * @return The code is returning the result of the method calls in the respective functions.
      */
-    public function commentSend($input, $id)
+    public function commentSend(array $input, string $id): array
     {
         return self::instance(
             'Controllers\Comment',
@@ -282,7 +282,7 @@ class Factory
         );
     }
 
-    public function commentRead($id)
+    public function commentRead(string $id): array
     {
 
         if (isset($id)) {
@@ -309,7 +309,7 @@ class Factory
         );
     }
 
-    public function commentDelete($input, $id, $key)
+    public function commentDelete(array $input, string $id, string $key): void
     {
         self::instance(
             'Controllers\Comment',
@@ -321,7 +321,7 @@ class Factory
         );
     }
 
-    public function commentUpdate($input, $id, $key)
+    public function commentUpdate(array $input, string $id, string $key): void
     {
         self::instance(
             'Controllers\Comment',
@@ -346,7 +346,7 @@ class Factory
      * instance of the 'AdminControllers' class with an instance of the 'AdminUserListModel' class as a
      * parameter.
      */
-    public function adminList()
+    public function adminList(): array
     {
         return self::instance(
             'Controllers\Admin',
@@ -359,7 +359,7 @@ class Factory
         );
     }
 
-    public function adminUserUpdate($input, $id, $key)
+    public function adminUserUpdate(array $input, string $id, string $key): void
     {
         self::instance(
             'Controllers\Admin',
@@ -374,7 +374,7 @@ class Factory
         );
     }
 
-    public function adminUserDelete($input, $id, $key)
+    public function adminUserDelete(array $input, string $id): void
     {
         self::instance(
             'Controllers\Admin',
@@ -385,7 +385,7 @@ class Factory
         );
     }
 
-    public function adminPostList()
+    public function adminPostList(): array
     {
         return self::instance(
             'Controllers\Admin',
@@ -398,7 +398,7 @@ class Factory
         );
     }
 
-    public function adminPostUpdate($input, $id, $key)
+    public function adminPostUpdate(array $input, string $id, string $key): void
     {
         self::instance(
             'Controllers\Admin',
@@ -413,7 +413,7 @@ class Factory
         );
     }
 
-    public function adminPostDelete($input, $id, $key)
+    public function adminPostDelete(array $input, string $id): void
     {
         self::instance(
             'Controllers\Admin',
@@ -428,7 +428,7 @@ class Factory
         );
     }
 
-    public function adminCommentList()
+    public function adminCommentList(): array
     {
 
         return self::instance(
@@ -442,7 +442,7 @@ class Factory
         );
     }
 
-    public function adminCommentUpdate($input, $id, $key)
+    public function adminCommentUpdate(array $input, string $id, string $key): void
     {
         self::instance(
             'Controllers\Admin',
@@ -457,7 +457,7 @@ class Factory
         );
     }
 
-    public function adminCommentDelete($input, $id, $key)
+    public function adminCommentDelete(array $input, string $id): void
     {
         self::instance(
             'Controllers\Admin',
@@ -481,7 +481,7 @@ class Factory
      * passing the result of calling the `getUser` method on the `GetProfilModel` instance with the
      * given `` and the current instance as arguments.
      */
-    public function getProfil($id)
+    public function getProfil(string $id): array
     {
         return self::instance(
             'Controllers\User',
@@ -508,33 +508,32 @@ class Factory
      * of the corresponding input fields (title, content, chapo, and author) respectively. The function
      * contentComment is returning the value of the input field comment.
      */
-    public function titlePost($input)
+    public function titlePost(array $input): string
     {
         $this->titleP = $input['title'];
         return $this->titleP;
     }
 
-    public function contentPost($input)
+    public function contentPost(array $input): string
     {
 
         $this->contentP = $input['content'];
         return $this->contentP;
     }
 
-    public function chapoPost($input)
+    public function chapoPost(array $input): string
     {
-        var_dump($input);
         $this->chapoP = $input['chapo'];
         return $this->chapoP;
     }
 
-    public function authorPost($input)
+    public function authorPost(array $input): string
     {
         $this->authorP = $input['author'];
         return $this->authorP;
     }
 
-    public function contentComment($input)
+    public function contentComment(array $input): string
     {
         return $this->contentC = $input['comment'];
     }
@@ -544,7 +543,7 @@ class Factory
      *
      */
 
-    public function sendEmail($input, $id, $key)
+    public function sendEmail(array $input, string $id): void
     {
         self::instance(
             'Controllers\Mail',

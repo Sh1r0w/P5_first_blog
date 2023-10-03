@@ -2,7 +2,7 @@
 
 namespace Controllers\Repository;
 
-use Controllers\Interface\PostInterface;
+use Controllers\Template\PostInterface;
 
 /* The PostRepo class is a PHP class that implements the PostInterface and provides methods for
 reading, listing, sending, deleting, and updating post in a database. */

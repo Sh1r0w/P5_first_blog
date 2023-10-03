@@ -1,8 +1,8 @@
 <?php
 
-namespace Controllers\Interface;
+namespace Controllers\Template;
 
-/* The code is defining an interface called `UserInterface` within the `Controllers\Interface`
+/* The code is defining an interface called `UserInterface` within the `Controllers\Template`
 namespace. */
 interface UserInterface
 {
