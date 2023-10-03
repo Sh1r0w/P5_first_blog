@@ -19,7 +19,7 @@ class CommentCountControllers
     public $count;
     public function __construct(\Controllers\Fonction\Factory $fact)
     {
-        return $this->count = $fact->instance(
+        $this->count = $fact->instance(
             'Controllers\Repository',
             'CommentRepo'
         )->count()->fetchAll(\PDO::FETCH_NUM);

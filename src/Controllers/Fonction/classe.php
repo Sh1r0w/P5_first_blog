@@ -36,7 +36,7 @@ class Factory
      *
      * @return The getInstance() function is returning an instance of the Factory class.
      */
-    public static function getInstance(): callable
+    public static function getInstance(): object
     {
         if (is_null(self::$selfInstance)) {
             self::$selfInstance = new Factory();
@@ -56,7 +56,7 @@ class Factory
      * @return the instance of the class specified by the namespace and class name provided as
      * arguments.
      */
-    public function instance(string $nameSpace, string $classN): callable
+    public function instance(string $nameSpace, string $classN): object
     {
         $this->result = $nameSpace . DIRECTORY_SEPARATOR . $classN;
         if ($this->instance != $this->result) {
@@ -112,7 +112,7 @@ class Factory
         );
     }
 
-    public function connectCheck(array $input): int
+    public function connectCheck(array $input): bool
     {
         return self::instance(
             'Model\Connect',
@@ -171,7 +171,7 @@ class Factory
         );
     }
 
-    public function postList(): array
+    public function postList(): object
     {
         return self::instance(
             'Controllers\Post',
@@ -239,7 +239,7 @@ class Factory
         );
     }
 
-    public function updatePass(array $input): void
+    public function updatePass(array $input): mixed
     {
         self::instance(
             'Controllers\User',
@@ -282,7 +282,7 @@ class Factory
         );
     }
 
-    public function commentRead(string $id): array
+    public function commentRead(string $id): ?array
     {
 
         if (isset($id)) {
@@ -359,7 +359,7 @@ class Factory
         );
     }
 
-    public function adminUserUpdate(array $input, string $id, string $key): void
+    public function adminUserUpdate(array $input, string $id, string $key): mixed
     {
         self::instance(
             'Controllers\Admin',
@@ -428,7 +428,7 @@ class Factory
         );
     }
 
-    public function adminCommentList(): array
+    public function adminCommentList(): object
     {
 
         return self::instance(
@@ -442,7 +442,7 @@ class Factory
         );
     }
 
-    public function adminCommentUpdate(array $input, string $id, string $key): void
+    public function adminCommentUpdate(array $input, string $id, string $key): mixed
     {
         self::instance(
             'Controllers\Admin',

@@ -74,7 +74,7 @@ class Db
                 echo "<script>alert(\"base de donnée créer\")</script>";
                 header("Location: home");
             } else {
-                return $this->dbConnect = new \PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
+                $this->dbConnect = new \PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
             }
         } catch (\Exception $e) {
             die('Erreur : ' . $e->getMessage());

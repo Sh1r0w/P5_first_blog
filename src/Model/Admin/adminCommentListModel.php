@@ -32,6 +32,5 @@ class AdminCommentListModel
             ];
             $this->comments[] = $comment;
         }
-        return $this->comments;
     }
 }

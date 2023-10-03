@@ -80,7 +80,6 @@ class PostRepo implements PostInterface
             VALUES(?,?,?,?,?,?, NOW(), NOW())"
         );
         $sendPost = $statement->execute([ $title, $chapo, $content, $author, $_SESSION['idUs'], $img]);
-        return ($sendPost > 0);
     }
 
     /**
