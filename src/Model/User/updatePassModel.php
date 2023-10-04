@@ -14,7 +14,7 @@ class UpdatePassModel
      *
      * @return the value '1' if the condition `->update == ->updateVerif` is true.
      */
-    public function updatePass(): int
+    public function updatePass(): string
     {
         if ($this->update == $this->updateVerif) {
             return $this->valide = '1';
