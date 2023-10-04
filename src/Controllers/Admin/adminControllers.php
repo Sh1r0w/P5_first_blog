@@ -8,9 +8,9 @@ class AdminControllers
     public $userList;
     public function userList(object $data): object
     {
-        if (isset($data)) {
+
             $this->userList = $data;
-        }
+
         return $this->userList;
     }
 }

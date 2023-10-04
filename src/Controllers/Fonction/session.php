@@ -16,7 +16,7 @@ class Session
         }
     }
 
-    public function __isset(string $name) : bool
+    public function __isset(string $name): bool
     {
         return isset($_SESSION[$name]);
     }

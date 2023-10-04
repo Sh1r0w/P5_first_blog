@@ -112,8 +112,14 @@ class PostRepo implements PostInterface
      * @param upImg The parameter "upImg" is used to update the picture field in the ae_post table. It
      * represents the new image that you want to associate with the post.
      */
-    public function postUpdate(int $id, string $upTitle, string $upContent, string $upChapo, string $upAuthor, ?string $upImg): void
-    {
+    public function postUpdate(
+        int $id,
+        string $upTitle,
+        string $upContent,
+        string $upChapo,
+        string $upAuthor,
+        ?string $upImg
+    ): void {
         $statement = $this->dbase->prepare(
             "UPDATE ae_post SET title = ?, 
             content = ?, 

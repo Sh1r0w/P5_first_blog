@@ -21,8 +21,14 @@ class PostSendModel
      * action or operation. In this case, it is being used to call a method named "postSend" on an
      * instance of the "PostRepo" class.
      */
-    public function postSend(string $title, string $chapo, string $content, string $author, ?string $img, object $fact)
-    {
+    public function postSend(
+        string $title,
+        string $chapo,
+        string $content,
+        string $author,
+        ?string $img,
+        object $fact
+    ): void {
         $fact->instance(
             'Controllers\Repository',
             'PostRepo'

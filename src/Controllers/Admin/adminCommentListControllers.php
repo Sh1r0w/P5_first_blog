@@ -20,9 +20,9 @@ class AdminCommentListControllers
     public function commentList(object $data): object
     {
 
-        if (isset($data)) {
+
             $this->list = $data;
-        }
+
         return $this->list;
     }
 }

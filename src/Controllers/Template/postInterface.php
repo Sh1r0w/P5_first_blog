@@ -12,9 +12,22 @@ interface PostInterface
 
     public function postList(): object;
 
-    public function postSend(string $title, string $chapo, string $content, string $author, ?string $img): void;
+    public function postSend(
+        string $title,
+        string $chapo,
+        string $content,
+        string $author,
+        ?string $img
+    ): void;
 
     public function postDelete(int $id): void;
 
-    public function postUpdate(int $id, string $upTitle, string $upContent, string $upChapo, string $upAuthor, ?string $upImg): void;
+    public function postUpdate(
+        int $id,
+        string $upTitle,
+        string $upContent,
+        string $upChapo,
+        string $upAuthor,
+        ?string $upImg
+    ): void;
 }

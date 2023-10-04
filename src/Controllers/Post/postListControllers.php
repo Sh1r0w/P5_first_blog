@@ -9,9 +9,9 @@ class PostListControllers
 
     public function postList(object $data): object
     {
-        if (isset($data)) {
+
             $this->post = $data;
-        }
+
         return $this->post;
     }
 }

@@ -32,7 +32,7 @@ class CommentUpdateModel
      * @param name The name of the property being set.
      * @param value The value parameter is the value that you want to assign to the property.
      */
-    public function __set(string $name,mixed $value): void
+    public function __set(string $name, mixed $value): void
     {
         $this->$name = $value;
     }

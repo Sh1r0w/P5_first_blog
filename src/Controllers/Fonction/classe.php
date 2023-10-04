@@ -197,7 +197,7 @@ class Factory
 
     public function postRead(string $id): array
     {
-        if (isset($id)) {
+
             return self::instance(
                 'Controllers\Post',
                 'PostReadControllers'
@@ -210,7 +210,6 @@ class Factory
                     self::getInstance()
                 )
             );
-        }
     }
 
     /**
@@ -285,7 +284,7 @@ class Factory
     public function commentRead(string $id): ?array
     {
 
-        if (isset($id)) {
+
             return self::instance(
                 'Controllers\Comment',
                 'CommentReadControllers'
@@ -298,7 +297,6 @@ class Factory
                     self::getInstance()
                 )
             );
-        }
     }
 
     public function commentCount(): object
@@ -420,10 +418,6 @@ class Factory
             'AdminPostDeleteControllers'
         )->postDelete(
             $id,
-            self::instance(
-                'Model\Admin',
-                'AdminPostDeleteModel'
-            )->postDelete($id),
             self::getInstance()
         );
     }
