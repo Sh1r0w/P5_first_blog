@@ -16,7 +16,7 @@ class ConnectCheckModel
      *
      * @return the value of the variable ->result.
      */
-    public function connectCheck($input, \Controllers\Fonction\Factory $fact): bool
+    public function connectCheck(array $input, \Controllers\Fonction\Factory $fact): bool
     {
 
         if (isset($input['email'])) {

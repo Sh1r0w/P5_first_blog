@@ -92,7 +92,7 @@ class UserPushModel
      * the  array. It is used to store information about the user session, such as the user's
      * first name, last name, citation, ID, admin status, and PDF file.
      */
-    public function openSession(\Controllers\Fonction\Factory $fact, $openSession)
+    public function openSession(\Controllers\Fonction\Factory $fact, object $openSession)
     {
 
         $list = $fact->instance(
@@ -120,7 +120,7 @@ class UserPushModel
      * @param name The name of the property being set.
      * @param value The value parameter is the value that you want to assign to the property.
      */
-    public function __set($name, $value)
+    public function __set(string $name, mixed $value)
     {
         $this->$name = $value;
     }
@@ -134,7 +134,7 @@ class UserPushModel
      * @return The value of the property with the name specified by the parameter  is being
      * returned.
      */
-    public function __get($name)
+    public function __get(string $name)
     {
         return $this->$name;
     }
@@ -148,7 +148,7 @@ class UserPushModel
      * @return the result of the `isset()` function called on the property `` of the current
      * object.
      */
-    public function __isset($name)
+    public function __isset(string $name)
     {
         return isset($this->$name);
     }

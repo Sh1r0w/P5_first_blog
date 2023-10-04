@@ -18,7 +18,7 @@ class CommentReadModel
      *
      * @return an array of comments.
      */
-    public function commentRead($id, \Controllers\Fonction\Factory $fact)
+    public function commentRead(int $id, \Controllers\Fonction\Factory $fact)
     {
         $nComment = $fact->instance(
             'Controllers\Repository',

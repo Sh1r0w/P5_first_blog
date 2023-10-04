@@ -12,7 +12,7 @@ class PostDeleteModel
      * @param \Controllers\Fonction\Factory fact The parameter `` is an instance of the `Factory`
      * class from the `Controllers\Fonction` namespace.
      */
-    public function postDelete($id, \Controllers\Fonction\Factory $fact)
+    public function postDelete(int $id, \Controllers\Fonction\Factory $fact)
     {
         $fact->instance(
             'Controllers\Repository',

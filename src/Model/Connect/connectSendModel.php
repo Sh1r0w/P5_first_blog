@@ -15,7 +15,7 @@ class ConnectSendModel
  * @param name The name parameter is the name of the property that is being set.
  * @param value The value parameter is the value that you want to set for the given property name.
  */
-    public function __set($name, $value)
+    public function __set(string $name, mixed $value)
     {
             $this->data[$name] = $value;
     }
@@ -28,7 +28,7 @@ class ConnectSendModel
   *
   * @return The value of the property with the name specified by the  parameter.
   */
-    public function __get($name)
+    public function __get(string $name)
     {
         return $this->data[$name];
     }
@@ -40,7 +40,7 @@ class ConnectSendModel
      *
      * @return whether the given property name exists in the `` array.
      */
-    public function __isset($name)
+    public function __isset(string $name)
     {
         return isset($this->data[$name]);
     }

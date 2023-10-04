@@ -19,7 +19,7 @@ class PostReadModel
      * @return an array of posts. Each post is represented by an associative array with keys 'id',
      * 'title', 'chapo', 'content', 'author', 'addDate', 'updDate', 'imgP', and 'idUs'.
      */
-    public function postReadModel($id, \Controllers\Fonction\Factory $fact)
+    public function postReadModel(int $id, \Controllers\Fonction\Factory $fact)
     {
         $read = $fact->instance(
             'Controllers\Repository',

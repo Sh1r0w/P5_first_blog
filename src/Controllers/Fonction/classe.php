@@ -80,7 +80,7 @@ class Factory
      * @param input The "input" parameter is an array that contains the user's connect credentials, such
      * as their email and password.
      */
-    public function connectSend($input): void
+    public function connectSend(array $input): void
     {
         self::instance(
             'Controllers\Connect',
