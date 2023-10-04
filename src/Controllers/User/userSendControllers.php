@@ -9,7 +9,6 @@ class UserSendControllers
     protected $img = null;
     protected $pdf = null;
     protected $id = null;
-
     /**
      * The function `userSend` takes in an array of input, a count, a Factory object, and a
      * UserPushModel object, and performs various operations based on the input before redirecting the
@@ -42,6 +41,12 @@ class UserSendControllers
             $userPush->lastname = $input['lastname'];
             $userPush->firstname = $input['firstname'];
             $userPush->citation = $input['citation'];
+            $userPush->socialFacebook = $input['socialNetworkFacebook'];
+            $userPush->socialInstagram = $input['socialNetworkInstagram'];
+            $userPush->socialX = $input['socialNetworkX'];
+            $userPush->socialLinkedin = $input['socialNetworkLinkedin'];
+            $userPush->socialGithub = $input['socialNetworkGithub'];
+            $userPush->socialGitlab = $input['socialNetworkGitlab'];
             if (isset($input['deleteImg'])) {
                 $userPush->deleteImg = 1;
             } else {
@@ -55,11 +60,13 @@ class UserSendControllers
             }
             $userPush->count = $count;
 
-            if ($count == '0') {
+            if ($count == '1') {
                 $userPush->count = '1';
+                echo $count;
             } else {
                 $userPush->count = '0';
             }
+
             $userPush->userPush($fact);
 
             header('location: /user');
