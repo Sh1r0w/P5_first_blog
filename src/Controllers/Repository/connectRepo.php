@@ -36,7 +36,6 @@ class ConnectRepo implements ConnectInterface
             "INSERT INTO ae_connect(log, pwd) VALUES(?,?)"
         );
         $create = $statement->execute([$connect, $password]);
-
     }
 
     /**

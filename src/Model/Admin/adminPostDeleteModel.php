@@ -14,7 +14,7 @@ class AdminPostDeleteModel
      *
      * @return The value of the variable ->value is being returned.
      */
-    public function postDelete($id)
+    public function postDelete($id): bool
     {
         if (isset($id)) {
             $this->value = true;

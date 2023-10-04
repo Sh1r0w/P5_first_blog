@@ -22,7 +22,7 @@ class PostUpdateModel
      * or objects. It is used to create instances of the "Controllers\Fonction" and
      * "Controllers\Repository" classes and call their methods.
      */
-    public function postUpdate(array $input, $id,\Controllers\Fonction\Factory $fact)
+    public function postUpdate(array $input, $id, \Controllers\Fonction\Factory $fact)
     {
         $img = $fact->instance('Controllers\Fonction', 'GetImg')->getImg();
         $list = $fact->instance('Controllers\Repository', 'PostRepo')->postRead($id)->fetch();
