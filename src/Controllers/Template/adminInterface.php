@@ -8,21 +8,21 @@ interface AdminInterface
 {
     public function __construct();
 
-    public function userList();
+    public function userList(): object;
 
-    public function userUpdate(int $id, string $value);
+    public function userUpdate(int $id, string $value): void;
 
-    public function userDelete(int $id);
+    public function userDelete(int $id): void;
 
-    public function postList();
+    public function postList(): object;
 
-    public function postUpdate(int $id, string $value);
+    public function postUpdate(int $id, string $value): void;
 
-    public function postDelete(int $id);
+    public function postDelete(int $id): void;
 
-    public function commentList();
+    public function commentList(): object;
 
-    public function commentUpdate(int $id, string $value);
+    public function commentUpdate(int $id, string $value): void;
 
-    public function commentDelete(int $id);
+    public function commentDelete(int $id): void;
 }

@@ -7,7 +7,7 @@ class AdminPostListControllers
 {
     public $list;
 
-    public function postList(object $data)
+    public function postList(object $data): array
     {
         if (isset($data)) {
             $this->list[] = $data;

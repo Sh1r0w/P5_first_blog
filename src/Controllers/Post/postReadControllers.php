@@ -8,7 +8,7 @@ class PostReadControllers
 {
     public $postRead;
 
-    public function postReadControllers(array $data)
+    public function postReadControllers(array $data): array
     {
 
         if (isset($data)) {

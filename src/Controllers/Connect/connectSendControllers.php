@@ -28,7 +28,7 @@ class ConnectSendControllers
         array $input,
         \Controllers\Fonction\Factory $fact,
         \Model\Connect\ConnectSendModel $lSendM
-    ) {
+    ): void {
 
         $lSendM->email = $input['email'];
         $this->fact = $fact;

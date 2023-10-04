@@ -12,7 +12,7 @@ class GetImg
      *
      * @return the value of the `->name` variable.
      */
-    public function getImg()
+    public function getImg(): ?string
     {
 
         $fileInfo = pathinfo($_FILES['picture']['name']);

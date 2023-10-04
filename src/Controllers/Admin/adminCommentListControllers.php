@@ -17,7 +17,7 @@ class AdminCommentListControllers
      * assigns it to the property `` of the class. It then returns the value of `$list`.
      * */
 
-    public function commentList(object $data)
+    public function commentList(object $data): object
     {
 
         if (isset($data)) {

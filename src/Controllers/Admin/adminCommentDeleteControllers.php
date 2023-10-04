@@ -8,7 +8,7 @@ namespace Controllers\Admin;
  */
 class AdminCommentDeleteControllers
 {
-    public function commentDelete(int $id, \Controllers\Fonction\Factory $fact)
+    public function commentDelete(int $id, \Controllers\Fonction\Factory $fact): void
     {
         if ($_POST['csrf_token'] === $_SESSION['csrf_token']) {
             $fact->instance('Controllers\Repository', 'AdminRepo')->commentDelete($id);

@@ -18,7 +18,7 @@ class ConnectCreateModel
  *
  * @return bool The method `connectCreate` is returning a boolean value.
  */
-    public function connectCreate(\Controllers\Fonction\Factory $fact): bool
+    public function connectCreate(\Controllers\Fonction\Factory $fact): ?object
     {
 
         if (isset($this->data['email'], $this->data['passwordH'])) {
@@ -30,6 +30,7 @@ class ConnectCreateModel
                 $this->data['passwordH']
             );
         }
+        return null;
     }
 
     /**
@@ -38,7 +39,7 @@ class ConnectCreateModel
      * @param name The name parameter is the name of the property that is being set.
      * @param value The value parameter is the value that you want to set for the specified property.
      */
-    public function __set($name, $value)
+    public function __set(string $name, mixed $value): void
     {
         $this->data[$name] = $value;
     }
@@ -51,7 +52,7 @@ class ConnectCreateModel
      *
      * @return The value of the property with the name specified by the  parameter.
      */
-    public function __get($name)
+    public function __get(string $name): mixed
     {
         return $this->data[$name];
     }
@@ -63,7 +64,7 @@ class ConnectCreateModel
      *
      * @return whether the given property name exists in the `` array.
      */
-    public function __isset($name)
+    public function __isset(string $name): bool
     {
         return isset($this->data[$name]);
     }

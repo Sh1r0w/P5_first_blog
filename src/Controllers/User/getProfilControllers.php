@@ -15,7 +15,7 @@ class GetProfilControllers
      *
      * @return an array of user profiles.
      */
-    public function getUser(object $data)
+    public function getUser(object $data): array
     {
         while ($row = $data->fetch()) {
             $profil = [

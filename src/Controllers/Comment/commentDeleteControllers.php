@@ -6,7 +6,7 @@ namespace Controllers\Comment;
 the post page. */
 class CommentDeleteControllers
 {
-    public function commentDelete(int $id, int $key, \Controllers\Fonction\Factory $fact)
+    public function commentDelete(int $id, int $key, \Controllers\Fonction\Factory $fact): void
     {
         if ($_POST['csrf_token'] === $_SESSION['csrf_token']) {
             $fact->instance('Controllers\Repository', 'CommentRepo')->delete($id);

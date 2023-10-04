@@ -21,7 +21,7 @@ class UpdatePassControllers
         array $input,
         \Controllers\Fonction\Factory $fact,
         \Model\User\UpdatePassModel $updatePassModel
-    ) {
+    ): void {
 
         $user = $fact->instance(
             'Controllers\Repository',

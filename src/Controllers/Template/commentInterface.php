@@ -11,13 +11,13 @@ interface CommentInterface
 {
     public function __construct();
 
-    public function create(string $content, int $idpost);
+    public function create(string $content, int $idpost): void;
 
-    public function read(int $id);
+    public function read(int $id): object;
 
-    public function delete(int $id);
+    public function delete(int $id): void;
 
-    public function update(int $id, string $content);
+    public function update(int $id, string $content): void;
 
-    public function count();
+    public function count(): object;
 }

@@ -6,5 +6,5 @@ interface ProfilInterface
 {
     public function __construct();
 
-    public function get(int $id);
+    public function get(int $id): object;
 }

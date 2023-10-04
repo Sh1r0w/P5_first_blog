@@ -24,7 +24,7 @@ class AdminRepo implements AdminInterface
     * @return The `userList()` function is returning a statement object that contains the result of the
     * SQL query.
     */
-    public function userList()
+    public function userList(): object
     {
         $statement = $this->dbase->query(
             "SELECT * FROM ae_user ORDER BY id ASC"
@@ -42,7 +42,7 @@ class AdminRepo implements AdminInterface
      * @param value The "value" parameter is the new value that you want to update the "globalAdmin"
      * column with in the "ae_user" table.
      */
-    public function userUpdate(int $id, string $value)
+    public function userUpdate(int $id, string $value): void
     {
         $statement = $this->dbase->prepare(
             "UPDATE ae_user SET globalAdmin = $value WHERE id = $id"
@@ -56,7 +56,7 @@ class AdminRepo implements AdminInterface
      * @param id The "id" parameter is the unique identifier of the user that you want to delete from
      * the "ae_connect" table.
      */
-    public function userDelete(int $id)
+    public function userDelete(int $id): void
     {
         $statement = $this->dbase->prepare(
             "DELETE FROM ae_connect WHERE id = $id"
@@ -71,7 +71,7 @@ class AdminRepo implements AdminInterface
      * @return The `postList()` function is returning a statement object that contains the result of
      * the SQL query.
      */
-    public function postList()
+    public function postList(): object
     {
         $statement = $this->dbase->query(
             "SELECT * FROM ae_post WHERE valide = '0'"
@@ -89,7 +89,7 @@ class AdminRepo implements AdminInterface
      * @param value The "value" parameter is the new value that you want to update the "valide" column
      * with in the "ae_post" table.
      */
-    public function postUpdate(int $id, string $value)
+    public function postUpdate(int $id, string $value): void
     {
         $statement = $this->dbase->prepare(
             "UPDATE ae_post SET valide = $value WHERE id = $id"
@@ -104,7 +104,7 @@ class AdminRepo implements AdminInterface
      * @param id The parameter "id" is the unique identifier of the post that you want to delete from
      * the "ae_post" table in the database.
      */
-    public function postDelete(int $id)
+    public function postDelete(int $id): void
     {
         $statement = $this->dbase->prepare(
             "DELETE FROM ae_post WHERE id = $id"
@@ -119,7 +119,7 @@ class AdminRepo implements AdminInterface
      * @return The `commentList()` function is returning a statement object that contains the result of
      * the SQL query.
      */
-    public function commentList()
+    public function commentList(): object
     {
         $statement = $this->dbase->query(
             "SELECT c.*, 
@@ -149,7 +149,7 @@ class AdminRepo implements AdminInterface
      * @param value The "value" parameter is the new value that you want to update the "valide" column
      * with in the "ae_comment" table.
      */
-    public function commentUpdate(int $id, string $value)
+    public function commentUpdate(int $id, string $value): void
     {
         $statement = $this->dbase->prepare(
             "UPDATE ae_comment SET valide = $value WHERE id = $id"
@@ -163,7 +163,7 @@ class AdminRepo implements AdminInterface
      * @param id The parameter "id" is the unique identifier of the comment that you want to delete
      * from the "ae_comment" table.
      */
-    public function commentDelete(int $id)
+    public function commentDelete(int $id): void
     {
         $statement = $this->dbase->prepare(
             "DELETE FROM ae_comment WHERE id = $id"

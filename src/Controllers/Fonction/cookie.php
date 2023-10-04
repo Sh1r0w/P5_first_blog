@@ -4,7 +4,7 @@ namespace Controllers\Fonction;
 
 class Cookie
 {
-    public function cookie()
+    public function cookie(): void
     {
 
         setcookie(
