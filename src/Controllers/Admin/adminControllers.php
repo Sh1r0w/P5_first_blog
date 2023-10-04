@@ -6,7 +6,7 @@ namespace Controllers\Admin;
 class AdminControllers
 {
     public $userList;
-    public function userList($data)
+    public function userList(object $data)
     {
         if (isset($data)) {
             $this->userList = $data;

@@ -28,7 +28,7 @@ class UserSendControllers
      */
     public function userSend(
         array $input,
-        $count,
+        string $count,
         \Controllers\Fonction\Factory $fact,
         \Model\User\UserPushModel $userPush
     ) {

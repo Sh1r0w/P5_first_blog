@@ -42,7 +42,7 @@ class AdminRepo implements AdminInterface
      * @param value The "value" parameter is the new value that you want to update the "globalAdmin"
      * column with in the "ae_user" table.
      */
-    public function userUpdate($id, $value)
+    public function userUpdate(int $id, string $value)
     {
         $statement = $this->dbase->prepare(
             "UPDATE ae_user SET globalAdmin = $value WHERE id = $id"
@@ -56,7 +56,7 @@ class AdminRepo implements AdminInterface
      * @param id The "id" parameter is the unique identifier of the user that you want to delete from
      * the "ae_connect" table.
      */
-    public function userDelete($id)
+    public function userDelete(int $id)
     {
         $statement = $this->dbase->prepare(
             "DELETE FROM ae_connect WHERE id = $id"
@@ -89,7 +89,7 @@ class AdminRepo implements AdminInterface
      * @param value The "value" parameter is the new value that you want to update the "valide" column
      * with in the "ae_post" table.
      */
-    public function postUpdate($id, $value)
+    public function postUpdate(int $id, string $value)
     {
         $statement = $this->dbase->prepare(
             "UPDATE ae_post SET valide = $value WHERE id = $id"
@@ -104,7 +104,7 @@ class AdminRepo implements AdminInterface
      * @param id The parameter "id" is the unique identifier of the post that you want to delete from
      * the "ae_post" table in the database.
      */
-    public function postDelete($id)
+    public function postDelete(int $id)
     {
         $statement = $this->dbase->prepare(
             "DELETE FROM ae_post WHERE id = $id"
@@ -149,7 +149,7 @@ class AdminRepo implements AdminInterface
      * @param value The "value" parameter is the new value that you want to update the "valide" column
      * with in the "ae_comment" table.
      */
-    public function commentUpdate($id, $value)
+    public function commentUpdate(int $id, string $value)
     {
         $statement = $this->dbase->prepare(
             "UPDATE ae_comment SET valide = $value WHERE id = $id"
@@ -163,7 +163,7 @@ class AdminRepo implements AdminInterface
      * @param id The parameter "id" is the unique identifier of the comment that you want to delete
      * from the "ae_comment" table.
      */
-    public function commentDelete($id)
+    public function commentDelete(int $id)
     {
         $statement = $this->dbase->prepare(
             "DELETE FROM ae_comment WHERE id = $id"

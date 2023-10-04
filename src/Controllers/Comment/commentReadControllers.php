@@ -7,7 +7,7 @@ class CommentReadControllers
 {
     public $commentsRead;
 
-    public function commentReadControllers($data)
+    public function commentReadControllers(mixed $data)
     {
 
         if (isset($data)) {

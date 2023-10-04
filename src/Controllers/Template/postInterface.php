@@ -8,13 +8,13 @@ interface PostInterface
 {
     public function __construct();
 
-    public function postRead($id);
+    public function postRead(int $id);
 
     public function postList();
 
-    public function postSend($title, $chapo, $content, $author, $img);
+    public function postSend(string $title, string $chapo, string $content, string $author, string $img);
 
-    public function postDelete($id);
+    public function postDelete(int $id);
 
-    public function postUpdate($id, $upTitle, $upContent, $upChapo, $upAuthor, $upImg);
+    public function postUpdate(int $id, string $upTitle, string $upContent, string $upChapo, string $upAuthor, string $upImg);
 }

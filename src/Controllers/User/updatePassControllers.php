@@ -18,7 +18,7 @@ class UpdatePassControllers
      * database.
      */
     public function updatePass(
-        $input,
+        array $input,
         \Controllers\Fonction\Factory $fact,
         \Model\User\UpdatePassModel $updatePassModel
     ) {

@@ -25,7 +25,7 @@ class CommentRepo implements CommentInterface
      * @param idpost The parameter "idpost" is the ID of the post to which the comment belongs. It is
      * used to associate the comment with the correct post in the database.
      */
-    public function create($content, $idpost)
+    public function create(string $content, int $idpost)
     {
         $statement = $this->dbase->prepare(
             "INSERT INTO ae_comment(content, addDate, id_user, id_post) VALUES (?, NOW(),?,?)"
@@ -42,7 +42,7 @@ class CommentRepo implements CommentInterface
      *
      * @return a database query statement.
      */
-    public function read($id)
+    public function read(int $id)
     {
         $statement = $this->dbase->query(
             "SELECT * FROM ae_comment c 
@@ -62,7 +62,7 @@ class CommentRepo implements CommentInterface
      * @param id The "id" parameter is the unique identifier of the comment that you want to delete
      * from the "ae_comment" table.
      */
-    public function delete($id)
+    public function delete(int $id)
     {
         $statement = $this->dbase->prepare(
             "DELETE FROM ae_comment WHERE id = $id"
@@ -78,7 +78,7 @@ class CommentRepo implements CommentInterface
      * @param content The "content" parameter is the new content that you want to update for the
      * comment with the specified ID.
      */
-    public function update($id, $content)
+    public function update(int $id, string $content)
     {
         $statement = $this->dbase->prepare(
             "UPDATE ae_comment SET content = ? WHERE id = $id"

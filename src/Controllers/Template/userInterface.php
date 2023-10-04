@@ -10,9 +10,9 @@ interface UserInterface
 
     public function userCreate();
 
-    public function userRead($id);
+    public function userRead(int $id);
 
-    public function userUpdate($id);
+    public function userUpdate(int $id);
 
-    public function userPasswordUpdate($password, $id);
+    public function userPasswordUpdate(string $password, int $id);
 }

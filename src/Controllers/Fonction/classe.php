@@ -346,7 +346,7 @@ class Factory
      * instance of the 'AdminControllers' class with an instance of the 'AdminUserListModel' class as a
      * parameter.
      */
-    public function adminList(): array
+    public function adminList(): object
     {
         return self::instance(
             'Controllers\Admin',

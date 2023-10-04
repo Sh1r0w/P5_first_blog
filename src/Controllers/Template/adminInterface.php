@@ -10,19 +10,19 @@ interface AdminInterface
 
     public function userList();
 
-    public function userUpdate($id, $value);
+    public function userUpdate(int $id, string $value);
 
-    public function userDelete($id);
+    public function userDelete(int $id);
 
     public function postList();
 
-    public function postUpdate($id, $value);
+    public function postUpdate(int $id, string $value);
 
-    public function postDelete($id);
+    public function postDelete(int $id);
 
     public function commentList();
 
-    public function commentUpdate($id, $value);
+    public function commentUpdate(int $id, string $value);
 
-    public function commentDelete($id);
+    public function commentDelete(int $id);
 }

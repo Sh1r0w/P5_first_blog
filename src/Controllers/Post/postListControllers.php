@@ -7,7 +7,7 @@ class PostListControllers
 {
     public $post;
 
-    public function postList($data)
+    public function postList(object $data)
     {
         if (isset($data)) {
             $this->post = $data;

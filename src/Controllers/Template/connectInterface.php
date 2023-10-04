@@ -8,11 +8,11 @@ interface ConnectInterface
 {
     public function __construct();
 
-    public function create($val1, $va2);
+    public function create(string $connect, string $password);
 
-    public function check($input);
+    public function check(string $input);
 
     public function count();
 
-    public function connect($input);
+    public function connect(string $input);
 }

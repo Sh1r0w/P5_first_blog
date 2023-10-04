@@ -30,7 +30,7 @@ class ConnectRepo implements ConnectInterface
      * @return a boolean value. If the insertion into the "ae_connect" table is successful and at least
      * one row is affected, it will return true. Otherwise, it will return false.
      */
-    public function create($connect, $password)
+    public function create(string $connect, string $password)
     {
         $statement = $this->dbase->prepare(
             "INSERT INTO ae_connect(log, pwd) VALUES(?,?)"
@@ -47,7 +47,7 @@ class ConnectRepo implements ConnectInterface
      *
      * @return the result of the executed SQL statement.
      */
-    public function check($input)
+    public function check(string $input)
     {
         $statement = $this->dbase->prepare(
             "SELECT log FROM ae_connect WHERE log = ?"
@@ -79,7 +79,7 @@ class ConnectRepo implements ConnectInterface
      *
      * @return the result of the executed SQL statement.
      */
-    public function connect($email)
+    public function connect(string $email)
     {
         $statement = $this->dbase->prepare(
             "SELECT * FROM ae_connect a 

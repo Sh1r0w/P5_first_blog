@@ -23,7 +23,7 @@ class ConnectCreateSendControllers
     */
     public function connectCreateSend(
         array $input,
-        $check,
+        bool $check,
         \Controllers\Fonction\Factory $fact,
         \Model\Connect\ConnectCreateModel $connectC
     ) {

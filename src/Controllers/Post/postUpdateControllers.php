@@ -6,7 +6,7 @@ namespace Controllers\Post;
 input. */
 class PostUpdateControllers
 {
-    public function postUpdate(array $input, $id, \Controllers\Fonction\Factory $fact)
+    public function postUpdate(array $input, int $id, \Controllers\Fonction\Factory $fact)
     {
         if (isset($id) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
             $fact->instance('Model\post', 'PostUpdateModel')->postUpdate($input, $id, $fact);
