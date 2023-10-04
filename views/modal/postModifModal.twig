@@ -1,33 +1,35 @@
 {% import "macro/forms.twig" as forms %}
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <form action="postUpdate?action=postUpdate&id={{ p.id }}" method="post" enctype="multipart/form-data">
-            <div class="modal-content">
-                <div class="card-header card-title">
-                    {{ forms.input('Votre titre', 'upTitle',  p.title, 'texte') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="card-body">
-                    {% if p.imgP != null%}
-                        <img src="{{ p.imgP }}" class="card-img-top text-center" alt=" {{ p.title }}" style="max-width: 250px;">
-                    {% endif %}</br>
-                    {{ forms.textarea('Votre Chapo / résumé', 'upChapo', p.chapo, 5, 60) }}
-                    {{ forms.textarea('Votre texte', 'upContent', p.content, 5, 60) }}
-                  {{ forms.input('Fichier joint :', 'picture',  null, 'file') }}
-                  {{ forms.csrf }}
-                </div>
-                <div></div>
-                <div class="modal-footer">
-                    {{ forms.input('Auteur', 'upAuthor',  p.author, 'texte') }}
-                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#read{{ p.id }}" data-bs-dismiss="modal">
-                        Close
-                                                
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                        Save changes
-                                                
-                    </button>
-                </div>
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <form action="postUpdate?action=postUpdate&id={{ p.id }}" method="post" enctype="multipart/form-data">
+        <div class="modal-content">
+            <div class="card-header card-title">
+                {{ forms.input('Votre titre', 'upTitle',  p.title, 'texte') }}
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            </form>
+            <div class="card-body">
+                {% if p.imgP != null %}
+                    <img src="{{ p.imgP }}" class="card-img-top text-center" alt=" {{ p.title }}" style="max-width: 250px;">
+                    {% endif %}
+                </br>
+                {{ forms.textarea('Votre Chapo / résumé', 'upChapo', p.chapo, 5, 60) }}
+                {{ forms.textarea('Votre texte', 'upContent', p.content, 5, 60) }}
+                {{ forms.input('Fichier joint :', 'picture',  null, 'file') }}
+                {{ forms.csrf }}
+            </div>
+            <div></div>
+            <div class="modal-footer">
+                {{ forms.input('Auteur', 'upAuthor',  p.author, 'texte') }}
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#read{{ p.id }}" data-bs-dismiss="modal">
+                    Close
+                                                                    
+                                        
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    Save changes
+                                                                    
+                                        
+                </button>
+            </div>
         </div>
-   
+    </form>
+</div>

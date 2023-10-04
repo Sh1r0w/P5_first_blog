@@ -14,6 +14,7 @@ Voir le post</button></form><div class="card-footer"><small class="text-muted">
 de : 
     
 
+
 {% if p.img == null %}
   <img
 class="me-2 img-onePost" src="uploads/profile/anonyme.png" alt="{{ p.author }}" />
@@ -28,11 +29,13 @@ class="me-2 img-onePost" src="uploads/profile/anonyme.png" alt="{{ p.author }}" 
   <br/>
   {% if p.addDate != p.updDate %}
     Modifié le 
+          
       
   </br>
   {{ p.updDate|date("d/m/Y H:i:s" , "Europe/Paris") }}
 {% else %}
   Crée le 
+    
   
 </br>
 {{ p.addDate|date("d/m/Y H:i:s" , "Europe/Paris") }}</br>{% endif %}</small></div>

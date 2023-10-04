@@ -1,5 +1,6 @@
 {
     "name": "ntf_j/p5_first_blog",
+    "license": "JCG",
     "autoload": {
         "psr-4": {
             "NtfJ\\P5FirstBlog\\": "src/"
