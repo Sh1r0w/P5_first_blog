@@ -2,9 +2,9 @@
 
 namespace Controllers\Interface;
 
-/* The code is defining an interface called `postInterface` within the `Controllers\Interface`
+/* The code is defining an interface called `PostInterface` within the `Controllers\Interface`
 namespace. */
-interface postInterface
+interface PostInterface
 {
     public function __construct();
 

@@ -2,12 +2,12 @@
 
 namespace Controllers\Admin;
 
-class adminUserDeleteControllers
+class AdminUserDeleteControllers
 {
-    public function adminUserDelete($id, \Controllers\Fonction\factory $fact)
+    public function adminUserDelete($id, \Controllers\Fonction\Factory $fact)
     {
         if ($_POST['csrf_token'] === $_SESSION['csrf_token']) {
-            $fact->instance('Controllers\Repository', 'adminRepo')->userDelete($id);
+            $fact->instance('Controllers\Repository', 'AdminRepo')->userDelete($id);
         }
         header('location: userList');
     }

@@ -2,14 +2,14 @@
 
 namespace Controllers\Post;
 
-/* The `postUpdateControllers` class is responsible for updating post in a repository based on user
+/* The `PostUpdateControllers` class is responsible for updating post in a repository based on user
 input. */
-class postUpdateControllers
+class PostUpdateControllers
 {
-    public function postUpdate(array $input, $id, \Controllers\Fonction\factory $fact)
+    public function postUpdate(array $input, $id, \Controllers\Fonction\Factory $fact)
     {
         if (isset($input, $id) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
-            $fact->instance('Model\post', 'postUpdateModel')->postUpdate($input, $id, $fact);
+            $fact->instance('Model\post', 'PostUpdateModel')->postUpdate($input, $id, $fact);
         }
 
 

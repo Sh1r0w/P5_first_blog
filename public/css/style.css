@@ -15,17 +15,13 @@ p {
     text-align: center;
 }
 
-.card {
-    max-width: 500px !important;
-    
-}
-
 .cardOne{
     cursor:pointer;
 }
 
 .img-onePost {
     max-width: 40px !important; 
+    width: 100%;
 }
 
 .card-title {
@@ -57,8 +53,13 @@ p {
 }
 
 .profil img {
-    width: 160px;
+    max-width: 160px;
+    width: 100%;
     margin: 0 50px 0 0;
+}
+
+.postRead img {
+    max-width: 650px;
 }
 
 .addProfil {
@@ -68,4 +69,13 @@ p {
 
 .btn {
     margin : 15px 15px 15px 15px;
+}
+
+embed {
+    width: 100%;
+}
+
+textarea,
+input {
+    width: 100%;
 }

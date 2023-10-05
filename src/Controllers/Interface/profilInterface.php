@@ -2,7 +2,7 @@
 
 namespace Controllers\Interface;
 
-interface profilInterface
+interface ProfilInterface
 {
     public function __construct();
 

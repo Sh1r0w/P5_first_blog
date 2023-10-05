@@ -2,9 +2,9 @@
 
 namespace Controllers\Interface;
 
-/* The code is defining an interface called `connectInterface`. An interface in PHP is a collection of
+/* The code is defining an interface called `ConnectInterface`. An interface in PHP is a collection of
 method signatures that a class can implement. */
-interface connectInterface
+interface ConnectInterface
 {
     public function __construct();
 

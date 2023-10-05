@@ -1,14 +1,14 @@
 <?php
 
 /**
- * The adminCommentListControllers class is a PHP
+ * The AdminCommentListControllers class is a PHP
  * class that manages a list of comments for the admin
  * section of a website.
  */
 
 namespace Controllers\Admin;
 
-class adminCommentListControllers
+class AdminCommentListControllers
 {
     public $list;
 

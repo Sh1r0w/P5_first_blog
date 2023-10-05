@@ -2,7 +2,7 @@
 
 namespace Controllers\Fonction;
 
-class cookie
+class Cookie
 {
     public function cookie()
     {

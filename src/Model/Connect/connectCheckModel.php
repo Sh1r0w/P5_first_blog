@@ -2,17 +2,31 @@
 
 namespace Model\Connect;
 
-/* The connectCheck class checks if a given email exists in the ae_connect table and returns true if it
-does, false otherwise. */
-class connectCheckModel
+class ConnectCheckModel
 {
     protected $result = null;
 
-    public function connectCheck($input, \Controllers\Fonction\factory $fact)
+    /**
+     * The function checks if the given email exists in the ConnectRepo repository and returns true if
+     * it does, false otherwise.
+     *
+     * @param input An array containing the input data. It is expected to have an 'email' key.
+     * @param \Controllers\Fonction\Factory fact The parameter `` is an instance of the `Factory`
+     * class from the `Controllers\Fonction` namespace.
+     *
+     * @return the value of the variable ->result.
+     */
+    public function connectCheck($input, \Controllers\Fonction\Factory $fact)
     {
 
         if (isset($input['email'])) {
-            $check = $fact->instance('Controllers\Repository', 'connectRepo')->check($input['email'])->fetch();
+            $check = $fact->instance(
+                'Controllers\Repository',
+                'ConnectRepo'
+            )->check(
+                $input['email']
+            )->fetch();
+
             if (isset($check['log']) == $input['email']) {
                 $this->result = true;
             } else {

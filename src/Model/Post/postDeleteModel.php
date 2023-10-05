@@ -2,12 +2,21 @@
 
 namespace Model\Post;
 
-/* The postDeleteModel class is responsible for deleting a post by calling the postDelete method in
-the postRepo class. */
-class postDeleteModel
+class PostDeleteModel
 {
-    public function postDelete($id, \Controllers\Fonction\factory $fact)
+    /**
+     * The postDelete function calls the postDelete method of the PostRepo class in the
+     * Controllers\Repository namespace using a Factory instance.
+     *
+     * @param id The parameter "id" is the identifier of the post that needs to be deleted.
+     * @param \Controllers\Fonction\Factory fact The parameter `` is an instance of the `Factory`
+     * class from the `Controllers\Fonction` namespace.
+     */
+    public function postDelete($id, \Controllers\Fonction\Factory $fact)
     {
-        $fact->instance('Controllers\Repository', 'postRepo')->postDelete($id);
+        $fact->instance(
+            'Controllers\Repository',
+            'PostRepo'
+        )->postDelete($id);
     }
 }

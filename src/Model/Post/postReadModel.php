@@ -2,16 +2,31 @@
 
 namespace Model\Post;
 
-/* The `postReadModel` class is responsible for retrieving and storing information about post from a
-database. */
-class postReadModel
+class PostReadModel
 {
     public $read;
 
-    public function postReadModel($id, \Controllers\Fonction\factory $fact)
+    /**
+     * The function `postReadModel` retrieves a post from a repository and returns an array of post
+     * data.
+     *
+     * @param id The "id" parameter is the identifier of the post that you want to retrieve from the
+     * database. It is used to specify which post you want to read.
+     * @param \Controllers\Fonction\Factory fact The parameter `` is an instance of the `Factory`
+     * class from the `Controllers\Fonction` namespace. It is used to create instances of different
+     * classes dynamically.
+     *
+     * @return an array of posts. Each post is represented by an associative array with keys 'id',
+     * 'title', 'chapo', 'content', 'author', 'addDate', 'updDate', 'imgP', and 'idUs'.
+     */
+    public function postReadModel($id, \Controllers\Fonction\Factory $fact)
     {
-        //$fact = \Controllers\Fonction\factory::getInstance();
-        $read = $fact->instance('Controllers\Repository', 'postRepo')->postRead($id);
+        //$fact = \Controllers\Fonction\Factory::getInstance();
+        $read = $fact->instance(
+            'Controllers\Repository',
+            'PostRepo'
+        )->postRead($id);
+
         while ($row = $read->fetch()) {
             $post = [
             'id' => $row['id'],

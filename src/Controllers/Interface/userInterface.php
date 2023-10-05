@@ -2,9 +2,9 @@
 
 namespace Controllers\Interface;
 
-/* The code is defining an interface called `userInterface` within the `Controllers\Interface`
+/* The code is defining an interface called `UserInterface` within the `Controllers\Interface`
 namespace. */
-interface userInterface
+interface UserInterface
 {
     public function __construct();
 

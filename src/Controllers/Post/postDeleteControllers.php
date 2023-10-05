@@ -2,14 +2,14 @@
 
 namespace Controllers\Post;
 
-/* The postDeleteControllers class is responsible for deleting a post based on its ID. */
+/* The PostDeleteControllers class is responsible for deleting a post based on its ID. */
 
-class postDeleteControllers
+class PostDeleteControllers
 {
-    public function postDelete(int $id, \Controllers\Fonction\factory $fact)
+    public function postDelete(int $id, \Controllers\Fonction\Factory $fact)
     {
         if (isset($id) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
-            $fact->instance('Model\post', 'postDeleteModel')->postDelete($id, $fact);
+            $fact->instance('Model\post', 'PostDeleteModel')->postDelete($id, $fact);
         }
         header('location: post');
     }

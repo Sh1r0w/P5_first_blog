@@ -2,12 +2,19 @@
 
 namespace Model\Admin;
 
-/* The adminpostUpdateModel class is used to update the value of the key property based on the input
-key value. */
-class adminCommentUpdateModel
+class AdminCommentUpdateModel
 {
     public $key;
 
+    /**
+     * The commentUpdate function updates the value of the key variable based on the input value.
+     *
+     * @param key The parameter "key" is a variable that is passed into the function commentUpdate().
+     * It is used to determine the value of the property "key" of the object that the function is
+     * called on. If the value of "key" is "1", then the function will set the value of the
+     *
+     * @return The value of `->key` is being returned.
+     */
     public function commentUpdate($key)
     {
         if ($key == "1") {

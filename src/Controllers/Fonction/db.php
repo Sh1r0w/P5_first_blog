@@ -3,10 +3,10 @@
 namespace Controllers\Fonction;
 
 require '../src/controllers/fonction/params.php';
-/* The `class db` is responsible for creating and connecting to a MySQL database. It creates the
+/* The `class Db` is responsible for creating and connecting to a MySQL database. It creates the
 necessary tables if they don't already exist. It also provides a static method `connectDatabase()`
 that can be used to establish a connection to the database. */
-class db
+class Db
 {
     private static $_connect;
     private $database;
@@ -42,6 +42,12 @@ class db
             pictures VARCHAR(255),
             citation VARCHAR(255),
             cv VARCHAR(255),
+            social_network_facebook VARCHAR(255),
+            social_network_instagram VARCHAR(255),
+            social_network_x VARCHAR(255),
+            social_network_linkedin VARCHAR(255),
+            social_network_github VARCHAR(255),
+            social_network_gitlab VARCHAR(255),
             globalAdmin INT DEFAULT '0',
             id_login INT NOT NULL,
             FOREIGN KEY (id_login) REFERENCES ae_connect (id) ON DELETE CASCADE ON UPDATE NO ACTION
@@ -69,17 +75,6 @@ class db
                     FOREIGN KEY (id_user) REFERENCES ae_user (id) ON DELETE CASCADE ON UPDATE NO ACTION,
                     FOREIGN KEY (id_post) REFERENCES ae_post (id) ON DELETE CASCADE ON UPDATE NO ACTION
                     )");
-                $this->database->exec("CREATE TABLE IF NOT EXISTS ae_like (
-                    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                    ilike INT NOT NULL,
-                    dislike INT NOT NULL,
-                    id_user INT NOT NULL,
-                    id_post INT NOT NULL,
-                    id_comment INT NOT NULL,
-                    FOREIGN KEY (id_user) REFERENCES ae_user (id) ON DELETE CASCADE ON UPDATE NO ACTION,
-                    FOREIGN KEY (id_post) REFERENCES ae_post (id) ON DELETE CASCADE ON UPDATE NO ACTION,
-                    FOREIGN KEY (id_comment) REFERENCES ae_comment (id) ON DELETE CASCADE ON UPDATE NO ACTION
-                    )");
                 echo "<script>alert(\"base de donnée créer\")</script>";
                 header("Location: home");
             } else {
@@ -91,15 +86,15 @@ class db
     }
 
 /**
- * The function `connectDatabase` returns an instance of the `db` class if it is not already
+ * The function `connectDatabase` returns an instance of the `Db` class if it is not already
  * instantiated.
  *
- * @return an instance of the "db" class.
+ * @return an instance of the "Db" class.
  */
     public static function connectDatabase()
     {
         if (is_null(self::$_connect)) {
-            self::$_connect = new db();
+            self::$_connect = new Db();
         }
         return self::$_connect;
     }

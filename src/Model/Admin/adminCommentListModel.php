@@ -2,13 +2,23 @@
 
 namespace Model\Admin;
 
-class adminCommentListModel
+class AdminCommentListModel
 {
     public $comments;
 
-    public function __construct(\Controllers\Fonction\factory $fact)
+    /**
+     * The function constructs an array of comments by fetching data from a repository and assigning it
+     * to the comments array.
+     *
+     * @param \Controllers\Fonction\Factory fact The parameter `` is an instance of the `Factory`
+     * class from the `Controllers\Fonction` namespace. It is used to create instances of different
+     * classes.
+     *
+     * @return an array of comments.
+     */
+    public function __construct(\Controllers\Fonction\Factory $fact)
     {
-        $list = $fact->instance('Controllers\Repository', 'adminRepo')->commentList();
+        $list = $fact->instance('Controllers\Repository', 'AdminRepo')->commentList();
         while ($row = $list->fetch()) {
             $comment = [
                 'id' => $row[0],

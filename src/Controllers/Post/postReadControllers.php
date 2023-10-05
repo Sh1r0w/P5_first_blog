@@ -2,9 +2,9 @@
 
 namespace Controllers\Post;
 
-/* The class "postReadControllers" is used to handle the reading of post and redirect to the "post"
+/* The class "PostReadControllers" is used to handle the reading of post and redirect to the "post"
 page if no data is provided. */
-class postReadControllers
+class PostReadControllers
 {
     public $postRead;
 

@@ -25,7 +25,7 @@
     {% include 'modal/postCreateModal.twig' %}  
     <div class="row d-flex flex-column align-content-center">
         {% for p in post.post %}
-            <div class="card m-5" >
+            <div class="card m-5 col-5" >
                 {% include 'add/postOne.twig' %}
                 <div class="modal fade " id="read{{ p.id }}" tabindex="-1" aria-hidden="true">
                     {% include 'modal/postRead.twig' %}

@@ -2,8 +2,8 @@
 
 namespace Controllers\Comment;
 
-/* The class commentReadControllers is used to store and retrieve comments. */
-class commentReadControllers
+/* The class CommentReadControllers is used to store and retrieve comments. */
+class CommentReadControllers
 {
     public $commentsRead;
 

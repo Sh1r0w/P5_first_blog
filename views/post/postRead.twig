@@ -8,15 +8,15 @@
     {% endfor %}
 {% endblock %}
 {% block content %}
-<div class="row d-flex flex-column align-content-center">
+<div class="row d-flex flex-column align-content-center ">
 {% for p in postRead %}
     
-    <div class="card m-5">
+    <div class="postRead col-8 card m-5">
             <h4 class="card-header card-title border-dark">
                 {{ p.title }}
             </h4>
             {% if p.imgP != null %}
-                <img src="{{ p.imgP }}" class="card-img-top " alt=" {{ p.title }}">
+                <img src="{{ p.imgP }}" class="card-img-top" alt=" {{ p.title }}">
                 {% endif %}
             </br>
             <div class="card-body">

@@ -2,14 +2,28 @@
 
 namespace Model\Comment;
 
-/* The commentReadModel class is responsible for retrieving and storing comments from a database. */
-class commentReadModel
+class CommentReadModel
 {
     public $read;
 
-    public function commentRead($id, \Controllers\Fonction\factory $fact)
+    /**
+     * The commentRead function retrieves comments from a database and returns them as an array.
+     *
+     * @param id The parameter "id" is the identifier of the comment that you want to read. It is used
+     * to fetch the specific comment from the database.
+     * @param \Controllers\Fonction\Factory fact The parameter `` is an instance of the `Factory`
+     * class from the `Controllers\Fonction` namespace. It is used to create instances of different
+     * classes within the factory pattern. In this case, it is used to create an instance of the
+     * `CommentRepo` class from the `Controllers
+     *
+     * @return an array of comments.
+     */
+    public function commentRead($id, \Controllers\Fonction\Factory $fact)
     {
-        $nComment = $fact->instance('Controllers\Repository', 'commentRepo')->read($id);
+        $nComment = $fact->instance(
+            'Controllers\Repository',
+            'CommentRepo'
+        )->read($id);
 
         while ($row = $nComment->fetch()) {
             $comment = [

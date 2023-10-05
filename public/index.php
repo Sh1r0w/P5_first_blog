@@ -24,7 +24,7 @@ $twig->addGlobal('session', $_SESSION);
 $twig->addGlobal('cookie', $_COOKIE);
 $fact = \Controllers\Fonction\factory::getInstance();
 
-$fact->instance('Controllers\Fonction', 'csp');
+$fact->instance('Controllers\Fonction', 'Csp');
 
 /** 
  * The code snippet is creating a router using the AltoRouter library. The router is used to map
@@ -102,5 +102,5 @@ if (is_array($match) && is_callable($match['target'])) {
  *
  * @Param action $match altorouter and $_POST
  */
-$d = \Controllers\Fonction\db::connectDatabase();
-$a = new \Controllers\Fonction\action($_POST);
+$d = \Controllers\Fonction\Db::connectDatabase();
+$a = new \Controllers\Fonction\Action($_POST);
