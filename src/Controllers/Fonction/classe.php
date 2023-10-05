@@ -238,7 +238,7 @@ class Factory
         );
     }
 
-    public function updatePass(array $input): mixed
+    public function updatePass(array $input): void
     {
         self::instance(
             'Controllers\User',
@@ -357,7 +357,7 @@ class Factory
         );
     }
 
-    public function adminUserUpdate(array $input, string $id, string $key): mixed
+    public function adminUserUpdate(array $input, string $id, string $key): void
     {
         self::instance(
             'Controllers\Admin',
@@ -436,7 +436,7 @@ class Factory
         );
     }
 
-    public function adminCommentUpdate(array $input, string $id, string $key): mixed
+    public function adminCommentUpdate(array $input, string $id, string $key): void
     {
         self::instance(
             'Controllers\Admin',

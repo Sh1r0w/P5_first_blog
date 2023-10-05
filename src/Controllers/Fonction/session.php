@@ -9,11 +9,9 @@ class Session
         $_SESSION[$name] = $value;
     }
 
-    public function __get(string $name): mixed
+    public function __get(string $name): string
     {
-        if (array_key_exists($name, $_SESSION)) {
             return $_SESSION[$name];
-        }
     }
 
     public function __isset(string $name): bool
