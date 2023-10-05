@@ -2,7 +2,7 @@
 
 namespace Controllers\Repository;
 
-use Controllers\Interface\ProfilInterface;
+use Controllers\Template\ProfilInterface;
 
 /**
  * The `ProfilRepo` class is a PHP class that implements the `ProfilInterface` interface and provides a

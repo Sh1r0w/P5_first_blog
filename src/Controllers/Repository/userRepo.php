@@ -2,7 +2,7 @@
 
 namespace Controllers\Repository;
 
-use Controllers\Interface\UserInterface;
+use Controllers\Template\UserInterface;
 
 /* The UserRepo class is a PHP class that implements the UserInterface and provides methods for
 creating, reading, and updating user data in a database. */

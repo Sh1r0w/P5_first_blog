@@ -1,6 +1,6 @@
 <?php
 
-namespace Controllers\Interface;
+namespace Controllers\Template;
 
 /* The `interface CommentInterface` is defining a contract for classes that implement it. It specifies
 a set of methods that must be implemented by any class that wants to be considered a comment

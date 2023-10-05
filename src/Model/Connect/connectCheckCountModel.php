@@ -21,7 +21,5 @@ class ConnectCheckCountModel
             'ConnectRepo'
         )->count()
             ->fetch()[0];
-
-        return $this->result;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Controllers\Repository;
 
-use Controllers\Interface\CommentInterface;
+use Controllers\Template\CommentInterface;
 
 class CommentRepo implements CommentInterface
 {

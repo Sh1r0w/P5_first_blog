@@ -21,15 +21,19 @@ class ConnectCreateSendControllers
     * password values from the input array, and to perform operations related to creating a new
     * connection.
     */
-    public function connectCreateSend(array $input, $check, \Controllers\Fonction\Factory $fact, \Model\Connect\ConnectCreateModel $connectC)
-    {
+    public function connectCreateSend(
+        array $input,
+        $check,
+        \Controllers\Fonction\Factory $fact,
+        \Model\Connect\ConnectCreateModel $connectC
+    ) {
         $connectC->email = $input['email'];
         $password = $input['password'];
         $password2 = $input['password2'];
         try {
             if (isset($input['email']) && isset($password) && $password === $password2) {
                 $connectC->passwordH = password_hash($password, PASSWORD_DEFAULT);
-                if ($check == false) {
+                if ($check === false) {
                     $connectC->connectCreate($fact);
                     $autoL = [
                     'email' => $input['email'],

@@ -21,7 +21,6 @@ class PostReadModel
      */
     public function postReadModel($id, \Controllers\Fonction\Factory $fact)
     {
-        //$fact = \Controllers\Fonction\Factory::getInstance();
         $read = $fact->instance(
             'Controllers\Repository',
             'PostRepo'
@@ -36,7 +35,6 @@ class PostReadModel
             'author' => $row['author'],
             'addDate' => $row['addDate'],
             'updDate' => $row['updDate'],
-            'author' => $row['author'],
             'imgP' => $row['picture'],
             'idUs' => $row['id_user'],
             ];

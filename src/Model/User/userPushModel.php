@@ -20,7 +20,7 @@ class UserPushModel
             'Session'
         );
 
-        if ($this->img != null) {
+        if ($this->img !== null) {
             unlink($openSession->img);
             $openSession->img = $this->img;
         }
@@ -35,12 +35,12 @@ class UserPushModel
             $openSession->pdf = null;
         }
 
-        if ($this->pdf != null) {
+        if ($this->pdf !== null) {
             unlink($openSession->pdf);
             $openSession->pdf = $this->pdf;
         }
 
-        if ($_SESSION['idUs'] == null) {
+        if ($_SESSION['idUs'] === null) {
             $statement = $fact->instance(
                 '\Controllers\Repository',
                 'UserRepo'
@@ -92,7 +92,7 @@ class UserPushModel
      * the  array. It is used to store information about the user session, such as the user's
      * first name, last name, citation, ID, admin status, and PDF file.
      */
-    public function openSession($fact, $openSession)
+    public function openSession(\Controllers\Fonction\Factory $fact, $openSession)
     {
 
         $list = $fact->instance(

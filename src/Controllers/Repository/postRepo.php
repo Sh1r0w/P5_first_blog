@@ -2,7 +2,7 @@
 
 namespace Controllers\Repository;
 
-use Controllers\Interface\PostInterface;
+use Controllers\Template\PostInterface;
 
 /* The PostRepo class is a PHP class that implements the PostInterface and provides methods for
 reading, listing, sending, deleting, and updating post in a database. */
@@ -80,7 +80,6 @@ class PostRepo implements PostInterface
             VALUES(?,?,?,?,?,?, NOW(), NOW())"
         );
         $sendPost = $statement->execute([ $title, $chapo, $content, $author, $_SESSION['idUs'], $img]);
-        return ($sendPost > 0);
     }
 
     /**
@@ -116,7 +115,13 @@ class PostRepo implements PostInterface
     public function postUpdate($id, $upTitle, $upContent, $upChapo, $upAuthor, $upImg)
     {
         $statement = $this->dbase->prepare(
-            "UPDATE ae_post SET title = ?, content = ?, chapo = ?, author = ?, picture = ?, updDate = NOW() WHERE id = $id"
+            "UPDATE ae_post SET title = ?, 
+            content = ?, 
+            chapo = ?, 
+            author = ?, 
+            picture = ?, 
+            updDate = NOW() 
+            WHERE id = $id"
         );
         $statement->execute([$upTitle, $upContent, $upChapo, $upAuthor, $upImg]);
     }

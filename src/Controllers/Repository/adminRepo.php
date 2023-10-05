@@ -2,7 +2,7 @@
 
 namespace Controllers\Repository;
 
-use Controllers\Interface\AdminInterface;
+use Controllers\Template\AdminInterface;
 
 /* The `class AdminRepo implements AdminInterface` statement is declaring a class named `AdminRepo`
 that implements the `AdminInterface` interface. This means that the `AdminRepo` class must provide

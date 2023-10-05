@@ -1,6 +1,6 @@
 <?php
 
-namespace Controllers\Interface;
+namespace Controllers\Template;
 
 /* The code is defining an interface called `ConnectInterface`. An interface in PHP is a collection of
 method signatures that a class can implement. */

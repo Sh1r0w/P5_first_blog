@@ -24,8 +24,11 @@ class ConnectSendControllers
      * `ConnectSendModel` class from the `Model\Connect` namespace. It is used to interact with the
      * database and retrieve user information.
      */
-    public function connectSend(array $input, \Controllers\Fonction\Factory $fact, \Model\Connect\ConnectSendModel $lSendM)
-    {
+    public function connectSend(
+        array $input,
+        \Controllers\Fonction\Factory $fact,
+        \Model\Connect\ConnectSendModel $lSendM
+    ) {
 
         $lSendM->email = $input['email'];
         $this->fact = $fact;
@@ -55,7 +58,7 @@ class ConnectSendControllers
      * @param lSendM The parameter `` seems to be an object that contains some properties, one
      * of which is `email`.
      */
-    public function validateInput($lSendM)
+    public function validateInput(\Model\Connect\ConnectSendModel $lSendM)
     {
         if (empty($lSendM->email)) {
             throw new \Exception("Connect vide");
