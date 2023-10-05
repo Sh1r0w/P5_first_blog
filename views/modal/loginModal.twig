@@ -14,7 +14,7 @@
             {{ forms.login('Votre Email :', 'email', null, 'email') }}
           </div>
           <div>
-            {{ forms.password('Mot de passe', 'password', null, 'password', 8, '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' ) }}
+            {{ forms.password('Mot de passe', 'password', null, 'password', 8, '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' ) }}
             {{ forms.csrf }}
           </div>
           <div class="mt-2">
