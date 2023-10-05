@@ -17,7 +17,7 @@ class GetProfilModel
      * @return the result of calling the `get()` method on an instance of the `ProfilRepo` class, which
      * is obtained from the `Factory` instance ``.
      */
-    public function getUser($id, \Controllers\Fonction\Factory $fact)
+    public function getUser(int $id, \Controllers\Fonction\Factory $fact): object
     {
 
         return $fact->instance(

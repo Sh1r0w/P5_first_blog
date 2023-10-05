@@ -27,7 +27,7 @@ class PostRepo implements PostInterface
      *
      * @return the result of the SQL query executed in the `` variable.
      */
-    public function postRead($id)
+    public function postRead(int $id): object
     {
 
         $statement = $this->dbase->query(
@@ -43,7 +43,7 @@ class PostRepo implements PostInterface
     *
     * @return a database query statement.
     */
-    public function postList()
+    public function postList(): object
     {
         $statement = $this->dbase->query(
             "SELECT * FROM ae_post a 
@@ -73,13 +73,13 @@ class PostRepo implements PostInterface
     * @return a boolean value. If the execution of the SQL statement is successful and at least one row
     * is affected, it will return true. Otherwise, it will return false.
     */
-    public function postSend($title, $chapo, $content, $author, $img)
+    public function postSend(string $title, string $chapo, string $content, string $author, ?string $img): void
     {
         $statement = $this->dbase->prepare(
             "INSERT INTO ae_post(title, chapo, content, author, id_user, picture, addDate, updDate ) 
             VALUES(?,?,?,?,?,?, NOW(), NOW())"
         );
-        $sendPost = $statement->execute([ $title, $chapo, $content, $author, $_SESSION['idUs'], $img]);
+        $statement->execute([ $title, $chapo, $content, $author, $_SESSION['idUs'], $img]);
     }
 
     /**
@@ -89,7 +89,7 @@ class PostRepo implements PostInterface
      * @param id The parameter "id" is the unique identifier of the post that you want to delete from
      * the "ae_post" table in the database.
      */
-    public function postDelete($id)
+    public function postDelete(int $id): void
     {
         $statement = $this->dbase->prepare(
             "DELETE FROM ae_post WHERE id = $id"
@@ -112,8 +112,14 @@ class PostRepo implements PostInterface
      * @param upImg The parameter "upImg" is used to update the picture field in the ae_post table. It
      * represents the new image that you want to associate with the post.
      */
-    public function postUpdate($id, $upTitle, $upContent, $upChapo, $upAuthor, $upImg)
-    {
+    public function postUpdate(
+        int $id,
+        string $upTitle,
+        string $upContent,
+        string $upChapo,
+        string $upAuthor,
+        ?string $upImg
+    ): void {
         $statement = $this->dbase->prepare(
             "UPDATE ae_post SET title = ?, 
             content = ?, 

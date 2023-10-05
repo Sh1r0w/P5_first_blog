@@ -24,7 +24,7 @@ class UserRepo implements UserInterface
      *
      * @return The prepared statement for inserting a new user into the database is being returned.
      */
-    public function userCreate()
+    public function userCreate(): object
     {
             $statement = $this->dbase->prepare(
                 "INSERT INTO ae_user(
@@ -58,7 +58,7 @@ class UserRepo implements UserInterface
      * joined with the "ae_user" table. The specific row that is returned is determined by the value of
      * the "id" parameter passed to the function.
      */
-    public function userRead($id)
+    public function userRead(int $id): array
     {
         $statement = $this->dbase->prepare(
             "SELECT * FROM ae_connect a LEFT JOIN ae_user u ON a.id = u.id_login WHERE a.id = ?"
@@ -77,7 +77,7 @@ class UserRepo implements UserInterface
      * @return The prepared statement for updating a user's information in the database is being
      * returned.
      */
-    public function userUpdate($id)
+    public function userUpdate(int $id): object
     {
         $statement = $this->dbase->prepare(
             "UPDATE ae_user 
@@ -104,7 +104,7 @@ class UserRepo implements UserInterface
      * @param id The "id" parameter is the unique identifier of the user whose password needs to be
      * updated. It is used to identify the specific user in the database.
      */
-    public function userPasswordUpdate($password, $id)
+    public function userPasswordUpdate(string $password, int $id): void
     {
         $statement = $this->dbase->prepare(
             "UPDATE ae_connect SET pwd = ? WHERE id = ?"

@@ -4,7 +4,7 @@ namespace Controllers\Mail;
 
 class SendEmail
 {
-    public function sendEmail($id)
+    public function sendEmail(int $id): void
     {
         if ($_POST['csrf_token'] === $_SESSION['csrf_token']) {
             $mail = new \PHPMailer\PHPMailer\PHPMailer();

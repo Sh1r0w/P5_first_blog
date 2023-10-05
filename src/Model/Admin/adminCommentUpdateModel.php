@@ -15,7 +15,7 @@ class AdminCommentUpdateModel
      *
      * @return The value of `->key` is being returned.
      */
-    public function commentUpdate($key)
+    public function commentUpdate(int $key): string
     {
         if ($key == "1") {
             return $this->key = "0";

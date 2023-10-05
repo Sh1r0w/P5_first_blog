@@ -4,92 +4,105 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        {% if session.logged_user != null and session.idUs != null and cookie.BLOG_COOKIE %}
-          <a class="nav-link active d-none d-lg-block" aria-current="page" href="/">
-          <img src="uploads/logo.png" style="max-width:100px;">
-          </a>
-
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item d-lg-none d-block">
-          <a class="nav-link active" aria-current="page" href="/">
-            Home
-          </a>
-        </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="post">
-              posts
-            </a>
-          </li>
-        {% else %}
+      {% if session.logged_user != null and session.idUs != null and cookie.BLOG_COOKIE %}
+        <a class="nav-link active d-none d-lg-block" aria-current="page" href="/">
+          <img src="uploads/logo.png" style="max-width:100px;"></a>
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        {% endif %}
-        {% if session.admin == '1' %}
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="admin">
-              Administration
-            </a>
-          </li>
-          <li class="nav-item d-lg-none">
-                            <a href="/postListValid" class="nav-link px-0">
-                                <i class="fs-4 bi-house"></i>
-
-                                    Liste des post
-
-                            </a>
-                            <a href="commentListValid" class="nav-link px-0">
-
-                                    Liste des Commentaires
-
-                            </a>
-                                    <a href="/userList" class="nav-link px-0">
-
-                                            Liste des Utilisateurs
-
-                                    </a>
-                
-                        </li>
-        {% endif %}
-      </ul>
-      <ul>
-        <li class="nav-item">
-          {% if session.logged_user == null %}
-            <a class="btn btn-outline-primary mt-3" data-bs-toggle="modal" href="#login" role="button">
-              Connection
-            </a>
+            <li class="nav-item d-lg-none d-block">
+              <a class="nav-link active" aria-current="page" href="/">
+                Home
+                          
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="post">
+                posts
+                            
+              </a>
+            </li>
           {% else %}
-            <li class="nav-item dropdown ">
-              <button class="btn btn-dark dropdown-toggle mx-auto " data-bs-toggle="dropdown" aria-expanded="false">
-                {% if session.firstname == null %}
-                  {{ session.idUs}} Anonyme
-                {% else %}
-                  {% if session.img == null %}
-                    <img class="me-2" src="uploads/profile/anonyme.png" alt="{{ session.firstname }} {{ session.lastname }}" style="width:50px;"/>
-                  {% else %}
-                    <img class="me-2" src="{{ session.img }}" alt="{{ session.firstname }} {{ session.lastname }}" style="width:50px;">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% endif %}
+            {% if session.admin == '1' %}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="admin">
+                  Administration
+                              
+                </a>
+              </li>
+              <li class="nav-item d-lg-none">
+                <a href="/postListValid" class="nav-link px-0">
+                  <i class="fs-4 bi-house"></i>
+                  Liste des post
+                  
+                                              
+                </a>
+                <a href="commentListValid" class="nav-link px-0">
+                  Liste des Commentaires
+                  
+                                              
+                </a>
+                <a href="/userList" class="nav-link px-0">
+                  Liste des Utilisateurs
+                  
+                                                      
+                </a>
+              </li>
+            {% endif %}
+          </ul>
+          <ul>
+            <li class="nav-item">
+              {% if session.logged_user == null %}
+                <a class="btn btn-outline-primary mt-3" data-bs-toggle="modal" href="#login" role="button">
+                  Connection
+                              
+                </a>
+              {% else %}
+                <li class="nav-item dropdown ">
+                  <button class="btn btn-dark dropdown-toggle mx-auto " data-bs-toggle="dropdown" aria-expanded="false">
+                    {% if session.firstname == null %}
+                      {{ session.idUs }}
+                      Anonyme
+                                      
+                    {% else %}
+                      {% if session.img == null %}
+                        <img
+                      class="me-2" src="uploads/profile/anonyme.png" alt="{{ session.firstname }} {{ session.lastname }}" style="width:50px;" />
+                        {% else %}
+                        <img class="me-2" src="{{ session.img }}" alt="{{ session.firstname }} {{ session.lastname }}" style="width:50px;">
+                        {% endif %}
+                        {{ session.firstname }}
+                        {{ session.lastname }}
+                        <br/>
+                      {% endif %}
+                      {% if session.admin == '1' %}
+                        <span>
+                          Administrateur
+                        </span>
+                      {% endif %}
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                      <li>
+                        <a class="nav-link active" aria-current="page" href="user">
+                          Mon Profil
+                                              
+                        </a>
+                      </li>
+                      <li>
+                        <hr class="dropdown-divider"></li>
+                        <li>
+                          <a class="nav-link active" href="logout?action=logout">
+                            Deconnection
+                                                
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
                   {% endif %}
-                {{ session.firstname }} {{ session.lastname }}<br/>
-                {% endif %}
-                {% if session.admin == '1' %}
-                  <span>Administrateur</span>
-                {% endif %}
-                </button>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
-                  <li>
-                    <a class="nav-link active" aria-current="page" href="user">
-                      Mon Profil
-                    </a>
-                  </li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li>
-                    <a class="nav-link active" href="logout?action=logout">
-                      Deconnection
-                    </a>
-                  </li>
+                </li>
               </ul>
-            </li>           
-          {% endif %}
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+            </div>
+          </div>
+        </nav>
+        
+        

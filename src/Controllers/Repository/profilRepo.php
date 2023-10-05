@@ -30,7 +30,7 @@ class ProfilRepo implements ProfilInterface
      *
      * @return a database query statement.
      */
-    public function get($id)
+    public function get(int $id): object
     {
         $statement = $this->dbase->query(
             "SELECT u.id, u.lastname, u.firstname, u.citation, u.pictures, u.cv, c.log 

@@ -6,11 +6,11 @@ namespace Controllers\Admin;
 class AdminControllers
 {
     public $userList;
-    public function userList($data)
+    public function userList(object $data): object
     {
-        if (isset($data)) {
+
             $this->userList = $data;
-        }
+
         return $this->userList;
     }
 }

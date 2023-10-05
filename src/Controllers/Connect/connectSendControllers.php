@@ -28,7 +28,7 @@ class ConnectSendControllers
         array $input,
         \Controllers\Fonction\Factory $fact,
         \Model\Connect\ConnectSendModel $lSendM
-    ) {
+    ): void {
 
         $lSendM->email = $input['email'];
         $this->fact = $fact;
@@ -58,7 +58,7 @@ class ConnectSendControllers
      * @param lSendM The parameter `` seems to be an object that contains some properties, one
      * of which is `email`.
      */
-    public function validateInput(\Model\Connect\ConnectSendModel $lSendM)
+    public function validateInput(\Model\Connect\ConnectSendModel $lSendM): void
     {
         if (empty($lSendM->email)) {
             throw new \Exception("Connect vide");
@@ -78,7 +78,7 @@ class ConnectSendControllers
      * @param connectSM The  parameter is an object that represents a connection to a session
      * management system. It is used to update the session status and retrieve user information.
      */
-    protected function validatePassword($hashedPassword, $connectSM)
+    protected function validatePassword(string $hashedPassword, object $connectSM): void
     {
         if (!password_verify($this->password, $hashedPassword)) {
             throw new \Exception("Mot de passe invalide");

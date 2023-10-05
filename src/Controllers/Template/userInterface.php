@@ -8,11 +8,11 @@ interface UserInterface
 {
     public function __construct();
 
-    public function userCreate();
+    public function userCreate(): object;
 
-    public function userRead($id);
+    public function userRead(int $id): array;
 
-    public function userUpdate($id);
+    public function userUpdate(int $id): object;
 
-    public function userPasswordUpdate($password, $id);
+    public function userPasswordUpdate(string $password, int $id): void;
 }

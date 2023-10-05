@@ -14,7 +14,7 @@ class GetPdf
      * @return the name of the uploaded PDF file.
      */
 
-    public function getPdf()
+    public function getPdf(): ?string
     {
 
         $fileInfo = pathinfo($_FILES['pdf']['name']);

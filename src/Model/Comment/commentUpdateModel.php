@@ -14,7 +14,7 @@ class CommentUpdateModel
      * @param \Controllers\Fonction\Factory fact The parameter `` is an instance of the `Factory`
      * class from the `Controllers\Fonction` namespace.
      */
-    public function commentUpdate(\Controllers\Fonction\Factory $fact)
+    public function commentUpdate(\Controllers\Fonction\Factory $fact): void
     {
         echo $this->id, $this->upContent;
         $fact->instance(
@@ -32,7 +32,7 @@ class CommentUpdateModel
      * @param name The name of the property being set.
      * @param value The value parameter is the value that you want to assign to the property.
      */
-    public function __set($name, $value)
+    public function __set(string $name, mixed $value): void
     {
         $this->$name = $value;
     }
@@ -46,7 +46,7 @@ class CommentUpdateModel
      * @return The value of the property with the name specified by the parameter  is being
      * returned.
      */
-    public function __get($name)
+    public function __get(string $name): mixed
     {
         return $this->$name;
     }
@@ -60,7 +60,7 @@ class CommentUpdateModel
      * @return the result of the `isset()` function called on the property `` of the current
      * object.
      */
-    public function __isset($name)
+    public function __isset(string $name): bool
     {
         return isset($this->$name);
     }

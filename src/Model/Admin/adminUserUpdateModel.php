@@ -14,7 +14,7 @@ class AdminUserUpdateModel
      *
      * @return The value of `->key` after it has been updated.
      */
-    public function adminUpdate($key)
+    public function adminUpdate(int $key): string
     {
         if ($key == '1') {
             return $this->key = '0';

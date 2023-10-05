@@ -6,7 +6,7 @@ class Autoloader
 {
     /* The `register()` function is a static function within the `Autoloader` class. It is responsible
     for registering an autoloader function using the `spl_autoload_register()` function. */
-    public static function register()
+    public static function register(): void
     {
 
         spl_autoload_register(static function (string $class) {

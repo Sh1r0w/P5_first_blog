@@ -8,25 +8,27 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    {{ forms.textarea('Votre résumé', 'chapo', null, 5, 30) }}</br>
-                    {{ forms.textarea('Votre texte', 'content', null, 5, 60) }}
-                    {{ forms.csrf }}
-                    Fichier joint: {{ forms.input('Fichier joint', 'picture',  null, 'file') }}
-                </div>
-                <div></div>
-                <div class="modal-footer">
-                    {{ forms.input('Auteur', 'author', null, 'texte') }}
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        Annuler
-                                            
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                        Valider
-                                            
-                    </button>
-                    
-                </div>
+                    {{ forms.textarea('Votre résumé', 'chapo', null, 5, 30) }}
+                </br>
+                {{ forms.textarea('Votre texte', 'content', null, 5, 60) }}
+                {{ forms.csrf }}
+                Fichier joint: 
+                {{ forms.input('Fichier joint', 'picture',  null, 'file') }}
+            </div>
+            <div></div>
+            <div class="modal-footer">
+                {{ forms.input('Auteur', 'author', null, 'texte') }}
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Annuler
+                                                                
+                                        
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    Valider
+                                                                
+                                        
+                </button>
             </div>
         </div>
-        </form>
-</div>
+    </div>
+</form></div>

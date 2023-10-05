@@ -77,7 +77,7 @@ class Db
                 $this->dbConnect = new \PDO("mysql:host=$server;dbname=$db;utf8", $user, $pwd);
             }
         } catch (\Exception $e) {
-            die('Erreur : ' . $e->getMessage());
+            echo 'Erreur : ' . $e->getMessage();
         }
     }
 
@@ -87,7 +87,7 @@ class Db
  *
  * @return an instance of the "Db" class.
  */
-    public static function connectDatabase()
+    public static function connectDatabase(): object
     {
         if (is_null(self::$selfConnect)) {
             self::$selfConnect = new Db();

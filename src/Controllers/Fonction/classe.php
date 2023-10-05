@@ -80,7 +80,7 @@ class Factory
      * @param input The "input" parameter is an array that contains the user's connect credentials, such
      * as their email and password.
      */
-    public function connectSend($input): void
+    public function connectSend(array $input): void
     {
         self::instance(
             'Controllers\Connect',
@@ -197,7 +197,7 @@ class Factory
 
     public function postRead(string $id): array
     {
-        if (isset($id)) {
+
             return self::instance(
                 'Controllers\Post',
                 'PostReadControllers'
@@ -210,7 +210,6 @@ class Factory
                     self::getInstance()
                 )
             );
-        }
     }
 
     /**
@@ -285,7 +284,7 @@ class Factory
     public function commentRead(string $id): ?array
     {
 
-        if (isset($id)) {
+
             return self::instance(
                 'Controllers\Comment',
                 'CommentReadControllers'
@@ -298,7 +297,6 @@ class Factory
                     self::getInstance()
                 )
             );
-        }
     }
 
     public function commentCount(): object
@@ -346,7 +344,7 @@ class Factory
      * instance of the 'AdminControllers' class with an instance of the 'AdminUserListModel' class as a
      * parameter.
      */
-    public function adminList(): array
+    public function adminList(): object
     {
         return self::instance(
             'Controllers\Admin',
@@ -420,10 +418,6 @@ class Factory
             'AdminPostDeleteControllers'
         )->postDelete(
             $id,
-            self::instance(
-                'Model\Admin',
-                'AdminPostDeleteModel'
-            )->postDelete($id),
             self::getInstance()
         );
     }

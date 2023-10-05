@@ -14,7 +14,7 @@ class UpdatePassModel
      *
      * @return the value '1' if the condition `->update == ->updateVerif` is true.
      */
-    public function updatePass()
+    public function updatePass(): string
     {
         if ($this->update == $this->updateVerif) {
             return $this->valide = '1';
@@ -27,7 +27,7 @@ class UpdatePassModel
      * @param name The name of the property being set.
      * @param value The value parameter is the value that you want to assign to the property.
      */
-    public function __set($name, $value)
+    public function __set(string $name, mixed $value): void
     {
         $this->$name = $value;
     }
@@ -40,7 +40,7 @@ class UpdatePassModel
      *
      * @return The value of the property with the name specified by the parameter .
      */
-    public function __get($name)
+    public function __get(string $name): mixed
     {
             return $this->$name;
     }
@@ -54,7 +54,7 @@ class UpdatePassModel
      * @return the result of the `isset()` function called on the property `` of the current
      * object.
      */
-    public function __isset($name)
+    public function __isset(string $name): bool
     {
         return isset($this->$name);
     }

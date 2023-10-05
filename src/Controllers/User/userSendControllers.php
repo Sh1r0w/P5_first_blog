@@ -28,10 +28,10 @@ class UserSendControllers
      */
     public function userSend(
         array $input,
-        $count,
+        string $count,
         \Controllers\Fonction\Factory $fact,
         \Model\User\UserPushModel $userPush
-    ) {
+    ): void {
         $openSession = $fact->instance('Controllers\Fonction', 'Session');
 
         if (isset($openSession->idCo) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {

@@ -13,7 +13,7 @@ class AdminCommentUpdateControllers
     * @param key The key parameter is used to identify the specific comment that needs to be updated.
     * It is likely a unique identifier such as a comment ID or a comment key.
     */
-    public function commentUpdate($id, $key, \Controllers\Fonction\Factory $fact)
+    public function commentUpdate(int $id, int $key, \Controllers\Fonction\Factory $fact): void
     {
         if ($_POST['csrf_token'] === $_SESSION['csrf_token']) {
             $fact->instance('Controllers\Repository', 'AdminRepo')->commentUpdate($id, $key);

@@ -12,9 +12,14 @@ class PostSendControllers
     protected $author = null;
     protected $id = null;
 
-    public function postSend($title, $chapo, $content, $author, \Controllers\Fonction\Factory $fact)
-    {
-        if (isset($title, $chapo, $content, $author) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+    public function postSend(
+        string $title,
+        string $chapo,
+        string $content,
+        string $author,
+        \Controllers\Fonction\Factory $fact
+    ): void {
+        if ($_POST['csrf_token'] === $_SESSION['csrf_token']) {
             $img = $fact->instance('Controllers\Fonction', 'GetImg')->getImg();
             $fact->instance('Model\post', 'PostSendModel')->postSend($title, $chapo, $content, $author, $img, $fact);
         }

@@ -15,7 +15,7 @@ class AdminPostUpdateModel
      *
      * @return The value of `->key` after it has been updated.
      */
-    public function postUpdate($key)
+    public function postUpdate(int $key): string
     {
         if ($key == "1") {
             return $this->key = "0";
