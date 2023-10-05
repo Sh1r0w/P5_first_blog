@@ -32,7 +32,7 @@ class ConnectCheckModel
             } else {
                 $this->result = false;
             }
-            return $this->result;
         };
+        return $this->result;
     }
 }

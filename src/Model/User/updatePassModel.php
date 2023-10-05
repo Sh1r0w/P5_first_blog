@@ -17,8 +17,9 @@ class UpdatePassModel
     public function updatePass(): string
     {
         if ($this->update == $this->updateVerif) {
-            return $this->valide = '1';
+             $this->valide = '1';
         }
+        return $this->valide;
     }
 
     /**
@@ -40,7 +41,7 @@ class UpdatePassModel
      *
      * @return The value of the property with the name specified by the parameter .
      */
-    public function __get(string $name): mixed
+    public function __get(string $name): string
     {
             return $this->$name;
     }

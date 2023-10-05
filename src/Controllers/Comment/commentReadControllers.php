@@ -9,9 +9,6 @@ class CommentReadControllers
 
     public function commentReadControllers(mixed $data): array
     {
-
-        if (isset($data)) {
             return $this->commentsRead = $data;
-        }
     }
 }
