@@ -5,6 +5,7 @@
 </br>
 <input type="{{ type }}" name="{{ name }}" value="{{ value }}">
 {% endmacro %}
+
 {% macro login(title, name, value, type) %}
     <label for="{{ name }}">
         {{ title }}
@@ -12,6 +13,7 @@
 </br>
 <input type="{{ type }}" required name="{{ name }}" value="{{ value }}">
 {% endmacro %}
+
 {% macro password(title, name, value, type, min, pattern) %}
     <label for="{{ name }}">
         {{ title }}
@@ -19,6 +21,7 @@
 </br>
 <input type="{{ type }}" name="{{ name }}" required value="{{ value }}" min="{{ min }}" pattern="{{ pattern }}">
 {% endmacro %}
+
 {% macro textarea(title, name, value, rows, cols) %}
     <label for="{{ name }}">
         {{ title }}
@@ -29,10 +32,19 @@
 </textarea>{% endmacro %}{% macro csrf() %}
 <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 {% endmacro %}
+
 {% macro social(title, name, value, type) %}
     <label for="{{ name }}">
         {{ title }}
     </label>
 </br>
 <input type="{{ type }}" name="{{ name }}" value="{{ value|default('https://') }}">
+{% endmacro %}
+
+{% macro object(title, name, type) %}
+    <label for="{{ name }}">
+        {{ title }}
+    </label>
+</br>
+    <input type="{{ type }}" name="{{ name }}" value="[.Blog] {{ session.firstname }} {{ session.lastname }} vous à envoyer un message">
 {% endmacro %}

@@ -16,8 +16,9 @@
                        <div class="card-body d-none">
                         {{ forms.input('Email', 'email_to', u.email, 'email')}}</br>
                        {{ forms.input('Votre Email', 'email_from', session.logged_user, 'email')}}</br>
+                       {{ forms.object("Object du Message", 'object', 'text')}}</br>
                        </div>
-                       {{ forms.input("Object du Message", 'object', null, 'text')}}</br>
+                       
                        
                        {{ forms.textarea('Votre Message', 'body', null, 5,60) }}</br>
                        {{ forms.csrf }}
