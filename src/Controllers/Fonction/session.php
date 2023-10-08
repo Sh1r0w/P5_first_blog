@@ -9,7 +9,7 @@ class Session
         $_SESSION[$name] = $value;
     }
 
-    public function __get(string $name): string
+    public function __get(string $name): mixed
     {
             return $_SESSION[$name];
     }
