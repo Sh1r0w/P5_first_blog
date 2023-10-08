@@ -77,6 +77,12 @@ class ConnectSendModel
             $openSession->citation = $list['citation'];
             $openSession->admin = $list['globalAdmin'];
             $openSession->pdf = $list['cv'];
+            $openSession->facebook = $list['social_network_facebook'];
+            $openSession->instagram = $list['social_network_instagram'];
+            $openSession->x = $list['social_network_x'];
+            $openSession->linkedin = $list['social_network_linkedin'];
+            $openSession->github = $list['social_network_github'];
+            $openSession->gitlab = $list['social_network_gitlab'];
             $openSession->flash = null;
             $openSession->csrf_token = $csrf_token;
         }
