@@ -99,7 +99,6 @@ class UserPushModel
             '\Controllers\Repository',
             'UserRepo'
         )->userRead($_SESSION['idCo']);
-
         $openSession->firstname = $list['firstname'];
         $openSession->lastname = $list['lastname'];
         $openSession->citation = $list['citation'];

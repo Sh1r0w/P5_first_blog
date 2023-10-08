@@ -26,6 +26,12 @@ class GetProfilControllers
                 'img' => $row['pictures'],
                 'email' => $row['log'],
                 'pdf' => $row['cv'],
+                'facebook' => $row['social_network_facebook'],
+                'x' => $row['social_network_x'],
+                'instagram' => $row['social_network_instagram'],
+                'linkedin' => $row['social_network_linkedin'],
+                'github' => $row['social_network_github'],
+                'gitlab' => $row['social_network_gitlab']
 
             ];
              $this->profile[] = $profil;

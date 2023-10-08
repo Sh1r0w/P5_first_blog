@@ -41,7 +41,7 @@ class UpdatePassModel
      *
      * @return The value of the property with the name specified by the parameter .
      */
-    public function __get(string $name): string
+    public function __get(string $name): mixed
     {
             return $this->$name;
     }

@@ -33,7 +33,20 @@ class ProfilRepo implements ProfilInterface
     public function get(int $id): object
     {
         $statement = $this->dbase->query(
-            "SELECT u.id, u.lastname, u.firstname, u.citation, u.pictures, u.cv, c.log 
+            "SELECT 
+            u.id, 
+            u.lastname, 
+            u.firstname, 
+            u.citation, 
+            u.pictures, 
+            u.cv, 
+            c.log, 
+            u.social_network_facebook,
+            u.social_network_instagram,
+            u.social_network_x,
+            u.social_network_linkedin,
+            u.social_network_github,
+            u.social_network_gitlab
             FROM ae_user u 
             LEFT JOIN ae_connect c 
             ON c.id = u.id_login 
